@@ -1,0 +1,8 @@
+pt-BR:
+  application:
+    title: Raddar
+    copyleft: Copyleft Raddar 2012
+  section:
+  action:
+    search: Pesquisar
+    sign_in: Entrar

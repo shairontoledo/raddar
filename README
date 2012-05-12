@@ -1,0 +1,7 @@
+== RADDAR
+
+Raddar is a CMS designed for easily creation of community-like websites, with well known tools such as forums, blog, user management and groups.
+
+Raddar is proudly written in Ruby, developed with Rails 3.2, MongoID, Devise and other amazing tools.
+
+Raddar is under MIT license.
