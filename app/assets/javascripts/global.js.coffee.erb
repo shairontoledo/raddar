@@ -1,0 +1,9 @@
+$ ->
+  $('.datepicker').datepicker({
+    <% if I18n.locale == 'pt-BR'.to_sym %>
+      format: 'dd/mm/yyyy',
+      language: 'br'
+    <% end %>
+    })
+  $('#user_date_of_birth').datepicker('setStartDate', '<%= I18n.l 90.years.ago.to_date %>');
+  $('#user_date_of_birth').datepicker('setEndDate', '<%= I18n.l 13.years.ago.to_date %>');

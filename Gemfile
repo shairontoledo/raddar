@@ -42,6 +42,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'carrierwave'
 gem 'will_paginate_mongoid'
+gem 'bootstrap-datepicker-rails'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -1,0 +1,9 @@
+pt-BR:
+  mongoid:
+    errors:
+      models:
+        user:
+          attributes:
+            date_of_birth:
+              too_young: voce precisa ter ao menos 13 anos para participar.
+              

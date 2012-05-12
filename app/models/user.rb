@@ -1,7 +1,6 @@
-class User
-  include Mongoid::Document
-  include Mongoid::Timestamps
-  include Mongoid::MultiParameterAttributes
+require_relative 'model.rb'
+
+class User < Model
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
   devise :database_authenticatable, :registerable,
@@ -44,12 +43,28 @@ class User
 
   # User fields
   field :name, type: String
-  field :birth, type: Date
+  field :date_of_birth, type: Date
   field :gender, type: Symbol
+  field :about_me, type: String
+  field :signature, type: String
 
   # Validations
-  validates_presence_of :name, :birth, :gender
+  validates_presence_of :name, :date_of_birth, :gender
   validates_uniqueness_of :name
+  validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|-|_)+)$/
+  validates_length_of :name, maximum: 20, minimum: 3
+  validates_length_of :signature, maximum: 1000
+  validates_length_of :about_me, maximum: 60000
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
+
+
+
+  validate  do
+    add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
+  end
+
+  def to_param
+    self.name
+  end
 
 end

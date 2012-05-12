@@ -6,3 +6,8 @@ pt-BR:
   action:
     search: Pesquisar
     sign_in: Entrar
+    sign_out: Sair
+  user:
+    account:
+      my: Meu perfil
+      edit: Editar perfil
