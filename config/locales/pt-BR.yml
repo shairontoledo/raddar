@@ -1,5 +1,5 @@
 pt-BR:
-  application:
+  application: &app
     title: Raddar
     copyleft: Copyleft Raddar 2012
   section:
@@ -11,3 +11,5 @@ pt-BR:
     account:
       my: Meu perfil
       edit: Editar perfil
+  anus:
+    <<: *app

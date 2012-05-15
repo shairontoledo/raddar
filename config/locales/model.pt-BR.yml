@@ -1,9 +1,25 @@
 pt-BR:
   mongoid:
     errors:
+      messages:
+        validations: A validação falhou!
       models:
         user:
           attributes:
             date_of_birth:
               too_young: voce precisa ter ao menos 13 anos para participar.
-              
+    models:
+      user: Usuário
+    attributes:
+      user:
+        login: Nome ou e-mail
+        email: E-mail
+        password: Senha
+        current_password: Senha atual
+        password_confirmation: Confirmar senha
+        name: Nome
+        date_of_birth: Data de nascimento
+        gender: Sexo
+        remember_me: Lembrar
+        avatar: Avatar
+        remove_avatar: Remover avatar

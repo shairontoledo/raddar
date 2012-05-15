@@ -40,9 +40,11 @@ gem 'bson_ext'
 gem 'responders'
 gem 'simple_form'
 gem 'devise'
-gem 'carrierwave'
+gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid'
+gem 'mini_magick'
 gem 'will_paginate_mongoid'
 gem 'bootstrap-datepicker-rails'
+gem 'omniauth-facebook'
 
 group :development, :test do
   gem 'rspec-rails'

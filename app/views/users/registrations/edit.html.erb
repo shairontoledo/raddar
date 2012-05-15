@@ -10,6 +10,12 @@
     <hr/>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
     <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth),  :type => 'date', :class => 'datepicker' } %>
+    <% if resource.avatar.url.present? %>
+      <%= image_tag resource.avatar.thumb.url %>
+      <%= f.input :remove_avatar, as: :boolean %>
+    <% end %>
+    <%= f.input :avatar, as: :file %>
+    <%= f.input :avatar_cache, as: :hidden %>
     <hr/>
     <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
   </div>

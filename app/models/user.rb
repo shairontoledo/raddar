@@ -1,10 +1,12 @@
 require_relative 'model.rb'
+require 'pp'
+
 
 class User < Model
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :lockable, :timeoutable and :omniauthable
+  # :token_authenticatable, :encryptable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
 
   ## Database authenticatable
   field :email,              :type => String, :null => false, :default => ""
@@ -47,6 +49,7 @@ class User < Model
   field :gender, type: Symbol
   field :about_me, type: String
   field :signature, type: String
+  mount_uploader :avatar, AvatarUploader
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
@@ -57,10 +60,49 @@ class User < Model
   validates_length_of :about_me, maximum: 60000
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
 
-
+  # Virtual attributes
+  attr_accessor :login
+  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar
 
   validate  do
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
+  end
+
+  field :email
+
+  def self.find_first_by_auth_conditions(warden_conditions)
+    conditions = warden_conditions.dup
+    if login = conditions.delete(:login)
+      self.any_of({ :name =>  /^#{Regexp.escape(login)}$/i }, { :email =>  /^#{Regexp.escape(login)}$/i }).first
+    else
+      super
+    end
+  end
+
+  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+    data = access_token.extra.raw_info
+    if user = self.where(email: data.email).first
+      user
+    else # Create a user with a stub password. 
+      user = self.new
+      user.email = data.email
+      user.password = Devise.friendly_token[0,20]
+      user.gender = data.gender.to_sym
+      user.name = data.username
+      user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') 
+      user.about_me = data.bio
+      user.confirm!
+      user.save!
+      user
+    end
+  end
+
+  def self.new_with_session(params, session)
+    super.tap do |user|
+      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
+        user.email = data["email"]
+      end
+    end
   end
 
   def to_param

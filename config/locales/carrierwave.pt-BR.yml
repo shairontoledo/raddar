@@ -1,0 +1,6 @@
+pt-BR:
+  errors:
+    messages:
+      carrierwave_processing_error: 'impossível redimensionar a imagem.'
+      carrierwave_integrity_error: 'não é uma imagem.'
+      carrierwave_download_error: 'não foi possível baixar a image.'
