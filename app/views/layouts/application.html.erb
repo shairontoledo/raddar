@@ -1,9 +1,15 @@
 <!DOCTYPE html>
-<html>
+<html lang="<%= I18n.locale.to_s %>" xmlns="http://www.w3.org/1999/xhtml" xml:lang="<%= I18n.locale.to_s %>">
   <head>
+    <meta content="<%= I18n.locale.to_s %>" http-equiv="content-language">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta content="text/html; charset=utf-8" http-equiv="content-type">
+    <meta content="no-cache" http-equiv="cache-control">
+    <meta content="text/javascript" http-equiv="content-script-type">
+    <meta content="text/css" http-equiv="content-style-type">
+    <meta content="no-cache" http-equiv="pragma">
+    <meta content="Volmer" name="Author">
     <title><%= t('application.title') %></title>
-    <%= javascript_include_tag "application" %>
     <%= csrf_meta_tags %>
 
     <!-- Le styles -->
@@ -27,7 +33,7 @@
     <%= render 'layouts/navbar' %>
     <div class="container">
       <%= render 'layouts/messages' %>
-      <div class="row-fluid">
+      <div class="row">
         <div class="span8">
           <%= yield %>
         </div><!--/span-->
@@ -63,4 +69,5 @@
 
     </div><!--/.fluid-container-->
   </body>
+  <%= javascript_include_tag "application" %>
 </html>

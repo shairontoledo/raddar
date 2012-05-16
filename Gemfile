@@ -45,6 +45,7 @@ gem 'mini_magick'
 gem 'will_paginate_mongoid'
 gem 'bootstrap-datepicker-rails'
 gem 'omniauth-facebook'
+#gem 'ckeditor'
 
 group :development, :test do
   gem 'rspec-rails'

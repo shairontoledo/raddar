@@ -11,7 +11,7 @@ pt-BR:
     models:
       user: Usuário
     attributes:
-      user:
+      user: &user_attributes
         login: Nome ou e-mail
         email: E-mail
         password: Senha
@@ -23,3 +23,7 @@ pt-BR:
         remember_me: Lembrar
         avatar: Avatar
         remove_avatar: Remover avatar
+        about_me: Sobre mim
+        signature: Assinatura
+  user:
+    <<: *user_attributes

@@ -46,9 +46,12 @@ class User < Model
   # User fields
   field :name, type: String
   field :date_of_birth, type: Date
+  field :date_of_birth_visibility, type: Symbol
   field :gender, type: Symbol
+  field :gender_visibility, type: Symbol
   field :about_me, type: String
   field :signature, type: String
+  field :email_visibility, type: Symbol
   mount_uploader :avatar, AvatarUploader
 
   # Validations
@@ -59,6 +62,7 @@ class User < Model
   validates_length_of :signature, maximum: 1000
   validates_length_of :about_me, maximum: 60000
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
+  validates_inclusion_of :date_of_birth_visibility, :gender_visibility, :email_visibility, :in => [:public,:only_me], allow_blank: false
 
   # Virtual attributes
   attr_accessor :login
@@ -90,7 +94,7 @@ class User < Model
       user.gender = data.gender.to_sym
       user.name = data.username
       user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') 
-      user.about_me = data.bio
+      user.about_me = simple_format(data.bio)
       user.confirm!
       user.save!
       user

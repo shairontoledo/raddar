@@ -4,18 +4,30 @@
   <%= f.error_notification %>
 
   <div class="inputs">
-    <%= f.input :email, :required => true, :autofocus => true %>
+    <%= f.input :name, required: true, :autofocus => true %>
+    <hr/>
+    <%= f.input :email, :required => true %>
+    <%= f.input :email_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
+    <hr/>
     <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
     <%= f.input :password_confirmation, :required => false %>
     <hr/>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
+    <%#= f.input :gender_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
+    <hr/>
     <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth),  :type => 'date', :class => 'datepicker' } %>
-    <% if resource.avatar.url.present? %>
+    <%#= f.input :date_of_birth_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
+    <hr/>
+    <% unless resource.avatar.file.nil? %>
       <%= image_tag resource.avatar.thumb.url %>
       <%= f.input :remove_avatar, as: :boolean %>
     <% end %>
     <%= f.input :avatar, as: :file %>
     <%= f.input :avatar_cache, as: :hidden %>
+    <hr/>
+    <%= f.input :about_me, as: :text, :input_html => {:class => 'wysiwyg-textarea' } %>
+    <hr/>
+    <%#= f.input :signature, as: :text, :input_html => {:class => 'wysiwyg-textarea' } %>
     <hr/>
     <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
   </div>

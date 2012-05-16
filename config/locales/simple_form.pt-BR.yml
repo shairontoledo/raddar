@@ -2,6 +2,18 @@ pt-BR:
   simple_form:
     options:
       user:
+        visibops:
+          public: Público
+          only_me: Não exibir
         gender:
           male: Masculino
           female: Feminino
+        gender_visibility:
+          public: Público
+          only_me: Não exibir
+        date_of_birth_visibility:
+          public: Público
+          only_me: Não exibir
+        email_visibility:
+          public: Público
+          only_me: Não exibir

@@ -1,2 +1,17 @@
-<h1>Users#show</h1>
-<p>Find me in app/views/users/show.html.erb</p>
+<div class="page-header"><h1><%= @user.name %></h1></div>
+<div class="row">
+  <div class="span2">
+    <%= image_tag @user.avatar.thumb.url %>
+  </div>
+  <div class="span6">
+    <%= show_protected_user_field @user, :email %>
+    <%= show_protected_user_field @user, :date_of_birth %>
+    <%= show_protected_user_field @user, :gender %>
+  </div>
+</div>
+<div class="row">
+  <div class="span8"><p><b><%= t('user.about_me') %></b></p> <%= raw @user.about_me %></div>
+</div>
+<div class="row">
+  <div class="span8"><p><b><%= t('user.signature') %></b></p> <%= raw @user.signature %></div>
+</div>

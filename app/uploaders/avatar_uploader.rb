@@ -1,4 +1,6 @@
 # encoding: utf-8
+include Sprockets::Helpers::RailsHelper
+include Sprockets::Helpers::IsolatedHelper
 
 class AvatarUploader < CarrierWave::Uploader::Base
 
@@ -22,7 +24,7 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Provide a default URL as a default if there hasn't been a file uploaded:
   def default_url
-    "/assets/fallback/" + [version_name, "default.png"].compact.join('_')
+    asset_path("/assets/fallback/" + [version_name, "default.png"].compact.join('_'))
   end
 
   # Process files as they are uploaded:
