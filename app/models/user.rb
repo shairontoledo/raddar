@@ -49,7 +49,7 @@ class User < Model
   field :date_of_birth_visibility, type: Symbol
   field :gender, type: Symbol
   field :gender_visibility, type: Symbol
-  field :about_me, type: String
+  field :bio, type: String
   field :email_visibility, type: Symbol
   mount_uploader :avatar, AvatarUploader
 
@@ -58,7 +58,7 @@ class User < Model
   validates_uniqueness_of :name
   validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|-|\.|_)+)$/
   validates_length_of :name, maximum: 20, minimum: 3
-  validates_length_of :about_me, maximum: 1000
+  validates_length_of :bio, maximum: 500
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
   validates_inclusion_of :date_of_birth_visibility, :gender_visibility, :email_visibility, :in => [:public,:only_me], allow_blank: false
 
@@ -92,7 +92,7 @@ class User < Model
       user.gender = data.gender.to_sym
       user.name = data.username
       user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') 
-      user.about_me = data.bio
+      user.bio = data.bio
       user.confirm!
       user.save!
       user

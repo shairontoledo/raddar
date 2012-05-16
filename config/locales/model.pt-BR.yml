@@ -23,7 +23,6 @@ pt-BR:
         remember_me: Lembrar
         avatar: Avatar
         remove_avatar: Remover avatar
-        about_me: Sobre mim
-        signature: Assinatura
+        bio: Sobre mim
   user:
     <<: *user_attributes

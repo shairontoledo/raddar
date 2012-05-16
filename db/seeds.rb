@@ -15,6 +15,6 @@ u.gender = :male
 u.gender_visibility = :public
 u.date_of_birth = 30.years.ago.to_date
 u.date_of_birth_visibility = :public
-u.about_me = "Lover\nRocker\nKiller"
+u.bio = "Lover\nRocker\nKiller"
 u.confirm!
 u.save!
