@@ -13,10 +13,10 @@
     <%= f.input :password_confirmation, :required => false %>
     <hr/>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
-    <%#= f.input :gender_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
+    <%= f.input :gender_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
     <hr/>
     <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth),  :type => 'date', :class => 'datepicker' } %>
-    <%#= f.input :date_of_birth_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
+    <%= f.input :date_of_birth_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
     <hr/>
     <% unless resource.avatar.file.nil? %>
       <%= image_tag resource.avatar.thumb.url %>
