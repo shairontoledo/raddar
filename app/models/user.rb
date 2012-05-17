@@ -65,7 +65,7 @@ class User < Model
 
   # Virtual attributes
   attr_accessor :login
-  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :email, :date_of_birth, :bio
+  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :date_of_birth, :bio, :password, :password_confirmation
 
   validate  do
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
@@ -115,6 +115,11 @@ class User < Model
 
   def to_param
     self.name
+  end
+
+  def update_without_password(params={})
+    params.delete(:email)
+    super(params)
   end
 
 end

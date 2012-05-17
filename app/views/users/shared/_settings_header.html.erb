@@ -5,6 +5,6 @@
   <li <%= raw 'class="active"' if active == :user_info %>><%= link_to t('user.account.info'), edit_user_registration_path %></li>
   <li <%= raw 'class="active"' if active == :accounts %>><%= link_to t('user.accounts.edit'), user_accounts_path %></li>
   <li <%= raw 'class="active"' if active == :privacy %>><%= link_to t('user.privacy'), edit_user_privacy_path %></li>
-  <li <%= raw 'class="active"' if active == :edit_password %>><%= link_to t('user.password.edit'), edit_user_privacy_path %></li>
+  <li <%= raw 'class="active"' if active == :change_password %>><%= link_to t('user.password.change'), change_user_password_path %></li>
   <li <%= raw 'class="active"' if active == :edit_email %>><%= link_to t('user.email.edit'), edit_user_privacy_path %></li>
 </ul>

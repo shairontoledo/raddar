@@ -5,16 +5,14 @@ Raddar::Application.routes.draw do
     resources :accounts, except: [:edit, :update, :show]
   end
 
-
-  devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" } do
+  devise_for :users, :controllers => {omniauth_callbacks: "users/omniauth_callbacks", registrations: "users/registrations", passwords: 'users/passwords' } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+    get '/users/password/change' => 'users/passwords#change', as: :change_user_password
+    put '/users/password/change' => 'users/passwords#do_change', as: :change_user_password
   end
 
   get 'search' => 'home#search', as: :search
   get 'users/:name' => 'users#show', as: :user
-
-
-
 
   root :to => 'home#index'
 

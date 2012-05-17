@@ -1,0 +1,16 @@
+<%= render 'users/shared/settings_header', {active: :change_password} %>
+
+<%= simple_form_for(@user, url: change_user_password_path, :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.input :password, :autocomplete => "off", :required => true %>
+    <%= f.input :password_confirmation, :required => true %>
+    <hr/>
+    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, "Update" %>
+  </div>
+<% end %>

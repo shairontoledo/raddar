@@ -17,10 +17,12 @@ pt-BR:
     accounts:
       edit: Contas vinculadas
     password:
-      edit: Senha
+      change: Senha
     email:
       edit: E-mail
   flash:
+    password:
+      changed: Sua senha foi alterada!
     privacy:
       updated: Suas configurações de privacidade foram atualizadas.
       error: Não foi possível alterar suas configrações de privacidade. Tente novamente mais tarde.
