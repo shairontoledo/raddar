@@ -16,10 +16,6 @@ pt-BR:
     privacy: Privacidade
     accounts:
       edit: Contas vinculadas
-    password:
-      change: Senha
-    email:
-      edit: E-mail
   flash:
     password:
       changed: Sua senha foi alterada!
