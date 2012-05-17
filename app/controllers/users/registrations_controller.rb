@@ -1,4 +1,3 @@
-require 'pp'
 class Users::RegistrationsController < Devise::RegistrationsController
   def update
     @user = User.find(current_user.id)
@@ -8,13 +7,9 @@ class Users::RegistrationsController < Devise::RegistrationsController
       #sign_in @user, :bypass => true
       respond_with @user, :location => after_update_path_for(@user)
     else
-      pp @user.errors
       clean_up_passwords @user
       respond_with @user
     end
-  end
-
-  def visibilities
   end
 
 end

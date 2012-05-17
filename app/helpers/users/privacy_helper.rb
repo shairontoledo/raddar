@@ -1,0 +1,2 @@
+module Users::PrivacyHelper
+end

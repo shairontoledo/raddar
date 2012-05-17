@@ -1,0 +1,15 @@
+<%= render 'users/shared/settings_header', {active: :privacy} %>
+
+<%= simple_form_for(@user, url: user_privacy_path, :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <% [:email,:facebook_url,:date_of_birth,:gender].each do |field| %>
+      <%= f.input "#{field}_privacy".to_sym, collection: [:public, :only_me], as: :radio_buttons, label: t("user.#{field}"), include_blank: false %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, "Update" %>
+  </div>
+<% end %>

@@ -8,12 +8,15 @@ pt-BR:
         gender:
           male: Masculino
           female: Feminino
-        gender_visibility:
+        gender_privacy:
           public: Público
           only_me: Não exibir
-        date_of_birth_visibility:
+        date_of_birth_privacy:
           public: Público
           only_me: Não exibir
-        email_visibility:
+        email_privacy:
+          public: Público
+          only_me: Não exibir
+        facebook_url_privacy:
           public: Público
           only_me: Não exibir

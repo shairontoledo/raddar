@@ -11,7 +11,7 @@ class Users::AccountsController < ApplicationController
   end
 
   def destroy
-    provider = params[:provider].to_sym
+    provider = params[:id].to_sym
 
     case provider
     when :facebook

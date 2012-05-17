@@ -44,13 +44,14 @@ class User < Model
   # User fields
   field :name, type: String
   field :date_of_birth, type: Date
-  field :date_of_birth_visibility, type: Symbol
+  field :date_of_birth_privacy, type: Symbol
   field :gender, type: Symbol
-  field :gender_visibility, type: Symbol
+  field :gender_privacy, type: Symbol
   field :bio, type: String
-  field :email_visibility, type: Symbol
+  field :email_privacy, type: Symbol
   field :facebook_access_token, type: String
   field :facebook_url, type: String
+  field :facebook_url_privacy, type: Symbol
   mount_uploader :avatar, AvatarUploader
 
   # Validations
@@ -60,7 +61,7 @@ class User < Model
   validates_length_of :name, maximum: 20, minimum: 3
   validates_length_of :bio, maximum: 500
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
-  validates_inclusion_of :date_of_birth_visibility, :gender_visibility, :email_visibility, :in => [:public,:only_me], allow_blank: false
+  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :in => [:public,:only_me], allow_blank: false
 
   # Virtual attributes
   attr_accessor :login

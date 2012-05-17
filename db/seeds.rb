@@ -8,13 +8,16 @@
 
 u = User.new
 u.name = 'volmer'
-u.email = 'lrvolmer@gmail.com'
-u.email_visibility = :public
+u.email = 'volmer@volmer.com'
+u.email_privacy = :public
 u.password = '123456'
 u.gender = :male
-u.gender_visibility = :public
+u.gender_privacy = :public
 u.date_of_birth = 30.years.ago.to_date
-u.date_of_birth_visibility = :public
+u.date_of_birth_privacy = :public
 u.bio = "Lover\nRocker\nKiller"
+u.facebook_access_token = 'ACCESS_TOKEN'
+u.facebook_url = 'http://facebook.com/'
+u.facebook_url_privacy = :public
 u.confirm!
 u.save!

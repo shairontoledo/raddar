@@ -25,7 +25,7 @@
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag current_user.avatar.thumb.url, :class => 'size20' %> <%= current_user.name %></a>
               <ul class="dropdown-menu">
                 <li><%= link_to t('user.account.my'), current_user %></li>
-                <li><%= link_to t('user.account.edit'), edit_user_registration_path %></li>
+                <li><%= link_to t('user.account.settings'), edit_user_registration_path %></li>
                 <li class="divider"></li>
                 <li><%= link_to t('action.sign_out'), destroy_user_session_path, :method=>'delete' %></li>
               </ul>

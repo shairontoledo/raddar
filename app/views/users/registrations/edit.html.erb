@@ -1,19 +1,13 @@
-<h2>Edit <%= resource_name.to_s.humanize %></h2>
+<%= render 'users/shared/settings_header', {active: :user_info} %>
 
 <%= simple_form_for(resource, :as => resource_name, :url => registration_path(resource_name), :html => {:class => 'form-horizontal', :method => :put }) do |f| %>
   <%= f.error_notification %>
 
   <div class="inputs">
     <%= f.input :name, required: true, :autofocus => true %>
-    <hr/>
     <%= f.input :email, :required => true %>
-    <%= f.input :email_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
-    <hr/>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
-    <%= f.input :gender_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
-    <hr/>
     <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth),  :type => 'date', :class => 'datepicker' } %>
-    <%= f.input :date_of_birth_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
     <hr/>
     <% unless resource.avatar.file.nil? %>
       <%= image_tag resource.avatar.thumb.url %>

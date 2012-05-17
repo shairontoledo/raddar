@@ -11,7 +11,19 @@ pt-BR:
     account:
       my: Meu perfil
       edit: Editar perfil
+      settings: Editar informações
+      info: Informações do Perfil
+    privacy: Privacidade
+    accounts:
+      edit: Contas vinculadas
+    password:
+      edit: Senha
+    email:
+      edit: E-mail
   flash:
+    privacy:
+      updated: Suas configurações de privacidade foram atualizadas.
+      error: Não foi possível alterar suas configrações de privacidade. Tente novamente mais tarde.
     accounts:
       destroyed: 'Sua conta do %{provider} foi removida.'
       error: 'Não foi possível remover sua conta do %{provider} no momento. Tente novamente mais tarde.'
