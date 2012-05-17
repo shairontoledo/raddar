@@ -116,8 +116,8 @@ pt-BR:
       send_instructions: "Você receberá em breve um email com as instruções sobre como desbloquear a sua conta."
       unlocked: "Sua conta foi desbloqueada com sucesso. Seja bem-vindo!"
     omniauth_callbacks:
-      success: "Sua conta do %{kind} foi vinculada com sucesso!"
-      failure: 'Não foi possível vincular sua conta do %{kind} porque "%{reason}".'
+      success: "Você entrou através da sua conta do %{kind}! Bem-vindo!"
+      failure: 'Não entrar pela sua conta do %{kind} porque "%{reason}".'
   errors:
     messages:
       already_confirmed: "já foi confirmado"

@@ -4,6 +4,7 @@
     <%= image_tag @user.avatar.thumb.url %>
   </div>
   <div class="span6">
+    <%= facebook_link @user %>
     <%= show_protected_user_field @user, :email %>
     <%= show_protected_user_field @user, :date_of_birth %>
     <%= show_protected_user_field @user, :gender %>

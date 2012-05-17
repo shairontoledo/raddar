@@ -8,4 +8,10 @@ module UsersHelper
       render 'users/show_protected_field', {label: label, value: value}
     end
   end
+
+  def facebook_link user
+    unless user.facebook_url.blank?
+      render 'users/show_protected_field', {label: nil, value: link_to('Facebook',user.facebook_url,target: '_blank')}
+    end
+  end
 end

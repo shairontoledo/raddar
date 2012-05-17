@@ -1,6 +1,4 @@
 require_relative 'model.rb'
-require 'pp'
-
 
 class User < Model
   # Include default devise modules. Others available are:
@@ -51,6 +49,8 @@ class User < Model
   field :gender_visibility, type: Symbol
   field :bio, type: String
   field :email_visibility, type: Symbol
+  field :facebook_access_token, type: String
+  field :facebook_url, type: String
   mount_uploader :avatar, AvatarUploader
 
   # Validations
@@ -64,7 +64,7 @@ class User < Model
 
   # Virtual attributes
   attr_accessor :login
-  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar
+  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :email, :date_of_birth, :bio
 
   validate  do
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
@@ -83,7 +83,12 @@ class User < Model
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
-    if user = self.where(email: data.email).first
+    if user = self.where(facebook_access_token: access_token.credentials.token).first
+      user
+    elsif user = self.where(email: data.email).first
+      user.facebook_access_token = access_token.credentials.token
+      user.facebook_url = data.link
+      user.save
       user
     else # Create a user with a stub password. 
       user = self.new
@@ -94,7 +99,7 @@ class User < Model
       user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') 
       user.bio = data.bio
       user.confirm!
-      user.save!
+      user.save
       user
     end
   end

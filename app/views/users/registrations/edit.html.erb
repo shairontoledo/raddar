@@ -9,9 +9,6 @@
     <%= f.input :email, :required => true %>
     <%= f.input :email_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
     <hr/>
-    <%= f.input :password, :autocomplete => "off", :hint => "leave it blank if you don't want to change it", :required => false %>
-    <%= f.input :password_confirmation, :required => false %>
-    <hr/>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
     <%= f.input :gender_visibility, collection: [:public, :only_me], label: false, include_blank: false %>
     <hr/>
@@ -26,8 +23,6 @@
     <%= f.input :avatar_cache, as: :hidden %>
     <hr/>
     <%= f.input :bio, as: :text %>
-    <hr/>
-    <%= f.input :current_password, :hint => "we need your current password to confirm your changes", :required => true %>
   </div>
 
   <div class="actions">
