@@ -17,7 +17,4 @@ class Users::RegistrationsController < Devise::RegistrationsController
   def visibilities
   end
 
-  def accounts
-  end
-
 end

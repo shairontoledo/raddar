@@ -11,3 +11,7 @@ pt-BR:
     account:
       my: Meu perfil
       edit: Editar perfil
+  flash:
+    accounts:
+      destroyed: 'Sua conta do %{provider} foi removida.'
+      error: 'Não foi possível remover sua conta do %{provider} no momento. Tente novamente mais tarde.'

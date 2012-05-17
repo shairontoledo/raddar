@@ -1,0 +1,9 @@
+<h1>Your Accounts</h1>
+<table class="table table-striped">
+<% unless current_user.facebook_url.blank? %>
+  <tr>
+    <td><%= link_to 'Facebook', current_user.facebook_url, target: '_blank' %></td>
+    <td><%= link_to 'Destroy', destroy_user_account_path(:facebook), method: :delete %></td>
+  </tr>
+<% end %>
+</table>

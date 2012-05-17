@@ -1,5 +1,12 @@
 Raddar::Application.routes.draw do
 
+
+  get "users/accounts" => 'users/accounts#index', as: :user_accounts
+  get "users/accounts/new" => 'users/accounts#new', as: :new_user_account
+  put "users/accounts/create" => 'users/accounts#create', as: :create_user_account
+  delete "users/accounts/destroy/:provider" => 'users/accounts#destroy', as: :destroy_user_account
+
+
   devise_for :users, :controllers => { :omniauth_callbacks => "users/omniauth_callbacks", :registrations => "users/registrations" } do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
   end
