@@ -2,21 +2,13 @@ pt-BR:
   simple_form:
     options:
       user:
-        visibops:
+        privacy_options: &privacy_options
           public: Público
           only_me: Não exibir
         gender:
           male: Masculino
           female: Feminino
-        gender_privacy:
-          public: Público
-          only_me: Não exibir
-        date_of_birth_privacy:
-          public: Público
-          only_me: Não exibir
-        email_privacy:
-          public: Público
-          only_me: Não exibir
-        facebook_url_privacy:
-          public: Público
-          only_me: Não exibir
+        gender_privacy: *privacy_options
+        date_of_birth_privacy: *privacy_options
+        email_privacy: *privacy_options
+        facebook_url_privacy: *privacy_options
