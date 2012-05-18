@@ -24,14 +24,34 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag current_user.avatar.thumb.url, :class => 'size20' %> <%= current_user.name %></a>
               <ul class="dropdown-menu">
-                <li><%= link_to t('user.account.my'), current_user %></li>
-                <li><%= link_to t('user.account.settings'), edit_user_registration_path %></li>
+                <li>
+                  <%= link_to current_user do %>
+                    <i class="icon-user"></i>
+                    <%= t('user.account.my') %>
+                  <% end %>
+                </li>
+                <li>
+                  <%= link_to edit_user_registration_path do %>
+                    <i class="icon-edit"></i>
+                    <%= t('user.account.settings') %>
+                  <% end %>
+                </li>
                 <% if can? :manage, :all %>
                   <li class="divider"></li>
-                  <li><%= link_to t('action.admin'), admin_root_path %></li>
+                  <li>
+                    <%= link_to admin_root_path do %>
+                      <i class="icon-wrench"></i>
+                      <%= t('action.admin') %>
+                    <% end %>
+                  </li>
                 <% end %>
                 <li class="divider"></li>
-                <li><%= link_to t('action.sign_out'), destroy_user_session_path, :method=>'delete' %></li>
+                <li>
+                  <%= link_to destroy_user_session_path, :method=>'delete' do %>
+                    <i class="icon-off"></i>
+                    <%= t('action.sign_out') %>
+                  <% end %>
+                </li>
               </ul>
             </li>
           <% end %>

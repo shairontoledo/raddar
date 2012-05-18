@@ -8,6 +8,7 @@ class Ability
     
     if user.role? :admin
       can :manage, :all
+      cannot :destroy, User
     elsif user.persisted?
       can :show, User
     else

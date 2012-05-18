@@ -3,7 +3,7 @@
 </div>
 <ul class="nav nav-tabs">
   <li <%= raw 'class="active"' if active == :user_info %>><%= link_to t('user.account.info'), edit_user_registration_path %></li>
-  <li <%= raw 'class="active"' if active == :accounts %>><%= link_to t('user.accounts.edit'), user_accounts_path %></li>
+  <li <%= raw 'class="active"' if active == :accounts %>><%= link_to t('user.accounts'), user_accounts_path %></li>
   <li <%= raw 'class="active"' if active == :privacy %>><%= link_to t('user.privacy'), edit_user_privacy_path %></li>
   <li <%= raw 'class="active"' if active == :change_password %>><%= link_to t('user.password'), change_user_password_path %></li>
 </ul>

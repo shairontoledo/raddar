@@ -8,15 +8,21 @@ pt-BR:
     sign_in: Entrar
     sign_out: Sair
     admin: Administrar
+    edit: Editar
+  role:
+    s: Papel
+    p: Papéis
+    admin: Administrador
   user:
+    s: Usuário
+    p: Usuários
     account:
       my: Meu perfil
       edit: Editar perfil
       settings: Editar informações
       info: Informações do Perfil
     privacy: Privacidade
-    accounts:
-      edit: Contas vinculadas
+    accounts: Contas vinculadas
   flash:
     password:
       changed: Sua senha foi alterada!

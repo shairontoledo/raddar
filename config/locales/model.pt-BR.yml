@@ -25,5 +25,6 @@ pt-BR:
         remove_avatar: Remover avatar
         bio: Sobre mim
         facebook_url: Perfil do Facebook
+        roles: Papéis
   user:
     <<: *user_attributes

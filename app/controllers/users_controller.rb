@@ -3,15 +3,14 @@ class UsersController < ApplicationController
   
   def show
     @user = User.where(name: params[:name]).first
-
-
-    respond_with @user
-
   end
 
   def index
     @users = User.all
-
-    respond_with @users
   end
+
+  def edit
+    @user = current_user#User.where(name: params[:id]).first
+  end
+
 end

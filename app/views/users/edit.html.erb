@@ -1,0 +1,21 @@
+<ul class="breadcrumb">
+  <li>
+    <%= link_to t('action.admin'), admin_root_path %> <span class="divider">/</span>
+  </li>
+  <li>
+    <%= link_to t('user.p'), users_path %> <span class="divider">/</span>
+  </li>
+  <li class="active"><%= t('action.edit') %></li>
+</ul>
+
+<%= simple_form_for(@user, :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <%= f.association :roles, as: :check_boxes, collection: Role.all %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, "Update" %>
+  </div>
+<% end %>

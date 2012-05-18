@@ -17,7 +17,8 @@ Raddar::Application.routes.draw do
 
   get 'search' => 'home#search', as: :search
 
-  resources :users, except: :show
+  resources :users, except: [:show,:destroy, :edit], :path => "/admin/users"
+  get 'admin/users/:name/edit' => 'users#edit', as: :edit_user
   get 'users/:name' => 'users#show', as: :user
 
   root :to => 'home#index'
