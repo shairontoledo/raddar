@@ -1,4 +1,5 @@
 require_relative 'model.rb'
+require 'pp'
 
 class User < Model
   # Include default devise modules. Others available are:
@@ -44,14 +45,14 @@ class User < Model
   # User fields
   field :name, type: String
   field :date_of_birth, type: Date
-  field :date_of_birth_privacy, type: Symbol
+  field :date_of_birth_privacy, type: Symbol, default: :public
   field :gender, type: Symbol
-  field :gender_privacy, type: Symbol
+  field :gender_privacy, type: Symbol, default: :public
   field :bio, type: String
-  field :email_privacy, type: Symbol
+  field :email_privacy, type: Symbol, default: :public
   field :facebook_access_token, type: String
   field :facebook_url, type: String
-  field :facebook_url_privacy, type: Symbol
+  field :facebook_url_privacy, type: Symbol, default: :public
   mount_uploader :avatar, AvatarUploader
 
   # Validations
@@ -71,8 +72,6 @@ class User < Model
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
   end
 
-  field :email
-
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
@@ -84,25 +83,24 @@ class User < Model
 
   def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
     data = access_token.extra.raw_info
-    if user = self.where(facebook_access_token: access_token.credentials.token).first
-      user
-    elsif user = self.where(email: data.email).first
+    unless user = self.where(facebook_access_token: access_token.credentials.token).first
+      unless user = self.where(email: data.email).first
+        user = self.new
+        user.email = data.email
+        user.password = Devise.friendly_token[0,20]
+        user.gender = data.gender.to_sym
+        user.name = data.username
+        user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') 
+        user.confirm!
+      end
+      user.bio = data.bio if user.bio.blank?
+      user.remote_avatar_url = access_token.info.image
       user.facebook_access_token = access_token.credentials.token
-      user.facebook_url = data.link
-      user.save
-      user
-    else # Create a user with a stub password. 
-      user = self.new
-      user.email = data.email
-      user.password = Devise.friendly_token[0,20]
-      user.gender = data.gender.to_sym
-      user.name = data.username
-      user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') 
-      user.bio = data.bio
-      user.confirm!
-      user.save
-      user
     end
+    user.facebook_url = data.link
+    user.save
+    pp user.errors
+    user
   end
 
   def self.new_with_session(params, session)
