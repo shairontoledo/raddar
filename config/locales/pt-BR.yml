@@ -7,6 +7,7 @@ pt-BR:
     search: Pesquisar
     sign_in: Entrar
     sign_out: Sair
+    admin: Administrar
   user:
     account:
       my: Meu perfil

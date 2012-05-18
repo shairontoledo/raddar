@@ -21,3 +21,9 @@ u.facebook_url = 'http://facebook.com/'
 u.facebook_url_privacy = :public
 u.confirm!
 u.save!
+
+r = Role.new
+r.name = :admin
+r.save!
+
+u.roles << r

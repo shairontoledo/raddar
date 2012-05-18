@@ -55,10 +55,13 @@ class User < Model
   field :facebook_url_privacy, type: Symbol, default: :public
   mount_uploader :avatar, AvatarUploader
 
+  # Relationships
+  has_and_belongs_to_many :roles
+
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
   validates_uniqueness_of :name
-  validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|-|\.|_)+)$/
+  validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|_)+)$/
   validates_length_of :name, maximum: 20, minimum: 3
   validates_length_of :bio, maximum: 500
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
@@ -115,8 +118,17 @@ class User < Model
     self.name
   end
 
-  def update_without_password(params={})
-    super(params)
+  def role?(role)
+    !self.roles.where(name: role).empty?
   end
 
+  def remove_role(role)
+    r = Role.where(name: role).first
+    self.roles.delete(r)
+  end
+
+  def add_role(role)
+    r = Role.where(name: role).first
+    self.roles << r
+  end
 end

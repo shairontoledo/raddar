@@ -1,5 +1,9 @@
 Raddar::Application.routes.draw do
 
+  namespace 'admin' do
+    get "/" => 'home#index', as: :root
+  end
+
   namespace 'users', as: 'user' do
     resource :privacy, controller: 'privacy', only: [:edit, :update]
     resources :accounts, except: [:edit, :update, :show]
@@ -12,6 +16,8 @@ Raddar::Application.routes.draw do
   end
 
   get 'search' => 'home#search', as: :search
+
+  resources :users, except: :show
   get 'users/:name' => 'users#show', as: :user
 
   root :to => 'home#index'

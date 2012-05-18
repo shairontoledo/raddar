@@ -1,5 +1,5 @@
 class UsersController < ApplicationController
-  before_filter :authenticate_user!
+  load_and_authorize_resource
   
   def show
     @user = User.where(name: params[:name]).first
@@ -7,5 +7,11 @@ class UsersController < ApplicationController
 
     respond_with @user
 
+  end
+
+  def index
+    @users = User.all
+
+    respond_with @users
   end
 end

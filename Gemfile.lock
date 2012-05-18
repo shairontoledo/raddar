@@ -37,6 +37,7 @@ GEM
     bson_ext (1.6.2)
       bson (~> 1.6.2)
     builder (3.0.0)
+    cancan (1.6.7)
     capistrano (2.12.0)
       highline
       net-scp (>= 1.0.0)
@@ -238,6 +239,7 @@ PLATFORMS
 DEPENDENCIES
   bootstrap-datepicker-rails
   bson_ext
+  cancan
   capistrano
   capybara
   carrierwave-mongoid
