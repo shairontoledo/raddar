@@ -1,0 +1,17 @@
+<div class="page-header">
+  <h1><%= t('message.p') %> - <%= link_to @user.name, @user %></h1>
+</div>
+
+<table class="table table-striped">
+  <% @messages.each do |message| %>
+    <%= render 'show', {message: message, user: @user} %>
+  <% end %>
+</table>
+
+<br />
+
+<%= render 'form' %>
+<%= link_to destroy_all_user_messages_path(@user), :class => 'btn', :confirm => "Are you sure?", method: :delete do %>
+  <i class="icon-trash"></i>
+  <%= t('message.destroy_all') %>
+<% end %>

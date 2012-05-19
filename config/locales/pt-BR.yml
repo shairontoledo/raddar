@@ -23,6 +23,10 @@ pt-BR:
       info: Informações do Perfil
     privacy: Privacidade
     accounts: Contas vinculadas
+  message:
+    s: Mensagem
+    p: Mensagens
+    destroy_all: Apagar mensagens
   flash:
     account:
       blocked: Sua conta foi bloqueada. Entre em contato através de nossa página de contato.

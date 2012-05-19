@@ -5,13 +5,22 @@ pt-BR:
         validations: A validação falhou!
         document_not_found: Documento não encontrado.
       models:
+        message:
+          attributes:
+            base:
+              self_message: Você não pode enviar uma mensagem a si mesmo.
         user:
           attributes:
             date_of_birth:
-              too_young: voce precisa ter ao menos 13 anos para participar.
+              too_young: Você precisa ter ao menos 13 anos para participar.
     models:
       user: Usuário
+      message: Mensagem
     attributes:
+      message: &message_attributes
+        content: conteúdo
+        sender: Remetente
+        recipient: Destinatário
       user: &user_attributes
         login: Nome ou e-mail
         email: E-mail
@@ -34,8 +43,8 @@ pt-BR:
         status_options: &status_options
           active: Ativo
           blocked: Bloqueado
-  user:
-    <<: *user_attributes
+  user: *user_attributes
+  message: *message_attributes
   simple_form:
     options:
       user:

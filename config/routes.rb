@@ -17,7 +17,13 @@ Raddar::Application.routes.draw do
 
   get 'search' => 'home#search', as: :search
 
-  resources :users, except: [:new,:create,:destroy]
+  resources :users, except: [:new,:create,:destroy] do
+    resources :messages, only: [:index,:create] do
+      collection do
+        delete 'destroy_all'
+      end
+    end
+  end
   #get 'admin/users/:name/edit' => 'users#edit', as: :edit_user
   #put 'users/:name' => 'users#update'
 

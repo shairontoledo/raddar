@@ -1,6 +1,8 @@
 require_relative 'model.rb'
 
 class User < Model
+  include Mongoid::Document
+  include Mongoid::Timestamps
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable
@@ -58,6 +60,8 @@ class User < Model
 
   # Relationships
   has_and_belongs_to_many :roles
+  has_many :sent_messages, class_name: 'Message', inverse_of: :sender, dependent: :destroy
+  has_many :incoming_messages, class_name: 'Message', inverse_of: :recipient, dependent: :destroy
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
@@ -73,7 +77,7 @@ class User < Model
   # Virtual attributes
   attr_accessor :login
   attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :email, :date_of_birth, 
-    :bio, :password, :password_confirmation, :gender, :facebook_access_token, :facebook_url
+    :bio, :password, :password_confirmation, :gender, :facebook_access_token, :facebook_url, :remote_avatar_url
 
   validate  do
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
@@ -100,7 +104,7 @@ class User < Model
         end 
       end
     end
-    
+
     user.email = data.email if user.email.blank?
     user.gender = data.gender if user.gender.blank?
     user.name = data.username if user.name.blank?
@@ -109,8 +113,7 @@ class User < Model
     user.bio = data.bio if user.bio.blank?
     user.remote_avatar_url = access_token.info.image if user.avatar.file.nil?
     user.facebook_url = data.link
-    user.save
-    user.confirm! if((user.persisted? && data.verified) && (!user.confirmed?))
+    user.save if user.persisted?
     user
   end
 
@@ -120,9 +123,11 @@ class User < Model
         user.name = data['extra']['raw_info']['username']
         user.email = data['extra']['raw_info']['email']
         user.gender = data['extra']['raw_info']['gender']
+        user.bio = data['extra']['raw_info']['bio']
         user.date_of_birth = Date.strptime(data['extra']['raw_info']['birthday'], '%m/%d/%Y')
         user.facebook_url = data['extra']['raw_info']['link']
         user.facebook_access_token = data['credentials']['token']
+        user.remote_avatar_url = data['info']['image']
         session.delete('devise.facebook_data')
       end
     end
@@ -156,5 +161,22 @@ class User < Model
 
   def inactive_message
      self.active? ? super : I18n.t('flash.account.blocked')
+  end
+
+  def chat_with user
+    messages = self.sent_messages.where(recipient_id: user.id).and(:sender_status.ne => :deleted) + self.incoming_messages.where(sender_id: user.id).and(:recipient_status.ne => :deleted)
+    messages.sort_by!{|message| message.created_at}
+    messages
+  end
+
+  def destroy_chat_with user
+    self.chat_with(user).each do |message|
+      if user.id == message.sender_id
+        message.recipient_status = :deleted
+      else
+        message.sender_status = :deleted
+      end
+      message.save
+    end
   end
 end
