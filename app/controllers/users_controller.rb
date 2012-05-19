@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   
   def show
-    @user = User.where(name: params[:name]).first
+    @user = User.find(params[:id])#User.where(name: params[:name]).first
 
     respond_with @user
   end
@@ -14,18 +14,24 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.where(name: params[:name]).first
+    @user = User.find(params[:id])#User.where(name: params[:name]).first
 
     respond_with @user
   end
 
   def update 
-    @user = User.where(name: params[:name]).first
+    @user = User.find(params[:id])#User.where(name: params[:name]).first
+
+    @user.status = params[:user][:status]
+
+
     @user.roles.clear
     
     params[:user][:role_ids].each do |id|
       @user.roles << Role.find(id) unless id.blank?
     end
+
+    @user.save
 
     respond_with @user, location: users_path
   end

@@ -8,10 +8,13 @@
   <li class="active"><%= t('action.edit') %></li>
 </ul>
 
+<h1><%= image_tag @user.avatar.thumb.url %> <%= @user.name %></h1>
+
 <%= simple_form_for(@user, :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
   <div class="inputs">
+    <%= f.input :status, collection: [:active, :blocked], as: :radio_buttons %>
     <%= f.association :roles, as: :check_boxes, collection: Role.all, label_method: lambda {|role| t("role.#{role.name}")} %>
   </div>
 

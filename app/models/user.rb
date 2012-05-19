@@ -1,6 +1,7 @@
 require_relative 'model.rb'
 
 class User < Model
+
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
@@ -52,6 +53,7 @@ class User < Model
   field :facebook_access_token, type: String
   field :facebook_url, type: String
   field :facebook_url_privacy, type: Symbol, default: :public
+  field :status, type: Symbol, default: :active
   mount_uploader :avatar, AvatarUploader
 
   # Relationships
@@ -64,7 +66,9 @@ class User < Model
   validates_length_of :name, maximum: 20, minimum: 3
   validates_length_of :bio, maximum: 500
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
-  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :in => [:public,:only_me], allow_blank: false
+  validates_inclusion_of :status, :in => [:active,:blocked], allow_blank: false
+  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :facebook_url_privacy,
+    :in => [:public,:only_me], allow_blank: false
 
   # Virtual attributes
   attr_accessor :login
@@ -84,20 +88,25 @@ class User < Model
     end
   end
 
-  def self.find_for_facebook_oauth(access_token, signed_in_resource=nil)
+  def self.find_for_facebook_oauth(access_token, user=nil)
+
     data = access_token.extra.raw_info
-    unless user = self.where(facebook_access_token: access_token.credentials.token).first
-      unless user = self.where(email: data.email).first
-        user = self.new
-        user.email = data.email
-        user.password = Devise.friendly_token[0,20]
-        user.gender = data.gender.to_sym
-        user.name = data.username
-        user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') 
+
+    if user.nil?
+      unless user = self.where(facebook_access_token: access_token.credentials.token).first
+        unless user = self.where(email: data.email).first
+          user = self.new
+          user.password = Devise.friendly_token[0,20]
+        end 
       end
-      user.bio = data.bio if user.bio.blank?
-      user.facebook_access_token = access_token.credentials.token
     end
+    
+    user.email = data.email if user.email.blank?
+    user.gender = data.gender if user.gender.blank?
+    user.name = data.username if user.name.blank?
+    user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') if user.date_of_birth.blank?
+    user.facebook_access_token = access_token.credentials.token
+    user.bio = data.bio if user.bio.blank?
     user.remote_avatar_url = access_token.info.image if user.avatar.file.nil?
     user.facebook_url = data.link
     user.save
@@ -119,9 +128,9 @@ class User < Model
     end
   end
 
-  def to_param
-    self.name
-  end
+  # def to_param
+  #   self.name
+  # end
 
   def role?(role)
     !self.roles.where(name: role).empty?
@@ -135,5 +144,17 @@ class User < Model
   def add_role(role)
     r = Role.where(name: role).first
     self.roles << r
+  end
+
+  def active?
+    self.status == :active
+  end
+
+  def active_for_authentication?
+    super && self.active?
+  end
+
+  def inactive_message
+     self.active? ? super : I18n.t('flash.account.blocked')
   end
 end

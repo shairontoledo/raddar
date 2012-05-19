@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th><%= t('user.name') %></th>
+      <th><%= t('user.status') %></th>
       <th><%= t('role.p') %></th>
       <th></th>
     </tr>
@@ -14,6 +15,9 @@
         <td>
           <%= image_tag user.avatar.thumb.url, :class => 'size20' %>
           <%= link_to user.name, user %>
+        </td>
+        <td>
+          <%= t("user.status_options.#{user.status}") %>
         </td>
         <td>
           <% user.roles.each do |role| %>

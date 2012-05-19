@@ -21,11 +21,23 @@ pt-BR:
         name: Nome
         date_of_birth: Data de nascimento
         gender: Sexo
+        gender_options: &gender_options
+          male: Masculino
+          female: Feminino
         remember_me: Lembrar
         avatar: Avatar
         remove_avatar: Remover avatar
         bio: Sobre mim
         facebook_url: Perfil do Facebook
         roles: Papéis
+        status: Status
+        status_options: &status_options
+          active: Ativo
+          blocked: Bloqueado
   user:
     <<: *user_attributes
+  simple_form:
+    options:
+      user:
+        status: *status_options
+        gender: *gender_options

@@ -1,0 +1,10 @@
+pt-BR:
+  flash:
+    actions:
+      create:
+        notice: '%{resource_name} criado!'
+      update:
+        notice: '%{resource_name} atualizado!'
+      destroy:
+        notice: '%{resource_name} apagado.'
+        alert: '%{resource_name} não pôde ser apagado.'

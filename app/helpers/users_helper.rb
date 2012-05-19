@@ -5,7 +5,7 @@ module UsersHelper
 
       value = user.send(field.to_s)
       value = l(value) if field == :date_of_birth
-      value = t("simple_form.options.user.gender.#{user.gender}") if field == :gender
+      value = t("user.gender_options.#{user.gender}") if field == :gender
 
       if field == :facebook_url
         value = link_to('Facebook',user.facebook_url,target: '_blank')
