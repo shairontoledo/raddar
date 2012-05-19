@@ -10,7 +10,9 @@
     <%= f.input :password_confirmation, :required => true %>
     <hr/>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
-    <%= f.input :date_of_birth, :input_html => { :type => 'date', :class => 'datepicker' } %>
+    <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth), :type => 'date', :class => 'datepicker' } %>
+    <%= f.input :facebook_access_token, as: :hidden %>
+    <%= f.input :facebook_url, as: :hidden %>
   </div>
 
   <div class="actions">

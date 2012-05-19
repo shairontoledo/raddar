@@ -1,5 +1,4 @@
 require_relative 'model.rb'
-require 'pp'
 
 class User < Model
   # Include default devise modules. Others available are:
@@ -69,7 +68,8 @@ class User < Model
 
   # Virtual attributes
   attr_accessor :login
-  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :email, :date_of_birth, :bio, :password, :password_confirmation, :gender
+  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :email, :date_of_birth, 
+    :bio, :password, :password_confirmation, :gender, :facebook_access_token, :facebook_url
 
   validate  do
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
@@ -94,22 +94,27 @@ class User < Model
         user.gender = data.gender.to_sym
         user.name = data.username
         user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') 
-        user.confirm!
       end
       user.bio = data.bio if user.bio.blank?
-      user.remote_avatar_url = access_token.info.image
       user.facebook_access_token = access_token.credentials.token
     end
+    user.remote_avatar_url = access_token.info.image if user.avatar.file.nil?
     user.facebook_url = data.link
     user.save
-    pp user.errors
+    user.confirm! if((user.persisted? && data.verified) && (!user.confirmed?))
     user
   end
 
   def self.new_with_session(params, session)
     super.tap do |user|
-      if data = session["devise.facebook_data"] && session["devise.facebook_data"]["extra"]["raw_info"]
-        user.email = data["email"]
+      if data = session['devise.facebook_data']
+        user.name = data['extra']['raw_info']['username']
+        user.email = data['extra']['raw_info']['email']
+        user.gender = data['extra']['raw_info']['gender']
+        user.date_of_birth = Date.strptime(data['extra']['raw_info']['birthday'], '%m/%d/%Y')
+        user.facebook_url = data['extra']['raw_info']['link']
+        user.facebook_access_token = data['credentials']['token']
+        session.delete('devise.facebook_data')
       end
     end
   end
