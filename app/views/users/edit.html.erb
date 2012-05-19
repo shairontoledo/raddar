@@ -12,7 +12,7 @@
   <%= f.error_notification %>
 
   <div class="inputs">
-    <%= f.association :roles, as: :check_boxes, collection: Role.all %>
+    <%= f.association :roles, as: :check_boxes, collection: Role.all, label_method: lambda {|role| t("role.#{role.name}")} %>
   </div>
 
   <div class="actions">
