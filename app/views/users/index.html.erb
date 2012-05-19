@@ -11,7 +11,10 @@
   <tbody>
     <% @users.each do |user| %>
       <tr>
-        <td><%= link_to user.name, user %></td>
+        <td>
+          <%= image_tag user.avatar.thumb.url, :class => 'size20' %>
+          <%= link_to user.name, user %>
+        </td>
         <td>
           <% user.roles.each do |role| %>
             <%= t("role.#{role.name}") %>

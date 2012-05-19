@@ -3,6 +3,7 @@ pt-BR:
     errors:
       messages:
         validations: A validação falhou!
+        document_not_found: Documento não encontrado.
       models:
         user:
           attributes:
