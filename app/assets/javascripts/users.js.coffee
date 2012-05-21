@@ -1,3 +1,3 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  $('#user_date_of_birth').datepicker('setStartDate', '<%= I18n.l 90.years.ago.to_date %>');
+  $('#user_date_of_birth').datepicker('setEndDate', '<%= I18n.l 13.years.ago.to_date %>');

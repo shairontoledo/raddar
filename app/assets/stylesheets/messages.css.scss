@@ -1,3 +1,17 @@
-// Place all the styles related to the Messages controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+div#chat{
+  overflow: auto;
+  height: 250px;
+  padding-top: 30px;
+}
+
+div.message img{
+  margin: 4px;
+}
+
+div.sent img{
+  float: left;
+}
+
+div.received img{
+  float: right;
+}

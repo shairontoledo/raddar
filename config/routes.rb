@@ -21,6 +21,7 @@ Raddar::Application.routes.draw do
     resources :messages, only: [:index,:create] do
       collection do
         delete 'destroy_all'
+        get 'more'
       end
     end
   end
