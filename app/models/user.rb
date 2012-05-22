@@ -163,8 +163,8 @@ class User < Model
      self.active? ? super : I18n.t('flash.account.blocked')
   end
 
-  def chat_with user
-    messages = self.sent_messages.where(recipient_id: user.id).and(:sender_status.ne => :deleted) + self.incoming_messages.where(sender_id: user.id).and(:recipient_status.ne => :deleted)
+  def chat_with user_id
+    messages = self.sent_messages.where(recipient_id: user_id).and(:sender_status.ne => :deleted) + self.incoming_messages.where(sender_id: user_id).and(:recipient_status.ne => :deleted)
     messages.sort_by!{|message| message.created_at}
     messages
   end
@@ -178,5 +178,17 @@ class User < Model
       end
       message.save
     end
+  end
+
+  def all_chats
+    sender_ids = []
+    recipient_ids = []
+    self.incoming_messages.distinct(:sender_id).each {|m| sender_ids << m.sender_id}
+    self.sent_messages.distinct(:recipient_id).each {|m| recipient_ids << m.recipient_id}
+    
+    messages = []
+    (sender_ids | recipient_ids).each {|user_id| messages << self.chat_with(user_id).last}
+    messages.sort_by!{|message| message.created_at}
+    messages
   end
 end

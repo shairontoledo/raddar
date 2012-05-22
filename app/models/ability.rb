@@ -9,8 +9,12 @@ class Ability
     if user.role? :admin
       can :manage, :all
       cannot :destroy, User
+      cannot :create, User
     elsif user.persisted?
       can :show, User
+      can :manage, Message, sender_id: user.id
+      can :manage, Message, recipient_id: user.id
+      cannot :destroy, Message
     else
       # permissions for guest user
     end

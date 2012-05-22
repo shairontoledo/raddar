@@ -1,4 +1,5 @@
 class MessagesController < ApplicationController
+  load_and_authorize_resource
   # GET /messages
   # GET /messages.xml
   def index
@@ -24,7 +25,12 @@ class MessagesController < ApplicationController
 
   def destroy_all
     @user = User.find(params[:user_id])
-    current_user.destroy_chat_with(@user)
+    current_user.destroy_chat_with(@user.id)
     redirect_to user_messages_path(@user)
+  end
+
+  def all
+    @messages = current_user.all_chats
+
   end
 end

@@ -24,6 +24,7 @@ Raddar::Application.routes.draw do
       end
     end
   end
+  get 'messages' => 'messages#all', as: :all_messages
   #get 'admin/users/:name/edit' => 'users#edit', as: :edit_user
   #put 'users/:name' => 'users#update'
 

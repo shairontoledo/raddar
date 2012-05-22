@@ -21,6 +21,12 @@
           <% unless user_signed_in? %>
             <li><%= link_to t('action.sign_in'), new_user_session_path %></li>
           <% else %>
+            <li>
+              <%= link_to all_messages_path do %>
+                <i class="icon-envelope"></i>
+                <%= t('message.p') %>
+              <% end %>
+            </li>
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag current_user.avatar.thumb.url, :class => 'size20' %> <%= current_user.name %></a>
               <ul class="dropdown-menu">
