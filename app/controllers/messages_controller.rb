@@ -1,12 +1,21 @@
 class MessagesController < ApplicationController
+  before_filter :authenticate_user!
   load_and_authorize_resource
+
   # GET /messages
   # GET /messages.xml
   def index
     @user = User.find(params[:user_id])
     @messages = current_user.chat_with(@user)
     @message = Message.new
+    @message[:edit_content] = ''
     respond_with(@messages)
+  end
+
+  def more
+    @user = User.find(params[:user_id])
+    last = Message.find(params[:last])
+    @messages = current_user.chat_with(@user,last)
   end
 
 
@@ -19,7 +28,7 @@ class MessagesController < ApplicationController
     @message.recipient = @user
     @message.save
 
-    redirect_to user_messages_path(@user)
+    #redirect_to user_messages_path(@user)
   end
 
 

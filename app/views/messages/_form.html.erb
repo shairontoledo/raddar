@@ -1,11 +1,6 @@
-<%= simple_form_for([@user,@message]) do |f| %>
+<%= simple_form_for([@user,@message], remote: true, html: {:class => 'well form-inline'}) do |f| %>
   <%= f.error_notification %>
-
-  <div class="form-inputs">
-    <%= f.input :content, as: :text, label: false %>
-  </div>
-
-  <div class="form-actions">
-    <%= f.button :submit %>
-  </div>
+  <%= f.input :edit_content, as: :text, label: false, input_html: {:class => 'span7', rows: '2'} %>
+  <%= f.input :content, as: :hidden %>
+  <%= f.button :submit, id: 'new_message_submit', 'data-loading-text'.to_sym => t('ajax.sending') %>
 <% end %>

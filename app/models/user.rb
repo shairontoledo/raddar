@@ -163,9 +163,12 @@ class User < Model
      self.active? ? super : I18n.t('flash.account.blocked')
   end
 
-  def chat_with user_id
+  def chat_with user_id, last=nil
     messages = self.sent_messages.where(recipient_id: user_id).and(:sender_status.ne => :deleted) + self.incoming_messages.where(sender_id: user_id).and(:recipient_status.ne => :deleted)
     messages.sort_by!{|message| message.created_at}
+    unless last.nil?
+      messages = messages.take_while{|message| message.created_at < last.created_at}
+    end
     messages
   end
 

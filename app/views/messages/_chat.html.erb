@@ -1,0 +1,5 @@
+<% limit = 10 %>
+<%= link_to(t('message.previous'), more_user_messages_path(user, last: messages[messages.count - limit].id), :class => 'more_messages_link btn', 'data-loading-text'.to_sym => t('ajax.loading'), remote: true) if messages.count > limit %>
+<% messages.last(limit).each do |message| %>
+  <%= render 'show', {message: message, user: user} %>
+<% end %>

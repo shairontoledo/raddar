@@ -21,33 +21,12 @@ Raddar::Application.routes.draw do
     resources :messages, only: [:index,:create] do
       collection do
         delete 'destroy_all'
+        get 'more'
       end
     end
   end
   get 'messages' => 'messages#all', as: :all_messages
-  #get 'admin/users/:name/edit' => 'users#edit', as: :edit_user
-  #put 'users/:name' => 'users#update'
 
   root :to => 'home#index'
 
-  # Sample resource route with options:
-  #   resources :products do
-  #     member do
-  #       get 'short'
-  #       post 'toggle'
-  #     end
-  #
-  #     collection do
-  #       get 'sold'
-  #     end
-  #   end
-
-
-  # Sample resource route with more complex sub-resources
-  #   resources :products do
-  #     resources :comments
-  #     resources :sales do
-  #       get 'recent', :on => :collection
-  #     end
-  #   end
 end

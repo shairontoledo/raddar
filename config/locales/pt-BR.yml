@@ -3,6 +3,9 @@ pt-BR:
     title: Raddar
     copyleft: Copyleft Raddar 2012
   section:
+  ajax:
+    loading: Carregando...
+    sending: Enviando...
   action:
     search: Pesquisar
     sign_in: Entrar
@@ -27,6 +30,7 @@ pt-BR:
     s: Mensagem
     p: Mensagens
     destroy_all: Apagar mensagens
+    previous: Mensagens anteriores
   flash:
     account:
       blocked: Sua conta foi bloqueada. Entre em contato através de nossa página de contato.

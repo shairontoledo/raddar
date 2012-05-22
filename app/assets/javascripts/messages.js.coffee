@@ -1,3 +1,18 @@
-# Place all the behaviors and hooks related to the matching controller here.
-# All this logic will automatically be available in application.js.
-# You can use CoffeeScript in this file: http://jashkenas.github.com/coffee-script/
+$ ->
+  $('.more_messages_link').live('click',(e)->
+    $(this).button('loading')
+    )
+
+  $('#chat').scrollTop($('#chat').prop('scrollHeight'))
+
+  $('form#new_message').submit((e)->
+    if($('#message_edit_content').val() != '')
+      $('#message_content').val($('#message_edit_content').val())
+      $('#new_message_submit').button('loading')
+      $('#message_edit_content').attr('disabled', 'disabled');
+    else
+      return false
+    )
+
+  
+  
