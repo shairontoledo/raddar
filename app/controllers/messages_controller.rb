@@ -6,7 +6,7 @@ class MessagesController < ApplicationController
   # GET /messages.xml
   def index
     @user = User.find(params[:user_id])
-    @messages = current_user.chat_with(@user)
+    @messages = current_user.chat_with(@user.id)
     @message = Message.new
     @message[:edit_content] = ''
     respond_with(@messages)
@@ -15,7 +15,7 @@ class MessagesController < ApplicationController
   def more
     @user = User.find(params[:user_id])
     last = Message.find(params[:last])
-    @messages = current_user.chat_with(@user,last)
+    @messages = current_user.chat_with(@user.id,last)
   end
 
 
@@ -34,7 +34,7 @@ class MessagesController < ApplicationController
 
   def destroy_all
     @user = User.find(params[:user_id])
-    current_user.destroy_chat_with(@user.id)
+    current_user.destroy_chat_with(@user)
     redirect_to user_messages_path(@user)
   end
 
