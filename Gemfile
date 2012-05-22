@@ -24,6 +24,8 @@ gem 'bootstrap-datepicker-rails'
 gem 'omniauth-facebook'
 #gem 'ckeditor'
 gem 'cancan'
+gem 'private_pub'
+gem 'thin'
 
 group :development, :test do
   gem 'rspec-rails'

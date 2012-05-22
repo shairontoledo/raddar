@@ -3,7 +3,7 @@ $ ->
     $(this).button('loading')
     )
 
-  $('#chat').scrollTop($('#chat').prop('scrollHeight'))
+  $('div.chat').scrollTop($('div.chat').prop('scrollHeight'))
 
   $('form#new_message').submit((e)->
     if($('#message_edit_content').val() != '')

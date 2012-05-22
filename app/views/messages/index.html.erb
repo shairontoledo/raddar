@@ -2,7 +2,7 @@
   <h1><%= t('message.p') %> - <%= link_to @user.name, @user %></h1>
 </div>
 
-<div id="chat">
+<div class="chat" id="chat_<%= @user.id %>">
   <%= render 'chat', {messages: @messages, user: @user} %>
 </div>
 
@@ -12,3 +12,5 @@
   <i class="icon-trash"></i>
   <%= t('message.destroy_all') %>
 <% end %>
+
+<%= subscribe_to user_messages_path(current_user) %>
