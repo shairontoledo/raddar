@@ -92,7 +92,7 @@ class User < Model
 
   # Geocoding
   geocoded_by :location               # can also be an IP address
-  after_validation :geocode          # auto-fetch coordinates
+  after_validation :geocode, :if => :location_changed?
   reverse_geocoded_by :coordinates
   #after_validation :reverse_geocode  # auto-fetch address
 
