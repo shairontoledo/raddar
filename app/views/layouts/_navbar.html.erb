@@ -22,7 +22,11 @@
             <li><%= link_to t('action.sign_in'), new_user_session_path %></li>
           <% else %>
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown"><%= image_tag current_user.avatar.thumb.url, :class => 'size20' %> <%= current_user.name %></a>
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                <%= image_tag current_user.avatar.thumb.url, :class => 'size20' %>
+                <%= current_user.name %>
+                <span id="notifications_count"></span>
+              </a>
               <ul class="dropdown-menu">
                 <li>
                   <%= link_to current_user do %>
@@ -34,6 +38,7 @@
                   <%= link_to all_messages_path do %>
                     <i class="icon-envelope"></i>
                     <%= t('message.p') %>
+                    <span id="messages_notifications_count"><%= current_user.unread_chats.count %></span>
                   <% end %>
                 </li>
                 <li>

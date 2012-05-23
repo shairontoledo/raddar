@@ -6,16 +6,21 @@ class MessagesController < ApplicationController
   # GET /messages.xml
   def index
     @user = User.find(params[:user_id])
-    @messages = current_user.chat_with(@user.id)
-    @message = Message.new
-    @message[:edit_content] = ''
-    respond_with(@messages)
+    if @user.id == current_user.id
+      redirect_to @user
+    else
+      current_user.mark_chat_as_read_with @user.id
+      @messages = current_user.chat_with(@user.id)
+      @message = Message.new
+      @message[:edit_content] = ''
+      respond_with(@messages)
+    end
   end
 
   def more
     @user = User.find(params[:user_id])
     last = Message.find(params[:last])
-    @messages = current_user.chat_with(@user.id,last)
+    @messages = current_user.chat_with(@user.id, last)
   end
 
 
@@ -27,6 +32,7 @@ class MessagesController < ApplicationController
     @message.sender = current_user
     @message.recipient = @user
     @message.save
+    current_user.mark_chat_as_read_with @user.id
 
     #redirect_to user_messages_path(@user)
   end

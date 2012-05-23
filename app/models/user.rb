@@ -164,12 +164,18 @@ class User < Model
   end
 
   def chat_with user_id, last=nil
+
     messages = self.sent_messages.where(recipient_id: user_id).and(:sender_status.ne => :deleted) + self.incoming_messages.where(sender_id: user_id).and(:recipient_status.ne => :deleted)
+
     messages.sort_by!{|message| message.created_at}
     unless last.nil?
       messages = messages.take_while{|message| message.created_at < last.created_at}
     end
     messages
+  end
+
+  def mark_chat_as_read_with user_id
+    self.incoming_messages.where(sender_id: user_id).and(recipient_status: :unread).update_all(recipient_status: :read)
   end
 
   def destroy_chat_with user
@@ -188,5 +194,9 @@ class User < Model
     (self.incoming_messages.distinct(:sender_id) | self.sent_messages.distinct(:recipient_id)).each {|user_id| chats << self.chat_with(user_id)}
     chats.sort_by!{|chat| chat.last.created_at}.reverse!
     chats
+  end
+
+  def unread_chats
+    self.incoming_messages.where(recipient_status: :unread).distinct(:sender_id)
   end
 end
