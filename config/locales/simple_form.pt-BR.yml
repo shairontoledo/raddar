@@ -9,3 +9,4 @@ pt-BR:
         date_of_birth_privacy: *privacy_options
         email_privacy: *privacy_options
         facebook_url_privacy: *privacy_options
+        location_privacy: *privacy_options

@@ -3,6 +3,7 @@ require_relative 'model.rb'
 class User < Model
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Geocoder::Model::Mongoid
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable
@@ -57,6 +58,9 @@ class User < Model
   field :facebook_url_privacy, type: Symbol, default: :public
   field :status, type: Symbol, default: :active
   mount_uploader :avatar, AvatarUploader
+  field :coordinates, :type => Array
+  field :location, type: String
+  field :location_privacy, type: Symbol, default: :public
 
   # Relationships
   has_and_belongs_to_many :roles
@@ -69,19 +73,28 @@ class User < Model
   validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|_)+)$/
   validates_length_of :name, maximum: 20, minimum: 3
   validates_length_of :bio, maximum: 500
+  validates_length_of :location, maximum: 200
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
   validates_inclusion_of :status, :in => [:active,:blocked], allow_blank: false
-  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :facebook_url_privacy,
+  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :facebook_url_privacy, :location_privacy,
     :in => [:public,:only_me], allow_blank: false
 
   # Virtual attributes
   attr_accessor :login
-  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :email, :date_of_birth, 
+
+  # Accessible (mass assignment)
+  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :email, :date_of_birth, :location,
     :bio, :password, :password_confirmation, :gender, :facebook_access_token, :facebook_url, :remote_avatar_url
 
   validate  do
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
   end
+
+  # Geocoding
+  geocoded_by :location               # can also be an IP address
+  after_validation :geocode          # auto-fetch coordinates
+  reverse_geocoded_by :coordinates
+  #after_validation :reverse_geocode  # auto-fetch address
 
   def self.find_first_by_auth_conditions(warden_conditions)
     conditions = warden_conditions.dup

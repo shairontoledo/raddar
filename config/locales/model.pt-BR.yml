@@ -43,6 +43,7 @@ pt-BR:
         status_options: &status_options
           active: Ativo
           blocked: Bloqueado
+        location: Localização
   user: *user_attributes
   message: *message_attributes
   simple_form:

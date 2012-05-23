@@ -2,9 +2,11 @@
 <div class="row">
   <div class="span2">
     <%= image_tag @user.avatar.thumb.url %>
+    <br />
     <% unless @user.id == current_user.id %>
-      <br />
       <%= link_to t('message.p'), user_messages_path(@user) %>
+    <% else %>
+      <%= t('user.you') %>
     <% end %>
   </div>
   <div class="span6">
@@ -12,6 +14,7 @@
     <%= show_protected_user_field @user, :email %>
     <%= show_protected_user_field @user, :date_of_birth %>
     <%= show_protected_user_field @user, :gender %>
+    <%= show_protected_user_field @user, :location %>
   </div>
 </div>
 <div class="row">

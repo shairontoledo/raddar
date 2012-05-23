@@ -8,7 +8,7 @@ class Users::PrivacyController < ApplicationController
   def update
     @user = User.find(current_user.id)
 
-    [:gender,:date_of_birth,:email,:facebook_url].each do |field|
+    [:gender,:date_of_birth,:email,:facebook_url,:location].each do |field|
       privacy_field = "#{field}_privacy".to_sym
       @user[privacy_field] = params[:user][privacy_field]
     end

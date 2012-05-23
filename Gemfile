@@ -26,6 +26,7 @@ gem 'omniauth-facebook'
 gem 'cancan'
 gem 'private_pub'
 gem 'thin'
+gem 'geocoder'
 
 group :development, :test do
   gem 'rspec-rails'
