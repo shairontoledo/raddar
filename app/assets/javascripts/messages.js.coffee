@@ -5,6 +5,11 @@ $ ->
 
   $('div.chat').scrollTop($('div.chat').prop('scrollHeight'))
 
+  $('#message_edit_content').keydown((e)->
+    if((e.keyCode == 13) && (!e.shiftKey))
+      $('form#new_message').submit()
+    )
+
   $('form#new_message').submit((e)->
     if($('#message_edit_content').val() != '')
       $('#message_content').val($('#message_edit_content').val())
