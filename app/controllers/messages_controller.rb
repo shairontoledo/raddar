@@ -39,7 +39,7 @@ class MessagesController < ApplicationController
   end
 
   def all
-    @messages = current_user.all_chats
+    @chats = current_user.all_chats
 
   end
 end
