@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class MessagesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
@@ -45,7 +47,7 @@ class MessagesController < ApplicationController
   end
 
   def all
-    @chats = current_user.all_chats
+    @chats = current_user.all_chats.paginate(page: params[:page], per_page: 10)
 
   end
 end
