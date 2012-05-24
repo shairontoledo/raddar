@@ -192,7 +192,7 @@ class User < Model
   end
 
   def destroy_chat_with user
-    self.chat_with(user).each do |message|
+    self.chat_with(user.id).each do |message|
       if user.id == message.sender_id
         message.recipient_status = :deleted
       else

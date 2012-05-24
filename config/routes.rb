@@ -22,6 +22,7 @@ Raddar::Application.routes.draw do
       collection do
         delete 'destroy_all'
         get 'more'
+        post 'read'
       end
     end
   end

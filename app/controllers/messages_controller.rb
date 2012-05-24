@@ -34,7 +34,6 @@ class MessagesController < ApplicationController
     @message.sender = current_user
     @message.recipient = @user
     @message.save
-    current_user.mark_chat_as_read_with @user.id
 
     #redirect_to user_messages_path(@user)
   end
@@ -49,5 +48,10 @@ class MessagesController < ApplicationController
   def all
     @chats = current_user.all_chats.paginate(page: params[:page], per_page: 10)
 
+  end
+
+  def read
+    @user = User.find(params[:user_id])
+    current_user.mark_chat_as_read_with @user.id
   end
 end
