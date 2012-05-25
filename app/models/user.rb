@@ -69,6 +69,8 @@ class User < Model
   has_many :incoming_messages, class_name: 'Message', inverse_of: :recipient, dependent: :destroy
   has_many :followerships, dependent: :destroy
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
+  has_many :forum_topics, class_name: 'Forums::Topic', dependent: :destroy
+  has_many :forum_posts, class_name: 'Forums::Post', dependent: :destroy
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender

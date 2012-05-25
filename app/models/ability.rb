@@ -7,21 +7,30 @@ class Ability
     
     if user.role? :admin
       # Admin user only
+
       can :manage, :all
+
       cannot [:create,:destroy], User
     elsif user.persisted?
       # Registered user only
+
       can :show, User
+
       can :manage, Message, sender_id: user.id
       can :manage, Message, recipient_id: user.id
       cannot :destroy, Message
+
       can :read, Followership
       can [:create, :destroy], Followership, user_id: user.id
+
+      can :manage, Forums::Topic, user_id: user.id
+      can :manage, Forums::Post, user_id: user.id
     else
       # Guest user only 
     end
     # Everyone
-    can :read, Forum
+
+    can :read, [Forum, Forums::Topic, Forums::Post]
 
   end
 

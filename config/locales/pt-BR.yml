@@ -23,6 +23,15 @@ pt-BR:
   forum:
     s: Fórum
     p: Fóruns
+    topic:
+      s: Tópico
+      p: Tópicos
+      last: Últimos tópicos
+      views: visualizações
+      post:
+        s: Postagem
+        p: Postagens
+        last: Última atividade
   user:
     s: Usuário
     p: Usuários

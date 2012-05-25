@@ -1,6 +1,10 @@
 Raddar::Application.routes.draw do
 
-  resources :forums
+  resources :forums do
+    resources :topics, except: [:index] do
+      resources :posts, only: [:create,:update, :destroy]
+    end
+  end
 
   namespace 'admin' do
     get "/" => 'home#index', as: :root
