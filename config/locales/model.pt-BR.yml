@@ -22,12 +22,12 @@ pt-BR:
         sender: Remetente
         recipient: Destinatário
       user: &user_attributes
-        login: Nome ou e-mail
+        login: Nome de usuário ou e-mail
         email: E-mail
         password: Senha
         current_password: Senha atual
         password_confirmation: Confirmar senha
-        name: Nome
+        name: Nome de usuário
         date_of_birth: Data de nascimento
         gender: Sexo
         gender_options: &gender_options

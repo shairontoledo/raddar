@@ -2,7 +2,7 @@ class UsersController < ApplicationController
   load_and_authorize_resource
   
   def show
-    @user = User.find(params[:id])#User.where(name: params[:name]).first
+    @user = User.find(params[:id])
 
     respond_with @user
   end
@@ -14,13 +14,13 @@ class UsersController < ApplicationController
   end
 
   def edit
-    @user = User.find(params[:id])#User.where(name: params[:name]).first
+    @user = User.find(params[:id])
 
     respond_with @user
   end
 
   def update 
-    @user = User.find(params[:id])#User.where(name: params[:name]).first
+    @user = User.find(params[:id])
 
     @user.status = params[:user][:status]
 

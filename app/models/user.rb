@@ -1,5 +1,5 @@
 require_relative 'model.rb'
-
+require 'pp'
 class User < Model
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -61,6 +61,7 @@ class User < Model
   field :coordinates, :type => Array
   field :location, type: String
   field :location_privacy, type: Symbol, default: :public
+  key :name
 
   # Relationships
   has_and_belongs_to_many :roles
@@ -69,7 +70,7 @@ class User < Model
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, :facebook_access_token
   validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|_)+)$/
   validates_length_of :name, maximum: 20, minimum: 3
   validates_length_of :bio, maximum: 500
@@ -106,6 +107,7 @@ class User < Model
   end
 
   def self.find_for_facebook_oauth(access_token, user=nil)
+    pp access_token
 
     data = access_token.extra.raw_info
 
@@ -124,9 +126,11 @@ class User < Model
     user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') if user.date_of_birth.blank?
     user.facebook_access_token = access_token.credentials.token
     user.bio = data.bio if user.bio.blank?
+    user.location = data.location.name if user.location.blank?
     user.remote_avatar_url = access_token.info.image if user.avatar.file.nil?
     user.facebook_url = data.link
-    user.save if user.persisted?
+    user.save
+    user.confirm! if(user.persisted? && data.verified && (!user.confirmed?))
     user
   end
 
@@ -145,10 +149,6 @@ class User < Model
       end
     end
   end
-
-  # def to_param
-  #   self.name
-  # end
 
   def role?(role)
     !self.roles.where(name: role).empty?
