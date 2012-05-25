@@ -20,9 +20,13 @@ pt-BR:
     models:
       user: Usuário
       message: Mensagem
+      forum: Fórum
     attributes:
+      forum: &forum_attributes
+        title: Título
+        description: Descrição
       message: &message_attributes
-        content: conteúdo
+        content: Conteúdo
         sender: Remetente
         recipient: Destinatário
       user: &user_attributes
@@ -50,6 +54,7 @@ pt-BR:
         location: Localização
   user: *user_attributes
   message: *message_attributes
+  forum: *forum_attributes
   simple_form:
     options:
       user:

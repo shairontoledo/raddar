@@ -20,6 +20,9 @@ pt-BR:
     admin: Administrador
   followers: Seguidores
   following: Seguindo
+  forum:
+    s: Fórum
+    p: Fóruns
   user:
     s: Usuário
     p: Usuários

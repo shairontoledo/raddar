@@ -6,10 +6,11 @@ class Ability
     user ||= User.new # guest user (not logged in)
     
     if user.role? :admin
+      # Admin user only
       can :manage, :all
-      cannot :destroy, User
-      cannot :create, User
+      cannot [:create,:destroy], User
     elsif user.persisted?
+      # Registered user only
       can :show, User
       can :manage, Message, sender_id: user.id
       can :manage, Message, recipient_id: user.id
@@ -17,8 +18,11 @@ class Ability
       can :read, Followership
       can [:create, :destroy], Followership, user_id: user.id
     else
-      # permissions for guest user
+      # Guest user only 
     end
+    # Everyone
+    can :read, Forum
+
   end
 
 end

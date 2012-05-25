@@ -1,5 +1,7 @@
 Raddar::Application.routes.draw do
 
+  resources :forums
+
   namespace 'admin' do
     get "/" => 'home#index', as: :root
   end
