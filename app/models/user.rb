@@ -1,5 +1,5 @@
 require_relative 'model.rb'
-require 'pp'
+
 class User < Model
   include Mongoid::Document
   include Mongoid::Timestamps
@@ -107,7 +107,6 @@ class User < Model
   end
 
   def self.find_for_facebook_oauth(access_token, user=nil)
-    pp access_token
 
     data = access_token.extra.raw_info
 
