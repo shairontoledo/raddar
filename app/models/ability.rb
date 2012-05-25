@@ -12,6 +12,8 @@ class Ability
       cannot :create, User
     elsif user.persisted?
       can :show, User
+      can :follow, User
+      can :unfollow, User
       can :manage, Message, sender_id: user.id
       can :manage, Message, recipient_id: user.id
       cannot :destroy, Message

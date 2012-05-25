@@ -3,11 +3,19 @@
   <div class="span2">
     <%= image_tag @user.avatar.thumb.url %>
     <br />
-    <% unless @user.id == current_user.id %>
+    <% unless @user == current_user %>
       <%= link_to t('message.p'), user_messages_path(@user) %>
+      <br/>
+      <% if @user.followers.where(user_id: current_user.id).empty? %>
+        <%= link_to t('action.follow'), user_followers_path(@user), :class => 'btn', method: :post %>
+      <% else %>
+        <%= link_to t('action.unfollow'), user_follower_path(@user), :class => 'btn', method: :delete %>
+      <% end %>
     <% else %>
       <%= t('user.you') %>
     <% end %>
+    <br/>
+    <%= link_to "#{t('followers')}: #{@user.followers.count}", user_followers_path(@user) %>
   </div>
   <div class="span6">
     <%= show_protected_user_field @user, :facebook_url %>

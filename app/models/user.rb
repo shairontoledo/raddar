@@ -67,6 +67,8 @@ class User < Model
   has_and_belongs_to_many :roles
   has_many :sent_messages, class_name: 'Message', inverse_of: :sender, dependent: :destroy
   has_many :incoming_messages, class_name: 'Message', inverse_of: :recipient, dependent: :destroy
+  has_many :followerships, dependent: :destroy
+  has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender

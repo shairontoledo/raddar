@@ -9,6 +9,10 @@ pt-BR:
           attributes:
             base:
               self_message: Você não pode enviar uma mensagem a si mesmo.
+        followership:
+          attributes:
+            base:
+              self_follow: Você não pode seguir a si mesmo.
         user:
           attributes:
             date_of_birth:

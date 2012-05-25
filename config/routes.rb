@@ -25,6 +25,7 @@ Raddar::Application.routes.draw do
         post 'read'
       end
     end
+    resources :followers, controller: 'followerships', only: [:create, :destroy, :index] 
   end
   get 'messages' => 'messages#all', as: :all_messages
 
