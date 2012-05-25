@@ -1,4 +1,4 @@
-class Users::PasswordsController < Devise::RegistrationsController
+class Users::PasswordsController < Devise::PasswordsController
   before_filter :authenticate_user!, only: [:change, :do_change]
 
   def change
