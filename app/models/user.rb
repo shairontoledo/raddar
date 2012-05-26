@@ -58,7 +58,7 @@ class User < Model
   field :facebook_url_privacy, type: Symbol, default: :public
   field :status, type: Symbol, default: :active
   mount_uploader :avatar, AvatarUploader
-  field :coordinates, :type => Array
+  field :coordinates, type: Array
   field :location, type: String
   field :location_privacy, type: Symbol, default: :public
   key :name
@@ -68,6 +68,7 @@ class User < Model
   has_many :sent_messages, class_name: 'Message', inverse_of: :sender, dependent: :destroy
   has_many :incoming_messages, class_name: 'Message', inverse_of: :recipient, dependent: :destroy
   has_many :followerships, dependent: :destroy
+  has_many :votes, dependent: :destroy
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
   has_many :topics, dependent: :destroy
   has_many :posts, dependent: :destroy

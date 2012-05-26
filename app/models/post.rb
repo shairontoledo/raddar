@@ -6,6 +6,7 @@ class Post < Model
 
   belongs_to :topic
   belongs_to :user
+  has_many :votes, as: :votable, dependent: :destroy
 
   attr_accessible :content
 

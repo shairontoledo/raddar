@@ -25,6 +25,9 @@ class Ability
 
       can :manage, Topic, user_id: user.id
       can :manage, Post, user_id: user.id
+
+      can :read, Vote
+      can [:create, :update], Vote, user_id: user.id
     else
       # Guest user only 
     end

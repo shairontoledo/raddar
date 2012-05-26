@@ -4,13 +4,13 @@ class FollowershipsController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource
   
-  # User Followers
+  # Followers
   def index
     @followable = find_followable
     @followers = @followable.followers.paginate(page: params[:page], per_page: 10)
   end
 
-  # Current user starts following user_id
+  # Current user starts following
   def create
     @followable = find_followable
     current_user.followerships.create(followable: @followable)
@@ -18,7 +18,7 @@ class FollowershipsController < ApplicationController
     redirect_to @followable, notice: t('flash.followership.create', name: @followable.name)
   end
 
-  # Current user stops following user_id
+  # Current user stops following
   def destroy
     @followable = find_followable
     @followable.followers.where(user_id: current_user.id).destroy_all

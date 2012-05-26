@@ -48,6 +48,9 @@ pt-BR:
     privacy: Privacidade
     accounts: Contas vinculadas
     you: Este é você!
+  vote:
+    like: Legal
+    dislike: Uma droga
   message:
     s: Mensagem
     p: Mensagens

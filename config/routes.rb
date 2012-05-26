@@ -2,9 +2,14 @@ Raddar::Application.routes.draw do
 
   resources :forums do
     resources :topics, controller: 'forums/topics', except: [:index] do
-      resources :posts, controller: 'forums/posts', only: [:create, :destroy]
+      resources :posts, controller: 'forums/posts', only: [:create]
     end
   end
+
+  resources :posts, controller: 'forums/posts', only: [:destroy] do
+    resource :vote, only: [:create]
+  end
+
 
   namespace 'admin' do
     get "/" => 'home#index', as: :root
