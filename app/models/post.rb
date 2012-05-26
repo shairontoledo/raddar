@@ -1,10 +1,10 @@
-class Forums::Post
+class Post < Model
   include Mongoid::Document
   include Mongoid::Timestamps
 
   field :content, type: String
 
-  embedded_in :topic, class_name: 'Forums::Topic'
+  belongs_to :topic
   belongs_to :user
 
   attr_accessible :content

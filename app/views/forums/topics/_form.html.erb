@@ -1,9 +1,13 @@
-<%= simple_form_for(@forums_topic, html: {:class => 'form-horizontal'}) do |f| %>
+<%= simple_form_for([@topic.forum,@topic], html: {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
     <%= f.input :title %>
-    <%= f.input :views %>
+    <% unless @topic.persisted? %>
+      <%= f.simple_fields_for @post do |pf| %>
+        <%= render 'forums/posts/textarea', {form: pf} %>
+      <% end %>
+    <% end %> 
   </div>
 
   <div class="form-actions">

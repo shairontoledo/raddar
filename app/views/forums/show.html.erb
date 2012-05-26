@@ -18,11 +18,11 @@
   <tbody>
   <% @topics.each do |topic| %>
     <tr>
-      <td><%= link_to topic.title, [@forum,topic] %></td>
+      <td><%= link_to topic.title, forum_topic_path(@forum,topic) %></td>
       <td><%= topic.posts.count %></td>
       <td><%= topic.views %></td>
       <td>
-        <% last = topics.posts.last %>
+        <% last = topic.posts.last %>
         <% unless last.blank? %>
           <%= last.user.name %>, <%= humanize_datetime last.created_at %>
         <% end %>
@@ -33,3 +33,4 @@
 </table>
 
 <%= will_paginate @topics %>
+<%= link_to(t('forum.topic.new'), new_forum_topic_path(@forum), :class => 'btn') if can? :new, Topic %>

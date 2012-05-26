@@ -1,15 +1,22 @@
-<p id="notice"><%= notice %></p>
+<div class="page-header">
+  <h1><%= @topic.title %></h1>
+  <%= link_to @topic.forum.title, @topic.forum %>
+</div>
 
-<p>
-  <b>Title:</b>
-  <%= @forums_topic.title %>
-</p>
-
-<p>
-  <b>Views:</b>
-  <%= @forums_topic.views %>
-</p>
+<div class="well">
+  <%= link_to t('forum.topic.created_by', user: @topic.user.name), @topic.user %> ::
+  <%= @topic.views %> <%= t('forum.topic.views') %> ::  
+  <%= link_to t('action.edit'), edit_forum_topic_path(@topic.forum, @topic), :class => 'btn' if can? :edit, @topic %>
+  <%= link_to t('action.delete'), [@topic.forum, @topic], :class => 'btn', method: :delete, confirm: 'Are you sure?' if can? :destroy, @topic %>
+</div>
 
 
-<%= link_to 'Edit', edit_forums_topic_path(@forums_topic) %> |
-<%= link_to 'Back', forums_topics_path %>
+<table class="table table-striped table-bordered">
+  <% @posts.each do |post| %>
+    <%= render 'forums/posts/show', {post: post} %>
+  <% end %>
+</table>
+
+<%= will_paginate @posts %>
+
+<%= render 'forums/posts/form' if can? :create, @post %>

@@ -1,17 +1,24 @@
+require 'will_paginate/array'
+
 class ForumsController < ApplicationController
   load_and_authorize_resource
   # GET /forums
   # GET /forums.xml
   def index
-    @forums = Forum.all
-    respond_with(@forums)
+    @forums = Forum.last_forums
+
+    if params[:admin]
+      render 'admin_index' 
+    else
+      respond_with(@forums)
+    end
   end
 
   # GET /forums/1
   # GET /forums/1.xml
   def show
     @forum = Forum.find(params[:id])
-    @topics = @forum.topics.paginate(page: params[:page], per_page: 10)
+    @topics = @forum.last_topics.paginate(page: params[:page], per_page: 10)
     respond_with(@forum)
   end
 
@@ -48,6 +55,9 @@ class ForumsController < ApplicationController
   def destroy
     @forum = Forum.find(params[:id])
     @forum.destroy
-    respond_with(@forum)
+
+    flash[:alert] = @forum.errors[:base].first if @forum.errors.any?
+
+    respond_with(@forum, location: forums_path(admin: true))
   end
 end

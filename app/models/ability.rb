@@ -23,14 +23,15 @@ class Ability
       can :read, Followership
       can [:create, :destroy], Followership, user_id: user.id
 
-      can :manage, Forums::Topic, user_id: user.id
-      can :manage, Forums::Post, user_id: user.id
+      can :manage, Topic, user_id: user.id
+      can :manage, Post, user_id: user.id
     else
       # Guest user only 
     end
     # Everyone
 
-    can :read, [Forum, Forums::Topic, Forums::Post]
+    can :read, [Forum, Topic, Post]
+    cannot [:edit,:update], Post
 
   end
 

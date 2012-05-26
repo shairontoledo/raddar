@@ -3,8 +3,15 @@ pt-BR:
     errors:
       messages:
         validations: A validação falhou!
-        document_not_found: Documento não encontrado.
       models:
+        forum:
+          attributes:
+            base:
+              has_topics: O fórum não pode ser apagado porque contém tópicos.
+        topic:
+          attributes:
+            base:
+              content_required: O conteúdo não pode ficar em branco.
         message:
           attributes:
             base:
@@ -21,6 +28,11 @@ pt-BR:
       user: Usuário
       message: Mensagem
       forum: Fórum
+      topic: Tópico
+      post: Post
+    attributes:
+      topic: &topic_attributes
+        title: Título
     attributes:
       forum: &forum_attributes
         title: Título
@@ -55,6 +67,8 @@ pt-BR:
   user: *user_attributes
   message: *message_attributes
   forum: *forum_attributes
+  forum:
+    topic: *topic_attributes
   simple_form:
     options:
       user:

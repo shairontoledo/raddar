@@ -1,8 +1,8 @@
 Raddar::Application.routes.draw do
 
   resources :forums do
-    resources :topics, except: [:index] do
-      resources :posts, only: [:create,:update, :destroy]
+    resources :topics, controller: 'forums/topics', except: [:index] do
+      resources :posts, controller: 'forums/posts', only: [:create, :destroy]
     end
   end
 

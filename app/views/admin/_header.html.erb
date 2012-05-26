@@ -4,4 +4,5 @@
 
 <ul class="nav nav-tabs">
   <li <%= raw 'class="active"' if active == :users %>><%= link_to t('user.p'), users_path %></li>
+  <li <%= raw 'class="active"' if active == :forums %>><%= link_to t('forum.p'), forums_path(admin: true) %></li>
 </ul>

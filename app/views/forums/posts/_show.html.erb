@@ -1,10 +1,13 @@
-<p id="notice"><%= notice %></p>
-
-<p>
-  <b>Content:</b>
-  <%= @forums_post.content %>
-</p>
-
-
-<%= link_to 'Edit', edit_forums_post_path(@forums_post) %> |
-<%= link_to 'Back', forums_posts_path %>
+<tr>
+  <td>
+    <%= link_to post.user do %>
+      <%= image_tag post.user.avatar.thumb.url %>
+      <%= post.user.name %>
+    <% end %>
+  </td>
+  <td>
+    <%= simple_format post.content %>
+    <%= humanize_datetime post.created_at %>
+    <%= link_to t('action.delete'), [post.topic.forum,post.topic,post], :class => 'btn', method: :delete, confirm: 'Are you sure?' if can? :destroy, post %>
+  </td>
+</tr>

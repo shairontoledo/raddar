@@ -14,6 +14,8 @@ pt-BR:
     edit: Editar
     follow: Seguir
     unfollow: Deixar de seguir
+    delete: Apagar
+    reply: Responder
   role:
     s: Papel
     p: Papéis
@@ -23,11 +25,14 @@ pt-BR:
   forum:
     s: Fórum
     p: Fóruns
+    new: Novo Fórum
     topic:
       s: Tópico
       p: Tópicos
       last: Últimos tópicos
       views: visualizações
+      new: Novo Tópico
+      created_by: "Criado por %{user}"
       post:
         s: Postagem
         p: Postagens
