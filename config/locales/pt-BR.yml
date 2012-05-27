@@ -16,6 +16,7 @@ pt-BR:
     unfollow: Deixar de seguir
     delete: Apagar
     reply: Responder
+    quote: Citar
   role:
     s: Papel
     p: Papéis
@@ -57,6 +58,8 @@ pt-BR:
     destroy_all: Apagar mensagens
     previous: Mensagens anteriores
   flash:
+    topic:
+      unwatched: Você não mais receberá notificações deste tópico.
     account:
       blocked: Sua conta foi bloqueada. Entre em contato através de nossa página de contato.
     password:

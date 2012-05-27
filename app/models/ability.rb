@@ -24,6 +24,7 @@ class Ability
       can [:create, :destroy], Followership, user_id: user.id
 
       can :manage, Topic, user_id: user.id
+      can :unwatch, Topic
       can :manage, Post, user_id: user.id
 
       can :read, Vote

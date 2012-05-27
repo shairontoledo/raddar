@@ -72,6 +72,7 @@ class User < Model
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
   has_many :topics, dependent: :destroy
   has_many :posts, dependent: :destroy
+  has_and_belongs_to_many :watched_topics, class_name: 'Topic', inverse_of: :watchers, dependent: :nullify
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
@@ -89,7 +90,7 @@ class User < Model
   attr_accessor :login
 
   # Accessible (mass assignment)
-  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :name, :email, :date_of_birth, :location,
+  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :email, :name, :date_of_birth, :location,
     :bio, :password, :password_confirmation, :gender, :facebook_access_token, :facebook_url, :remote_avatar_url
 
   validate  do

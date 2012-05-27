@@ -1,4 +1,7 @@
+require 'will_paginate/array'
+
 class Forums::TopicsController < ApplicationController
+  before_filter :authenticate_user!
   load_and_authorize_resource
 
 
@@ -6,9 +9,21 @@ class Forums::TopicsController < ApplicationController
   # GET /forums_topics/1.xml
   def show
     @topic = Topic.find(params[:id])
-    @posts = @topic.first_posts.paginate(page: params[:page], per_page: 10)
+
+    per_page = 10
+
+    if(params[:page].blank? && (!params[:post_id].blank?))
+      search_post = Post.find(params[:post_id])
+      @topic.first_posts.each_with_index do |p,i|
+        params[:page] = ((i/per_page)+1) if ((i > per_page) && (p == search_post))
+        pp i
+      end
+    end
+
+    @posts = @topic.first_posts.paginate(page: params[:page], per_page: per_page)
     @topic.update_attribute(:views, @topic.views+1)
     @post = @topic.posts.new
+    @post[:watch] = true
     respond_with(@topic)
   end
 
@@ -18,6 +33,7 @@ class Forums::TopicsController < ApplicationController
     @forum = Forum.find(params[:forum_id])
     @topic = @forum.topics.new
     @post = @topic.posts.new
+    @post[:watch] = true
     respond_with(@topic)
   end
 
@@ -41,6 +57,7 @@ class Forums::TopicsController < ApplicationController
     if @post.valid? && @topic.valid?
       @post.save
       @topic.save
+      @topic.watchers << current_user if params[:topic][:post][:watch] == '1'
     else
       @topic.add_error(:base,:content_required)
     end
@@ -63,5 +80,15 @@ class Forums::TopicsController < ApplicationController
     @topic.destroy
 
     respond_with(@topic, location: @topic.forum)
+  end
+
+  def unwatch
+    @topic = Topic.find(params[:id])
+
+    @topic.watcher_ids.delete(current_user.id)
+    @topic.save
+
+    redirect_to(forum_topic_path(@topic), notice: t('flash.topic.unwatched'))
+
   end
 end

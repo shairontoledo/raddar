@@ -12,4 +12,5 @@ class Post < Model
 
   validates_presence_of :content, :user
   validates_length_of :content, maximum: 6000
+
 end

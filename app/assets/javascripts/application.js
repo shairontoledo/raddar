@@ -15,4 +15,5 @@
 //= require bootstrap
 //= require bootstrap-datepicker
 //= require private_pub
+//= require wysihtml5
 //= require_tree .

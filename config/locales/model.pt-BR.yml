@@ -31,11 +31,13 @@ pt-BR:
       topic: Tópico
       post: Post
     attributes:
+      post: &post_attributes
+        content: Conteúdo
+        watch: Notificar por e-mail
       topic: &topic_attributes
-        title: Título
-    attributes:
+        name: Nome
       forum: &forum_attributes
-        title: Título
+        name: Nome
         description: Descrição
       message: &message_attributes
         content: Conteúdo
@@ -69,6 +71,8 @@ pt-BR:
   forum: *forum_attributes
   forum:
     topic: *topic_attributes
+    topic:
+      post: *post_attributes
   simple_form:
     options:
       user:

@@ -1,14 +1,16 @@
-<tr>
+<tr id="post_<%= post.id %>" class="post">
   <td>
     <%= link_to post.user do %>
       <%= image_tag post.user.avatar.thumb.url %>
-      <%= post.user.name %>
+      <span class="post_user_name"><%= post.user.name %></span>
     <% end %>
   </td>
   <td>
-    <%= simple_format post.content %>
-    <%= humanize_datetime post.created_at %>
+    <div class="post_content"><%= rich_format post.content %></div>
+    <hr/>
+    <%= link_to humanize_datetime(post.created_at), "#post_#{post.id}" %>
     <%= link_to t('action.delete'), post, :class => 'btn', method: :delete, confirm: 'Are you sure?' if can? :destroy, post %>
+    <%= link_to t('action.quote'), '#new_forum_post_content', :class => 'btn quote_btn' if can? :crate, Post %>
     <%= render 'votes/show', {votable: post} %>
   </td>
 </tr>

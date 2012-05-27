@@ -33,6 +33,8 @@ GEM
     bcrypt-ruby (3.0.1)
     bootstrap-datepicker-rails (0.6.13)
       railties (>= 3.0)
+    bootstrap-will_paginate (0.0.7)
+      will_paginate
     bson (1.6.2)
     bson_ext (1.6.2)
       bson (~> 1.6.2)
@@ -256,9 +258,6 @@ GEM
     warden (1.1.1)
       rack (>= 1.0)
     will_paginate (3.0.3)
-    will_paginate_mongoid (1.0.5)
-      mongoid (~> 2.4)
-      will_paginate (~> 3.0.2)
     xpath (0.1.4)
       nokogiri (~> 1.3)
     yajl-ruby (1.1.0)
@@ -268,6 +267,7 @@ PLATFORMS
 
 DEPENDENCIES
   bootstrap-datepicker-rails
+  bootstrap-will_paginate
   bson_ext
   cancan
   capistrano
@@ -295,4 +295,3 @@ DEPENDENCIES
   thin
   uglifier (>= 1.0.3)
   unicorn
-  will_paginate_mongoid

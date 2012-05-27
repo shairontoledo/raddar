@@ -2,15 +2,16 @@ class Forum < Model
   include Mongoid::Document
   include Mongoid::Timestamps
 
-  field :title, type: String
+  field :name, type: String
   field :description, type: String
 
   has_many :topics
+  has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
 
-  attr_accessible :title, :description
+  attr_accessible :name, :description
 
-  validates_presence_of :title, :description
-  validates_length_of :title, maximum: 100
+  validates_presence_of :name, :description
+  validates_length_of :name, maximum: 100
   validates_length_of :description, maximum: 500
 
   before_destroy :has_no_topics?

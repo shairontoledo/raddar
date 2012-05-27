@@ -8,4 +8,12 @@ module ApplicationHelper
     end
     str
   end
+
+  def rich_format html
+    sanitize html
+  end
+
+  def simple_text text
+    sanitize simple_format(text), tags: %w{p br}, attributes: []
+  end
 end

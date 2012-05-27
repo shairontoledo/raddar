@@ -5,7 +5,7 @@
     <%= f.input :title %>
     <% unless @topic.persisted? %>
       <%= f.simple_fields_for @post do |pf| %>
-        <%= render 'forums/posts/textarea', {form: pf} %>
+        <%= render 'forums/posts/form_inputs', {form: pf, post: @post} %>
       <% end %>
     <% end %> 
   </div>

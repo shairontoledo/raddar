@@ -3,7 +3,11 @@ Raddar::Application.routes.draw do
   resources :forums do
     resources :topics, controller: 'forums/topics', except: [:index] do
       resources :posts, controller: 'forums/posts', only: [:create]
+      get 'unwatch', on: :member
     end
+    resources :followers, controller: 'followerships', only: [:create, :index] do
+      delete 'destroy', on: :collection
+    end 
   end
 
   resources :posts, controller: 'forums/posts', only: [:destroy] do
@@ -36,7 +40,9 @@ Raddar::Application.routes.draw do
         post 'read'
       end
     end
-    resources :followers, controller: 'followerships', only: [:create, :destroy, :index] 
+    resources :followers, controller: 'followerships', only: [:create, :index] do
+      delete 'destroy', on: :collection
+    end 
   end
   get 'messages' => 'messages#all', as: :all_messages
 

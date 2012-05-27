@@ -4,7 +4,6 @@
   <%= f.error_notification %>
 
   <div class="inputs">
-    <%= f.input :name, required: true, :autofocus => true %>
     <%= f.input :email, :required => true %>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
     <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth),  :type => 'date', :class => 'datepicker' } %>
@@ -17,7 +16,7 @@
     <%= f.input :avatar, as: :file %>
     <%= f.input :avatar_cache, as: :hidden %>
     <hr/>
-    <%= f.input :bio, as: :text %>
+    <%= f.input :bio, as: :text, input_html: {rows: '8'} %>
   </div>
 
   <div class="actions">

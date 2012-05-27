@@ -1,5 +1,5 @@
 <div id="message_<%= message.id %>" class="well message <%= (user.id == message.sender.id) ? 'received' : 'sent' %>">
   <%= link_to image_tag(message.sender.avatar.thumb.url, :class => 'size20'), message.sender %>
-  <%= simple_format message.content %>
+  <%= simple_text message.content %>
   <div class="timestamp"><%= humanize_datetime message.created_at %></div>
 </div>

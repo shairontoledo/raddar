@@ -9,7 +9,8 @@ class Forums::PostsController < ApplicationController
     @post = @topic.posts.new(params[:post])
     @post.user = current_user
     if @post.save
-      respond_with(@post, location: forum_topic_path(@forum,@topic))
+      @topic.watchers << current_user if params[:post][:watch] == '1'
+      respond_with(@post, location: forum_topic_path(@forum,@topic, post_id: @post.id)+"#post_#{@post.id}")
     else
       @posts = @topic.first_posts.paginate(page: params[:page], per_page: 10)
       render 'forums/topics/show'

@@ -19,9 +19,9 @@ r.save!
 
 u.roles << r
 
-f = Forum.create!(title: 'Fórum de Testes', description: 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.')
+f = Forum.create!(name: 'Fórum de Testes', description: 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.')
 
-t = f.topics.build(title: 'Tópico de Testes')
+t = f.topics.build(name: 'Tópico de Testes')
 t.user = u
 t.save!
 
