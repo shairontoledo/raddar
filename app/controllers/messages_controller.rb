@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
     @message.recipient = @user
     @message.save
 
-    #redirect_to user_messages_path(@user)
+    NoticeMailer.new_message_email(@message).deliver if @user.notify_messages
   end
 
 

@@ -1,0 +1,17 @@
+<%= render 'users/shared/settings_header', {active: :notifications} %>
+
+<h3><%= t 'user.notifications_description' %></h3>
+
+<%= simple_form_for(@user, url: user_notifications_path, :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="inputs">
+    <% [:messages, :followers].each do |field| %>
+      <%= f.input "notify_#{field}".to_sym, as: :boolean %>
+    <% end %>
+  </div>
+
+  <div class="actions">
+    <%= f.button :submit, "Update" %>
+  </div>
+<% end %>

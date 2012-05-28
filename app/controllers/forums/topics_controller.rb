@@ -16,7 +16,6 @@ class Forums::TopicsController < ApplicationController
       search_post = Post.find(params[:post_id])
       @topic.first_posts.each_with_index do |p,i|
         params[:page] = ((i/per_page)+1) if ((i > per_page) && (p == search_post))
-        pp i
       end
     end
 

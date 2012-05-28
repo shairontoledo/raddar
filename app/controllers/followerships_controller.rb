@@ -13,9 +13,16 @@ class FollowershipsController < ApplicationController
   # Current user starts following
   def create
     @followable = find_followable
-    current_user.followerships.create(followable: @followable)
+    f = current_user.followerships.new(followable: @followable)
 
-    redirect_to @followable, notice: t('flash.followership.create', name: @followable.name)
+    if f.save
+      NoticeMailer.new_follower_email(@followable, current_user).deliver if ((@followable.class == User) && @followable.notify_followers)
+      flash[:notice] = t 'flash.followership.create', name: @followable.name
+    else
+      flash[:alert] = t 'flash.followership.error', name: @followable.name
+    end
+
+    redirect_to @followable
   end
 
   # Current user stops following

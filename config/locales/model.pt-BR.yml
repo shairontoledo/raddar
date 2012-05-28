@@ -66,6 +66,8 @@ pt-BR:
           active: Ativo
           blocked: Bloqueado
         location: Localização
+        notify_messages: Novas mensagens
+        notify_followers: Novos seguidores
   user: *user_attributes
   message: *message_attributes
   forum: *forum_attributes

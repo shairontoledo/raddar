@@ -2,7 +2,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :title %>
+    <%= f.input :name %>
     <% unless @topic.persisted? %>
       <%= f.simple_fields_for @post do |pf| %>
         <%= render 'forums/posts/form_inputs', {form: pf, post: @post} %>

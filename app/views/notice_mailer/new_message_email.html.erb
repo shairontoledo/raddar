@@ -1,0 +1,3 @@
+<p><%= t('mailer.template.hello', name: @user.name) %></p>
+<br/>
+<%= t 'notice_mailer.body.new_message.html', sender: @message.sender.name, message: simple_text(@message.content), url: link_to(user_messages_url(@message.sender), user_messages_url(@message.sender)), edit_conf_url: link_to(edit_user_notifications_url, edit_user_notifications_url) %>

@@ -48,6 +48,8 @@ pt-BR:
       info: Informações do Perfil
     privacy: Privacidade
     accounts: Contas vinculadas
+    notifications: Avisos
+    notifications_description: "Receber avisos por e-mails sobre:"
     you: Este é você!
   vote:
     like: Legal
@@ -67,9 +69,13 @@ pt-BR:
     privacy:
       updated: Suas configurações de privacidade foram atualizadas.
       error: Não foi possível alterar suas configrações de privacidade. Tente novamente mais tarde.
+    notifications:
+      updated: Suas configurações de avisos foram atualizadas.
+      error: Não foi possível alterar suas configrações de avisos. Tente novamente mais tarde.
     accounts:
       destroyed: 'Sua conta do %{provider} foi removida.'
       error: 'Não foi possível remover sua conta do %{provider} no momento. Tente novamente mais tarde.'
     followership:
       create: 'Você está seguindo %{name}'
       destroy: 'Você não mais segue %{name}'
+      error: 'Não foi possível seguir %{name} no momento. Tente novamente mais tarde.'

@@ -61,6 +61,8 @@ class User < Model
   field :coordinates, type: Array
   field :location, type: String
   field :location_privacy, type: Symbol, default: :public
+  field :notify_messages, type: Boolean, default: true
+  field :notify_followers, type: Boolean, default: true
   key :name
 
   # Relationships
@@ -209,7 +211,7 @@ class User < Model
 
   def all_chats
     chats = []
-    (self.incoming_messages.distinct(:sender_id) | self.sent_messages.distinct(:recipient_id)).each {|user_id| chats << self.chat_with(user_id)}
+    (self.incoming_messages.where(:recipient_status.ne => :deleted).distinct(:sender_id) | self.sent_messages.where(:sender_status.ne => :deleted).distinct(:recipient_id)).each {|user_id| chats << self.chat_with(user_id)}
     chats.sort_by!{|chat| chat.last.created_at}.reverse!
     chats
   end
