@@ -16,7 +16,7 @@ class FollowershipsController < ApplicationController
     f = current_user.followerships.new(followable: @followable)
 
     if f.save
-      NoticeMailer.new_follower_email(@followable, current_user).deliver if ((@followable.class == User) && @followable.notify_followers)
+      NoticeMailer.delay(queue: 'new_follower').new_follower_email(@followable, current_user) if ((@followable.class == User) && @followable.notify_followers)
       flash[:notice] = t 'flash.followership.create', name: @followable.name
     else
       flash[:alert] = t 'flash.followership.error', name: @followable.name

@@ -11,9 +11,8 @@ class Forums::PostsController < ApplicationController
     if @post.save
       @topic.watchers << current_user if params[:post][:watch] == '1'
 
-      @topic.watchers.each do |watcher|
-        NoticeMailer.new_forum_post_email(watcher, @post).deliver if watcher != @post.user
-      end
+      Delayed::Job.enqueue NotifyForumPostJob.new(@post.id)
+
       respond_with(@post, location: forum_topic_path(@forum,@topic, post_id: @post.id)+"#post_#{@post.id}")
     else
       @posts = @topic.first_posts.paginate(page: params[:page], per_page: 10)

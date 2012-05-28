@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
     @message.recipient = @user
     @message.save
 
-    NoticeMailer.new_message_email(@message).deliver if @user.notify_messages
+    Delayed::Job.enqueue(NotifyMessageJob.new(@message.id), run_at: 1.hour.from_now) if @user.notify_messages
   end
 
 
