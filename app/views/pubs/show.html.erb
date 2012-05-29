@@ -4,6 +4,7 @@
     <small><%= @pub.subtitle %></small>
   </h1>
 </div>
+<%= link_to t('action.edit'), edit_pub_path(@pub) if can? :edit, @pub %>
 
 <%= render 'followerships/followers', {followable: @pub} %>
 <br/>
@@ -15,5 +16,17 @@
   <%= rich_format @pub.description %>
 </div>
 
+<% @stuffs.each do |stuff| %>
+  <div>
+    <h3><%= link_to stuff.name, [@pub, stuff] %></h3>
+    <%= image_tag stuff.cover.thumb.url %>
 
-<%= link_to t('action.edit'), edit_pub_path(@pub) if can? :edit, @pub %>
+    <div>
+      <%= rich_format stuff.content %>
+    </div>
+  </div>
+<% end %>
+
+
+
+<%= link_to(t('pub.stuff.new'), new_pub_stuff_path(@pub), :class => 'btn') if can? :new, @pub.stuffs.new %>

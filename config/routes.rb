@@ -1,6 +1,7 @@
 Raddar::Application.routes.draw do
 
   resources :pubs do
+    resources :stuffs, except: [:index]
     resources :followers, controller: 'followerships', only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
@@ -19,7 +20,6 @@ Raddar::Application.routes.draw do
   resources :posts, controller: 'forums/posts', only: [:destroy] do
     resource :vote, only: [:create]
   end
-
 
   namespace 'admin' do
     get "/" => 'home#index', as: :root

@@ -12,6 +12,6 @@
 
   <div class="form-actions">
     <%= f.button :submit %>
-    <%= link_to t('action.delete'), pub, confirm: 'Are you sure?', method: :delete if @pub.persisted? && can?(:destroy, @pub) %>
+    <%= link_to t('action.delete'), @pub, confirm: 'Are you sure?', method: :delete if @pub.persisted? && can?(:destroy, @pub) %>
   </div>
 <% end %>

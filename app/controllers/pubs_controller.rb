@@ -11,6 +11,7 @@ class PubsController < ApplicationController
   # GET /pubs/1.xml
   def show
     @pub = Pub.find(params[:id])
+    @stuffs = @pub.stuffs.order_by([:created_at, :desc])
     respond_with(@pub)
   end
 

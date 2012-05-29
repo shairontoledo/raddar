@@ -9,6 +9,7 @@ class Pub
   mount_uploader :cover, CoverUploader
 
   belongs_to :user
+  has_many :stuffs, dependent: :destroy
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
 
   validates_presence_of :name, :description, :user

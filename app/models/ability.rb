@@ -30,12 +30,13 @@ class Ability
       can :read, Vote
       can [:create, :update], Vote, user_id: user.id
       can :manage, Pub, user_id: user.id
+      can :manage, Stuff, pub: {user_id: user.id}
     else
       # Guest user only 
     end
     # Everyone
 
-    can :read, [Forum, Topic, Post, Pub]
+    can :read, [Forum, Topic, Post, Pub, Stuff]
     cannot [:edit,:update], Post
 
   end

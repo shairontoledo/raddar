@@ -1,0 +1,16 @@
+<div class="page-header">
+  <h1>
+    <%= @stuff.name %>
+    <small><%= @stuff.pub.name %></small>
+  </h1>
+</div>
+
+<%= image_tag @stuff.cover.thumb.url %>
+
+<div class="well">
+  <%= rich_format @stuff.content %>
+</div>
+
+
+<%= link_to t('action.edit'), edit_pub_stuff_path(@stuff) if can? :edit, @stuff %>
+

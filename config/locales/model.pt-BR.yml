@@ -31,7 +31,12 @@ pt-BR:
       topic: Tópico
       post: Post
       pub: Publicação
+      stuff: Material
     attributes:
+      stuff: &stuff_attributes
+        name: Nome
+        content: Conteúdo
+        cover: Imagem de capa
       pub: &pub_attributes
         name: Nome
         subtitle: Subtítulo
@@ -76,6 +81,8 @@ pt-BR:
         notify_followers: Novos seguidores
   user: *user_attributes
   message: *message_attributes
+  pub: *pub_attributes
+  stuff: *stuff_attributes
   forum: *forum_attributes
   forum:
     topic: *topic_attributes

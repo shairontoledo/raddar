@@ -26,6 +26,10 @@ pt-BR:
   pub:
     s: Publicação
     p: Publicações
+    stuff:
+      s: Material
+      p: Materiais
+      new: Novo material
   forum:
     s: Fórum
     p: Fóruns
