@@ -10,7 +10,7 @@
     <hr/>
     <%= link_to humanize_datetime(post.created_at), "#post_#{post.id}" %>
     <%= link_to t('action.delete'), post, :class => 'btn', method: :delete, confirm: 'Are you sure?' if can? :destroy, post %>
-    <%= link_to t('action.quote'), '#new_forum_post_content', :class => 'btn quote_btn' if can? :crate, Post %>
+    <%= link_to t('action.quote'), '#new_forum_post_content', :class => 'btn quote_btn' if can? :create, Post %>
     <%= render 'votes/show', {votable: post} %>
   </td>
 </tr>

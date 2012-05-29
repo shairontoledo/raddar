@@ -1,0 +1,12 @@
+<div id="comment_<%= comment.id %>" class="well comment">
+  <%= link_to comment.user do %>
+    <%= image_tag comment.user.avatar.thumb.url %>
+    <%= comment.user.name %>
+  <% end %>
+
+  <div><%= simple_text comment.content %></div>
+  <hr/>
+  <%= link_to humanize_datetime(comment.created_at), "#comment_#{comment.id}" %>
+  <%= link_to t('action.delete'), comment, :class => 'btn', method: :delete, confirm: 'Are you sure?' if can? :destroy, comment %>
+  <%= render 'votes/show', {votable: comment} %>
+</div>

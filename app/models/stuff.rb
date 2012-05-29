@@ -8,6 +8,7 @@ class Stuff
   mount_uploader :cover, CoverUploader
 
   belongs_to :pub
+  has_many :comments, as: :commentable, dependent: :destroy
 
   validates_presence_of :name, :content, :pub
   validates_length_of :name, maximum: 100

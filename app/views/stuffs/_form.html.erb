@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :name %>
-    <%= image_tag @stuff.cover.thumb.url %>
+    <%= image_tag @stuff.cover.thumb.url unless @stuff.cover.file.nil? %>
     <%= f.input :cover, as: :file %>
     <%= f.input :cover_cache, as: :hidden %>
     <%= f.input :content, as: :text, input_html: {:class => 'span6', rows: '8'} %>
@@ -11,6 +11,6 @@
 
   <div class="form-actions">
     <%= f.button :submit %>
-    <%= link_to t('action.delete'), [@stuff.pub, @stuff], confirm: 'Are you sure?', method: :delete if @stuff.persisted? && can?(:destroy, @stuff) %>
+    <%= link_to t('action.delete'), @stuff, confirm: 'Are you sure?', method: :delete if @stuff.persisted? && can?(:destroy, @stuff) %>
   </div>
 <% end %>

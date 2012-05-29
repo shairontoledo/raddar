@@ -1,10 +1,14 @@
 Raddar::Application.routes.draw do
 
   resources :pubs do
-    resources :stuffs, except: [:index]
+    resources :stuffs, except: [:index, :destroy]
     resources :followers, controller: 'followerships', only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
+  end
+
+  resources :stuffs, only: [:show, :destroy] do
+    resources :comments, only: [:create]
   end
 
   resources :forums do
@@ -18,6 +22,10 @@ Raddar::Application.routes.draw do
   end
 
   resources :posts, controller: 'forums/posts', only: [:destroy] do
+    resource :vote, only: [:create]
+  end
+
+  resources :comments, only: [:destroy] do
     resource :vote, only: [:create]
   end
 

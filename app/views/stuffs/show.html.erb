@@ -5,7 +5,7 @@
   </h1>
 </div>
 
-<%= image_tag @stuff.cover.thumb.url %>
+<%= image_tag @stuff.cover.thumb.url unless @stuff.cover.file.nil? %>
 
 <div class="well">
   <%= rich_format @stuff.content %>
@@ -14,3 +14,4 @@
 
 <%= link_to t('action.edit'), edit_pub_stuff_path(@stuff) if can? :edit, @stuff %>
 
+<%= render 'comments/index', {commentable: @stuff} %>
