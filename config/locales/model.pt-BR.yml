@@ -30,7 +30,13 @@ pt-BR:
       forum: Fórum
       topic: Tópico
       post: Post
+      pub: Publicação
     attributes:
+      pub: &pub_attributes
+        name: Nome
+        subtitle: Subtítulo
+        description: Descrição
+        cover: Imagem de capa
       post: &post_attributes
         content: Conteúdo
         watch: Notificar por e-mail

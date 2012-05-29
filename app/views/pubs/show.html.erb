@@ -1,0 +1,19 @@
+<div class="page-header">
+  <h1>
+    <%= @pub.name %>
+    <small><%= @pub.subtitle %></small>
+  </h1>
+</div>
+
+<%= render 'followerships/followers', {followable: @pub} %>
+<br/>
+<%= render 'followerships/follow_button', {followable: @pub} if user_signed_in? %>
+
+<%= image_tag @pub.cover.thumb.url %>
+
+<div class="well">
+  <%= rich_format @pub.description %>
+</div>
+
+
+<%= link_to t('action.edit'), edit_pub_path(@pub) if can? :edit, @pub %>

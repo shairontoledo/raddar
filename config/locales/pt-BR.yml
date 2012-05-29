@@ -23,6 +23,9 @@ pt-BR:
     admin: Administrador
   followers: Seguidores
   following: Seguindo
+  pub:
+    s: Publicação
+    p: Publicações
   forum:
     s: Fórum
     p: Fóruns

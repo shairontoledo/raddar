@@ -1,0 +1,15 @@
+<h1>Listing pubs</h1>
+
+<div>
+<% @pubs.each do |pub| %>
+  <div class="well">
+    <h5><%= pub.name %></h5>
+    <%= image_tag pub.cover.thumb.url %>
+    <p><%= link_to pub.subtitle, pub %></p>
+  </div>
+<% end %>
+</div>
+
+<br />
+
+<%= link_to 'New Pub', new_pub_path if can? :new, Pub %>

@@ -1,5 +1,11 @@
 Raddar::Application.routes.draw do
 
+  resources :pubs do
+    resources :followers, controller: 'followerships', only: [:create, :index] do
+      delete 'destroy', on: :collection
+    end 
+  end
+
   resources :forums do
     resources :topics, controller: 'forums/topics', except: [:index] do
       resources :posts, controller: 'forums/posts', only: [:create]

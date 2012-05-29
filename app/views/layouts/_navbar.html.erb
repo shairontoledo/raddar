@@ -9,10 +9,8 @@
       <%= link_to t('application.title'), root_path, :class => 'brand' %>
       <div class="nav-collapse">
         <ul class="nav">
-          <li><%= link_to 'Blog', '#' %></li>
+          <li><%= link_to t('pub.p'), pubs_path %></li>
           <li><%= link_to t('forum.p'), forums_path %></li>
-          <li><%= link_to 'Stuffs', '#' %></li>
-          <li><%= link_to 'Groups', '#' %></li>
         </ul>
         <%= form_tag search_path, method: :get, :class => 'navbar-search' do %>
           <%= text_field_tag :q, nil, :class => 'search-query', placeholder: t('action.search')  %>
