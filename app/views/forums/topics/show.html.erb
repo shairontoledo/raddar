@@ -7,7 +7,6 @@
   <%= link_to t('forum.topic.created_by', user: @topic.user.name), @topic.user %> ::
   <%= @topic.views %> <%= t('forum.topic.views') %> ::  
   <%= link_to t('action.edit'), edit_forum_topic_path(@topic.forum, @topic), :class => 'btn' if can? :edit, @topic %>
-  <%= link_to t('action.delete'), [@topic.forum, @topic], :class => 'btn', method: :delete, confirm: 'Are you sure?' if can? :destroy, @topic %>
 </div>
 
 <% @posts.each do |post| %>

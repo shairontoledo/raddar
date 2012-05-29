@@ -28,7 +28,7 @@ class StuffsController < ApplicationController
   def create
     @pub = Pub.find(params[:pub_id])
     @stuff = @pub.stuffs.new(params[:stuff])
-    @stuff.save
+    current_user.watchings.create(watchable: @stuff) if @stuff.save
     respond_with(@pub, @stuff)
   end
 

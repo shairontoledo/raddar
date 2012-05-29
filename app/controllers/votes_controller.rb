@@ -10,6 +10,7 @@ class VotesController < ApplicationController
     vote.save
   end
 
+  private
   def find_votable
     params.each do |name, value|
       if name =~ /(.+)_id$/

@@ -10,7 +10,7 @@ class Topic < Model
   belongs_to :forum
   has_many :posts
   belongs_to :user
-  has_and_belongs_to_many :watchers, class_name: 'User', inverse_of: :watched_topics, dependent: :nullify
+  has_many :watchings, as: :watchable, dependent: :destroy
 
   attr_accessible :name
 

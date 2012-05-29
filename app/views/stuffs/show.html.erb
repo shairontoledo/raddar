@@ -12,6 +12,6 @@
 </div>
 
 
-<%= link_to t('action.edit'), edit_pub_stuff_path(@stuff) if can? :edit, @stuff %>
+<%= link_to t('action.edit'), edit_pub_stuff_path(@stuff.pub, @stuff) if can? :edit, @stuff %>
 
 <%= render 'comments/index', {commentable: @stuff} %>

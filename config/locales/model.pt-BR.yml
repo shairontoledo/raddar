@@ -32,6 +32,7 @@ pt-BR:
       post: Post
       pub: Publicação
       stuff: Material
+      comment: Comentário
     attributes:
       stuff: &stuff_attributes
         name: Nome

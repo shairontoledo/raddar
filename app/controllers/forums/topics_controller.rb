@@ -55,7 +55,8 @@ class Forums::TopicsController < ApplicationController
     if @post.valid? && @topic.valid?
       @post.save
       @topic.save
-      @topic.watchers << current_user if params[:topic][:post][:watch] == '1'
+      current_user.watchings.create(watchable: @topic) if params[:topic][:post][:watch] == '1'
+
     else
       @topic.add_error(:base,:content_required)
     end
@@ -78,15 +79,5 @@ class Forums::TopicsController < ApplicationController
     @topic.destroy
 
     respond_with(@topic, location: @topic.forum)
-  end
-
-  def unwatch
-    @topic = Topic.find(params[:id])
-
-    @topic.watcher_ids.delete(current_user.id)
-    @topic.save
-
-    redirect_to(forum_topic_path(@topic), notice: t('flash.topic.unwatched'))
-
   end
 end

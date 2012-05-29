@@ -1,14 +1,20 @@
 class CommentsController < ApplicationController
+
   load_and_authorize_resource
+
 
   def create
     @commentable = find_commentable
 
     @comment = @commentable.comments.new params[:comment]
     @comment.user = current_user
-    @comment.save
-
-    respond_with @comment, location: @commentable
+    if @comment.save
+      current_user.watchings.create(watchable: @commentable) if watchable?(@commentable) && params[:post][:watch] == '1'
+      respond_with @comment, location: @commentable
+    else
+      eval("@#{@commentable.class.name.downcase} = @commentable")
+      render "#{@commentable.class.name.downcase.pluralize}/show"
+    end
   end
 
   def destroy
@@ -17,6 +23,7 @@ class CommentsController < ApplicationController
     respond_with @comment, location: @comment.commentable
   end
 
+  private
   def find_commentable
     params.each do |name, value|
       if name =~ /(.+)_id$/

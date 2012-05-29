@@ -1,2 +1,2 @@
 <%= form.input :content, as: :text, label: false, input_html: {id: 'new_forum_post_content', :class => 'span6', rows: '8'} %>
-<%= form.input :watch, as: :boolean if post.topic.watchers.where(_id: current_user.id).empty? %>
+<%= form.input :watch, as: :boolean if post.topic.watchings.where(user_id: current_user.id).empty? %>

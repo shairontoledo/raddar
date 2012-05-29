@@ -12,13 +12,16 @@ Raddar::Application.routes.draw do
   end
 
   resources :forums do
-    resources :topics, controller: 'forums/topics', except: [:index] do
+    resources :topics, controller: 'forums/topics', except: [:index, :destroy] do
       resources :posts, controller: 'forums/posts', only: [:create]
-      get 'unwatch', on: :member
     end
     resources :followers, controller: 'followerships', only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
+  end
+
+  resources :topics, controller: 'forums/topics', only: [:show, :destroy] do
+    resource :watching, only: [:destroy]
   end
 
   resources :posts, controller: 'forums/posts', only: [:destroy] do

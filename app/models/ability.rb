@@ -32,6 +32,7 @@ class Ability
       can :manage, Pub, user_id: user.id
       can :manage, Stuff, pub: {user_id: user.id}
       can :manage, Comment, user_id: user.id
+      can :manage, Watching, user_id: user.id
     else
       # Guest user only 
     end

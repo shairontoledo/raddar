@@ -68,8 +68,8 @@ pt-BR:
     destroy_all: Apagar mensagens
     previous: Mensagens anteriores
   flash:
-    topic:
-      unwatched: Você não mais receberá notificações deste tópico.
+    watching:
+      destroyed: "Você não mais receberá notificações deste item."
     account:
       blocked: Sua conta foi bloqueada. Entre em contato através de nossa página de contato.
     password:

@@ -75,9 +75,9 @@ class User < Model
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
   has_many :topics, dependent: :destroy
   has_many :posts, dependent: :destroy
-  has_and_belongs_to_many :watched_topics, class_name: 'Topic', inverse_of: :watchers, dependent: :nullify
   has_many :pubs, dependent: :destroy
   has_many :comments, dependent: :destroy
+  has_many :watchings, dependent: :destroy
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
