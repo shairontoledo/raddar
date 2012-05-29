@@ -1,7 +1,7 @@
 require 'will_paginate/array'
 
 class Forums::TopicsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource 
 
 
   # GET /forums_topics/1

@@ -87,3 +87,5 @@ pt-BR:
       create: 'Você está seguindo %{name}'
       destroy: 'Você não mais segue %{name}'
       error: 'Não foi possível seguir %{name} no momento. Tente novamente mais tarde.'
+  js:
+    confirm_unload: As suas modificações ainda não foram gravadas.

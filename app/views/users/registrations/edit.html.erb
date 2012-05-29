@@ -4,6 +4,7 @@
   <%= f.error_notification %>
 
   <div class="inputs">
+    <%= f.input :name, :required => true %>
     <%= f.input :email, :required => true %>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
     <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth),  :type => 'date', :class => 'datepicker' } %>

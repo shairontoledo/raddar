@@ -4,6 +4,7 @@ class User < Model
   include Mongoid::Document
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
+  include Mongoid::Slug
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable
@@ -63,7 +64,7 @@ class User < Model
   field :location_privacy, type: Symbol, default: :public
   field :notify_messages, type: Boolean, default: true
   field :notify_followers, type: Boolean, default: true
-  key :name
+  slug :name
 
   # Relationships
   has_and_belongs_to_many :roles
@@ -220,5 +221,13 @@ class User < Model
 
   def unread_chats
     self.incoming_messages.where(recipient_status: :unread).distinct(:sender_id)
+  end
+
+  def self.find *args
+    if args.length == 1 and not args[0].is_a? Symbol
+      find_by_slug(*args) || super
+    else
+      super
+    end
   end
 end

@@ -1,9 +1,11 @@
 class Forum < Model
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
 
   field :name, type: String
   field :description, type: String
+  slug :name
 
   has_many :topics
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
@@ -51,5 +53,13 @@ class Forum < Model
 
     forums.reverse!
     forums
+  end
+
+  def self.find *args
+    if args.length == 1 and not args[0].is_a? Symbol
+      find_by_slug(*args) || super
+    else
+      super
+    end
   end
 end

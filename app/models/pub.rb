@@ -1,12 +1,14 @@
 class Pub
   include Mongoid::Document
   include Mongoid::Timestamps
+  include Mongoid::Slug
 
 
   field :name, :type => String
   field :subtitle, :type => String
   field :description, :type => String
   mount_uploader :cover, CoverUploader
+  slug :name
 
   belongs_to :user
   has_many :stuffs, dependent: :destroy
@@ -19,4 +21,11 @@ class Pub
 
   attr_accessible :name, :subtitle, :description, :cover, :cover_cache
 
+  def self.find *args
+    if args.length == 1 and not args[0].is_a? Symbol
+      find_by_slug(*args) || super
+    else
+      super
+    end
+  end
 end
