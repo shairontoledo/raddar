@@ -14,7 +14,7 @@ class NoticeMailer < ActionMailer::Base
     @user = user
     @comment = comment
     @comment_url = url_for(@comment.commentable)+"#comments"
-    @unwatch_url = eval("#{@comment.commentable.class.name.downcase}_watching_url(@comment.commentable)")
+    @unwatch_url = eval("#{@comment.commentable.class.name.underscore}_watching_url(@comment.commentable)")
 
     send_mail @user, I18n.t('notice_mailer.subject.comment')
   end

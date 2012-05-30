@@ -6,7 +6,7 @@ module VotesHelper
     icon = 'icon-thumbs-up' if value == :like
     icon = 'icon-thumbs-down' if value == :dislike
 
-    path = eval "#{votable.class.name.downcase}_vote_path(votable, value: value)"
+    path = eval "#{votable.class.name.underscore}_vote_path(votable, value: value)"
     votes_count = votable.votes.where(value: value).count
 
     btn_class = ['btn', 'vote']

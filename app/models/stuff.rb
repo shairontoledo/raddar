@@ -13,6 +13,7 @@ class Stuff
   belongs_to :pub
   has_many :comments, as: :commentable, dependent: :destroy
   has_many :watchings, as: :watchable, dependent: :destroy
+  has_many :votes, as: :votable, dependent: :destroy
 
   validates_presence_of :name, :content, :pub
   validates_length_of :name, maximum: 100

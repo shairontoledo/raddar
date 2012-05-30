@@ -15,8 +15,8 @@ class CommentsController < ApplicationController
 
       respond_with @comment, location: @commentable
     else
-      eval("@#{@commentable.class.name.downcase} = @commentable")
-      render "#{@commentable.class.name.downcase.pluralize}/show"
+      eval("@#{@commentable.class.name.underscore} = @commentable")
+      render "#{@commentable.class.name.downcase.underscore}/show"
     end
   end
 
