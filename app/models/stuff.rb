@@ -3,6 +3,7 @@ class Stuff
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Raddar::Taggable
 
 
   field :name, :type => String

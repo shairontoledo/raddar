@@ -1,0 +1,6 @@
+<div id="tags">
+  <b><%= t 'tag.p' %>:</b>
+  <% taggable.taggings.each do |tagging| %>
+    <span class="label"><%= tagging.tag.name %></span>
+  <% end %>
+</div>

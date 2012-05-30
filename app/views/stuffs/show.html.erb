@@ -11,6 +11,8 @@
   <%= rich_format @stuff.content %>
 </div>
 
+<%= render 'tags/show', {taggable: @stuff} %>
+
 <%= render 'votes/show', {votable: @stuff} %>
 
 

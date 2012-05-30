@@ -33,12 +33,13 @@ class Ability
       can :manage, Stuff, pub: {user_id: user.id}
       can :manage, Comment, user_id: user.id
       can :manage, Watching, user_id: user.id
+      can :create, Tag
     else
       # Guest user only 
     end
     # Everyone
 
-    can :read, [Forum, Topic, Post, Pub, Stuff, Comment]
+    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag]
     cannot [:edit,:update], Post
 
   end

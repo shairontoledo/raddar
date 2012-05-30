@@ -19,6 +19,10 @@ pt-BR:
     quote: Citar
     comment: Comentar
     watch: Notificar por e-mail
+  tag:
+    s: Tag
+    p: Tags
+    help: Informe tags separadas por vírgulas.
   role:
     s: Papel
     p: Papéis
