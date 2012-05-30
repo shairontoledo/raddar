@@ -5,6 +5,9 @@
 
   <div class="form-inputs">
     <%= f.input :content, as: :text, label: false, input_html: {:class => 'input-xlarge', rows: '6'} %>
+    <% if comment.commentable.watchable? && comment.commentable.watchings.where(user_id: current_user.id).empty? %>
+      <%= render 'home/watch_checkbox' %>
+    <% end %>
   </div>
 
   <div class="form-actions">

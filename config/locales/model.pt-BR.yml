@@ -45,7 +45,6 @@ pt-BR:
         cover: Imagem de capa
       post: &post_attributes
         content: Conteúdo
-        watch: Notificar por e-mail
       topic: &topic_attributes
         name: Nome
       forum: &forum_attributes

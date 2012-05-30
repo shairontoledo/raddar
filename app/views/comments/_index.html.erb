@@ -1,5 +1,5 @@
 <%= render 'comments/new', {comment: (@comment.nil? ? commentable.comments.new : @comment)} %>
-<div class="comments">
+<div id="comments">
   <% commentable.comments.order_by([:created_at, :desc]).each do |comment| %>
     <%= render 'comments/show', {comment: comment} %>
   <% end %>

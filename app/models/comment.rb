@@ -1,4 +1,5 @@
-class Comment < Model
+class Comment
+  include Raddar::Model
   include Mongoid::Document
   include Mongoid::Timestamps
 

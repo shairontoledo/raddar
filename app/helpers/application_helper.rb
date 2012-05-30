@@ -16,8 +16,4 @@ module ApplicationHelper
   def simple_text text
     sanitize simple_format(text), tags: %w{p br}, attributes: []
   end
-
-  def watchable? item
-    (item.reflect_on_association(:watchings).as == :watchable)
-  end
 end

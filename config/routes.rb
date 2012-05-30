@@ -9,6 +9,7 @@ Raddar::Application.routes.draw do
 
   resources :stuffs, only: [:show, :destroy] do
     resources :comments, only: [:create]
+    resource :watching, only: [:destroy]
   end
 
   resources :forums do

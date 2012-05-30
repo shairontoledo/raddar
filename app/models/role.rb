@@ -1,4 +1,5 @@
-class Role < Model
+class Role
+  include Raddar::Model
   include Mongoid::Document
   include Mongoid::Timestamps
 

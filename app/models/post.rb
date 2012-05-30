@@ -1,4 +1,5 @@
-class Post < Model
+class Post
+  include Raddar::Model
   include Mongoid::Document
   include Mongoid::Timestamps
 

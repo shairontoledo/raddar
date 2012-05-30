@@ -1,6 +1,5 @@
-require_relative 'model.rb'
-
-class User < Model
+class User
+  include Raddar::Model
   include Mongoid::Document
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid

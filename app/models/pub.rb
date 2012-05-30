@@ -1,4 +1,5 @@
 class Pub
+  include Raddar::Model
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug

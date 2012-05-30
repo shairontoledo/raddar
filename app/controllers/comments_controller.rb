@@ -9,7 +9,10 @@ class CommentsController < ApplicationController
     @comment = @commentable.comments.new params[:comment]
     @comment.user = current_user
     if @comment.save
-      current_user.watchings.create(watchable: @commentable) if watchable?(@commentable) && params[:post][:watch] == '1'
+      current_user.watchings.create(watchable: @commentable) if @commentable.watchable? && params[:watch] == 'yes'
+      
+      Delayed::Job.enqueue NotifyCommentJob.new(@comment.id)
+
       respond_with @comment, location: @commentable
     else
       eval("@#{@commentable.class.name.downcase} = @commentable")

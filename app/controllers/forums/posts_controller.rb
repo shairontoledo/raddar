@@ -9,7 +9,7 @@ class Forums::PostsController < ApplicationController
     @post = @topic.posts.new(params[:post])
     @post.user = current_user
     if @post.save
-      current_user.watchings.create(watchable: @topic) if params[:post][:watch] == '1'
+      current_user.watchings.create(watchable: @topic) if params[:watch] == 'yes'
 
       Delayed::Job.enqueue NotifyForumPostJob.new(@post.id)
 

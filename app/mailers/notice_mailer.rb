@@ -10,6 +10,15 @@ class NoticeMailer < ActionMailer::Base
     send_mail @user, I18n.t('notice_mailer.subject.new_forum_post')
   end
 
+  def new_comment_email(user, comment)
+    @user = user
+    @comment = comment
+    @comment_url = url_for(@comment.commentable)+"#comments"
+    @unwatch_url = eval("#{@comment.commentable.class.name.downcase}_watching_url(@comment.commentable)")
+
+    send_mail @user, I18n.t('notice_mailer.subject.comment')
+  end
+
   def new_message_email(message)
     @user = message.recipient
     @message = message

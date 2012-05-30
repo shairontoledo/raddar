@@ -21,7 +21,6 @@ class Forums::TopicsController < ApplicationController
     @posts = @topic.first_posts.paginate(page: params[:page], per_page: per_page)
     @topic.update_attribute(:views, @topic.views+1)
     @post = @topic.posts.new
-    @post[:watch] = true
     respond_with(@topic)
   end
 
@@ -31,7 +30,6 @@ class Forums::TopicsController < ApplicationController
     @forum = Forum.find(params[:forum_id])
     @topic = @forum.topics.new
     @post = @topic.posts.new
-    @post[:watch] = true
     respond_with(@topic)
   end
 
@@ -55,7 +53,7 @@ class Forums::TopicsController < ApplicationController
     if @post.valid? && @topic.valid?
       @post.save
       @topic.save
-      current_user.watchings.create(watchable: @topic) if params[:topic][:post][:watch] == '1'
+      current_user.watchings.create(watchable: @topic) if params[:watch] == 'yes'
 
     else
       @topic.add_error(:base,:content_required)

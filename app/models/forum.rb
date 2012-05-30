@@ -1,4 +1,5 @@
-class Forum < Model
+class Forum
+  include Raddar::Model
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
