@@ -8,7 +8,7 @@
     <%= f.input :cover, as: :file %>
     <%= f.input :cover_cache, as: :hidden %>
     <%= f.input :description, as: :text, input_html: {:class => 'span6', rows: '8'} %>
-    <%= f.association :universe, collection: available_universes %>
+    <%= f.input :universe_id, collection: available_universes, label: t('universe.s') %>
   </div>
 
   <div class="form-actions">

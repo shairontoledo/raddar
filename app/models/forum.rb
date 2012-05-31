@@ -12,7 +12,7 @@ class Forum
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
   belongs_to :universe
 
-  attr_accessible :name, :description
+  attr_accessible :name, :description, :universe_id
 
   validates_presence_of :name, :description
   validates_length_of :name, maximum: 100

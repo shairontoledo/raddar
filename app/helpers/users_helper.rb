@@ -21,4 +21,8 @@ module UsersHelper
       render 'users/show_protected_field', {label: nil, value: link_to('Facebook',user.facebook_url,target: '_blank')}
     end
   end
+
+  def last_users
+    User.where(:confirmed_at.exists => true).order_by([:confirmed_at, :desc])
+  end
 end

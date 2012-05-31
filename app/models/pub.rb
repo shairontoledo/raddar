@@ -20,7 +20,7 @@ class Pub
   validates_length_of :subtitle, maximum: 120
   validates_length_of :description, maximum: 6000
 
-  attr_accessible :name, :subtitle, :description, :cover, :cover_cache
+  attr_accessible :name, :subtitle, :description, :cover, :cover_cache, :universe_id
 
   def self.find *args
     if args.length == 1 and not args[0].is_a? Symbol
