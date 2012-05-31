@@ -1,0 +1,31 @@
+<%= render 'admin/header', {active: :universes} %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= t('universe.name') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @universes.each do |universe| %>
+      <tr>
+        <td>
+          <%= image_tag universe.cover.thumb.url, :class => 'size20' %>
+          <%= link_to universe.name, universe %>
+        </td>
+        <td>
+          <%= link_to edit_universe_path(universe), :class => "btn" do %>
+            <i class="icon-edit"></i>
+            <%= t('action.edit') %>
+          <% end %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<br />
+
+<%= link_to 'New Universe', new_universe_path %>

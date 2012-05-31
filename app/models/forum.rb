@@ -10,6 +10,7 @@ class Forum
 
   has_many :topics
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
+  belongs_to :universe
 
   attr_accessible :name, :description
 

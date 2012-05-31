@@ -39,7 +39,7 @@ class Ability
     end
     # Everyone
 
-    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag]
+    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag, Universe]
     cannot [:edit,:update], Post
 
   end

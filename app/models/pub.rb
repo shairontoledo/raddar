@@ -4,7 +4,6 @@ class Pub
   include Mongoid::Timestamps
   include Mongoid::Slug
 
-
   field :name, :type => String
   field :subtitle, :type => String
   field :description, :type => String
@@ -14,6 +13,7 @@ class Pub
   belongs_to :user
   has_many :stuffs, dependent: :destroy
   has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
+  belongs_to :universe
 
   validates_presence_of :name, :description, :user
   validates_length_of :name, maximum: 100

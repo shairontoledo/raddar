@@ -29,6 +29,9 @@ pt-BR:
     admin: Administrador
   followers: Seguidores
   following: Seguindo
+  universe:
+    s: Universo
+    p: Universos
   pub:
     s: Publicação
     p: Publicações

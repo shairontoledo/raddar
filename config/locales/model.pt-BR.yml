@@ -33,7 +33,10 @@ pt-BR:
       pub: Publicação
       stuff: Material
       comment: Comentário
+      universe: Universo
     attributes:
+      universe: &universe_attributes
+        name: Nome
       stuff: &stuff_attributes
         name: Nome
         content: Conteúdo
@@ -88,6 +91,7 @@ pt-BR:
     topic: *topic_attributes
     topic:
       post: *post_attributes
+  universe: *universe_attributes
   simple_form:
     options:
       user:

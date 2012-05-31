@@ -1,5 +1,7 @@
 Raddar::Application.routes.draw do
 
+  resources :universes
+
   resources :pubs do
     resources :stuffs, except: [:index, :destroy]
     resources :followers, controller: 'followerships', only: [:create, :index] do
