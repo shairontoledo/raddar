@@ -1,5 +1,7 @@
 Raddar::Application.routes.draw do
 
+  resources :notifications, only: [:show, :index]
+
   resources :universes
 
   resources :pubs do

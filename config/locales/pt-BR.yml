@@ -23,6 +23,16 @@ pt-BR:
     s: Tag
     p: Tags
     help: Informe tags separadas por vírgulas.
+  notification:
+    see_all: Ver todas as notificações
+    comment:
+      html: "<strong>%{author}</strong> fez um novo comentário em <em>%{item}</em>."
+    forum_post:
+      html: "<strong>%{author}</strong> fez uma nova postagem no tópico <em>%{topic}</em>."
+    message:
+      html: "<strong>%{author}</strong> te enviou uma mensagem."
+    s: Notificação
+    p: Notificações
   role:
     s: Papel
     p: Papéis
