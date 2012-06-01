@@ -29,8 +29,6 @@ pt-BR:
       html: "<strong>%{author}</strong> fez um novo comentário em <em>%{item}</em>."
     forum_post:
       html: "<strong>%{author}</strong> fez uma nova postagem no tópico <em>%{topic}</em>."
-    message:
-      html: "<strong>%{author}</strong> te enviou uma mensagem."
     s: Notificação
     p: Notificações
   role:

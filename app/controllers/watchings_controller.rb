@@ -6,7 +6,7 @@ class WatchingsController < ApplicationController
     @watchable = find_watchable
     @watchable.watchings.where(user_id: current_user.id).destroy_all
 
-    redirect_to(@watchable, notice: t('flash.watching.destroyed'))
+    redirect_to(@watchable.url, notice: t('flash.watching.destroyed'))
   end
 
   private

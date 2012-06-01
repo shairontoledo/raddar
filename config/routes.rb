@@ -5,37 +5,38 @@ Raddar::Application.routes.draw do
   resources :universes
 
   resources :pubs do
-    resources :stuffs, except: [:index, :destroy]
+    resources :stuffs, except: [:index]
     resources :followers, controller: 'followerships', only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
   end
 
-  resources :stuffs, only: [:show, :destroy] do
-    resources :comments, only: [:create]
+  resources :stuffs, only: [] do
+    resources :comments, only: [:create, :destroy]
     resource :watching, only: [:destroy]
     resource :vote, only: [:create]
   end
 
+  resources :comments, only: [] do
+    resource :vote, only: [:create]
+  end
+
   resources :forums do
-    resources :topics, controller: 'forums/topics', except: [:index, :destroy] do
-      resources :posts, controller: 'forums/posts', only: [:create]
+    resources :topics, controller: 'forums/topics', except: [:index] do
+      resources :posts, controller: 'forums/posts', only: [:create, :destroy]
+      resource :watching, only: [:destroy]
     end
     resources :followers, controller: 'followerships', only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
   end
 
-  resources :topics, controller: 'forums/topics', only: [:show, :destroy] do
+  resources :posts, only: [] do
+    resource :vote, only: [:create]
+  end
+
+  resources :topics, only: [] do
     resource :watching, only: [:destroy]
-  end
-
-  resources :posts, controller: 'forums/posts', only: [:destroy] do
-    resource :vote, only: [:create]
-  end
-
-  resources :comments, only: [:destroy] do
-    resource :vote, only: [:create]
   end
 
   namespace 'admin' do
@@ -69,6 +70,8 @@ Raddar::Application.routes.draw do
     end 
   end
   get 'messages' => 'messages#all', as: :all_messages
+
+  get 'search' => 'home#search', as: :search
 
   root :to => 'home#index'
 

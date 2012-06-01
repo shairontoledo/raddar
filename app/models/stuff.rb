@@ -4,6 +4,9 @@ class Stuff
   include Mongoid::Timestamps
   include Mongoid::Slug
   include Raddar::Taggable
+  include Raddar::Watchable
+  include Raddar::Votable
+  include Raddar::Commentable
 
 
   field :name, :type => String
@@ -12,9 +15,6 @@ class Stuff
   slug :name
 
   belongs_to :pub
-  has_many :comments, as: :commentable, dependent: :destroy
-  has_many :watchings, as: :watchable, dependent: :destroy
-  has_many :votes, as: :votable, dependent: :destroy
 
   validates_presence_of :name, :content, :pub
   validates_length_of :name, maximum: 100
@@ -28,5 +28,9 @@ class Stuff
     else
       super
     end
+  end
+
+  def url options={}
+    pub_stuff_path self.pub, self, options
   end
 end

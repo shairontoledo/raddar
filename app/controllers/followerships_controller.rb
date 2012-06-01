@@ -22,7 +22,7 @@ class FollowershipsController < ApplicationController
       flash[:alert] = t 'flash.followership.error', name: @followable.name
     end
 
-    redirect_to @followable
+    redirect_to @followable.url
   end
 
   # Current user stops following
@@ -30,7 +30,7 @@ class FollowershipsController < ApplicationController
     @followable = find_followable
     @followable.followers.where(user_id: current_user.id).destroy_all
 
-    redirect_to @followable, notice: t('flash.followership.destroy', name: @followable.name)
+    redirect_to @followable.url, notice: t('flash.followership.destroy', name: @followable.name)
   end
 
   private

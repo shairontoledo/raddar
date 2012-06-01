@@ -1,5 +1,5 @@
 module FollowershipsHelper
   def followers_path followable
-    eval "#{followable.class.name.underscore}_followers_path(followable)"
+    polymorphic_path([followable, :followers])
   end
 end

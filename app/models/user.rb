@@ -4,6 +4,7 @@ class User
   include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
   include Mongoid::Slug
+  include Raddar::Followable
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable
@@ -71,7 +72,6 @@ class User
   has_many :incoming_messages, class_name: 'Message', inverse_of: :recipient, dependent: :destroy
   has_many :followerships, dependent: :destroy
   has_many :votes, dependent: :destroy
-  has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
   has_many :topics, dependent: :destroy
   has_many :posts, dependent: :destroy
   has_many :pubs, dependent: :destroy

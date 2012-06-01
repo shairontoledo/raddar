@@ -3,13 +3,13 @@ class Forum
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Raddar::Followable
 
   field :name, type: String
   field :description, type: String
   slug :name
 
   has_many :topics
-  has_many :followers, class_name: 'Followership', as: :followable, dependent: :destroy
   belongs_to :universe
 
   attr_accessible :name, :description, :universe_id

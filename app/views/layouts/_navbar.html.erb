@@ -19,6 +19,16 @@
           <% unless user_signed_in? %>
             <li><%= link_to t('action.sign_in'), new_user_session_path %></li>
           <% else %>
+            
+            <li>
+              <%= link_to all_messages_path do %>
+                <i class="icon-envelope"></i>
+                <span id="messages_notifications_count"><%= current_user.unread_chats.count %></span>
+              <% end %>
+            </li>
+
+            <li class="divider-vertical"></li>
+
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon-flag"></i>
@@ -51,13 +61,6 @@
                   <%= link_to current_user do %>
                     <i class="icon-user"></i>
                     <%= t('user.account.my') %>
-                  <% end %>
-                </li>
-                <li>
-                  <%= link_to all_messages_path do %>
-                    <i class="icon-envelope"></i>
-                    <%= t('message.p') %>
-                    <span id="messages_notifications_count"><%= current_user.unread_chats.count %></span>
                   <% end %>
                 </li>
                 <li>

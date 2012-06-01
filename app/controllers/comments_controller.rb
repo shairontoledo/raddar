@@ -13,7 +13,7 @@ class CommentsController < ApplicationController
       
       Delayed::Job.enqueue NotifyCommentJob.new(@comment.id)
 
-      respond_with @comment, location: @commentable
+      respond_with @comment, location: @comment.url
     else
       eval("@#{@commentable.class.name.underscore} = @commentable")
       render "#{@commentable.class.name.downcase.underscore}/show"
@@ -23,7 +23,7 @@ class CommentsController < ApplicationController
   def destroy
     @comment = Comment.find(params[:id])
     @comment.destroy
-    respond_with @comment, location: @comment.commentable
+    respond_with @comment, location: @comment.commentable.url
   end
 
   private

@@ -5,7 +5,6 @@ class NoticeMailer < ActionMailer::Base
   def new_forum_post_email(user,post)
     @user = user
     @post = post
-    @post_url = forum_topic_url(@post.topic.forum, @post.topic, post_id: @post.id)+"#post_#{@post.id}"
 
     send_mail @user, I18n.t('notice_mailer.subject.new_forum_post')
   end
@@ -13,8 +12,7 @@ class NoticeMailer < ActionMailer::Base
   def new_comment_email(user, comment)
     @user = user
     @comment = comment
-    @comment_url = url_for(@comment.commentable)+"#comments"
-    @unwatch_url = eval("#{@comment.commentable.class.name.underscore}_watching_url(@comment.commentable)")
+    @unwatch_url = polymorphic_path([@comment.commentable, :watching])
 
     send_mail @user, I18n.t('notice_mailer.subject.comment')
   end

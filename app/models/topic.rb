@@ -3,6 +3,7 @@ class Topic
   include Mongoid::Document
   include Mongoid::Timestamps
   include Mongoid::Slug
+  include Raddar::Watchable
 
   field :name, type: String
   field :views, type: Integer, default: 0
@@ -11,7 +12,6 @@ class Topic
   belongs_to :forum
   has_many :posts
   belongs_to :user
-  has_many :watchings, as: :watchable, dependent: :destroy
 
   attr_accessible :name
 
@@ -28,5 +28,9 @@ class Topic
     else
       super
     end
+  end
+
+  def url options={}
+    forum_topic_path self.forum, self, options
   end
 end
