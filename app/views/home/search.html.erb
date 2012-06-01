@@ -4,7 +4,15 @@
 
 <ul>
   <% @results.each do |result| %>
-    <li><%= link_to result.name, result.url %></li>
+    <li>
+      <%= link_to result.url do %> 
+        <h3>
+          <%= result.class.model_name.human %>
+          <%= result.name unless result[:name].blank? %>
+        </h3>
+        <small><%= search_result_text result, params[:q] %></small>
+      <% end %>
+    </li>
   <% end %>
 </ul>
 

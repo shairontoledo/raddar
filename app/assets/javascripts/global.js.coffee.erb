@@ -1,9 +1,18 @@
+update_notifications = (id, count) ->
+  $("#{id} .notification_count").html(count) if count isnt null 
+
+  if parseInt($("#{id} .notification_count").html()) > 0
+    $("#{id} .notification_count").show()
+    $("#{id} i").addClass('icon-white')
+  else
+    $("#{id} .notification_count").hide()
+    $("#{id} i").removeClass('icon-white')
+
 window.update_messages_notifications = (count) ->
-  content = ''
-  if count > 0
-    content = '('+ count + ')'
-  $('#messages_notifications_count').html(content) 
-  $('#notifications_count').html(content)
+  update_notifications('#messages_notifications', count)
+
+window.update_general_notifications = (count) ->
+  update_notifications('#general_notifications', count)  
 
 confirm_form_changed = false
 
@@ -16,5 +25,6 @@ check_confirm_unload = ->
     return "<%= I18n.t 'js.confirm_unload' %>";  
 
 $ ->
-  update_messages_notifications($('#messages_notifications_count').html())
+  update_messages_notifications()
+  update_general_notifications()
   window.onbeforeunload = check_confirm_unload

@@ -28,4 +28,8 @@ class Pub
       super
     end
   end
+
+  def to_s
+    "#{self.name} #{self.subtitle} #{self.description}"
+  end
 end

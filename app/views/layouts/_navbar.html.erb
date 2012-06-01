@@ -21,21 +21,39 @@
           <% else %>
             
             <li>
-              <%= link_to all_messages_path do %>
+
+            <li class="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="messages_notifications">
                 <i class="icon-envelope"></i>
-                <span id="messages_notifications_count" class="badge badge-important"><%= current_user.unread_chats.count %></span>
-              <% end %>
+                <span class="badge badge-important notification_count"><%= current_user.count_unread_chats %></span>
+              </a>
+              <ul class="dropdown-menu">
+                <% if current_user.count_unread_chats > 0 %>
+                  <% current_user.unread_chats.each do |chat| %>
+                    <% message = chat.last %>
+                    <% user = (message.sender_id == current_user.id) ? message.recipient : message.sender %>
+                    <li>
+                      <%= link_to user_messages_path(user) do %>
+                        <%= image_tag user.avatar.thumb.url, :class => 'size20' %>
+                        <%= truncate message.content %>
+                      <% end %>
+                    </li>
+                  <% end %>
+                <% end %>
+                <li class="divider"></li>
+                <li><%= link_to t('message.all'), all_messages_path %></li>
+              </ul>
             </li>
 
             <li class="divider-vertical"></li>
 
             <li class="dropdown">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <a href="#" class="dropdown-toggle" data-toggle="dropdown" id="general_notifications">
                 <i class="icon-flag"></i>
-                <span id="notifications_count" class="badge badge-important"></span>
+                <span class="badge badge-important notification_count"><%= current_user.notifications.where(status: :unread).count %></span>
               </a>
               <ul class="dropdown-menu">
-                <% current_user.notifications.order_by([:created_at, :desc]).limit(5).each do |notification| %>
+                <% current_user.notifications.where(status: :unread).order_by([:created_at, :desc]).each do |notification| %>
                   <li>
                     <%= link_to notification do %>
                       <%= image_tag notification.image_path, :class => 'size20' %>

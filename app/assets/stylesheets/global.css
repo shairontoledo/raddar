@@ -3,3 +3,7 @@ img.size20{
   height: 20px;
   width: 20px;
 }
+
+span.notification_count {
+  margin-left: 5px;
+}

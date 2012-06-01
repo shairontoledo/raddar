@@ -29,6 +29,10 @@ pt-BR:
       html: "<strong>%{author}</strong> fez um novo comentário em <em>%{item}</em>."
     forum_post:
       html: "<strong>%{author}</strong> fez uma nova postagem no tópico <em>%{topic}</em>."
+    follower:
+      html: "<strong>%{author}</strong> começou a seguir você."
+    follower_item:
+      html: "<strong>%{author}</strong> começou a seguir <em>%{item}</em>."
     s: Notificação
     p: Notificações
   search:
@@ -86,6 +90,7 @@ pt-BR:
     p: Mensagens
     destroy_all: Apagar mensagens
     previous: Mensagens anteriores
+    all: Ver todas as mensagens
   flash:
     watching:
       destroyed: "Você não mais receberá notificações deste item."

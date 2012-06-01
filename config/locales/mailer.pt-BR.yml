@@ -13,8 +13,8 @@ pt-BR:
       new_message:
         html: "<p><b>%{sender}</b> lhe enviou a seguinte mensagem:</p><div style=\"background-color: grey\">%{message}</div><br/><p>Para visualizar e responder, acesse: %{url}</p><p>Caso não queira receber avisos sobre novas mensagens, altere suas configurações em: %{edit_conf_url}</p>"
       new_follower:
-        html: "<p><b>%{follower}</b> começou a seguir você!</p><p>Para ver o perfil de %{follower}, acesse: %{follower_url}</p><p>Caso não queira receber avisos sobre novos seguidores, altere suas configurações em: %{edit_conf_url}</p>"
+        html: "<p><b>%{follower}</b> começou a seguir você!</p><p>Para ver o perfil de %{follower}, acesse: %{url}</p><p>Caso não queira receber avisos sobre novos seguidores, altere suas configurações em: %{edit_conf_url}</p>"
       new_forum_post:
-        html: "<p><b>%{author}</b> fez uma nova postagem no tópico <b>%{topic}</b></p><p>Para ver a postagem, acesse: %{post_url}</p><p>Caso não queira receber avisos sobre este tópico, acesse: %{unwatch_url}</p>"
+        html: "<p><b>%{author}</b> fez uma nova postagem no tópico <b>%{topic}</b></p><p>Para ver a postagem, acesse: %{url}</p><p>Caso não queira receber avisos sobre este tópico, acesse: %{unwatch_url}</p>"
       new_comment_post:
-        html: "<p><b>%{author}</b> adicionou um novo comentário em <b>%{commentable}</b></p><p>Para ver a postagem, acesse: %{comment_url}</p><p>Caso não queira receber avisos sobre novos comentários para este item, acesse: %{unwatch_url}</p>"
+        html: "<p><b>%{author}</b> adicionou um novo comentário em <b>%{commentable}</b></p><p>Para ver a postagem, acesse: %{url}</p><p>Caso não queira receber avisos sobre novos comentários para este item, acesse: %{unwatch_url}</p>"

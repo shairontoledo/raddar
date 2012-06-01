@@ -212,15 +212,20 @@ class User
     end
   end
 
-  def all_chats
+  def all_chats status=nil
     chats = []
-    (self.incoming_messages.where(:recipient_status.ne => :deleted).distinct(:sender_id) | self.sent_messages.where(:sender_status.ne => :deleted).distinct(:recipient_id)).each {|user_id| chats << self.chat_with(user_id)}
+    condition = (status.nil? ? {:recipient_status.ne => :deleted} : {recipient_status: status})
+    (self.incoming_messages.where(condition).distinct(:sender_id) | self.sent_messages.where(condition).distinct(:recipient_id)).each {|user_id| chats << self.chat_with(user_id)}
     chats.sort_by!{|chat| chat.last.created_at}.reverse!
     chats
   end
 
+  def count_unread_chats
+    self.incoming_messages.where(recipient_status: :unread).distinct(:sender_id).count
+  end
+
   def unread_chats
-    self.incoming_messages.where(recipient_status: :unread).distinct(:sender_id)
+    self.all_chats :unread
   end
 
   def self.find *args
@@ -229,5 +234,9 @@ class User
     else
       super
     end
+  end
+
+  def read_notifications
+    self.notifications.where(status: :unread).update_all(status: :read)
   end
 end

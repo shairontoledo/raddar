@@ -46,7 +46,9 @@ Raddar::Application.routes.draw do
   namespace 'users', as: 'user' do
     resource :privacy, controller: 'privacy', only: [:edit, :update]
     resources :accounts, except: [:edit, :update, :show]
-    resource :notifications, only: [:edit, :update]
+    resource :notifications, only: [:edit, :update] do
+      post 'read', on: :collection
+    end
   end
 
   devise_for :users, :controllers => {omniauth_callbacks: "users/omniauth_callbacks", registrations: "users/registrations", passwords: 'users/passwords' } do

@@ -14,7 +14,7 @@ class Comment
   validates_length_of :content, maximum: 6000
 
   def url options={}
-    commentable.path anchor: 'comments'
+    commentable.url anchor: 'comments'
   end
 
   def to_s

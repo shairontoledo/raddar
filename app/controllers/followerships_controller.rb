@@ -16,7 +16,16 @@ class FollowershipsController < ApplicationController
     f = current_user.followerships.new(followable: @followable)
 
     if f.save
-      NoticeMailer.delay(queue: 'new_follower').new_follower_email(@followable, current_user) if ((@followable.class == User) && @followable.notify_followers)
+
+      if @followable.class == User
+        notification = @followable.notifications.new content: I18n.t('notification.follower.html', author: current_user.name), item_path: current_user.url, image_path: current_user.avatar.thumb.url
+        notification.save
+        NoticeMailer.delay(queue: 'new_follower').new_follower_email(notification, current_user) if @followable.notify_followers
+      elsif !(@followable[:user].blank?)
+        notification = @followable.user.notifications.new content: I18n.t('notification.follower_item.html', author: current_user.name, item: @followable.name), item_path: current_user.url, image_path: current_user.avatar.thumb.url
+        notification.save
+      end
+
       flash[:notice] = t 'flash.followership.create', name: @followable.name
     else
       flash[:alert] = t 'flash.followership.error', name: @followable.name
