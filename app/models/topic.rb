@@ -1,9 +1,8 @@
 class Topic
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
   include Mongoid::Slug
   include Raddar::Watchable
+  include Raddar::Searchable
 
   field :name, type: String
   field :views, type: Integer, default: 0

@@ -1,12 +1,11 @@
 class Stuff
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
   include Mongoid::Slug
   include Raddar::Taggable
   include Raddar::Watchable
   include Raddar::Votable
   include Raddar::Commentable
+  include Raddar::Searchable
 
 
   field :name, :type => String
@@ -32,5 +31,9 @@ class Stuff
 
   def url options={}
     pub_stuff_path self.pub, self, options
+  end
+
+  def to_s
+    "#{self.name} #{self.content} #{self.tags}"
   end
 end

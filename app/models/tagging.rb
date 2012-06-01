@@ -1,7 +1,5 @@
 class Tagging
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
 
   belongs_to :tag
   belongs_to :taggable, polymorphic: true

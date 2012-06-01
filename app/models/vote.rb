@@ -1,7 +1,5 @@
 class Vote
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
 
   field :value, type: Symbol
 

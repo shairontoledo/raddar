@@ -1,8 +1,7 @@
 class Post
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
   include Raddar::Votable
+  include Raddar::Searchable
 
   field :content, type: String
 
@@ -16,5 +15,9 @@ class Post
 
   def url options={}
     forum_topic_path self.topic.forum, self.topic, post_id: self.id, anchor: "post_#{self.id}"
+  end
+
+  def to_s
+    self.content
   end
 end

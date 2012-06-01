@@ -1,10 +1,10 @@
 class User
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
   include Geocoder::Model::Mongoid
   include Mongoid::Slug
   include Raddar::Followable
+  include Mongoid::FullTextSearch
+  include Raddar::Searchable
 
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable

@@ -13,7 +13,7 @@
           <li><%= link_to t('forum.p'), forums_path %></li>
         </ul>
         <%= form_tag search_path, method: :get, :class => 'navbar-search' do %>
-          <%= text_field_tag :q, nil, :class => 'search-query', placeholder: t('action.search')  %>
+          <%= text_field_tag :q, params[:q], :class => 'search-query', placeholder: t('action.search')  %>
         <% end %>
         <ul class="nav pull-right">
           <% unless user_signed_in? %>
@@ -23,7 +23,7 @@
             <li>
               <%= link_to all_messages_path do %>
                 <i class="icon-envelope"></i>
-                <span id="messages_notifications_count"><%= current_user.unread_chats.count %></span>
+                <span id="messages_notifications_count" class="badge badge-important"><%= current_user.unread_chats.count %></span>
               <% end %>
             </li>
 
@@ -32,7 +32,7 @@
             <li class="dropdown">
               <a href="#" class="dropdown-toggle" data-toggle="dropdown">
                 <i class="icon-flag"></i>
-                <span id="notifications_count"></span>
+                <span id="notifications_count" class="badge badge-important"></span>
               </a>
               <ul class="dropdown-menu">
                 <% current_user.notifications.order_by([:created_at, :desc]).limit(5).each do |notification| %>

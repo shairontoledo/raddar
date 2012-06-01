@@ -1,7 +1,5 @@
 class Role
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
 
   field :name, :type => Symbol
 

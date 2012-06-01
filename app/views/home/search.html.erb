@@ -1,0 +1,11 @@
+<div class="page-header">
+  <h1><%= t 'search.for', term: params[:q] %></h1>
+</div>
+
+<ul>
+  <% @results.each do |result| %>
+    <li><%= link_to result.name, result.url %></li>
+  <% end %>
+</ul>
+
+<%= will_paginate @results %>

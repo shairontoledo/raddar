@@ -3,6 +3,8 @@ module Raddar::Model
   def self.included base
     #base.send :delegate, :url_helpers, to: 'Rails.application.routes' 
     base.send :include, Rails.application.routes.url_helpers
+    base.send :include, Mongoid::Document
+    base.send :include, Mongoid::Timestamps
   end
   
   def votable?

@@ -1,7 +1,5 @@
 class Message
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
 
   belongs_to :sender, class_name: 'User', inverse_of: :sent_messages
   belongs_to :recipient, class_name: 'User', inverse_of: :incoming_messages

@@ -31,6 +31,8 @@ pt-BR:
       html: "<strong>%{author}</strong> fez uma nova postagem no tópico <em>%{topic}</em>."
     s: Notificação
     p: Notificações
+  search:
+    for: "Pesquisa por %{term}"
   role:
     s: Papel
     p: Papéis

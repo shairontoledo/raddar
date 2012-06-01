@@ -29,6 +29,7 @@ gem 'geocoder'
 gem 'delayed_job_mongoid'
 gem 'daemons'
 gem 'mongoid_slug'
+gem 'mongoid_fulltext'
 
 group :development, :test do
   gem 'rspec-rails'

@@ -1,9 +1,8 @@
 class Forum
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
   include Mongoid::Slug
   include Raddar::Followable
+  include Raddar::Searchable
 
   field :name, type: String
   field :description, type: String

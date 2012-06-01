@@ -1,7 +1,5 @@
 class Watching
   include Raddar::Model
-  include Mongoid::Document
-  include Mongoid::Timestamps
 
   belongs_to :user
   belongs_to :watchable, polymorphic: true
