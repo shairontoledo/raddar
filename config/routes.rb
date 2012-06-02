@@ -1,5 +1,11 @@
 Raddar::Application.routes.draw do
 
+  resources :venues do
+    resources :comments, only: [:create, :destroy]
+    resource :watching, only: [:destroy]
+    resource :vote, only: [:create]
+  end
+
   resources :notifications, only: [:show, :index]
 
   resources :universes

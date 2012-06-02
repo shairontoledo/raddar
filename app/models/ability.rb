@@ -35,12 +35,13 @@ class Ability
       can :manage, Watching, user_id: user.id
       can :create, Tag
       can :manage, Notification, user_id: user.id
+      can [:new, :create], Venue
     else
       # Guest user only 
     end
     # Everyone
 
-    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag, Universe]
+    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag, Universe, Venue]
     cannot [:edit,:update], Post
 
   end

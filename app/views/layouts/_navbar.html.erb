@@ -11,6 +11,7 @@
         <ul class="nav">
           <li><%= link_to t('pub.p'), pubs_path %></li>
           <li><%= link_to t('forum.p'), forums_path %></li>
+          <li><%= link_to t('venue.p'), venues_path %></li>
         </ul>
         <%= form_tag search_path, method: :get, :class => 'navbar-search' do %>
           <%= text_field_tag :q, params[:q], :class => 'search-query', placeholder: t('action.search')  %>

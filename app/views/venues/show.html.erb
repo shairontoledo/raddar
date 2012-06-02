@@ -1,0 +1,26 @@
+<div class="page-header">
+  <h1><%= @venue.name %></h1>
+</div>
+
+<%= image_tag @venue.cover.thumb.url %>
+
+<p>
+  <b>Address:</b>
+  <%= @venue.address %>
+</p>
+
+<p>
+  <b>City:</b>
+  <%= @venue.city %>
+</p>
+
+
+<div class="well">
+  <%= rich_format @venue.description %>
+</div>
+
+<%= render 'tags/show', {taggable: @venue} %>
+
+<%= render 'votes/show', {votable: @venue} %>
+
+<%= render 'comments/index', {commentable: @venue} %>

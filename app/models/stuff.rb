@@ -7,7 +7,6 @@ class Stuff
   include Raddar::Commentable
   include Raddar::Searchable
 
-
   field :name, :type => String
   field :content, :type => String
   mount_uploader :cover, CoverUploader

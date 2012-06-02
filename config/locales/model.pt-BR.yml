@@ -34,7 +34,13 @@ pt-BR:
       stuff: Material
       comment: Comentário
       universe: Universo
+      venue: Lugar
     attributes:
+      venue: &venue_attributes
+        name: Nome
+        description: Descrição
+        address: Endereço
+        city: Cidade
       universe: &universe_attributes
         name: Nome
       stuff: &stuff_attributes
@@ -87,6 +93,7 @@ pt-BR:
   pub: *pub_attributes
   stuff: *stuff_attributes
   forum: *forum_attributes
+  venue: *venue_attributes
   forum:
     topic: *topic_attributes
     topic:

@@ -19,6 +19,9 @@ pt-BR:
     quote: Citar
     comment: Comentar
     watch: Notificar por e-mail
+  venue:
+    s: Lugar
+    p: Lugares
   tag:
     s: Tag
     p: Tags

@@ -78,6 +78,7 @@ class User
   has_many :comments, dependent: :destroy
   has_many :watchings, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :venues, dependent: :nullify
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
