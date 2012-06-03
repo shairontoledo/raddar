@@ -4,6 +4,7 @@ Raddar::Application.routes.draw do
     resources :comments, only: [:create, :destroy]
     resource :watching, only: [:destroy]
     resource :vote, only: [:create]
+    get 'nearby', on: :collection
   end
 
   resources :notifications, only: [:show, :index]

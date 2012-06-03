@@ -1,0 +1,69 @@
+window.venues_map = (center)->
+  map = simple_map 'map_venues', center
+
+  $('div.venue').each (i)->
+    lat = $(this).find("input[type=hidden][name=lat]").val()
+    lng = $(this).find("input[type=hidden][name=lng]").val()
+    marker = new google.maps.Marker
+      map: map
+      position: new google.maps.LatLng(lat, lng)
+      title: $(this).find('strong').html()
+      url: $(this).children('a.venue_link').attr('href')
+      
+    google.maps.event.addListener marker, 'click', ->
+      window.location.href = marker.url
+
+update_nearby_venues = (data)->
+  $('#venues_list').html('<div class="progress progress-striped active"><div class="bar" style="width: 100%;"></div></div>')
+
+  $.ajax
+    url: '/venues/nearby'
+    data: data
+
+venues_nearby_user = ->
+  user_location (location)->
+    data = ''
+    if location isnt null
+      data =
+        lat: location.lat
+        lng: location.lng
+        term: "<%= I18n.t 'venue.location.my' %>"
+    update_nearby_venues(data)
+
+$ ->
+
+  if $('#map_venues').length > 0
+
+    venues_nearby_user()
+
+    $('#change_location_modal').modal
+      show: false
+
+    $('#location_my').click ->
+      $('#term').attr 'disabled', 'disabled'
+
+    $('#location_other').click ->
+      $('#term').removeAttr('disabled').focus()
+
+    $('button#modal_submit').click ->
+      $('#change_location_modal').modal 'hide'
+      switch $("input[@name=location]:checked").attr('id')
+        when 'location_my'
+          venues_nearby_user()
+        when 'location_other'
+          term = $.trim $('#term').val()
+          if term isnt ''
+            data = 
+              term: term
+            update_nearby_venues(data)
+
+
+  if $('#map_new_venue').length > 0
+    user_location (location)->
+      single_marker_map 'map_new_venue', new google.maps.LatLng(location.lat, location.lng), true
+
+  if $('#map_venue').length > 0
+      single_marker_map 'map_venue', new google.maps.LatLng($('#lat').val(),$('#lng').val()), false
+
+  if $('#map_edit_venue').length > 0
+      single_marker_map 'map_edit_venue', new google.maps.LatLng($('#lat').val(),$('#lng').val()), true

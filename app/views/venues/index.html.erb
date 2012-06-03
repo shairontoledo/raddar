@@ -1,29 +1,33 @@
 <h1>Listing venues</h1>
 
-<table>
-  <tr>
-    <th>Name</th>
-    <th>Description</th>
-    <th>Address</th>
-    <th>City</th>
-    <th></th>
-    <th></th>
-    <th></th>
-  </tr>
+<div id="map_venues" class="map_canvas"></div>
 
-<% @venues.each do |venue| %>
-  <tr>
-    <td><%= venue.name %></td>
-    <td><%= venue.description %></td>
-    <td><%= venue.address %></td>
-    <td><%= venue.city %></td>
-    <td><%= link_to 'Show', venue %></td>
-    <td><%= link_to 'Edit', edit_venue_path(venue) %></td>
-    <td><%= link_to 'Destroy', venue, confirm: 'Are you sure?', method: :delete %></td>
-  </tr>
-<% end %>
-</table>
+<div id="venues_list"></div>
 
 <br />
 
 <%= link_to 'New Venue', new_venue_path %>
+
+<div class="modal hide fade" id="change_location_modal">
+  <div class="modal-header">
+    <button type="button" class="close" data-dismiss="modal">×</button>
+    <h3><%= t 'venue.location.change' %></h3>
+  </div>
+  <div class="modal-body">
+    <div class="control-group">
+      <label class="control-label"><%= t 'venue.location.change_to' %></label>
+      <div class="controls">
+        <label class="radio">
+          <%= radio_button_tag :location, :my, true %> <%= t 'venue.location.my' %>
+        </label>
+        <label class="radio">
+          <%= radio_button_tag :location, :other %> <%= t 'venue.location.other' %>: <%= text_field_tag :term, nil, disabled: true, maxlength: 80 %>
+        </label>
+      </div>
+    </div>
+  </div>
+  <div class="modal-footer">
+    <button class="btn" data-dismiss="modal"><%= t 'action.close' %></button>
+    <button class="btn btn-primary" id="modal_submit"><%= t 'action.change' %></buttn>
+  </div>
+</div>

@@ -7,8 +7,15 @@
     <%= f.input :cover, as: :file %>
     <%= f.input :cover_cache, as: :hidden %>
     <%= f.input :description, as: :text, input_html: {:class => 'span6', rows: '8'} %>
+
+    <div id="<%= @venue.persisted? ? 'map_edit_venue' : 'map_new_venue' %>" class="map_canvas" ></div>
+
     <%= f.input :address %>
     <%= f.input :city %>
+
+    <%= hidden_field_tag :lat, @venue.coordinates.last %>
+    <%= hidden_field_tag :lng, @venue.coordinates.first %>
+
     <%= render 'tags/input', {form: f} %>
   </div>
 

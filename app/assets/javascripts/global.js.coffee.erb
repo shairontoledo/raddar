@@ -24,6 +24,55 @@ check_confirm_unload = ->
   if confirm_form_changed  
     return "<%= I18n.t 'js.confirm_unload' %>";  
 
+
+
+
+window.single_marker_map =  (map_id, location, getCoordinates) ->
+
+  myOptions =
+    zoom: 15
+    center: location
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+
+  map = new google.maps.Map(document.getElementById(map_id), myOptions)
+
+  marker = new google.maps.Marker
+    map: map
+    position: location
+    animation: google.maps.Animation.DROP
+  if getCoordinates
+    marker.setDraggable true
+    google.maps.event.addListener marker, 'dragend', ->
+      $('#lat').val marker.getPosition().lat()
+      $('#lng').val marker.getPosition().lng()
+
+
+window.simple_map =  (map_id, centerLocation) ->
+
+  myOptions =
+    zoom: 15
+    center: centerLocation
+    mapTypeId: google.maps.MapTypeId.ROADMAP
+
+  new google.maps.Map(document.getElementById(map_id), myOptions)
+
+
+window.user_location = (callback)->
+
+  if navigator.geolocation
+    navigator.geolocation.getCurrentPosition (position) ->
+      callback
+        lat: position.coords.latitude
+        lng: position.coords.longitude
+    , ->
+      handleNoGeolocation()
+  else
+    handleNoGeolocation()
+  
+  handleNoGeolocation = ->
+    console.log "Geolocation service failed."
+    callback null
+
 $ ->
   update_messages_notifications()
   update_general_notifications()

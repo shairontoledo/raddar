@@ -4,6 +4,8 @@
 
 <%= image_tag @venue.cover.thumb.url %>
 
+<div id="map_venue" class="map_canvas"></div>
+
 <p>
   <b>Address:</b>
   <%= @venue.address %>
@@ -13,6 +15,9 @@
   <b>City:</b>
   <%= @venue.city %>
 </p>
+
+<%= hidden_field_tag :lat, @venue.coordinates.last %>
+<%= hidden_field_tag :lng, @venue.coordinates.first %>
 
 
 <div class="well">

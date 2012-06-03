@@ -19,9 +19,20 @@ pt-BR:
     quote: Citar
     comment: Comentar
     watch: Notificar por e-mail
+    change: Alterar
+    close: Fechar
   venue:
     s: Lugar
     p: Lugares
+    nearby:
+      html: "Lugares próximos a <em>%{term}</em>"
+      empty:
+        html: "Ainda não foram cadastrados lugares próximos a <em>%{term}</em>..."
+    location:
+      change: Alterar localização
+      change_to: Alterar para...
+      my: Minha localização atual
+      other: Outro lugar
   tag:
     s: Tag
     p: Tags
