@@ -1,18 +1,38 @@
-update_notifications = (id, count) ->
-  $("#{id} .notification_count").html(count) if count isnt null 
+# Notifications
 
-  if parseInt($("#{id} .notification_count").html()) > 0
-    $("#{id} .notification_count").show()
-    $("#{id} i").addClass('icon-white')
+add_message_notification = (item) ->
+  menu = $('li#messages_notifications').children('ul.dropdown-menu')
+  
+  menu.children("li##{item.user}_message_notification").remove()
+  menu.prepend('<li id="#{item.user}_message_notification" class="message_notification">#{item.content}</li>')
+
+  update_notifications('messages_notifications', menu.children('li.message_notification').size())
+
+
+
+
+
+
+update_notifications = (id, count) ->
+  notification_count = $("li##{id}").find("span.notification_count")
+  icon = $("li##{id}").find("i")
+  notification_count.html count if count isnt null 
+
+  if parseInt(notification_count.html()) > 0
+    notification_count.show()
+    icon.addClass('icon-white')
   else
-    $("#{id} .notification_count").hide()
-    $("#{id} i").removeClass('icon-white')
+    notification_count.hide()
+    icon.removeClass('icon-white')
 
 window.update_messages_notifications = (count) ->
   update_notifications('#messages_notifications', count)
 
 window.update_general_notifications = (count) ->
   update_notifications('#general_notifications', count)  
+
+
+# Confirm on unload window 
 
 confirm_form_changed = false
 
@@ -25,7 +45,7 @@ check_confirm_unload = ->
     return "<%= I18n.t 'js.confirm_unload' %>";  
 
 
-
+# Maps and geolocation
 
 window.single_marker_map =  (map_id, location, getCoordinates) ->
 
