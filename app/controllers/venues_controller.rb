@@ -45,10 +45,9 @@ class VenuesController < ApplicationController
     end
 
     unless @coordinates.blank?
-      @venues = Venue.near @coordinates, 20
+      @venues = Venue.near(@coordinates, 10).limit(10)
     else
       @venues = []
     end
-    #@venues.limit 20
   end
 end
