@@ -25,7 +25,7 @@ class Admin::UniversesController < ApplicationController
   def create
     @universe = Universe.new(params[:universe])
     @universe.save
-    respond_with(@universe)
+    respond_with @universe, location: admin_universes_path
   end
 
   # PUT /universes/1
@@ -33,7 +33,7 @@ class Admin::UniversesController < ApplicationController
   def update
     @universe = Universe.find(params[:id])
     @universe.update_attributes(params[:universe])
-    respond_with(@universe)
+    respond_with @universe, location: admin_universes_path
   end
 
   # DELETE /universes/1
@@ -41,6 +41,6 @@ class Admin::UniversesController < ApplicationController
   def destroy
     @universe = Universe.find(params[:id])
     @universe.destroy
-    respond_with(@universe)
+    respond_with @universe, location: admin_universes_path
   end
 end

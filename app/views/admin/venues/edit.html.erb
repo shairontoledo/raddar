@@ -1,5 +1,19 @@
 <h1>Editing venue</h1>
 
-<%= render 'venues/form' %>
+<%= simple_form_for([:admin, @venue], :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div id="map_edit_venue" class="map_canvas" ></div>
+
+  <%= render 'venues/form_inputs', {form: f} %>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= destroy_button [:admin, @venue] if can?(:destroy, @venue) %>
+  </div>
+<% end %>
+
+
+
 
 <%= link_to 'Show', @venue %>

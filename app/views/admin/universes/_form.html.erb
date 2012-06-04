@@ -1,4 +1,4 @@
-<%= simple_form_for(@universe, :html => {:class => 'form-horizontal'}) do |f| %>
+<%= simple_form_for([:admin, @universe], :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
   <div class="form-inputs">
@@ -11,6 +11,6 @@
 
   <div class="form-actions">
     <%= f.button :submit %>
-    <%= link_to t('action.delete'), @universe, confirm: 'Are you sure?', method: :delete if @universe.persisted? && can?(:destroy, @universe) %>
+    <%= destroy_button [:admin, @universe]  if @universe.persisted? && can?(:destroy, @universe) %>
   </div>
 <% end %>

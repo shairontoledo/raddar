@@ -28,6 +28,6 @@ class Admin::UsersController < ApplicationController
 
     @user.save
 
-    respond_with @user, location: users_path
+    respond_with @user, location: admin_users_path
   end
 end

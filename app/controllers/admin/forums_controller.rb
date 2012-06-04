@@ -25,7 +25,7 @@ class Admin::ForumsController < ApplicationController
   def create
     @forum = Forum.new(params[:forum])
     @forum.save
-    respond_with(@forum)
+    respond_with @forum, location: admin_forums_path
   end
 
   # PUT /forums/1
@@ -33,7 +33,7 @@ class Admin::ForumsController < ApplicationController
   def update
     @forum = Forum.find(params[:id])
     @forum.update_attributes(params[:forum])
-    respond_with(@forum)
+    respond_with @forum, location: admin_forums_path
   end
 
   # DELETE /forums/1
@@ -44,6 +44,6 @@ class Admin::ForumsController < ApplicationController
 
     flash[:alert] = @forum.errors[:base].first if @forum.errors.any?
 
-    respond_with(@forum, location: forums_path(admin: true))
+    respond_with @forum, location: admin_forums_path
   end
 end

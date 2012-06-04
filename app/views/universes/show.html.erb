@@ -2,8 +2,6 @@
   <h1><%= @universe.name %></h1>
 </div>
 
-<%= link_to t('action.edit'), edit_universe_path(@universe) if can? :edit, @universe %>
-
 <%= image_tag @universe.cover.thumb.url %>
 
 <div class="well">

@@ -1,0 +1,15 @@
+<div class="form-inputs">
+  <%= form.input :name %>
+  <%= image_tag @venue.cover.thumb.url unless @venue.cover.file.nil? %>
+  <%= form.input :cover, as: :file %>
+  <%= form.input :cover_cache, as: :hidden %>
+  <%= form.input :description, as: :text, input_html: {:class => 'span6', rows: '8'} %>
+
+  <%= form.input :address %>
+  <%= form.input :city %>
+
+  <%= hidden_field_tag :lat, @venue.coordinates.last %>
+  <%= hidden_field_tag :lng, @venue.coordinates.first %>
+
+  <%= render 'tags/input', {form: form} %>
+</div>

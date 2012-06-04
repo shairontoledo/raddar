@@ -1,6 +1,6 @@
 Raddar::Application.routes.draw do
 
-  resources :venues, only: [:show, :new, :create] do
+  resources :venues, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create, :destroy]
     resource :watching, only: [:destroy]
     resource :vote, only: [:create]

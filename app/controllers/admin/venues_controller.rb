@@ -20,7 +20,7 @@ class Admin::VenuesController < ApplicationController
     @venue.update_attributes(params[:venue])
     @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
     @venue.save
-    respond_with(@venue)
+    respond_with @venue, location: admin_venues_path
   end
 
   # DELETE /venues/1
@@ -28,6 +28,6 @@ class Admin::VenuesController < ApplicationController
   def destroy
     @venue = Venue.find(params[:id])
     @venue.destroy
-    respond_with(@venue)
+    respond_with @venue, location: admin_venues_path
   end
 end
