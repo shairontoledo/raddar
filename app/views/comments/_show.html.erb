@@ -7,6 +7,6 @@
   <div><%= simple_text comment.content %></div>
   <hr/>
   <%= link_to humanize_datetime(comment.created_at), "#comment_#{comment.id}" %>
-  <%= link_to t('action.delete'), polymorphic_path([comment.commentable, comment]), :class => 'btn', method: :delete, confirm: 'Are you sure?' if can? :destroy, comment %>
+  <%= destroy_button polymorphic_path([comment.commentable, comment]) if can? :destroy, comment %>
   <%= render 'votes/show', {votable: comment} %>
 </div>

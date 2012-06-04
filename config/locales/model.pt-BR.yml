@@ -35,6 +35,7 @@ pt-BR:
       comment: Comentário
       universe: Universo
       venue: Lugar
+      notification: Notificação
     attributes:
       venue: &venue_attributes
         name: Nome

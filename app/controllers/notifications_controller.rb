@@ -19,4 +19,11 @@ class NotificationsController < ApplicationController
   def read
     current_user.read_notifications
   end
+
+  def destroy
+    @notification = Notification.find params[:id]
+    @notification.destroy
+
+    respond_with @notification
+  end
 end

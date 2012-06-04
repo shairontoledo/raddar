@@ -7,7 +7,7 @@ Raddar::Application.routes.draw do
     get 'nearby', on: :collection
   end
 
-  resources :notifications, only: [:show, :index]
+  resources :notifications, only: [:show, :index, :destroy]
 
   resources :universes, only: [:show]
 

@@ -6,7 +6,7 @@
 <div class="well">
   <%= link_to t('forum.topic.created_by', user: @topic.user.name), @topic.user %> ::
   <%= @topic.views %> <%= t('forum.topic.views') %> ::  
-  <%= link_to t('action.edit'), edit_forum_topic_path(@topic.forum, @topic), :class => 'btn' if can? :edit, @topic %>
+  <%= edit_button edit_forum_topic_path(@topic.forum, @topic) if can? :edit, @topic %>
 </div>
 
 <% @posts.each do |post| %>

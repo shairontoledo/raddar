@@ -8,7 +8,5 @@
 
 <%= render 'form' %>
 
-<%= link_to destroy_all_user_messages_path(@user), :class => 'btn', :confirm => "Are you sure?", method: :delete do %>
-  <i class="icon-trash"></i>
-  <%= t('message.destroy_all') %>
+<%= destroy_button destroy_all_user_messages_path(@user), 'message.destroy_all' %>
 <% end %>

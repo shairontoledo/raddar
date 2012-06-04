@@ -21,7 +21,7 @@ module ApplicationHelper
     render 'shared/edit_button', {path: path}
   end
 
-  def destroy_button path
-    render 'shared/destroy_button', {path: path}
+  def destroy_button path, text='action.delete'
+    render 'shared/destroy_button', {path: path, text: text}
   end
 end
