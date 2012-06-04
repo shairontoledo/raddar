@@ -1,9 +1,0 @@
-<div class="page-header">
-  <h1><%= t('action.admin') %></h1>
-</div>
-
-<ul class="nav nav-tabs">
-  <li <%= raw 'class="active"' if active == :users %>><%= link_to t('user.p'), users_path %></li>
-  <li <%= raw 'class="active"' if active == :forums %>><%= link_to t('forum.p'), forums_path(admin: true) %></li>
-  <li <%= raw 'class="active"' if active == :universes %>><%= link_to t('universe.p'), universes_path %></li>
-</ul>

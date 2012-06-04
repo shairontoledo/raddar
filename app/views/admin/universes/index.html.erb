@@ -1,4 +1,4 @@
-<%= render 'admin/header', {active: :universes} %>
+<%= render 'admin/shared/header', {active: :universes} %>
 
 <table class="table table-striped table-bordered">
   <thead>
@@ -15,10 +15,8 @@
           <%= link_to universe.name, universe %>
         </td>
         <td>
-          <%= link_to edit_universe_path(universe), :class => "btn" do %>
-            <i class="icon-edit"></i>
-            <%= t('action.edit') %>
-          <% end %>
+          <%= edit_button edit_admin_universe_path(universe) %>
+          <%= destroy_button admin_universe_path(universe) %>
         </td>
       </tr>
     <% end %>
@@ -26,6 +24,6 @@
 </table>
 
 
-<br />
+<%= will_paginate @universes %>
 
-<%= link_to 'New Universe', new_universe_path %>
+<%= link_to 'New Universe', new_admin_universe_path %>

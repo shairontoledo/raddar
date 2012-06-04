@@ -21,11 +21,6 @@ class VenuesController < ApplicationController
     respond_with(@venue)
   end
 
-  # GET /venues/1/edit
-  def edit
-    @venue = Venue.find(params[:id])
-  end
-
   # POST /venues
   # POST /venues.xml
   def create
@@ -33,24 +28,6 @@ class VenuesController < ApplicationController
     @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
     @venue.author = current_user
     @venue.save
-    respond_with(@venue)
-  end
-
-  # PUT /venues/1
-  # PUT /venues/1.xml
-  def update
-    @venue = Venue.find(params[:id])
-    @venue.update_attributes(params[:venue])
-    @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
-    @venue.save
-    respond_with(@venue)
-  end
-
-  # DELETE /venues/1
-  # DELETE /venues/1.xml
-  def destroy
-    @venue = Venue.find(params[:id])
-    @venue.destroy
     respond_with(@venue)
   end
 

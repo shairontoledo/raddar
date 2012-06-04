@@ -1,0 +1,34 @@
+<%= render 'admin/shared/header', {active: :venues} %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= t('venue.name') %></th>
+      <th><%= t('venue.author') %></th>
+      <th><%= t('venue.city') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @venues.each do |venue| %>
+      <tr>
+        <td>
+          <%= image_tag venue.cover.thumb.url, :class => 'size20' %>
+          <%= link_to venue.name, venue %>
+        </td>
+        <td>
+          <%= link_to venue.author.name, venue.author %>
+        </td>
+        <td>
+          <%= venue.city %>
+        </td>
+        <td>
+          <%= edit_button edit_admin_venue_path(venue) %>
+          <%= destroy_button admin_venue_path(venue) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @venues %>

@@ -1,6 +1,6 @@
 Raddar::Application.routes.draw do
 
-  resources :venues do
+  resources :venues, only: [:show, :new, :create] do
     resources :comments, only: [:create, :destroy]
     resource :watching, only: [:destroy]
     resource :vote, only: [:create]
@@ -9,7 +9,7 @@ Raddar::Application.routes.draw do
 
   resources :notifications, only: [:show, :index]
 
-  resources :universes
+  resources :universes, only: [:show]
 
   resources :pubs do
     resources :stuffs, except: [:index]
@@ -28,7 +28,7 @@ Raddar::Application.routes.draw do
     resource :vote, only: [:create]
   end
 
-  resources :forums do
+  resources :forums, only: [:index, :show] do
     resources :topics, controller: 'forums/topics', except: [:index] do
       resources :posts, controller: 'forums/posts', only: [:create, :destroy]
       resource :watching, only: [:destroy]
@@ -47,7 +47,11 @@ Raddar::Application.routes.draw do
   end
 
   namespace 'admin' do
-    get "/" => 'home#index', as: :root
+    root to: 'home#index'
+    resources :users, only: [:index, :edit, :update]
+    resources :forums, except: [:show]
+    resources :venues, except: [:show, :new, :create]
+    resources :universes, except: [:show]
   end
 
   namespace 'users', as: 'user' do
@@ -66,7 +70,7 @@ Raddar::Application.routes.draw do
 
   get 'search' => 'home#search', as: :search
 
-  resources :users, except: [:new,:create,:destroy] do
+  resources :users, only: [:show] do
     resources :messages, only: [:index,:create] do
       collection do
         delete 'destroy_all'
@@ -82,6 +86,7 @@ Raddar::Application.routes.draw do
 
   get 'search' => 'home#search', as: :search
 
-  root :to => 'home#index'
+
+  root to: 'home#index'
 
 end

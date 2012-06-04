@@ -24,6 +24,7 @@ pt-BR:
   venue:
     s: Lugar
     p: Lugares
+    author: Autor
     nearby:
       html: "Lugares próximos a <em>%{term}</em>"
       empty:

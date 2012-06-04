@@ -16,4 +16,12 @@ module ApplicationHelper
   def simple_text text
     sanitize simple_format(text), tags: %w{p br}, attributes: []
   end
+
+  def edit_button path
+    render 'shared/edit_button', {path: path}
+  end
+
+  def destroy_button path
+    render 'shared/destroy_button', {path: path}
+  end
 end
