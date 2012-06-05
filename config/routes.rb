@@ -7,7 +7,9 @@ Raddar::Application.routes.draw do
     get 'nearby', on: :collection
   end
 
-  resources :notifications, only: [:show, :index, :destroy]
+  resources :notifications, only: [:show, :index, :destroy] do
+    post 'read', on: :collection
+  end
 
   resources :universes, only: [:show]
 
@@ -82,7 +84,10 @@ Raddar::Application.routes.draw do
       delete 'destroy', on: :collection
     end 
   end
-  get 'messages' => 'messages#all', as: :all_messages
+
+  resources :messages, only: [:index] do
+    post 'read', on: :collection
+  end
 
   get 'search' => 'home#search', as: :search
 

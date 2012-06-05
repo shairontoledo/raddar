@@ -52,6 +52,8 @@ pt-BR:
     p: Notificações
   search:
     for: "Pesquisa por %{term}"
+    none: Nenhum resultado encontrado.
+    all: Tudo
   role:
     s: Papel
     p: Papéis
@@ -64,25 +66,28 @@ pt-BR:
   pub:
     s: Publicação
     p: Publicações
-    stuff:
-      s: Material
-      p: Materiais
-      new: Novo material
+  stuff:
+    s: Material
+    p: Materiais
+    new: Novo material
   forum:
     s: Fórum
     p: Fóruns
     new: Novo Fórum
-    topic:
-      s: Tópico
-      p: Tópicos
-      last: Últimos tópicos
-      views: visualizações
-      new: Novo Tópico
-      created_by: "Criado por %{user}"
-      post:
-        s: Postagem
-        p: Postagens
-        last: Última atividade
+  comment:
+    s: Comentário
+    p: Comentários
+  topic:
+    s: Tópico
+    p: Tópicos
+    last: Últimos tópicos
+    views: visualizações
+    new: Novo Tópico
+    created_by: "Criado por %{user}"
+  post:
+    s: Postagem
+    p: Postagens
+    last: Última atividade
   user:
     s: Usuário
     p: Usuários

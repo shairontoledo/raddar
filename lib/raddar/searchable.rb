@@ -1,8 +1,11 @@
+
 module Raddar::Searchable
 
   def self.included base
     base.send :include, Mongoid::FullTextSearch
-    base.send :fulltext_search_in, index_name: 'global', filters: { "only_for_#{self.class.name.underscore}" => lambda { |x| true }}
+    classname = base.name.underscore
+
+    base.send :fulltext_search_in, index_name: 'global', filters: { "only_for_#{classname}".to_sym => lambda { |x| true }}
   end
 
   def to_s

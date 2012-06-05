@@ -202,6 +202,10 @@ class User
     self.incoming_messages.where(sender_id: user_id).and(recipient_status: :unread).update_all(recipient_status: :read)
   end
 
+  def mark_chats_as_read
+    self.incoming_messages.where(recipient_status: :unread).update_all(recipient_status: :read)
+  end
+
   def destroy_chat_with user
     self.chat_with(user.id).each do |message|
       if user.id == message.sender_id
@@ -239,5 +243,9 @@ class User
 
   def read_notifications
     self.notifications.where(status: :unread).update_all(status: :read)
+  end
+
+  def unread_notifications
+    self.notifications.where(status: :unread).order_by([:created_at, :desc])
   end
 end

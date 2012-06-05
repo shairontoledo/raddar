@@ -2,25 +2,30 @@
 
 window.add_message_notification = (item) ->
   menu = $('li#messages_notifications').children('ul.dropdown-menu')
-  
-  menu.children("li##{item.user}_message_notification").remove()
-  
+  menu.children("li.#{item.user}_message_notification").remove()
   menu.prepend item.content
-
   update_notifications_count 'messages_notifications'
 
 
 update_notifications_count = (id) ->
   notification_count = $("li##{id}").find("span.notification_count")
   icon = $("li##{id}").find("i")
-  notification_count.html $("li##{id}").children('ul.dropdown-menu').children('li.message_notification').size()
+  notification_count.html $("li##{id}").children('ul.dropdown-menu').children('li.notification').size()
 
   if parseInt(notification_count.html()) > 0
     notification_count.show()
     icon.addClass 'icon-white'
   else
     notification_count.hide()
-    icon.removeClass 'icon-white' 
+    icon.removeClass 'icon-white'
+
+build_notifications_count = (id, read_url)->
+  update_notifications_count id
+  $("li##{id}").find('a.dropdown-toggle').on 'click', (e)->
+    if parseInt($("li##{id}").find("span.notification_count").html()) > 0
+      $.ajax
+        type: 'POST'
+        url: read_url
 
 
 # Confirm on unload window 
@@ -85,6 +90,7 @@ window.user_location = (callback)->
   
 
 $ ->
-  update_notifications_count 'messages_notifications'
-  update_notifications_count 'general_notifications'
+
+  build_notifications_count 'messages_notifications', '/messages/read'
+  build_notifications_count 'general_notifications', '/notifications/read'
   window.onbeforeunload = check_confirm_unload

@@ -45,13 +45,8 @@
                 <span class="badge badge-important notification_count"></span>
               </a>
               <ul class="dropdown-menu">
-                <% current_user.notifications.where(status: :unread).order_by([:created_at, :desc]).each do |notification| %>
-                  <li class="message_notification">
-                    <%= link_to notification do %>
-                      <%= image_tag notification.image_path, :class => 'size20' %>
-                      <%= raw notification.content %>
-                    <% end %>
-                  </li>
+                <% current_user.unread_notifications.each do |notification| %>
+                  <%= render 'notifications/notification', {notification: notification} %>
                 <% end %>
                 <li class="divider"></li>
                 <li><%= link_to t('notification.see_all'), notifications_path %></li>

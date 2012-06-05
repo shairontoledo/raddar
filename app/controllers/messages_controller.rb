@@ -7,15 +7,20 @@ class MessagesController < ApplicationController
   # GET /messages
   # GET /messages.xml
   def index
-    @user = User.find(params[:user_id])
-    if @user.id == current_user.id
-      redirect_to @user
+    if params[:user_id].blank?
+      @chats = current_user.all_chats.paginate(page: params[:page], per_page: 10)
+      render 'all'
     else
-      current_user.mark_chat_as_read_with @user.id
-      @messages = current_user.chat_with(@user.id)
-      @message = Message.new
-      @message[:edit_content] = ''
-      respond_with(@messages)
+      @user = User.find(params[:user_id])
+      if @user.id == current_user.id
+        redirect_to @user
+      else
+        current_user.mark_chat_as_read_with @user.id
+        @messages = current_user.chat_with(@user.id)
+        @message = Message.new
+        @message[:edit_content] = ''
+        respond_with(@messages)
+      end
     end
   end
 
@@ -45,13 +50,12 @@ class MessagesController < ApplicationController
     redirect_to user_messages_path(@user)
   end
 
-  def all
-    @chats = current_user.all_chats.paginate(page: params[:page], per_page: 10)
-
-  end
-
   def read
-    @user = User.find(params[:user_id])
-    current_user.mark_chat_as_read_with @user.id
+    if params[:user_id].blank?
+      current_user.mark_chats_as_read
+    else
+      @user = User.find(params[:user_id])
+      current_user.mark_chat_as_read_with @user.id
+    end
   end
 end

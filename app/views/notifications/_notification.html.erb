@@ -1,0 +1,6 @@
+<li class="notification">
+  <%= link_to notification do %>
+    <%= image_tag notification.image_path, :class => 'size20' %>
+    <%= raw notification.content %>
+  <% end %>
+</li>
