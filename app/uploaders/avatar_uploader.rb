@@ -3,8 +3,8 @@
 class AvatarUploader < CarrierWave::Uploader::Base
 
   # Include RMagick or MiniMagick support:
-  # include CarrierWave::RMagick
-  include CarrierWave::MiniMagick
+  include CarrierWave::RMagick
+  #include CarrierWave::MiniMagick
 
   # Include the Sprockets helpers for Rails 3.1+ asset pipeline compatibility:
   include Sprockets::Helpers::RailsHelper
@@ -28,14 +28,26 @@ class AvatarUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   process :resize_to_fit => [800, 800]
   process :convert => 'png'
+
   #
   # def scale(width, height)
   #   # do something
   # end
 
   # Create different versions of your uploaded files:
+  version :full do
+    process :resize_to_fill => [600, 600]
+    process :convert => 'png'
+  end
+
+  version :medium do
+    process :resize_to_fill => [160, 160]
+    process :convert => 'png'
+  end
+
   version :thumb do
-    process :resize_to_fill => [50, 50]
+    process :resize_to_fill => [60, 60]
+    process :convert => 'png'
   end
 
   # Add a white list of extensions which are allowed to be uploaded.
@@ -46,8 +58,8 @@ class AvatarUploader < CarrierWave::Uploader::Base
 
   # Override the filename of the uploaded files:
   # Avoid using model.id or version_name here, see uploader/store.rb for details.
-  # def filename
-  #   "something.jpg" if original_filename
-  # end
+  def filename
+    'avatar.png' if original_filename
+  end
 
 end

@@ -42,6 +42,7 @@ class Ability
     # Everyone
 
     can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag, Universe, Venue]
+    can :nearby, Venue
     cannot [:edit,:update], Post
 
   end
