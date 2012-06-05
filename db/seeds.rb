@@ -13,6 +13,19 @@ u.location = 'Brasília-DF'
 u.confirm!
 u.save!
 
+u2 = User.new
+u2.name = 'volmerius'
+u2.email = 'volmerius@volmer.com'
+u2.password = '123456'
+u2.gender = :male
+u2.date_of_birth = 30.years.ago.to_date
+u2.bio = "Lover\nRocker\nKiller"
+u2.facebook_access_token = 'ACCESS_TOKEN'
+u2.facebook_url = 'http://facebook.com/2'
+u2.location = 'Brasília-DF'
+u2.confirm!
+u2.save!
+
 r = Role.new
 r.name = :admin
 r.save!

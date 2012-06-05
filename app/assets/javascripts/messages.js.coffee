@@ -1,3 +1,8 @@
+window.add_chat_message = (chat_id, content)->
+  $(chat_id).append(content).animate({ scrollTop: $('div.chat').prop('scrollHeight') }, 2000)
+
+
+
 $ ->
   $('.more_messages_link').live('click',(e)->
     $(this).button('loading')

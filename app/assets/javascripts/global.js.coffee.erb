@@ -1,35 +1,26 @@
 # Notifications
 
-add_message_notification = (item) ->
+window.add_message_notification = (item) ->
   menu = $('li#messages_notifications').children('ul.dropdown-menu')
   
   menu.children("li##{item.user}_message_notification").remove()
-  menu.prepend('<li id="#{item.user}_message_notification" class="message_notification">#{item.content}</li>')
+  
+  menu.prepend item.content
 
-  update_notifications('messages_notifications', menu.children('li.message_notification').size())
-
-
-
+  update_notifications_count 'messages_notifications'
 
 
-
-update_notifications = (id, count) ->
+update_notifications_count = (id) ->
   notification_count = $("li##{id}").find("span.notification_count")
   icon = $("li##{id}").find("i")
-  notification_count.html count if count isnt null 
+  notification_count.html $("li##{id}").children('ul.dropdown-menu').children('li.message_notification').size()
 
   if parseInt(notification_count.html()) > 0
     notification_count.show()
-    icon.addClass('icon-white')
+    icon.addClass 'icon-white'
   else
     notification_count.hide()
-    icon.removeClass('icon-white')
-
-window.update_messages_notifications = (count) ->
-  update_notifications('#messages_notifications', count)
-
-window.update_general_notifications = (count) ->
-  update_notifications('#general_notifications', count)  
+    icon.removeClass 'icon-white' 
 
 
 # Confirm on unload window 
@@ -94,6 +85,6 @@ window.user_location = (callback)->
   
 
 $ ->
-  update_messages_notifications()
-  update_general_notifications()
+  update_notifications_count 'messages_notifications'
+  update_notifications_count 'general_notifications'
   window.onbeforeunload = check_confirm_unload

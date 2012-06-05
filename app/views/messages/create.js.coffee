@@ -1,15 +1,23 @@
-$('#message_edit_content').removeAttr('disabled');
-$('#new_message_submit').button('reset')
+$('#message_edit_content').removeAttr 'disabled'
+
+$('#new_message_submit').button 'reset'
+
 <% unless @message.errors.any? %>
+
 $('#message_edit_content').val('').focus()
-$('div.chat').append("<%= j render('show', {message: @message, user: @user}) %>").animate({ scrollTop: $('div.chat').prop('scrollHeight') }, 2000)
+add_chat_message '#chat_<%= @user.id %>', "<%= j render('show', {message: @message, user: @user}) %>"
+
 <% publish_to user_messages_path(@user) do %>
-chat_id = '#chat_<%= current_user.id %>'
-if($(chat_id).length > 0){
-  $(chat_id).append("<%= j render('show', {message: @message, user: current_user}) %>").animate({ scrollTop: $('div.chat').prop('scrollHeight') }, 2000)
-  $.post("<%= read_user_messages_path(current_user) %>")
+
+chat = $('#chat_<%= current_user.id %>');
+
+if(chat.length > 0){
+  add_chat_message('#chat_<%= current_user.id %>', "<%= j render('show', {message: @message, user: current_user}) %>");
+  $.post("<%= read_user_messages_path(current_user) %>");
 }else{
-  update_messages_notifications(<%= @user.count_unread_chats %>)
+  add_message_notification({
+    user: '<%= @message.sender.id %>',
+    content: "<%= j render 'messages/notification', {message: @message} %>"});
 }
 <% end %>
 <% end %>
