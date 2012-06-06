@@ -29,4 +29,4 @@
 
 
 
-<%= link_to(t('pub.stuff.new'), new_pub_stuff_path(@pub), :class => 'btn') if can? :new, @pub.stuffs.new %>
+<%= link_to t('stuff.new'), new_pub_stuff_path(@pub), :class => 'btn' if can? :new, @pub.stuffs.new %>

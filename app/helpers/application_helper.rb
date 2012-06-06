@@ -24,4 +24,8 @@ module ApplicationHelper
   def destroy_button path, text='action.delete'
     render 'shared/destroy_button', {path: path, text: text}
   end
+
+  def thumbnail url, imageclass=nil
+    raw "<ul class=\"thumbnails\"><li><div class=\"thumbnail\">#{image_tag url, :class => imageclass}</div></li></ul>"
+  end
 end

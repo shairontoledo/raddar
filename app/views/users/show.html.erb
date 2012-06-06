@@ -1,13 +1,8 @@
 <div class="page-header"><h1><%= @user.name %></h1></div>
 <div class="row">
   <div class="span2">
-    <ul class="thumbnails">
-      <li>
-        <div class="thumbnail">
-          <%= image_tag @user.avatar.medium.url %>
-        </div>
-      </li>
-    </ul>
+    <%= thumbnail @user.avatar.medium.url %>
+    
     <% unless @user == current_user %>
       <%= link_to t('message.p'), user_messages_path(@user) %>
       <br/>

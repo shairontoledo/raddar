@@ -4,8 +4,8 @@
 </div>
 
 <div class="well">
-  <%= link_to t('forum.topic.created_by', user: @topic.user.name), @topic.user %> ::
-  <%= @topic.views %> <%= t('forum.topic.views') %> ::  
+  <%= link_to t('topic.created_by', user: @topic.user.name), @topic.user %> ::
+  <%= @topic.views %> <%= t('topic.views') %> ::  
   <%= edit_button edit_forum_topic_path(@topic.forum, @topic) if can? :edit, @topic %>
 </div>
 
