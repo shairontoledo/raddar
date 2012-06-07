@@ -1,5 +1,7 @@
 Raddar::Application.routes.draw do
 
+  resources :pages, only: [:show]
+
   resources :venues, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create, :destroy]
     resource :watching, only: [:destroy]
@@ -54,6 +56,7 @@ Raddar::Application.routes.draw do
     resources :forums, except: [:show]
     resources :venues, except: [:show, :new, :create]
     resources :universes, except: [:show]
+    resources :pages, except: [:show]
   end
 
   namespace 'users', as: 'user' do

@@ -36,7 +36,12 @@ pt-BR:
       universe: Universo
       venue: Lugar
       notification: Notificação
+      page: Página
     attributes:
+      page: &page_attributes
+        name: Nome
+        title: Título
+        content: Conteúdo
       venue: &venue_attributes
         name: Nome
         description: Descrição
@@ -95,10 +100,9 @@ pt-BR:
   stuff: *stuff_attributes
   forum: *forum_attributes
   venue: *venue_attributes
-  forum:
-    topic: *topic_attributes
-    topic:
-      post: *post_attributes
+  topic: *topic_attributes
+  post: *post_attributes
+  page: *page_attributes
   universe: *universe_attributes
   simple_form:
     options:

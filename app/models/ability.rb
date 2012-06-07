@@ -41,9 +41,9 @@ class Ability
     end
     # Everyone
 
-    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag, Universe, Venue]
+    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag, Universe, Venue, Page]
     can :nearby, Venue
-    cannot [:edit,:update], Post
+    cannot [:edit,:update], [Post, Comment]
 
   end
 

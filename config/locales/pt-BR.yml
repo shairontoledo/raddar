@@ -34,6 +34,11 @@ pt-BR:
       change_to: Alterar para...
       my: Sua localização atual
       other: Outro lugar
+  page:
+    s: Página
+    p: Páginas
+    url: Link
+    name_help: Será o nome do link para a página.
   tag:
     s: Tag
     p: Tags

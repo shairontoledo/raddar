@@ -1,0 +1,14 @@
+<%= simple_form_for([:admin, @page], :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :name, hint: t('page.name_help') %>
+    <%= f.input :title %>
+    <%= f.input :content, as: :text, input_html: {:class => 'span6', rows: '8'} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit %>
+    <%= destroy_button [:admin, @page]  if @page.persisted? && can?(:destroy, @page) %>
+  </div>
+<% end %>
