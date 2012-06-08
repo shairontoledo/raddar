@@ -1,6 +1,6 @@
 <li class="notification">
   <%= link_to notification do %>
     <%= image_tag notification.image_path, :class => 'size20' %>
-    <%= raw notification.content %>
+    <%= raw word_wrap(notification.content, line_width: 18) %>
   <% end %>
 </li>

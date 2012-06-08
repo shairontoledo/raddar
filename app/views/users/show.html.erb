@@ -1,19 +1,22 @@
-<div class="page-header"><h1><%= @user.name %></h1></div>
+<div class="page-header">
+  <h1><%= @user.name %></h1>
+</div>
+
 <div class="row">
-  <div class="span2">
+  <div class="span3">
     <%= thumbnail @user.avatar.medium.url %>
-    
+  </div>
+  <div class="span5">
     <% unless @user == current_user %>
-      <%= link_to t('message.p'), user_messages_path(@user) %>
+      <%= link_to t 'message.p', user_messages_path(@user) %>
       <br/>
       <%= render 'followerships/follow_button', {followable: @user} %>
     <% else %>
-      <%= t('user.you') %>
+      <%= t 'user.you' %>
     <% end %>
     <br/>
     <%= render 'followerships/followers', {followable: @user} %>
-  </div>
-  <div class="span6">
+
     <%= show_protected_user_field @user, :facebook_url %>
     <%= show_protected_user_field @user, :email %>
     <%= show_protected_user_field @user, :date_of_birth %>
@@ -21,6 +24,24 @@
     <%= show_protected_user_field @user, :location %>
   </div>
 </div>
+
 <div class="row">
-  <div class="span8"><p><b><%= t('user.bio') %></b></p> <%= simple_text @user.bio %></div>
+  <div class="span4">
+    <h6><%= t 'rank.p' %></h6>
+    <% Universe.all.each do |universe| %>
+      <% rank = @user.highest_rank universe %>
+      <div class="user_rank">
+        <%= link_to image_tag(universe.cover.thumb.url), universe.url %>
+        <h3><%= rank.level %>. <%= rank.name %></h3>
+        <small><%= rank.description %></small>
+        <br/>
+        <h6><%= link_to universe.name, universe.url %></h6>
+      </div>
+    <% end %>
+  </div>
+
+  <div class="span4">
+    <p><b><%= t 'user.bio' %></b></p>
+    <%= simple_text @user.bio %>
+  </div>
 </div>

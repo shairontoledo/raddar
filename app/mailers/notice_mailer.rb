@@ -31,6 +31,13 @@ class NoticeMailer < ActionMailer::Base
     send_mail @notification.user, I18n.t('notice_mailer.subject.new_follower', follower: follower.name)
   end
 
+  def new_rank_email(notification, rank)
+    @notification = notification
+    @rank = rank
+
+    send_mail @notification.user, I18n.t('notice_mailer.subject.new_rank', rank: rank.name)
+  end
+
   private
   def send_mail user, subject
     title = I18n.t('application.title')

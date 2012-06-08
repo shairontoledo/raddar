@@ -16,9 +16,9 @@ class Venue
   mount_uploader :cover, CoverUploader
   slug :name
 
-  belongs_to :author, class_name: 'User'
+  belongs_to :user # is not required
 
-  validates_presence_of :name, :description
+  validates_presence_of :name, :description 
   validates_length_of :name, maximum: 100
   validates_length_of :description, maximum: 500
   validates_length_of :address, maximum: 100

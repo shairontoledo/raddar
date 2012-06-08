@@ -30,6 +30,7 @@ gem 'delayed_job_mongoid'
 gem 'daemons'
 gem 'mongoid_slug'
 gem 'mongoid_fulltext'
+gem 'whenever', :require => false
 
 group :development, :test do
   gem 'rspec-rails'

@@ -1,0 +1,33 @@
+<div class="page-header">
+  <h1><%= t 'tag.s' %> <%= @tag.name %></h1>
+</div>
+
+
+<div class="tabbable tabs-left">
+  <ul class="nav nav-tabs">
+    <% @scopes.each do |scope| %>
+      <%= tag_scope_option @tag, scope, params[:scope].blank? ? :all : params[:scope].to_sym %>
+    <% end %>
+  </ul>
+  <div class="tab-content">
+    <% if @taggings.empty? %>
+      <p><%= t 'search.none' %></p>
+    <% else %>
+      <ul>
+        <% @taggings.each do |tagging| %>
+          <li>
+            <%= link_to tagging.taggable.url do %> 
+              <strong>
+                <%= tagging.taggable.class.model_name.human %>
+                <%= tagging.taggable.name unless tagging.taggable[:name].blank? %>
+              </strong>
+              <br/>
+              <small><%= tag_result_text tagging.taggable, @tag %></small>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <%= will_paginate @taggings %>
+    <% end %>
+  </div>
+</div>

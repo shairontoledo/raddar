@@ -24,7 +24,7 @@
   <%= rich_format @venue.description %>
 </div>
 
-<%= render 'tags/show', {taggable: @venue} %>
+<%= render 'tags/index', {taggable: @venue} %>
 
 <%= render 'votes/show', {votable: @venue} %>
 

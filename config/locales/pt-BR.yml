@@ -56,6 +56,8 @@ pt-BR:
       html: "<strong>%{author}</strong> começou a seguir você."
     follower_item:
       html: "<strong>%{author}</strong> começou a seguir <em>%{item}</em>."
+    rank:
+      html: "Parabéns! Agora você é <strong>%{name}</strong>!"
     s: Notificação
     p: Notificações
   search:

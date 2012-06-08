@@ -26,7 +26,7 @@ class VenuesController < ApplicationController
   def create
     @venue = Venue.new(params[:venue])
     @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
-    @venue.author = current_user
+    @venue.user = current_user
     @venue.save
     respond_with(@venue)
   end

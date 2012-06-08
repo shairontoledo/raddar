@@ -67,7 +67,7 @@ class User
   slug :name
 
   # Relationships
-  has_and_belongs_to_many :roles
+  has_and_belongs_to_many :roles, dependent: :nullify
   has_many :sent_messages, class_name: 'Message', inverse_of: :sender, dependent: :destroy
   has_many :incoming_messages, class_name: 'Message', inverse_of: :recipient, dependent: :destroy
   has_many :followerships, dependent: :destroy
@@ -79,6 +79,7 @@ class User
   has_many :watchings, dependent: :destroy
   has_many :notifications, dependent: :destroy
   has_many :venues, dependent: :nullify
+  has_and_belongs_to_many :ranks, dependent: :nullify
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
@@ -247,5 +248,14 @@ class User
 
   def unread_notifications
     self.notifications.where(status: :unread).order_by([:created_at, :desc])
+  end
+
+  def highest_rank universe
+    rank = self.ranks.where(universe_id: universe.id).order_by([:level, :desc]).first
+    if rank.nil?
+      rank = universe.ranks.order_by([:level, :asc]).first
+      self.ranks << rank
+    end
+    rank
   end
 end

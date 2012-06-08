@@ -11,12 +11,18 @@ class Universe
   has_many :forums, dependent: :nullify
   has_many :pubs, dependent: :nullify
   has_many :ranks, dependent: :destroy
+  has_and_belongs_to_many :users
 
   validates_presence_of :name, :description
   validates_length_of :name, maximum: 100
   validates_length_of :description, maximum: 6000
 
   attr_accessible :name, :description, :cover, :cover_cache
+
+
+  def highest_rank
+    self.ranks.order_by([:level, :desc]).first
+  end
 
 
   def self.find *args

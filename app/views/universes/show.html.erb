@@ -21,3 +21,23 @@
   <li><%= link_to pub.name, pub %></li>
 <% end %>
 </ul>
+
+<h3><%= t 'rank.p' %></h3>
+<ol>
+<% @universe.ranks.order_by([:level, :asc]).each do |rank| %>
+  <li>
+    <h4><%= rank.name %></h4>
+    <p><%= rank.description %></p>
+    <ul>
+      <% rank.highest_users.first(5).each do |user| %>
+        <li>
+          <%= link_to user.url do %>
+            <%= image_tag user.avatar.thumb.url, :class => 'size20' %>
+            <%= user.name %> 
+          <% end %>
+        </li>
+      <% end %>
+    </ul>
+  </li>
+<% end %>
+</ol>

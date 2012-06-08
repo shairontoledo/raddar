@@ -2,6 +2,8 @@ Raddar::Application.routes.draw do
 
   resources :pages, only: [:show]
 
+  resources :tags, only: [:show]
+
   resources :venues, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create, :destroy]
     resource :watching, only: [:destroy]

@@ -5,7 +5,7 @@ class Admin::RanksController < ApplicationController
   # GET /ranks.xml
   def index
     @universe = Universe.find params[:universe_id]
-    @ranks = @universe.ranks.order_by :level
+    @ranks = @universe.ranks.order_by [:level, :asc]
     respond_with(@ranks)
   end
 
