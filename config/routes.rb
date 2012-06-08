@@ -55,7 +55,9 @@ Raddar::Application.routes.draw do
     resources :users, only: [:index, :edit, :update]
     resources :forums, except: [:show]
     resources :venues, except: [:show, :new, :create]
-    resources :universes, except: [:show]
+    resources :universes, except: [:show] do
+      resources :ranks, except: [:show]
+    end
     resources :pages, except: [:show]
   end
 

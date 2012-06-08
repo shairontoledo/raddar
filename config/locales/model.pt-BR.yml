@@ -37,7 +37,12 @@ pt-BR:
       venue: Lugar
       notification: Notificação
       page: Página
+      rank: Título
     attributes:
+      rank: &rank_attributes
+        name: Nome
+        description: Descrição
+        level: Nível
       page: &page_attributes
         name: Nome
         title: Título
@@ -104,6 +109,7 @@ pt-BR:
   post: *post_attributes
   page: *page_attributes
   universe: *universe_attributes
+  rank: *rank_attributes
   simple_form:
     options:
       user:

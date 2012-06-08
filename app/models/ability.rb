@@ -11,6 +11,8 @@ class Ability
       can :manage, :all
 
       cannot [:create,:destroy], User
+
+      cannot :destroy, Rank, is_last_level?: false
     elsif user.persisted?
       # Registered user only
 
@@ -41,7 +43,7 @@ class Ability
     end
     # Everyone
 
-    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag, Universe, Venue, Page]
+    can :read, [Forum, Topic, Post, Pub, Stuff, Comment, Tag, Universe, Venue, Page, Rank]
     can :nearby, Venue
     cannot [:edit,:update], [Post, Comment]
 

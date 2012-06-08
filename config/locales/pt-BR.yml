@@ -21,6 +21,9 @@ pt-BR:
     watch: Notificar por e-mail
     change: Alterar
     close: Fechar
+  rank:
+    s: Título
+    p: Títulos
   venue:
     s: Lugar
     p: Lugares

@@ -10,6 +10,7 @@ class Universe
 
   has_many :forums, dependent: :nullify
   has_many :pubs, dependent: :nullify
+  has_many :ranks, dependent: :destroy
 
   validates_presence_of :name, :description
   validates_length_of :name, maximum: 100

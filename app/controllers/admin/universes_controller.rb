@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class Admin::UniversesController < ApplicationController
   before_filter :authenticate_user!
   load_and_authorize_resource

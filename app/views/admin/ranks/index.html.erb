@@ -1,0 +1,34 @@
+<%= render 'admin/shared/header', {active: :universes} %>
+
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= t 'rank.level' %></th>
+      <th><%= t 'rank.name' %></th>
+      <th><%= t 'rank.description' %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @ranks.each do |rank| %>
+      <tr>
+        <td>
+          <%= rank.level %>
+        </td>
+        <td>
+          <%= rank.name %>
+        </td>
+        <td>
+          <%= rank.description %>
+        </td>
+        <td>
+          <%= edit_button edit_admin_universe_rank_path(@universe, rank) %>
+          <%= destroy_button [:admin, @universe, rank]  if can?(:destroy, rank) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= link_to 'New Rank', new_admin_universe_rank_path(@universe) %>

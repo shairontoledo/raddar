@@ -4,6 +4,7 @@
   <thead>
     <tr>
       <th><%= t('universe.name') %></th>
+      <th><%= t('rank.p') %></th>
       <th></th>
     </tr>
   </thead>
@@ -13,6 +14,9 @@
         <td>
           <%= image_tag universe.cover.thumb.url, :class => 'size20' %>
           <%= link_to universe.name, universe %>
+        </td>
+        <td>
+          <%= link_to universe.ranks.count, admin_universe_ranks_path(universe) %>
         </td>
         <td>
           <%= edit_button edit_admin_universe_path(universe) %>
