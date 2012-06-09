@@ -5,7 +5,7 @@ class Universe
 
   field :name, type: String
   field :description, type: String
-  mount_uploader :cover, CoverUploader
+  mount_uploader :image, ImageUploader
   slug :name
 
   has_many :forums, dependent: :nullify
@@ -17,7 +17,7 @@ class Universe
   validates_length_of :name, maximum: 100
   validates_length_of :description, maximum: 6000
 
-  attr_accessible :name, :description, :cover, :cover_cache
+  attr_accessible :name, :description, :image, :image_cache
 
 
   def highest_rank

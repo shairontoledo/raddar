@@ -89,7 +89,8 @@ Raddar::Application.routes.draw do
     end
     resources :followers, controller: 'followerships', only: [:create, :index] do
       delete 'destroy', on: :collection
-    end 
+    end
+    get 'following', on: :member
   end
 
   resources :messages, only: [:index] do

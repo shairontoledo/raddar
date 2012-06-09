@@ -13,7 +13,7 @@ class Venue
   field :address, type: String
   field :city, type: String
   field :coordinates, type: Array, default: []
-  mount_uploader :cover, CoverUploader
+  mount_uploader :image, ImageUploader
   slug :name
 
   belongs_to :user # is not required
@@ -25,7 +25,7 @@ class Venue
   validates_length_of :city, maximum: 100
 
 
-  attr_accessible :name, :description, :address, :city, :cover, :cover_cache
+  attr_accessible :name, :description, :address, :city, :image, :image_cache
 
   # Geocoding
   geocoded_by :complete_address               # can also be an IP address

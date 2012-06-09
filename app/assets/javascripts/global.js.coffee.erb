@@ -69,6 +69,8 @@ window.single_marker_map =  (map_id, location, getCoordinates) ->
     position: location
     animation: google.maps.Animation.DROP
   if getCoordinates
+    $('#lat').val location.lat()
+    $('#lng').val location.lng()
     marker.setDraggable true
     google.maps.event.addListener marker, 'dragend', ->
       $('#lat').val marker.getPosition().lat()

@@ -10,7 +10,7 @@
 <br/>
 <%= render 'followerships/follow_button', {followable: @pub} if user_signed_in? %>
 
-<%= image_tag @pub.cover.thumb.url %>
+<%= image_tag @pub.image.thumb.url %>
 
 <div class="well">
   <%= rich_format @pub.description %>
@@ -19,7 +19,7 @@
 <% @stuffs.each do |stuff| %>
   <div>
     <h3><%= link_to stuff.name, [@pub, stuff] %></h3>
-    <%= image_tag stuff.cover.thumb.url %>
+    <%= image_tag stuff.image.thumb.url %>
 
     <div>
       <%= rich_format stuff.content %>

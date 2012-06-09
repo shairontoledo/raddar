@@ -8,7 +8,7 @@
   <li class="active"><%= t('action.edit') %></li>
 </ul>
 
-<h1><%= image_tag @user.avatar.thumb.url %> <%= @user.name %></h1>
+<h1><%= image_tag @user.image.thumb.url %> <%= @user.name %></h1>
 
 <%= simple_form_for(@user, :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>

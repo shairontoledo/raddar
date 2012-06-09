@@ -5,7 +5,7 @@
   </h1>
 </div>
 
-<%= image_tag @stuff.cover.thumb.url unless @stuff.cover.file.nil? %>
+<%= image_tag @stuff.image.thumb.url unless @stuff.image.file.nil? %>
 
 <div class="well">
   <%= rich_format @stuff.content %>

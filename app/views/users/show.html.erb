@@ -4,11 +4,11 @@
 
 <div class="row">
   <div class="span3">
-    <%= thumbnail @user.avatar.medium.url %>
+    <%= thumbnail @user.image.medium.url %>
   </div>
-  <div class="span5">
+  <div class="span6">
     <% unless @user == current_user %>
-      <%= link_to t 'message.p', user_messages_path(@user) %>
+      <%= link_to t('message.p'), user_messages_path(@user) %>
       <br/>
       <%= render 'followerships/follow_button', {followable: @user} %>
     <% else %>
@@ -16,6 +16,8 @@
     <% end %>
     <br/>
     <%= render 'followerships/followers', {followable: @user} %>
+    <br/>
+    <%= link_to "#{t('following')}: #{@user.followerships.count}", following_user_path(@user) %>
 
     <%= show_protected_user_field @user, :facebook_url %>
     <%= show_protected_user_field @user, :email %>
@@ -31,7 +33,7 @@
     <% Universe.all.each do |universe| %>
       <% rank = @user.highest_rank universe %>
       <div class="user_rank">
-        <%= link_to image_tag(universe.cover.thumb.url), universe.url %>
+        <%= link_to image_tag(universe.image.thumb.url), universe.url %>
         <h3><%= rank.level %>. <%= rank.name %></h3>
         <small><%= rank.description %></small>
         <br/>
@@ -40,7 +42,7 @@
     <% end %>
   </div>
 
-  <div class="span4">
+  <div class="span5">
     <p><b><%= t 'user.bio' %></b></p>
     <%= simple_text @user.bio %>
   </div>

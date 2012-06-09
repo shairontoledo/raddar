@@ -9,7 +9,7 @@ class Stuff
 
   field :name, :type => String
   field :content, :type => String
-  mount_uploader :cover, CoverUploader
+  mount_uploader :image, ImageUploader
   slug :name
 
   belongs_to :pub
@@ -18,7 +18,7 @@ class Stuff
   validates_length_of :name, maximum: 100
   validates_length_of :content, maximum: 30000
 
-  attr_accessible :name, :content, :cover, :cover_cache
+  attr_accessible :name, :content, :image, :image_cache
 
   def self.find *args
     if args.length == 1 and not args[0].is_a? Symbol

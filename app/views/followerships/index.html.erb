@@ -1,12 +1,12 @@
 <div class="page-header">
-  <h1><%= t('followers') %> - <%= link_to @followable.name, @followable %></h1>
+  <h1><%= t('followers') %> - <%= link_to @followable.name, @followable.url %></h1>
 </div>
 
 <% @followers.each do |follower| %>
   <% user = follower.user %>
     <span class="well">
-      <%= link_to user do %>
-        <%= image_tag user.avatar.thumb.url %>
+      <%= link_to user.url do %>
+        <%= image_tag user.image.thumb.url %>
         <%= user.name %>
       <% end %>
     </span>

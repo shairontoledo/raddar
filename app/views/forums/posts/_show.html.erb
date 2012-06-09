@@ -4,7 +4,7 @@
       <li class="span2">
         
         <%= link_to post.user, :class => 'thumbnail' do %>
-          <%= image_tag post.user.avatar.medium.url %>
+          <%= image_tag post.user.image.medium.url %>
           <div class="caption">
             <h5 class="post_user_name"><%= post.user.name %></h5>
             <p></p>
@@ -15,7 +15,7 @@
     </ul>
   </div>
 
-  <div class="span6">
+  <div class="span7">
     <div class="post_content"><%= rich_format post.content %></div>
     <hr/>
     <%= link_to raw(time_tag(post.created_at, humanize_datetime(post.created_at))), "#post_#{post.id}" %>

@@ -7,7 +7,7 @@
   <% venues.each do |venue| %>
     <div class="venue"  id="venue_<%= venue.id %>">
       <%= link_to venue, :class => 'venue_link' do %>
-        <%= image_tag venue.cover.thumb.url %>
+        <%= image_tag venue.image.thumb.url %>
         <address>
           <strong><%= venue.name %></strong>
           

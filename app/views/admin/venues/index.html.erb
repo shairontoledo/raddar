@@ -13,7 +13,7 @@
     <% @venues.each do |venue| %>
       <tr>
         <td>
-          <%= image_tag venue.cover.thumb.url, :class => 'size20' %>
+          <%= image_tag venue.image.thumb.url, :class => 'size20' %>
           <%= link_to venue.name, venue %>
         </td>
         <td>

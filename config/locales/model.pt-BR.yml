@@ -57,12 +57,12 @@ pt-BR:
       stuff: &stuff_attributes
         name: Nome
         content: Conteúdo
-        cover: Imagem de capa
+        image: Imagem de capa
       pub: &pub_attributes
         name: Nome
         subtitle: Subtítulo
         description: Descrição
-        cover: Imagem de capa
+        image: Imagem de capa
       post: &post_attributes
         content: Conteúdo
       topic: &topic_attributes
@@ -87,8 +87,8 @@ pt-BR:
           male: Masculino
           female: Feminino
         remember_me: Lembrar
-        avatar: Avatar
-        remove_avatar: Remover avatar
+        image: Avatar
+        remove_image: Remover avatar
         bio: Sobre mim
         facebook_url: Perfil do Facebook
         roles: Papéis

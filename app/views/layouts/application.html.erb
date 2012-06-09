@@ -30,10 +30,10 @@
     <div class="container">
       <%= render 'layouts/messages' %>
       <div class="row">
-        <div class="span8">
+        <div class="span9">
           <%= yield %>
         </div><!--/span-->
-        <div class="span4">
+        <div class="span3">
           <div class="well sidebar-nav">
             <ul class="nav nav-list">
               <li class="nav-header"><%= t 'universe.p' %></li>
@@ -52,7 +52,7 @@
               <% last_users.each do |user| %>
                 <li>
                   <%= link_to user do %>
-                    <%= image_tag user.avatar.thumb.url, :class => 'size20' %>
+                    <%= image_tag user.image.thumb.url, :class => 'size20' %>
                     <%= user.name %>
                   <% end %>
                 </li>

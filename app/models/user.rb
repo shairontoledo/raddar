@@ -58,7 +58,7 @@ class User
   field :facebook_url, type: String
   field :facebook_url_privacy, type: Symbol, default: :public
   field :status, type: Symbol, default: :active
-  mount_uploader :avatar, AvatarUploader
+  mount_uploader :image, ImageUploader
   field :coordinates, type: Array
   field :location, type: String
   field :location_privacy, type: Symbol, default: :public
@@ -97,8 +97,8 @@ class User
   attr_accessor :login
 
   # Accessible (mass assignment)
-  attr_accessible :login, :avatar, :avatar_cache, :remove_avatar, :email, :name, :date_of_birth, :location,
-    :bio, :password, :password_confirmation, :gender, :facebook_access_token, :facebook_url, :remote_avatar_url
+  attr_accessible :login, :image, :image_cache, :remove_image, :email, :name, :date_of_birth, :location,
+    :bio, :password, :password_confirmation, :gender, :facebook_access_token, :facebook_url, :remote_image_url
 
   validate  do
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
@@ -139,7 +139,7 @@ class User
     user.facebook_access_token = access_token.credentials.token
     user.bio = data.bio if user.bio.blank?
     user.location = data.location.name if user.location.blank?
-    user.remote_avatar_url = access_token.info.image if user.avatar.file.nil?
+    user.remote_image_url = access_token.info.image if user.image.file.nil?
     user.facebook_url = data.link
     user.save
     user.confirm! if(user.persisted? && data.verified && (!user.confirmed?))
@@ -156,7 +156,7 @@ class User
         user.date_of_birth = Date.strptime(data['extra']['raw_info']['birthday'], '%m/%d/%Y')
         user.facebook_url = data['extra']['raw_info']['link']
         user.facebook_access_token = data['credentials']['token']
-        user.remote_avatar_url = data['info']['image']
+        user.remote_image_url = data['info']['image']
         session.delete('devise.facebook_data')
       end
     end

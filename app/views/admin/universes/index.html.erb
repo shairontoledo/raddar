@@ -12,7 +12,7 @@
     <% @universes.each do |universe| %>
       <tr>
         <td>
-          <%= image_tag universe.cover.thumb.url, :class => 'size20' %>
+          <%= image_tag universe.image.thumb.url, :class => 'size20' %>
           <%= link_to universe.name, universe %>
         </td>
         <td>

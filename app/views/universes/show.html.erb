@@ -2,7 +2,7 @@
   <h1><%= @universe.name %></h1>
 </div>
 
-<%= image_tag @universe.cover.thumb.url %>
+<%= image_tag @universe.image.thumb.url %>
 
 <div class="well">
   <%= rich_format @universe.description %>
@@ -32,7 +32,7 @@
       <% rank.highest_users.first(5).each do |user| %>
         <li>
           <%= link_to user.url do %>
-            <%= image_tag user.avatar.thumb.url, :class => 'size20' %>
+            <%= image_tag user.image.thumb.url, :class => 'size20' %>
             <%= user.name %> 
           <% end %>
         </li>

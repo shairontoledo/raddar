@@ -1,7 +1,7 @@
 <% user = message.sender %>
 <li class="notification <%= user.id %>_message_notification">
   <%= link_to user_messages_path(user) do %>
-    <%= image_tag user.avatar.thumb.url, :class => 'size20' %>
+    <%= image_tag user.image.thumb.url, :class => 'size20' %>
     <%= truncate message.content %>
   <% end %>
 </li>
