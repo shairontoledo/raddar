@@ -19,7 +19,7 @@ Raddar::Application.routes.draw do
 
   resources :pubs do
     resources :stuffs, except: [:index]
-    resources :followers, controller: 'followerships', only: [:create, :index] do
+    resources :followers, only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
   end
@@ -39,7 +39,7 @@ Raddar::Application.routes.draw do
       resources :posts, controller: 'forums/posts', only: [:create, :destroy]
       resource :watching, only: [:destroy]
     end
-    resources :followers, controller: 'followerships', only: [:create, :index] do
+    resources :followers, only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
   end
@@ -71,7 +71,8 @@ Raddar::Application.routes.draw do
     end
   end
 
-  devise_for :users, :controllers => {omniauth_callbacks: "users/omniauth_callbacks", registrations: "users/registrations", passwords: 'users/passwords' } do
+  devise_for :users, :controllers => {omniauth_callbacks: "users/omniauth_callbacks", registrations: "users/registrations", passwords: 'users/passwords' }
+  devise_scope :users do
     get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get '/users/password/change' => 'users/passwords#change', as: :change_user_password
     put '/users/password/change' => 'users/passwords#do_change', as: :change_user_password
@@ -87,10 +88,10 @@ Raddar::Application.routes.draw do
         post 'read'
       end
     end
-    resources :followers, controller: 'followerships', only: [:create, :index] do
+    resources :followers, only: [:create, :index] do
       delete 'destroy', on: :collection
     end
-    get 'following', on: :member
+    resources :followees, controller: 'users/followees', only: [:index]
   end
 
   resources :messages, only: [:index] do

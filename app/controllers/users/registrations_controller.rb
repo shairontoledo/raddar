@@ -1,4 +1,6 @@
 class Users::RegistrationsController < Devise::RegistrationsController
+  authorize_resource :class => false
+  
   def update
     @user = User.find(current_user.id)
 

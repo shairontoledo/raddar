@@ -6,9 +6,9 @@
   <%= simple_text @forum.description %>
 </div>
 
-<%= render 'followerships/followers', {followable: @forum} %>
+<%= render 'followers/link_with_count', {followable: @forum} %>
 <br/>
-<%= render 'followerships/follow_button', {followable: @forum} if user_signed_in? %>
+<%= render 'followers/follow_button', {followable: @forum} if user_signed_in? %>
 
 <table class="table table-striped table-bordered">
   <thead>

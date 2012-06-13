@@ -4,10 +4,10 @@ class VotesController < ApplicationController
   def create
     @votable = find_votable
     @votable.votes.where(user_id: current_user.id).destroy_all
-    vote = @votable.votes.new
-    vote.value = params[:value]
-    vote.user = current_user
-    vote.save
+    @vote.votable = @votable
+    @vote.value = params[:value]
+    @vote.user = current_user
+    @vote.save
   end
 
   private

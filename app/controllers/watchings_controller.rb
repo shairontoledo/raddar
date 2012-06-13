@@ -1,12 +1,12 @@
 class WatchingsController < ApplicationController
-  before_filter :authenticate_user!
   load_and_authorize_resource
+  skip_load_resource only: [:destroy]
 
   def destroy
     @watchable = find_watchable
     @watchable.watchings.where(user_id: current_user.id).destroy_all
 
-    redirect_to(@watchable.url, notice: t('flash.watching.destroyed'))
+    redirect_to @watchable.url, notice: t('flash.watching.destroyed')
   end
 
   private

@@ -1,31 +1,33 @@
 div.chat{
   overflow: auto;
   height: 250px;
-  padding-top: 30px;
+  padding: 30px 10px 0px 10px;
 }
 
-div.message img{
-  margin: 4px;
+div.chat div.message div.message_content {
+  min-height: 70px;
 }
 
-div.sent img{
+div.chat div.sent img{
   float: left;
+  margin-right: 6px;
 }
 
-div.sent{
+div.chat div.sent{
   text-align: left;
 }
 
-div.received img{
+div.chat div.received img{
   float: right;
+  margin-left: 6px;
 }
 
-div.received{
+div.chat div.received{
   text-align: right;
 }
 
-div.message div.timestamp{
-  font-size: 8px;
+div.chat div.message time{
+  font-size: 10px;
 }
 
 table#all_chats tr td a{

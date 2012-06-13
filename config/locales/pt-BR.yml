@@ -143,3 +143,5 @@ pt-BR:
       error: 'Não foi possível seguir %{name} no momento. Tente novamente mais tarde.'
   js:
     confirm_unload: As suas modificações ainda não foram gravadas.
+    prompt:
+      confirm: Você tem certeza?

@@ -10,14 +10,14 @@
     <% unless @user == current_user %>
       <%= link_to t('message.p'), user_messages_path(@user) %>
       <br/>
-      <%= render 'followerships/follow_button', {followable: @user} %>
+      <%= render 'followers/follow_button', {followable: @user} %>
     <% else %>
       <%= t 'user.you' %>
     <% end %>
     <br/>
-    <%= render 'followerships/followers', {followable: @user} %>
+    <%= render 'followers/link_with_count', {followable: @user} %>
     <br/>
-    <%= link_to "#{t('following')}: #{@user.followerships.count}", following_user_path(@user) %>
+    <%= link_to "#{t('following')}: #{@user.followerships.count}", user_followees_path(@user) %>
 
     <%= show_protected_user_field @user, :facebook_url %>
     <%= show_protected_user_field @user, :email %>

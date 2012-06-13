@@ -6,9 +6,9 @@
 </div>
 <%= edit_button edit_pub_path(@pub) if can? :edit, @pub %>
 
-<%= render 'followerships/followers', {followable: @pub} %>
+<%= render 'followers/link_with_count', {followable: @pub} %>
 <br/>
-<%= render 'followerships/follow_button', {followable: @pub} if user_signed_in? %>
+<%= render 'followers/follow_button', {followable: @pub} if user_signed_in? %>
 
 <%= image_tag @pub.image.thumb.url %>
 
@@ -29,4 +29,4 @@
 
 
 
-<%= link_to t('stuff.new'), new_pub_stuff_path(@pub), :class => 'btn' if can? :new, @pub.stuffs.new %>
+<%= link_to t('stuff.new'), new_pub_stuff_path(@pub), :class => 'btn' if can? :create, @pub => Stuff %>

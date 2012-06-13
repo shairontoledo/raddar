@@ -1,6 +1,8 @@
 require 'will_paginate/array'
 
 class HomeController < ApplicationController
+  authorize_resource :class => false
+  
   def index
   end
 

@@ -1,34 +1,30 @@
 class VenuesController < ApplicationController
   load_and_authorize_resource
+  skip_load_resource only: [:index, :nearby]
   # GET /venues
   # GET /venues.xml
   def index
-    @venues = Venue.all
-    respond_with(@venues)
   end
 
   # GET /venues/1
   # GET /venues/1.xml
   def show
-    @venue = Venue.find(params[:id])
-    respond_with(@venue)
+    respond_with @venue
   end
 
   # GET /venues/new
   # GET /venues/new.xml
   def new
-    @venue = Venue.new
-    respond_with(@venue)
+    respond_with @venue
   end
 
   # POST /venues
   # POST /venues.xml
   def create
-    @venue = Venue.new(params[:venue])
     @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
     @venue.user = current_user
     @venue.save
-    respond_with(@venue)
+    respond_with @venue
   end
 
   def nearby

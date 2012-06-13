@@ -1,8 +1,8 @@
 require 'will_paginate/array'
 
 class MessagesController < ApplicationController
-  before_filter :authenticate_user!
   load_and_authorize_resource
+  skip_load_resource only: [:destroy_all]
 
   # GET /messages
   # GET /messages.xml
@@ -35,7 +35,7 @@ class MessagesController < ApplicationController
   # POST /messages.xml
   def create
     @user = User.find(params[:user_id])
-    @message = Message.new(params[:message])
+
     @message.sender = current_user
     @message.recipient = @user
     @message.save

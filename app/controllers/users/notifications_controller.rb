@@ -1,5 +1,5 @@
 class Users::NotificationsController < ApplicationController
-  before_filter :authenticate_user!
+  authorize_resource :class => false
 
   def edit
     @user = User.find(current_user.id)

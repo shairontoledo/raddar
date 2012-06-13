@@ -4,7 +4,6 @@ class UniversesController < ApplicationController
   # GET /universes/1
   # GET /universes/1.xml
   def show
-    @universe = Universe.find(params[:id])
-    respond_with(@universe)
+    respond_with @universe
   end
 end

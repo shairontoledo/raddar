@@ -1,8 +1,8 @@
 require 'will_paginate/array'
 
-class FollowershipsController < ApplicationController
-  before_filter :authenticate_user!
-  load_and_authorize_resource
+class FollowersController < ApplicationController
+  load_and_authorize_resource :followership, parent: false
+  skip_load_resource
   
   # Followers
   def index

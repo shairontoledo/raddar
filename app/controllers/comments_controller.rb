@@ -1,13 +1,13 @@
 class CommentsController < ApplicationController
-
   load_and_authorize_resource
 
 
   def create
     @commentable = find_commentable
 
-    @comment = @commentable.comments.new params[:comment]
+    @comment.commentable = @commentable
     @comment.user = current_user
+
     if @comment.save
       current_user.watchings.create(watchable: @commentable) if @commentable.watchable? && params[:watch] == 'yes'
       
@@ -21,7 +21,6 @@ class CommentsController < ApplicationController
   end
 
   def destroy
-    @comment = Comment.find(params[:id])
     @comment.destroy
     respond_with @comment, location: @comment.commentable.url
   end

@@ -1,12 +1,11 @@
 class Forums::PostsController < ApplicationController
-  load_and_authorize_resource
+  load_and_authorize_resource :forum
+  load_and_authorize_resource :topic, through: :forum
+  load_and_authorize_resource through: :topic
 
   # POST /forums_posts
   # POST /forums_posts.xml
   def create
-    @forum = Forum.find(params[:forum_id])
-    @topic = Topic.find(params[:topic_id])
-    @post = @topic.posts.new(params[:post])
     @post.user = current_user
     if @post.save
       current_user.watchings.create(watchable: @topic) if params[:watch] == 'yes'
@@ -24,7 +23,6 @@ class Forums::PostsController < ApplicationController
   # DELETE /forums_posts/1
   # DELETE /forums_posts/1.xml
   def destroy
-    @post = Post.find(params[:id])
     @post.destroy
     respond_with(@post, location: [@post.topic.forum,@post.topic])
   end

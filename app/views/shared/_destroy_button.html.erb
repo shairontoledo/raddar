@@ -1,4 +1,4 @@
-<%= link_to path, :class => 'btn btn-danger', method: :delete, confirm: 'Are you sure?' do %>
+<%= link_to path, :class => 'btn btn-danger', method: :delete, data: {confirm: t('js.prompt.confirm') } do %>
   <i class="icon-trash"></i>
   <%= t text %>
 <% end %>
