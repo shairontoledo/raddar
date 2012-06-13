@@ -9,7 +9,9 @@ pt-BR:
   action:
     search: Pesquisar
     sign_in: Entrar
+    sign_in_with: "Entrar com %{provider}"
     sign_out: Sair
+    sign_up: Cadastrar
     admin: Administrar
     edit: Editar
     follow: Seguir
@@ -21,6 +23,10 @@ pt-BR:
     watch: Notificar por e-mail
     change: Alterar
     close: Fechar
+    forgot_password: Esqueceu sua senha?
+    change_password: Alterar senha
+    confirmation_not_received: Não recebeu o e-mail de confirmação?
+    resend_confirmation: Reenviar e-mail de confirmação
   rank:
     s: Título
     p: Títulos
