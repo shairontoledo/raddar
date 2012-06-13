@@ -5,7 +5,12 @@ div.chat{
 }
 
 div.chat div.message div.message_content {
-  min-height: 70px;
+  min-height: 40px;
+}
+
+div.chat div.message img{
+  width: 30px;
+  height: 30px;
 }
 
 div.chat div.sent img{

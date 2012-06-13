@@ -47,7 +47,7 @@ pt-BR:
     p: Tags
     help: Informe tags separadas por vírgulas.
   notification:
-    see_all: Ver todas as notificações
+    see_all: Todos os avisos
     comment:
       html: "<strong>%{author}</strong> fez um novo comentário em <em>%{item}</em>."
     forum_post:
@@ -118,12 +118,12 @@ pt-BR:
   message:
     s: Mensagem
     p: Mensagens
-    destroy_all: Apagar mensagens
+    destroy_all: Apagar conversa
     previous: Mensagens anteriores
-    all: Ver todas as mensagens
+    all: Todas as mensagens
   flash:
     watching:
-      destroyed: "Você não mais receberá notificações deste item."
+      destroyed: "Você não mais receberá avisos deste item."
     account:
       blocked: Sua conta foi bloqueada. Entre em contato através de nossa página de contato.
     password:
