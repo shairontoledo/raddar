@@ -1,6 +1,5 @@
 class Users::PasswordsController < Devise::PasswordsController
   prepend_before_filter :require_no_authentication, except: [:change, :do_change]
-  authorize_resource :class => false, only: [:change, :do_change]
 
   def change
     @user = User.find(current_user.id)

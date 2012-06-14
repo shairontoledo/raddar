@@ -14,16 +14,16 @@ class Ability
         cannot :destroy, Rank, is_last_level?: false
       end
 
-      can :manage, :account, user_id: user.id
+      can :manage, :account
       can [:create, :destroy], Comment, user_id: user.id
       can [:create, :destroy], Followership, user_id: user.id
       can :manage, Message, sender_id: user.id
       can [:read, :destroy_all], Message, recipient_id: user.id
       can :manage, Notification, user_id: user.id
-      can :manage, :notification, user_id: user.id
-      can :manage, :password, user_id: user.id
+      can :manage, :notification
+      can :manage, :password
       can :manage, Post, user_id: user.id
-      can :manage, :privacy, user_id: user.id
+      can :manage, :privacy
       can :manage, Pub, user_id: user.id
       can :manage, Stuff, pub: {user_id: user.id}
       can :create, Tag

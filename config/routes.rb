@@ -72,8 +72,8 @@ Raddar::Application.routes.draw do
   end
 
   devise_for :users, :controllers => {omniauth_callbacks: "users/omniauth_callbacks", registrations: "users/registrations", passwords: 'users/passwords' }
-  devise_scope :users do
-    get '/users/auth/:provider' => 'users/omniauth_callbacks#passthru'
+  devise_scope :user do
+    get '/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get '/users/password/change' => 'users/passwords#change', as: :change_user_password
     put '/users/password/change' => 'users/passwords#do_change', as: :change_user_password
   end
