@@ -33,30 +33,26 @@ r.save!
 u.roles << r
 
 universe = Universe.new
-universe.name = 'Vampiro: o Réquiem'
+universe.name = 'Sample Universe'
 universe.description = 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.'
 universe.save!
 
-r = universe.ranks.new name: 'Mortal', description: 'Mortallus'
+r = universe.ranks.new name: 'Larva', description: 'Mortallus'
 r.level = 1
 r.save!
 
-r = universe.ranks.new name: 'Neófito', description: 'Neofittus', level: 2
+r = universe.ranks.new name: 'Pupa', description: 'Neofittus', level: 2
 r.level = 2
 r.save!
 
-r = universe.ranks.new name: 'Ancillae', description: 'Ancillaeus', level: 3
+r = universe.ranks.new name: 'Adult', description: 'Ancillaeus', level: 3
 r.level = 3
 r.save!
 
-r = universe.ranks.new name: 'Ancião', description: 'Anciannus', level: 4
-r.level = 4
-r.save!
 
+f = Forum.create!(universe_id: universe.id, name: 'Test Forum', description: 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.')
 
-f = Forum.create!(universe_id: universe.id, name: 'Fórum de Testes', description: 'Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.')
-
-t = f.topics.build(name: 'Tópico de Testes')
+t = f.topics.build(name: 'Test Topic')
 t.user = u
 t.save!
 

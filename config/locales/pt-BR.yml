@@ -2,16 +2,12 @@ pt-BR:
   application:
     title: Raddar
     copyleft: Copyleft Raddar 2012
-  section:
+  index: Início
   ajax:
     loading: Carregando...
     sending: Enviando...
   action:
     search: Pesquisar
-    sign_in: Entrar
-    sign_in_with: "Entrar com %{provider}"
-    sign_out: Sair
-    sign_up: Cadastrar
     admin: Administrar
     edit: Editar
     follow: Seguir
@@ -20,16 +16,14 @@ pt-BR:
     reply: Responder
     quote: Citar
     comment: Comentar
-    watch: Notificar por e-mail
+    watch: Receber atualizações
     change: Alterar
     close: Fechar
-    forgot_password: Esqueceu sua senha?
-    change_password: Alterar senha
-    confirmation_not_received: Não recebeu o e-mail de confirmação?
-    resend_confirmation: Reenviar e-mail de confirmação
   rank:
-    s: Título
-    p: Títulos
+    s: Rank
+    p: Ranks
+    new: Novo rank
+    edit: Editar rank
   venue:
     s: Lugar
     p: Lugares
@@ -43,11 +37,15 @@ pt-BR:
       change_to: Alterar para...
       my: Sua localização atual
       other: Outro lugar
+    new: Novo lugar
+    edit: Editar lugar
   page:
     s: Página
     p: Páginas
     url: Link
     name_help: Será o nome do link para a página.
+    new: Nova página
+    edit: Editar página
   tag:
     s: Tag
     p: Tags
@@ -74,22 +72,30 @@ pt-BR:
     s: Papel
     p: Papéis
     admin: Administrador
-  followers: Seguidores
-  following: Seguindo
+  follower:
+    s: Seguidor
+    p: Seguidores
+  user_following: '%{user} está seguindo'
   universe:
     s: Universo
     p: Universos
+    new: Novo universo
+    edit: Editar universo
   pub:
     s: Publicação
     p: Publicações
+    edit: Editar publicação
+    new: Nova publicação
   stuff:
     s: Material
     p: Materiais
     new: Novo material
+    edit: Editar material
   forum:
     s: Fórum
     p: Fóruns
-    new: Novo Fórum
+    new: Novo fórum
+    edit: Editar fórum
   comment:
     s: Comentário
     p: Comentários
@@ -98,7 +104,8 @@ pt-BR:
     p: Tópicos
     last: Últimos tópicos
     views: visualizações
-    new: Novo Tópico
+    new: Novo tópico
+    edit: Editar tópico
     created_by: "Criado por %{user}"
   post:
     s: Postagem
@@ -108,16 +115,26 @@ pt-BR:
     s: Usuário
     p: Usuários
     last: Novos membros
-    account:
-      my: Meu perfil
-      edit: Editar perfil
-      settings: Editar informações
-      info: Informações do Perfil
     privacy: Privacidade
     accounts: Contas vinculadas
     notifications: Avisos
     notifications_description: "Receber avisos por e-mails sobre:"
     you: Este é você!
+    edit: Editar usuário
+    confirmation:
+      resend: Reenviar instruções de confirmação
+      not_received: Não recebeu o e-mail de confirmação?
+    password:
+      edit: Alterar senha
+      new: Esqueceu sua senha?
+    registration:
+      show: Meu perfil
+      edit: Editar conta
+      new: Cadastre-se! 
+    session:
+      new: Entrar
+      with: "Entrar com %{provider}"
+      destroy: Sair
   vote:
     like: Legal
     dislike: Uma droga
@@ -151,3 +168,5 @@ pt-BR:
     confirm_unload: As suas modificações ainda não foram gravadas.
     prompt:
       confirm: Você tem certeza?
+  admin:
+    page_title: Administração

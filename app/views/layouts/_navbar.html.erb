@@ -18,7 +18,7 @@
         <% end %>
         <ul class="nav pull-right">
           <% unless user_signed_in? %>
-            <li><%= link_to t('action.sign_in'), new_user_session_path %></li>
+            <li><%= link_to t('user.session.new'), new_user_session_path %></li>
           <% else %>
             
             <li class="dropdown" id="messages_notifications">
@@ -66,13 +66,13 @@
                 <li>
                   <%= link_to current_user do %>
                     <i class="icon-user"></i>
-                    <%= t('user.account.my') %>
+                    <%= t 'user.registration.show' %>
                   <% end %>
                 </li>
                 <li>
                   <%= link_to edit_user_registration_path do %>
                     <i class="icon-edit"></i>
-                    <%= t('user.account.settings') %>
+                    <%= t 'user.registration.edit' %>
                   <% end %>
                 </li>
                 <% if can? :manage, :all %>
@@ -80,7 +80,7 @@
                   <li>
                     <%= link_to admin_root_path do %>
                       <i class="icon-wrench"></i>
-                      <%= t('action.admin') %>
+                      <%= t 'action.admin' %>
                     <% end %>
                   </li>
                 <% end %>
@@ -88,7 +88,7 @@
                 <li>
                   <%= link_to destroy_user_session_path, :method=>'delete' do %>
                     <i class="icon-off"></i>
-                    <%= t('action.sign_out') %>
+                    <%= t 'user.session.destroy' %>
                   <% end %>
                 </li>
               </ul>

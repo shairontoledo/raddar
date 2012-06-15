@@ -8,7 +8,10 @@
     <meta content="text/javascript" http-equiv="content-script-type">
     <meta content="text/css" http-equiv="content-style-type">
     <meta content="no-cache" http-equiv="pragma">
-    <title><%= t('application.title') %></title>
+    <title>
+      <%= content_for(:page_title) + ' · ' + t('application.title') %>
+    </title>
+
     <%= csrf_meta_tags %>
 
     <%= javascript_include_tag "application" %>

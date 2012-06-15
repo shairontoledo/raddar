@@ -1,4 +1,10 @@
 module ApplicationHelper
+  def page_title *args
+    content_for :page_title do
+      args.join(' ')
+    end
+  end
+
   def humanize_datetime datetime
     str = ''
     if datetime > 1.day.ago

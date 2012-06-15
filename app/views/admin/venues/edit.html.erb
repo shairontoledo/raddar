@@ -1,4 +1,6 @@
-<h1>Editing venue</h1>
+<% admin_page_title t('venue.edit') %>
+
+<h1><%= t 'venue.edit' %></h1>
 
 <%= simple_form_for([:admin, @venue], :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>

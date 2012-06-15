@@ -1,3 +1,5 @@
+<% page_title t('user.privacy') %>
+
 <%= render 'users/shared/settings_header', {active: :privacy} %>
 
 <%= simple_form_for(@user, url: user_privacy_path, :html => {:class => 'form-horizontal'}) do |f| %>

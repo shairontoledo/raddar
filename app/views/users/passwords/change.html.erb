@@ -1,3 +1,5 @@
+<% page_title t('user.password.edit') %>
+
 <%= render 'users/shared/settings_header', {active: :change_password} %>
 
 <%= simple_form_for(@user, url: change_user_password_path, :html => {:class => 'form-horizontal'}) do |f| %>
