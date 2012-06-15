@@ -14,6 +14,8 @@
 <% end %>
 </div>
 
-<br />
-
-<%= link_to 'New Pub', new_pub_path if can? :new, Pub %>
+<% if can?(:create, Pub) %>
+  <%= link_to t('pub.new'), new_pub_path %>
+<% else %>
+  <%= render 'users/sessions/invite', {action: t('pub.new')} unless user_signed_in? %>
+<% end %>

@@ -10,7 +10,11 @@
 
 <br />
 
-<%= link_to 'New Venue', new_venue_path %>
+<% if can?(:create, Venue) %>
+  <%= link_to t('venue.new'), new_venue_path %>
+<% else %>
+  <%= render 'users/sessions/invite', {action: t('venue.new')} unless user_signed_in? %>
+<% end %>
 
 <div class="modal hide fade" id="change_location_modal">
   <div class="modal-header">

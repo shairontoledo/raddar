@@ -1,4 +1,8 @@
-<%= render 'comments/new', {comment: (@comment.nil? ? commentable.comments.new : @comment)} if can? :create, Comment %>
+<% if can?(:create, Comment) %>
+  <%= render 'comments/new', {comment: (@comment.nil? ? commentable.comments.new : @comment)} %>
+<% else %>
+  <%= render 'users/sessions/invite', {action: t('comment.new')} unless user_signed_in? %>
+<% end %>
 <div id="comments">
   <% commentable.comments.order_by([:created_at, :desc]).each do |comment| %>
     <%= render 'comments/show', {comment: comment} %>

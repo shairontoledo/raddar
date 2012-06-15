@@ -36,8 +36,8 @@ pt-BR:
       change: Alterar localização
       change_to: Alterar para...
       my: Sua localização atual
-      other: Outro lugar
-    new: Novo lugar
+      other: Outro local
+    new: Adicionar lugar
     edit: Editar lugar
   page:
     s: Página
@@ -85,7 +85,7 @@ pt-BR:
     s: Publicação
     p: Publicações
     edit: Editar publicação
-    new: Nova publicação
+    new: Criar nova publicação
   stuff:
     s: Material
     p: Materiais
@@ -99,6 +99,7 @@ pt-BR:
   comment:
     s: Comentário
     p: Comentários
+    new: Adicionar um comentário
   topic:
     s: Tópico
     p: Tópicos
@@ -111,6 +112,7 @@ pt-BR:
     s: Postagem
     p: Postagens
     last: Última atividade
+    new: Postar no tópico
   user:
     s: Usuário
     p: Usuários
@@ -135,9 +137,11 @@ pt-BR:
       new: Entrar
       with: "Entrar com %{provider}"
       destroy: Sair
+      invite: "Quer %{action}? Entre agora!"
   vote:
-    like: Legal
-    dislike: Uma droga
+    like: Gostei
+    dislike: Não gostei
+    new: Votar
   message:
     s: Mensagem
     p: Mensagens

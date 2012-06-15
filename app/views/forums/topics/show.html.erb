@@ -18,4 +18,8 @@
 
 <%= will_paginate @posts %>
 
-<%= render 'forums/posts/form' if can? :create, Post %>
+<% if can?(:create, Post) %>
+  <%= render 'forums/posts/form' %>
+<% else %>
+  <%= render 'users/sessions/invite', {action: t('post.new')} unless user_signed_in? %>
+<% end %>
