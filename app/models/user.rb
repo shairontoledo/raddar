@@ -146,6 +146,33 @@ class User
     user
   end
 
+  def self.find_for_twitter_oauth(access_token, user=nil)
+
+    data = access_token.extra.raw_info
+
+    if user.nil?
+      unless user = self.where(facebook_access_token: access_token.credentials.token).first
+        unless user = self.where(email: data.email).first
+          user = self.new
+          user.password = Devise.friendly_token[0,20]
+        end 
+      end
+    end
+
+    user.email = data.email if user.email.blank?
+    user.gender = data.gender if user.gender.blank?
+    user.name = data.username if user.name.blank?
+    user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') if user.date_of_birth.blank?
+    user.facebook_access_token = access_token.credentials.token
+    user.bio = data.bio if user.bio.blank?
+    user.location = data.location.name if user.location.blank?
+    user.remote_image_url = access_token.info.image if user.image.file.nil?
+    user.facebook_url = data.link
+    user.save
+    user.confirm! if(user.persisted? && data.verified && (!user.confirmed?))
+    user
+  end
+
   def self.new_with_session(params, session)
     super.tap do |user|
       if data = session['devise.facebook_data']

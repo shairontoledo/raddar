@@ -65,7 +65,7 @@ Raddar::Application.routes.draw do
 
   namespace 'users', as: 'user' do
     resource :privacy, controller: 'privacy', only: [:edit, :update]
-    resources :accounts, except: [:edit, :update, :show]
+    resources :accounts, only: [:index, :destroy]
     resource :notifications, only: [:edit, :update] do
       post 'read', on: :collection
     end

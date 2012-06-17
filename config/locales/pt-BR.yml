@@ -7,6 +7,7 @@ pt-BR:
     loading: Carregando...
     sending: Enviando...
   action:
+    add: Adicionar
     search: Pesquisar
     admin: Administrar
     edit: Editar
@@ -75,7 +76,6 @@ pt-BR:
   follower:
     s: Seguidor
     p: Seguidores
-  user_following: '%{user} está seguindo'
   universe:
     s: Universo
     p: Universos
@@ -117,8 +117,13 @@ pt-BR:
     s: Usuário
     p: Usuários
     last: Novos membros
+    following: '%{user} segue'
     privacy: Privacidade
-    accounts: Contas vinculadas
+    account:
+      s: Rede conectada
+      p: Redes conectadas
+      no: "Não há conta adicionada"
+      as: "Conectado como %{user}"
     notifications: Avisos
     notifications_description: "Receber avisos por e-mails sobre:"
     you: Este é você!
@@ -162,8 +167,12 @@ pt-BR:
       updated: Suas configurações de avisos foram atualizadas.
       error: Não foi possível alterar suas configrações de avisos. Tente novamente mais tarde.
     accounts:
-      destroyed: 'Sua conta do %{provider} foi removida.'
-      error: 'Não foi possível remover sua conta do %{provider} no momento. Tente novamente mais tarde.'
+      add:
+        success: 'Conta do %{provider} adicionada!'
+        error: 'Não foi possível adicionar esta conta do %{provider}. Talvez outra pessoa já a esteja usando.'
+      destroy:
+        success: 'Sua conta do %{provider} foi removida.'
+        error: 'Não foi possível remover sua conta do %{provider} no momento. Tente novamente mais tarde.'
     followership:
       create: 'Você está seguindo %{name}'
       destroy: 'Você não mais segue %{name}'
