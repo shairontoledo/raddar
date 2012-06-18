@@ -1,0 +1,1 @@
+<%= t 'sysop_mailer.body.contact.html', name: @contact.name, email: @contact.email, user: (@contact.user.nil? ? '---' : link_to(@contact.user.name, @contact.user.url)), message: simple_text(@message) %>

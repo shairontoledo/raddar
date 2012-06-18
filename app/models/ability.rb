@@ -41,5 +41,6 @@ class Ability
     can [:read, :nearby], Venue
     can [:index, :search], :home
     can :read, :followee
+    can [:new, :create], Contact
   end
 end

@@ -205,8 +205,8 @@ Devise.setup do |config|
   # up on your models and hooks.
   # config.omniauth :github, 'APP_ID', 'APP_SECRET', :scope => 'user,public_repo'
   require 'omniauth-facebook'
-  config.omniauth :facebook, FACEBOOK_APP_ID, FACEBOOK_APP_SECRET, scope: 'email,user_birthday,user_location,user_about_me', image_size: 'large'
-  config.omniauth :twitter, TWITTER_CONSUMER_KEY, TWITTER_CONSUMER_SECRET
+  config.omniauth :facebook, Raddar::config.oauth['facebook']['app_id'], Raddar::config.oauth['facebook']['app_secret'], scope: 'email,user_birthday,user_location,user_about_me', image_size: 'large'
+  config.omniauth :twitter, Raddar::config.oauth['twitter']['consumer_key'], Raddar::config.oauth['twitter']['consumer_secret']
 
   # ==> Warden configuration
   # If you want to use other strategies, that are not supported by Devise, or

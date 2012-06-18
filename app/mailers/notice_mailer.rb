@@ -40,8 +40,7 @@ class NoticeMailer < ActionMailer::Base
 
   private
   def send_mail user, subject
-    title = I18n.t('application.title')
-
+    title = Raddar::config.app['name']
 
     mail to: "#{user.name} <#{user.email}>", subject: "#{title} - #{subject}"
   end

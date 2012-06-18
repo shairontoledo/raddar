@@ -3,6 +3,12 @@ pt-BR:
     template:
       automatic: Este é um e-mail automático. Favor não responder para este endereço.
       hello: "Olá, %{name}!"
+  sysop_mailer:
+    subject:
+      contact: "Novo contato de %{name}"
+    body:
+      contact:
+        html: "<h3>Novo contato<h3>Nome: %{name}<br/>E-mail: %{email}<br/>Usuário: %{user}<br/>Mensagem:<pre>%{message}</pre>"
   notice_mailer:
     subject:
       new_message: "%{sender} lhe enviou uma mensagem"

@@ -5,4 +5,4 @@
 /tmp
 public/uploads/
 public/assets/
-config/raddar.rb
+config/raddar.yml

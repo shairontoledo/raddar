@@ -9,7 +9,7 @@
     <meta content="text/css" http-equiv="content-style-type">
     <meta content="no-cache" http-equiv="pragma">
     <title>
-      <%= content_for(:page_title) + ' · ' + t('application.title') %>
+      <%= content_for(:page_title) + ' · ' + Raddar::config.app['name'] %>
     </title>
 
     <%= csrf_meta_tags %>
@@ -68,7 +68,8 @@
       <hr>
 
       <footer>
-        <p><%= t('application.copyleft') %></p>
+        &copy; <%= Raddar::config.app['name'] %> <%= Time.now.year %> ::
+        <%= link_to t('contact.s'), new_contact_path %>
       </footer>
 
     </div><!--/.fluid-container-->

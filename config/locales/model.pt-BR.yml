@@ -38,7 +38,12 @@ pt-BR:
       notification: Aviso
       page: Página
       rank: Título
+      contact: Contato
     attributes:
+      contact: &contact_attributes
+        name: Nome
+        email: E-mail
+        message: Mensagem
       rank: &rank_attributes
         name: Nome
         description: Descrição
@@ -110,6 +115,7 @@ pt-BR:
   page: *page_attributes
   universe: *universe_attributes
   rank: *rank_attributes
+  contact: *contact_attributes
   simple_form:
     options:
       user:

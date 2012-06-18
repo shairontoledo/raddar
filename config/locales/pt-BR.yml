@@ -1,7 +1,4 @@
 pt-BR:
-  application:
-    title: Raddar
-    copyleft: Copyleft Raddar 2012
   index: Início
   ajax:
     loading: Carregando...
@@ -20,11 +17,16 @@ pt-BR:
     watch: Receber atualizações
     change: Alterar
     close: Fechar
+    send: Enviar
   rank:
     s: Rank
     p: Ranks
     new: Novo rank
     edit: Editar rank
+  contact:
+    s: Contato
+    p: Contatos
+    subtitle: "Tem alguma dúvida, sugestão, reclamação? Entre em contato conosco!"
   venue:
     s: Lugar
     p: Lugares

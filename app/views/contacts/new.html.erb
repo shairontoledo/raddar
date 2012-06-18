@@ -1,0 +1,25 @@
+<% page_title t('contact.s') %>
+
+<div class="page-header">
+  <h1><%= t 'contact.s' %></h1>
+  <small><%= t 'contact.subtitle' %></small>
+</div>
+
+<%= simple_form_for @contact, html: {:class => 'form-horizontal'} do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <% if user_signed_in? %>
+      <%= f.input :name, disabled: true, input_html: {value: current_user.name} %>
+      <%= f.input :email, disabled: true, input_html: {value: current_user.email} %>
+    <% else %>
+      <%= f.input :name %>
+      <%= f.input :email %>
+    <% end %>
+    <%= f.input :message, as: :text, input_html: {rows: '8'} %>
+  </div>
+
+  <div class="form-actions">
+    <%= f.button :submit, t('action.send') %>
+  </div>
+<% end %>

@@ -100,6 +100,7 @@ Raddar::Application.routes.draw do
 
   get 'search' => 'home#search', as: :search
 
+  resources :contacts, only: [:new, :create]
 
   root to: 'home#index'
 
