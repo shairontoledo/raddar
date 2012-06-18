@@ -32,6 +32,7 @@ gem 'daemons'
 gem 'mongoid_slug'
 gem 'mongoid_fulltext'
 gem 'whenever', :require => false
+gem 'recaptcha', :require => 'recaptcha/rails'
 
 group :development, :test do
   gem 'rspec-rails'

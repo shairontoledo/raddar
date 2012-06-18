@@ -17,6 +17,9 @@
       <%= f.input :email %>
     <% end %>
     <%= f.input :message, as: :text, input_html: {rows: '8'} %>
+    <% unless user_signed_in? %>
+      <%= captcha @contact %>
+    <% end %>
   </div>
 
   <div class="form-actions">

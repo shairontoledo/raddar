@@ -1,0 +1,5 @@
+pt-BR:
+  recaptcha:
+    errors:
+      verification_failed: 'As palavras não conferem com a imagem. Tente novamente.'
+      recaptcha_unavailable: 'Recaptcha: serviço indisponível. Tente novamente em instantes.'

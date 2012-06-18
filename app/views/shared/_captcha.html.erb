@@ -1,0 +1,6 @@
+<div class="control-group <%= 'error' unless model_instance.errors[:captcha].empty? %>">
+  <div class="controls">
+    <%= recaptcha_tags display: {theme: Raddar::config.recaptcha['theme']} %>
+    <span class="help-inline"><%= model_instance.errors[:captcha].first %></span>
+  </div>
+</div>
