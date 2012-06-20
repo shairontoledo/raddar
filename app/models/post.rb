@@ -5,7 +5,7 @@ class Post
 
   field :content, type: String
 
-  belongs_to :topic
+  belongs_to :topic, touch: true
   belongs_to :user
 
   attr_accessible :content

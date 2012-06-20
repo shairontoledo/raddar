@@ -5,7 +5,7 @@ class Comment
 
   field :content, type: String
 
-  belongs_to :commentable, polymorphic: true
+  belongs_to :commentable, touch: true, polymorphic: true
   belongs_to :user
 
   attr_accessible :content

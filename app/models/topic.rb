@@ -8,7 +8,7 @@ class Topic
   field :views, type: Integer, default: 0
   slug :name
 
-  belongs_to :forum
+  belongs_to :forum, touch: true
   has_many :posts
   belongs_to :user
 

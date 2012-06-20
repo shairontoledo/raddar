@@ -13,7 +13,7 @@ class ForumsController < ApplicationController
   # GET /forums/1
   # GET /forums/1.xml
   def show
-    @topics = @forum.last_topics.paginate(page: params[:page], per_page: 10)
+    @topics = @forum.topics.order_by([:updated_at, :desc]).paginate(page: params[:page], per_page: 10)
     respond_with @forum
   end
 end

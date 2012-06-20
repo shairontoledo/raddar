@@ -20,17 +20,7 @@ class Forum
   before_destroy :has_no_topics?
 
   def last_topics
-    topics = self.topics.to_a
-    topics.sort_by! do |topic| 
-      unless topic.first_posts.empty? 
-        topic.first_posts.last.created_at
-      else
-        topic.created_at
-      end
-    end 
-
-    topics.reverse!
-    topics
+    self.topics.order_by [:updated_at, :desc]
   end
 
   def self.find *args

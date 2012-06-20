@@ -29,6 +29,10 @@ class Pub
     end
   end
 
+  def last_stuffs
+    self.stuffs.order_by [:updated_at, :desc]
+  end
+
   def to_s
     "#{self.name} #{self.subtitle} #{self.description}"
   end

@@ -12,7 +12,7 @@ class Stuff
   mount_uploader :image, ImageUploader
   slug :name
 
-  belongs_to :pub
+  belongs_to :pub, touch: true
 
   validates_presence_of :name, :content, :pub
   validates_length_of :name, maximum: 100

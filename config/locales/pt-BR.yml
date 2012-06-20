@@ -19,6 +19,9 @@ pt-BR:
     close: Fechar
     send: Enviar
     back: Voltar
+    more: Ver mais
+  feed:
+    title: '%{app_name} - Principais novidades'
   rank:
     s: Rank
     p: Ranks
@@ -90,6 +93,8 @@ pt-BR:
     p: Publicações
     edit: Editar publicação
     new: Criar nova publicação
+    feed:
+      title: '%{name} - Novos materiais'
   stuff:
     s: Material
     p: Materiais
