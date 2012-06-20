@@ -12,7 +12,8 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= submit_button f %>
+    <%= back_button %>
     <%= destroy_button @pub if @pub.persisted? && can?(:destroy, @pub) %>
   </div>
 <% end %>

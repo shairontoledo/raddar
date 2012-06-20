@@ -26,6 +26,8 @@
   <%= rich_format @venue.description %>
 </div>
 
+<%= link_to t('venue.report'), new_contact_path, :class => 'btn btn-mini' %>
+
 <%= render 'tags/index', {taggable: @venue} %>
 
 <%= render 'votes/show', {votable: @venue} %>

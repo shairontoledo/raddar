@@ -2,7 +2,7 @@ require "application_responder"
 
 class ApplicationController < ActionController::Base
   self.responder = ApplicationResponder
-  respond_to :html
+  respond_to :html, :atom
 
   check_authorization :unless => :devise_controller?
 

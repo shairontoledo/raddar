@@ -1,5 +1,112 @@
 <% page_title t('index') %>
 
-<div class="page-header">
-  <h1>Welcome!</h1>
+<div class="hero-unit">
+  <h1><%= Raddar::config.app['name'] %></h1>
+  <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.</p>
+</div>
+
+<div class="row">
+  <div class="span6">
+    <div id="index_carousel" class="carousel slide">
+      <div class="carousel-inner">
+        <% @pubs.limit(8).each_with_index do |pub, i| %>
+          <div class="item <%= 'active' if i == 0 %>">
+            <%= image_tag pub.image.full.url, style: 'width: 100%; height: 500px' %>
+            <div class="carousel-caption">
+              <h4><%= link_to pub.name, pub.url %></h4>
+              <p><%= pub.subtitle %></p>
+            </div>
+          </div>
+        <% end %> 
+      </div>
+
+      <a class="carousel-control left" href="#index_carousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#index_carousel" data-slide="next">&rsaquo;</a>
+    </div>
+  </div>
+
+  <div class="span3">
+    <h3>Publicações</h3>
+    <hr/>
+    <% @pubs.limit(4).each do |pub| %>
+      <div class="row">
+        <div class="span1">
+          <%= link_to image_tag(pub.image.thumb.url), pub.url, :class => 'thumbnail' %>
+        </div>
+        <div class="span2">
+          <h6><%= link_to pub.name, pub.url %></h6>
+          <small><%= link_to pub.subtitle, pub.url %></small>
+        </div>
+      </div>
+    <% end %>
+    <hr/>
+    <%= link_to 'Ver mais', pubs_path, :class => 'btn btn-primary' %>
+  </div>
+</div>
+
+<hr/>
+
+<h3>Últimos materiais</h3>
+<hr/>
+<ul class="thumbnails">
+  <% @stuffs.limit(6).each do |stuff| %>
+    <li class="span3">
+      <%= link_to stuff.url, :class => 'thumbnail' do %>
+        <%= image_tag stuff.image.medium.url %>
+        <div class="caption">
+          <h5><%= stuff.name %></h5>
+        </div>
+      <% end %> 
+    </li>
+  <% end %> 
+</ul>
+
+<hr/>
+
+<div class="row">
+  <div class="span3">
+    <h3>Novos lugares</h3>
+    <hr/>
+    <% @venues.limit(4).each do |venue| %>
+      <div class="row">
+        <div class="span1">
+          <%= link_to image_tag(venue.image.thumb.url), venue.url, :class => 'thumbnail' %>
+        </div>
+        <div class="span2">
+          <h6><%= link_to venue.name, venue.url %></h6>
+          <small><%= link_to truncate(venue.description), venue.url %></small>
+        </div>
+      </div>
+    <% end %>
+    <hr/>
+    <%= link_to 'Ver mais', venues_path, :class => 'btn btn-primary' %>
+  </div>
+
+  <div class="span3">
+    <h3>Últimas discussões</h3>
+    <hr/>
+    <ul class="unstyled">
+      <% @topics.limit(6).each do |topic| %>
+        <li>
+          <h3><%= link_to topic.name, topic.url %></h3>
+          <h6><%= link_to topic.forum.name, topic.forum.url %></h6>
+        </li>
+      <% end %> 
+    </ul>
+    <hr/>
+    <%= link_to 'Ver mais', forums_path, :class => 'btn btn-primary' %>
+  </div>
+
+  <div class="span3">
+    <h3>Novos membros</h3>
+    <hr/>
+    <dl>
+      <% @venues.limit(6).each do |venue| %>
+        <dt><%= link_to venue.name, venue.url %></dt>
+        <dd><%= venue.city %></dd>
+      <% end %> 
+    </dl>
+    <hr/>
+    <%= link_to 'Ver mais', pubs_path, :class => 'btn btn-primary' %>
+  </div>
 </div>

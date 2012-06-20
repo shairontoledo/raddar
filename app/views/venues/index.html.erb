@@ -11,7 +11,7 @@
 <br />
 
 <% if can?(:create, Venue) %>
-  <%= link_to t('venue.new'), new_venue_path %>
+  <%= link_to t('venue.new'), new_venue_path, id: 'new_venue_link' %>
 <% else %>
   <%= render 'users/sessions/invite', {action: t('venue.new')} unless user_signed_in? %>
 <% end %>

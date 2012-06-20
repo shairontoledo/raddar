@@ -8,7 +8,8 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= submit_button f %>
+    <%= back_button %>
     <%= destroy_button [:admin, @page]  if @page.persisted? && can?(:destroy, @page) %>
   </div>
 <% end %>

@@ -10,12 +10,8 @@
   <%= render 'venues/form_inputs', {form: f} %>
 
   <div class="form-actions">
-    <%= f.button :submit %>
+    <%= submit_button f %>
+    <%= back_button %>
     <%= destroy_button [:admin, @venue] if can?(:destroy, @venue) %>
   </div>
 <% end %>
-
-
-
-
-<%= link_to 'Show', @venue %>

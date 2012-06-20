@@ -27,6 +27,14 @@ module ApplicationHelper
     render 'shared/edit_button', {path: path}
   end
 
+  def submit_button form, label=nil
+    render 'shared/submit_button', {form: form, label: label}
+  end
+
+  def back_button
+    render 'shared/back_button'
+  end
+
   def destroy_button path, text='action.delete'
     render 'shared/destroy_button', {path: path, text: text}
   end

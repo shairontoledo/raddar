@@ -1,3 +1,5 @@
+map = null
+
 window.venues_map = (center)->
   map = simple_map 'map_venues', center
 
@@ -57,13 +59,14 @@ $ ->
               term: term
             update_nearby_venues(data)
 
-
-  if $('#map_new_venue').length > 0
-    user_location (location)->
-      single_marker_map 'map_new_venue', new google.maps.LatLng(location.lat, location.lng), true
+    new_venue_link = $('a#new_venue_link')
+    new_venue_link.click ->
+      new_venue_link.attr 'href', new_venue_link.attr('href') + "?lat=#{map.getCenter().lat()}&lng=#{map.getCenter().lng()}" 
 
   if $('#map_venue').length > 0
       single_marker_map 'map_venue', new google.maps.LatLng($('#lat').val(),$('#lng').val()), false
 
   if $('#map_edit_venue').length > 0
       single_marker_map 'map_edit_venue', new google.maps.LatLng($('#lat').val(),$('#lng').val()), true
+
+  

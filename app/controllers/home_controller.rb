@@ -4,6 +4,10 @@ class HomeController < ApplicationController
   authorize_resource :class => false
   
   def index
+    @pubs = Pub.all.order_by [:created_at, :desc]
+    @stuffs = Stuff.all.order_by [:created_at, :desc]
+    @topics = Topic.all.order_by [:created_at, :desc]
+    @venues = Venue.all.order_by [:created_at, :desc]
   end
 
   def search

@@ -12,6 +12,8 @@
       <%= content_for(:page_title) + ' · ' + Raddar::config.app['name'] %>
     </title>
 
+    <%= auto_discovery_link_tag :atom, (content_for?(:atom_feed) ? content_for(:atom_feed) : root_url(format: :atom)) %>
+
     <%= csrf_meta_tags %>
 
     <%= javascript_include_tag "application" %>

@@ -7,13 +7,13 @@
 <%= simple_form_for(@user, url: user_notifications_path, :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="inputs">
+  <div class="form-inputs">
     <% [:messages, :followers].each do |field| %>
       <%= f.input "notify_#{field}".to_sym, as: :boolean %>
     <% end %>
   </div>
 
-  <div class="actions">
-    <%= f.button :submit, "Update" %>
+  <div class="form-actions">
+    <%= submit_button f %>
   </div>
 <% end %>

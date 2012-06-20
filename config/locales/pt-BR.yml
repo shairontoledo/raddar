@@ -18,6 +18,7 @@ pt-BR:
     change: Alterar
     close: Fechar
     send: Enviar
+    back: Voltar
   rank:
     s: Rank
     p: Ranks
@@ -26,7 +27,7 @@ pt-BR:
   contact:
     s: Contato
     p: Contatos
-    subtitle: "Tem alguma dúvida, sugestão, reclamação? Entre em contato conosco!"
+    subtitle: "Tem alguma dúvida, sugestão, reclamação ou deseja reportar um problema? Entre em contato conosco!"
   venue:
     s: Lugar
     p: Lugares
@@ -42,6 +43,7 @@ pt-BR:
       other: Outro local
     new: Adicionar lugar
     edit: Editar lugar
+    report: Reportar um problema
   page:
     s: Página
     p: Páginas

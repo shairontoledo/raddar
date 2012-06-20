@@ -1,8 +1,11 @@
 <% page_title t('contact.s') %>
 
 <div class="page-header">
-  <h1><%= t 'contact.s' %></h1>
-  <small><%= t 'contact.subtitle' %></small>
+  <h1>
+    <%= t 'contact.s' %>
+    <br/>
+    <small><%= t 'contact.subtitle' %></small>
+  </h1>
 </div>
 
 <%= simple_form_for @contact, html: {:class => 'form-horizontal'} do |f| %>
@@ -23,6 +26,7 @@
   </div>
 
   <div class="form-actions">
-    <%= f.button :submit, t('action.send') %>
+    <%= submit_button f, t('action.send') %>
+    <%= back_button %>
   </div>
 <% end %>

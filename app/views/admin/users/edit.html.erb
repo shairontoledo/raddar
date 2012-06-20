@@ -15,12 +15,12 @@
 <%= simple_form_for(@user, :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
 
-  <div class="inputs">
+  <div class="form-inputs">
     <%= f.input :status, collection: [:active, :blocked], as: :radio_buttons %>
     <%= f.association :roles, as: :check_boxes, collection: Role.all, label_method: lambda {|role| t("role.#{role.name}")} %>
   </div>
 
-  <div class="actions">
-    <%= f.button :submit, "Update" %>
+  <div class="form-actions">
+    <%= submit_button f %>
   </div>
 <% end %>

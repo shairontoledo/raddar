@@ -15,6 +15,7 @@ class VenuesController < ApplicationController
   # GET /venues/new
   # GET /venues/new.xml
   def new
+    @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
     respond_with @venue
   end
 
