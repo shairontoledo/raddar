@@ -21,7 +21,9 @@
     <br/>
     <%= link_to "#{t('user.following', user: @user.name)}: #{@user.followerships.count}", user_followees_path(@user) %>
 
-    <%= show_protected_user_field @user, :facebook_url %>
+    <% @user.accounts.each do |account| %>
+      <%= account_link account %>
+    <% end %>
     <%= show_protected_user_field @user, :email %>
     <%= show_protected_user_field @user, :date_of_birth %>
     <%= show_protected_user_field @user, :gender %>

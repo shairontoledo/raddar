@@ -3,26 +3,27 @@
 <%= render 'users/shared/settings_header', {active: :accounts} %>
 
 <table class="table table-striped">
-  <tr>
-    <td>
-      Facebook
-    </td>
-    <td>
-      <% if current_user.facebook_url.blank? %>
-        <%= t 'user.account.no' %>
-      <% else %>
-        <%= link_to t('user.account.as', user: current_user.facebook_url.split('/').last), current_user.facebook_url, target: '_blank' %>
-      <% end %>
-    </td>
-    <td>
-      <% if current_user.facebook_url.blank? %>
-        <%= link_to user_omniauth_authorize_path(:facebook), :class => 'btn btn-primary' do %>
-          <i class="icon-plus"></i>
-          <%= t 'action.add' %>
+  <% User.omniauth_providers.each do |provider| %>
+    <% account = current_user.accounts.where(provider: provider).first %>
+    <tr>
+      <td><%= provider.to_s.titleize %></td>
+      <td>
+        <% if account.blank? %>
+          <%= t 'user.account.no' %>
+        <% else %>
+          <%= link_to t('user.account.as', user: account.name), account.url, target: '_blank' %>
         <% end %>
-      <% else %>
-        <%= destroy_button user_account_path(:facebook) %>
-      <% end %>
-    </td>
-  </tr>
+      </td>
+      <td>
+        <% if account.blank? %>
+          <%= link_to user_omniauth_authorize_path(provider), :class => 'btn btn-primary' do %>
+            <i class="icon-plus"></i>
+            <%= t 'action.add' %>
+          <% end %>
+        <% else %>
+          <%= destroy_button [:user, account] %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
 </table>
