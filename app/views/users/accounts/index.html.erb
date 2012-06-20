@@ -21,7 +21,7 @@
             <%= t 'action.add' %>
           <% end %>
         <% else %>
-          <%= destroy_button [current_user,account] %>
+          <%= destroy_button [:user, account] %>
         <% end %>
       </td>
     </tr>

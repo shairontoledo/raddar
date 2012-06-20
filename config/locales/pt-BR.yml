@@ -172,9 +172,6 @@ pt-BR:
       add:
         success: 'Conta do %{provider} adicionada!'
         error: 'Não foi possível adicionar esta conta do %{provider}. Talvez outra pessoa já a esteja usando.'
-      destroy:
-        success: 'Sua conta do %{provider} foi removida.'
-        error: 'Não foi possível remover sua conta do %{provider} no momento. Tente novamente mais tarde.'
     followership:
       create: 'Você está seguindo %{name}'
       destroy: 'Você não mais segue %{name}'

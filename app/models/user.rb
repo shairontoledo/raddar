@@ -1,5 +1,3 @@
-require 'pp'
-
 class User
   include Raddar::Model
   include Geocoder::Model::Mongoid
@@ -261,7 +259,6 @@ class User
 
 
   def add_oauth_account access_data
-    pp access_data
 
     provider = access_data.provider.to_sym
 
@@ -269,7 +266,6 @@ class User
     account.provider = provider
     account.token = access_data.credentials.token
     account.secret = access_data.credentials.secret
-    account.user = self
    
     if provider == :facebook
       data = access_data.extra.raw_info
@@ -287,14 +283,12 @@ class User
     end
 
     if provider == :twitter
-      data = access_data.extra.raw_info
 
-      oauth_bio = data.description
+      oauth_bio = access_data.info.description
       oauth_location = access_data.info.location
-      oauth_image_url = data.profile_image_url
+      oauth_image_url = access_data.info.image
 
-      account.verified = data.verified
-      account.name = data.screen_name
+      account.name = access_data.info.nickname
       account.url  = access_data.info.urls.Twitter
     end
 
@@ -306,9 +300,10 @@ class User
     self.location = oauth_location if self.location.blank?
     self.remote_image_url = oauth_image_url if self.image.file.nil?
     
-    account.save
-
-    pp account.errors
+    if account.valid?
+      account.user = self
+      account.save
+    end
 
     account
   end

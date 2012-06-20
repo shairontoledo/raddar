@@ -39,6 +39,7 @@ pt-BR:
       page: Página
       rank: Título
       contact: Contato
+      account: Conta
     attributes:
       contact: &contact_attributes
         name: Nome
