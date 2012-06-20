@@ -14,7 +14,7 @@ class Ability
         cannot :destroy, Rank, is_last_level?: false
       end
 
-      can :manage, :account
+      can :manage, Account, user_id: user.id
       can [:create, :destroy], Comment, user_id: user.id
       can [:create, :destroy], Followership, user_id: user.id
       can :manage, Message, sender_id: user.id

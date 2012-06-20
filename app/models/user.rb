@@ -1,3 +1,5 @@
+require 'pp'
+
 class User
   include Raddar::Model
   include Geocoder::Model::Mongoid
@@ -54,9 +56,6 @@ class User
   field :gender_privacy, type: Symbol, default: :public
   field :bio, type: String
   field :email_privacy, type: Symbol, default: :public
-  field :facebook_access_token, type: String
-  field :facebook_url, type: String
-  field :facebook_url_privacy, type: Symbol, default: :public
   field :status, type: Symbol, default: :active
   mount_uploader :image, ImageUploader
   field :coordinates, type: Array
@@ -80,17 +79,18 @@ class User
   has_many :notifications, dependent: :destroy
   has_many :venues, dependent: :nullify
   has_and_belongs_to_many :ranks, dependent: :nullify
+  has_many :accounts
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender
-  validates_uniqueness_of :name, :facebook_access_token
+  validates_uniqueness_of :name
   validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|_)+)$/
   validates_length_of :name, maximum: 20, minimum: 3
   validates_length_of :bio, maximum: 500
   validates_length_of :location, maximum: 200
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
   validates_inclusion_of :status, :in => [:active,:blocked], allow_blank: false
-  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :facebook_url_privacy, :location_privacy,
+  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :location_privacy,
     :in => [:public,:only_me], allow_blank: false
 
   # Virtual attributes
@@ -110,7 +110,7 @@ class User
   reverse_geocoded_by :coordinates
   #after_validation :reverse_geocode  # auto-fetch address
 
-  def self.find_first_by_auth_conditions(warden_conditions)
+  def self.find_first_by_auth_conditions warden_conditions
     conditions = warden_conditions.dup
     if login = conditions.delete(:login)
       self.any_of({ :name =>  /^#{Regexp.escape(login)}$/i }, { :email =>  /^#{Regexp.escape(login)}$/i }).first
@@ -119,72 +119,45 @@ class User
     end
   end
 
-  def self.find_for_facebook_oauth(access_token, user=nil)
+  def self.find_for_oauth access_data, user=nil
 
-    data = access_token.extra.raw_info
+    provider = access_data.provider.to_sym
+
+    if provider == :facebook
+      account = Account.where(provider: provider).and(token: access_data.credentials.token).first
+    else
+      account = Account.where(provider: provider).and(token: access_data.credentials.token).and(secret: access_data.credentials.secret).first
+    end
 
     if user.nil?
-      unless user = self.where(facebook_access_token: access_token.credentials.token).first
-        unless user = self.where(email: data.email).first
-          user = self.new
+      
+      user = account.user unless account.nil?
+
+      if user.nil?
+
+        user = User.where(email: access_data.extra.raw_info.email).first if provider == :facebook
+
+        if user.nil?
+          user = User.new
           user.password = Devise.friendly_token[0,20]
         end 
       end
     end
 
-    user.email = data.email if user.email.blank?
-    user.gender = data.gender if user.gender.blank?
-    user.name = data.username if user.name.blank?
-    user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') if user.date_of_birth.blank?
-    user.facebook_access_token = access_token.credentials.token
-    user.bio = data.bio if user.bio.blank?
-    user.location = data.location.name if user.location.blank?
-    user.remote_image_url = access_token.info.image if user.image.file.nil?
-    user.facebook_url = data.link
+    user.add_oauth_account access_data
     user.save
-    user.confirm! if(user.persisted? && data.verified && (!user.confirmed?))
-    user
-  end
 
-  def self.find_for_twitter_oauth(access_token, user=nil)
-
-    data = access_token.extra.raw_info
-
-    if user.nil?
-      unless user = self.where(facebook_access_token: access_token.credentials.token).first
-        unless user = self.where(email: data.email).first
-          user = self.new
-          user.password = Devise.friendly_token[0,20]
-        end 
-      end
+    if user.persisted? 
+      user.confirm! unless user.confirmed?
     end
 
-    user.email = data.email if user.email.blank?
-    user.gender = data.gender if user.gender.blank?
-    user.name = data.username if user.name.blank?
-    user.date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y') if user.date_of_birth.blank?
-    user.facebook_access_token = access_token.credentials.token
-    user.bio = data.bio if user.bio.blank?
-    user.location = data.location.name if user.location.blank?
-    user.remote_image_url = access_token.info.image if user.image.file.nil?
-    user.facebook_url = data.link
-    user.save
-    user.confirm! if(user.persisted? && data.verified && (!user.confirmed?))
     user
   end
 
-  def self.new_with_session(params, session)
+  def self.new_with_session params, session
     super.tap do |user|
-      if data = session['devise.facebook_data']
-        user.name = data['extra']['raw_info']['username']
-        user.email = data['extra']['raw_info']['email']
-        user.gender = data['extra']['raw_info']['gender']
-        user.bio = data['extra']['raw_info']['bio']
-        user.date_of_birth = Date.strptime(data['extra']['raw_info']['birthday'], '%m/%d/%Y')
-        user.facebook_url = data['extra']['raw_info']['link']
-        user.facebook_access_token = data['credentials']['token']
-        user.remote_image_url = data['info']['image']
-        session.delete('devise.facebook_data')
+      if data = session['devise.oauth_temp_data']
+        user.add_oauth_account data
       end
     end
   end
@@ -284,5 +257,59 @@ class User
       self.ranks << rank
     end
     rank
+  end
+
+
+  def add_oauth_account access_data
+    pp access_data
+
+    provider = access_data.provider.to_sym
+
+    account = Account.new 
+    account.provider = provider
+    account.token = access_data.credentials.token
+    account.secret = access_data.credentials.secret
+    account.user = self
+   
+    if provider == :facebook
+      data = access_data.extra.raw_info
+
+      oauth_gender = data.gender
+      oauth_date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y')
+      oauth_bio = data.bio
+      oauth_location = data.location.name
+      oauth_image_url = access_data.info.image
+
+      account.verified = data.verified
+      account.name = data.username
+      account.url  = data.link
+      account.email = data.email
+    end
+
+    if provider == :twitter
+      data = access_data.extra.raw_info
+
+      oauth_bio = data.description
+      oauth_location = access_data.info.location
+      oauth_image_url = data.profile_image_url
+
+      account.verified = data.verified
+      account.name = data.screen_name
+      account.url  = access_data.info.urls.Twitter
+    end
+
+    self.email = account.email if self.email.blank?
+    self.gender = oauth_gender if self.gender.blank?
+    self.name = account.name if self.name.blank?
+    self.date_of_birth = oauth_date_of_birth if self.date_of_birth.blank?
+    self.bio = oauth_bio if self.bio.blank?
+    self.location = oauth_location if self.location.blank?
+    self.remote_image_url = oauth_image_url if self.image.file.nil?
+    
+    account.save
+
+    pp account.errors
+
+    account
   end
 end

@@ -1,5 +1,5 @@
 class Users::AccountsController < ApplicationController
-  authorize_resource :class => false
+  load_and_authorize_resource
 
   def index
   end

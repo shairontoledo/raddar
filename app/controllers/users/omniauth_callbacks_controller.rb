@@ -1,9 +1,7 @@
-require 'pp'
-
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
-    @user = User.find_for_facebook_oauth(request.env["omniauth.auth"], current_user)
+    @user = User.find_for_oauth request.env["omniauth.auth"], current_user
     provider = 'Facebook'
 
     if user_signed_in?
@@ -18,14 +16,14 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
         flash[:notice] = t "devise.omniauth_callbacks.success", kind: provider
         sign_in_and_redirect @user, event: :authentication
       else
-        session["devise.facebook_data"] = request.env["omniauth.auth"]
+        session["devise.oauth_temp_data"] = request.env["omniauth.auth"]
         redirect_to new_user_registration_url
       end
     end
   end
 
   def twitter
-    pp request.env['omniauth.auth']
+
   end
 
 
