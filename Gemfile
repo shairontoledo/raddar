@@ -29,7 +29,7 @@ gem 'geocoder', git: 'git://github.com/bhammond/geocoder.git'
 gem 'delayed_job_mongoid', :git => 'git://github.com/asavartsov/delayed_job_mongoid.git'
 gem 'daemons'
 gem 'mongoid_slug', :git => 'git://github.com/digitalplaywright/mongoid-slug.git', :branch => 'mognoid_30'
-gem 'mongoid_fulltext'
+gem 'mongoid_fulltext', :git => 'git://github.com/volmer/mongoid_fulltext.git'
 gem 'whenever', :require => false
 gem 'recaptcha', :require => 'recaptcha/rails'
 
