@@ -2,8 +2,11 @@
 
 FactoryGirl.define do
   factory :page do
-    name "MyString"
-    title "MyString"
-    content "MyString"
+    sequence :name do |n|
+      "Sample Page #{n}"
+    end
+
+    title 'This is a title'
+    content 'This is a content'
   end
 end

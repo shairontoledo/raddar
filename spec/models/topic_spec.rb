@@ -1,5 +1,5 @@
 require 'spec_helper'
 
-describe Forums::Topic do
+describe Topic do
   pending "add some examples to (or delete) #{__FILE__}"
 end
