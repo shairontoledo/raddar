@@ -1,6 +1,6 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.6'
+gem 'rails', '3.2.7'
 
 group :assets do
   gem 'sass-rails'
@@ -25,10 +25,10 @@ gem 'omniauth-twitter'
 gem 'cancan'
 gem 'private_pub'
 gem 'thin'
-gem 'geocoder', git: 'git://github.com/bhammond/geocoder.git'
-gem 'delayed_job_mongoid', git: 'git://github.com/asavartsov/delayed_job_mongoid.git'
+gem 'geocoder', git: 'git://github.com/alexreisner/geocoder.git'
+gem 'delayed_job_mongoid', git: 'git://github.com/collectiveidea/delayed_job_mongoid.git'
 gem 'daemons'
-gem 'mongoid_slug', git: 'git://github.com/digitalplaywright/mongoid-slug.git', branch: 'mognoid_30'
+gem 'mongoid_slug', git: 'git://github.com/hakanensari/mongoid-slug.git'
 gem 'mongoid_fulltext'
 gem 'whenever', :require => false
 gem 'recaptcha', :require => 'recaptcha/rails'
