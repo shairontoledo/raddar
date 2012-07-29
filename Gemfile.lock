@@ -133,7 +133,7 @@ GEM
       yajl-ruby (>= 1.0.0)
     faye-websocket (0.4.6)
       eventmachine (>= 0.12.0)
-    ffi (1.1.0)
+    ffi (1.1.1)
     hashie (1.2.0)
     highline (1.6.13)
     hike (1.2.1)
@@ -161,6 +161,10 @@ GEM
       moped (~> 1.1.3)
       origin (~> 1.0.3)
       tzinfo (~> 0.3.22)
+    mongoid-rspec (1.5.1)
+      mongoid (>= 3.0.1)
+      rake
+      rspec (>= 2.9)
     mongoid_fulltext (0.6.0)
       mongoid (~> 3.0.1)
       unicode_utils (~> 1.0.0)
@@ -312,6 +316,7 @@ DEPENDENCIES
   geocoder!
   jquery-rails
   mongoid
+  mongoid-rspec
   mongoid_fulltext
   mongoid_slug!
   omniauth-facebook

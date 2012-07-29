@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :tag do
-    name "MyString"
+    sequence :name do |n|
+      "weird#{n}"
+    end
   end
 end

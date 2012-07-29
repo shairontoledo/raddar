@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Venue do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject do
+    FactoryGirl.build :venue
+  end
+
+  it 'is valid given the proper values' do
+    should be_valid
+  end
 end

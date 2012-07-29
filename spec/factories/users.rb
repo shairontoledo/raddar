@@ -11,5 +11,9 @@ FactoryGirl.define do
     date_of_birth { 13.years.ago.to_date }
     gender :female
     password '123456'
+
+    before :create do |user|
+      user.confirm!
+    end
   end
 end

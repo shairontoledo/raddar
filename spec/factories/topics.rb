@@ -1,8 +1,9 @@
 # Read about factories at https://github.com/thoughtbot/factory_girl
 
 FactoryGirl.define do
-  factory :forums_topic, :class => 'Forums::Topic' do
-    title "MyString"
-    views 1
+  factory :topic do
+    name 'Polemic!'
+    forum
+    user
   end
 end

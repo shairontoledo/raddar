@@ -2,6 +2,7 @@
 
 FactoryGirl.define do
   factory :universe do
-    name "MyString"
+    name 'Cosmic Horror'
+    description 'In this section you will find a whole bunch of horror tales!'
   end
 end

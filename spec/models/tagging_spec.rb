@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Tagging do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject do
+    FactoryGirl.build :tagging
+  end
+
+  it 'is valid given the proper values' do
+    should be_valid
+  end
 end

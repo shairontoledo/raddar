@@ -1,7 +1,7 @@
 class Role
   include Raddar::Model
 
-  field :name, :type => Symbol
+  field :name, type: Symbol
 
   has_and_belongs_to_many :users, dependent: :nullify
 

@@ -30,4 +30,13 @@ class Rank
     end
     highest.reverse
   end
+
+  def self.highest user, universe
+    rank = user.ranks.where(universe_id: universe.id).order_by([:level, :desc]).first
+    if rank.nil?
+      rank = universe.ranks.order_by([:level, :asc]).first
+      user.ranks << rank
+    end
+    rank
+  end
 end

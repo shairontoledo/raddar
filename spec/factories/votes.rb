@@ -2,5 +2,8 @@
 
 FactoryGirl.define do
   factory :vote do
+    user
+    votable factory: :stuff
+    value :like
   end
 end

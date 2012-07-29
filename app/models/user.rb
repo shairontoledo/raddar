@@ -166,16 +166,6 @@ class User
     !self.roles.where(name: role).empty?
   end
 
-  def remove_role(role)
-    r = Role.where(name: role).first
-    self.roles.delete(r)
-  end
-
-  def add_role(role)
-    r = Role.where(name: role).first
-    self.roles << r
-  end
-
   def active?
     self.status == :active
   end
@@ -188,52 +178,6 @@ class User
      self.active? ? super : I18n.t('flash.account.blocked')
   end
 
-  def chat_with user_id, last=nil
-
-    messages = self.sent_messages.where(recipient_id: user_id).and(:sender_status.ne => :deleted) + self.incoming_messages.where(sender_id: user_id).and(:recipient_status.ne => :deleted)
-
-    messages.sort_by!{|message| message.created_at}
-    unless last.nil?
-      messages = messages.take_while{|message| message.created_at < last.created_at}
-    end
-    messages
-  end
-
-  def mark_chat_as_read_with user_id
-    self.incoming_messages.where(sender_id: user_id).and(recipient_status: :unread).update_all(recipient_status: :read)
-  end
-
-  def mark_chats_as_read
-    self.incoming_messages.where(recipient_status: :unread).update_all(recipient_status: :read)
-  end
-
-  def destroy_chat_with user
-    self.chat_with(user.id).each do |message|
-      if user.id == message.sender_id
-        message.recipient_status = :deleted
-      else
-        message.sender_status = :deleted
-      end
-      message.save
-    end
-  end
-
-  def all_chats status=nil
-    chats = []
-    condition = (status.nil? ? {:recipient_status.ne => :deleted} : {recipient_status: status})
-    (self.incoming_messages.where(condition).distinct(:sender_id) | self.sent_messages.where(condition).distinct(:recipient_id)).each {|user_id| chats << self.chat_with(user_id)}
-    chats.sort_by!{|chat| chat.last.created_at}.reverse!
-    chats
-  end
-
-  def count_unread_chats
-    self.incoming_messages.where(recipient_status: :unread).distinct(:sender_id).count
-  end
-
-  def unread_chats
-    self.all_chats :unread
-  end
-
   def self.find *args
     if args.length == 1 and not args[0].is_a? Symbol
       find_by_slug(*args) || super
@@ -241,24 +185,6 @@ class User
       super
     end
   end
-
-  def read_notifications
-    self.notifications.where(status: :unread).update_all(status: :read)
-  end
-
-  def unread_notifications
-    self.notifications.where(status: :unread).order_by([:created_at, :desc])
-  end
-
-  def highest_rank universe
-    rank = self.ranks.where(universe_id: universe.id).order_by([:level, :desc]).first
-    if rank.nil?
-      rank = universe.ranks.order_by([:level, :asc]).first
-      self.ranks << rank
-    end
-    rank
-  end
-
 
   def add_oauth_account access_data
 

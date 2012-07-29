@@ -14,7 +14,7 @@ class Topic
 
   attr_accessible :name
 
-  validates_presence_of :name, :user
+  validates_presence_of :name, :user, :forum
   validates_length_of :name, maximum: 100
 
   def first_posts

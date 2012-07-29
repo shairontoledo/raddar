@@ -2,7 +2,9 @@
 
 FactoryGirl.define do
   factory :rank do
-    name "MyString"
-    description "MyString"
+    universe
+    sequence :level
+    name { "Hero #{level}"}
+    description { "You have #{3 * level.to_i} heroic acts!" }
   end
 end

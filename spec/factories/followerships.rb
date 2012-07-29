@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :followership do
+    user
+    followable factory: :stuff
   end
 end

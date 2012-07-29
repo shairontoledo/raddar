@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :watching do
+    user
+    watchable factory: :pub
   end
 end

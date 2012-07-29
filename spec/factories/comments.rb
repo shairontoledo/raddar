@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :comment do
-    content "MyString"
+    user
+    content 'Nice one!'
+    commentable factory: :stuff
   end
 end

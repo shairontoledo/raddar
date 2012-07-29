@@ -3,7 +3,7 @@ class Account
 
   belongs_to :user
 
-  field :provider, type: String
+  field :provider, type: Symbol
   field :token, type: String
   field :secret, type: String
   field :name, type: String

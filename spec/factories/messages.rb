@@ -2,6 +2,8 @@
 
 FactoryGirl.define do
   factory :message do
-    content "MyString"
+    content 'Hi, sweetheart!'
+    sender factory: :user
+    recipient factory: :user
   end
 end

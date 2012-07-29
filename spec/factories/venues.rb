@@ -2,9 +2,7 @@
 
 FactoryGirl.define do
   factory :venue do
-    name "MyString"
-    description "MyString"
-    address "MyString"
-    city "MyString"
+    name 'Minas Tirith'
+    description 'White tower, white tree!'
   end
 end

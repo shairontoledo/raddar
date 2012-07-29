@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :stuff do
-    name "MyString"
-    content "MyString"
+    pub
+    name 'Chapter 1 - Prologue'
+    content 'This is how my horror story begins.'
   end
 end

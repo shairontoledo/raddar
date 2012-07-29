@@ -1,5 +1,11 @@
 require 'spec_helper'
 
 describe Watching do
-  pending "add some examples to (or delete) #{__FILE__}"
+  subject do
+    FactoryGirl.build :watching
+  end
+
+  it 'is valid given the proper values' do
+    should be_valid
+  end
 end

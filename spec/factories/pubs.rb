@@ -2,7 +2,8 @@
 
 FactoryGirl.define do
   factory :pub do
-    name "MyString"
-    description "MyString"
+    user
+    name 'Dagon'
+    description 'A nice horror story'
   end
 end

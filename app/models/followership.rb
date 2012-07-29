@@ -1,7 +1,7 @@
 class Followership
   include Raddar::Model
 
-  belongs_to :user
+  belongs_to :user, inverse_of: :followerships
   belongs_to :followable, polymorphic: true
 
   validates_presence_of :user, :followable
