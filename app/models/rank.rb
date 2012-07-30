@@ -8,7 +8,7 @@ class Rank
   belongs_to :universe
   has_and_belongs_to_many :users, dependent: :nullify
 
-  validates_presence_of :name, :level, :description, :universe_id
+  validates_presence_of :name, :level, :description, :universe
   validates_uniqueness_of :name, scope: :universe_id
   validates_uniqueness_of :level, scope: :universe_id
   validates_length_of :name, maximum: 30
@@ -26,7 +26,7 @@ class Rank
   def highest_users
     highest = []
     self.users.each do |user|
-      highest << user if user.highest_rank(self.universe) == self
+      highest << user if Rank.highest(user, self.universe) == self
     end
     highest.reverse
   end

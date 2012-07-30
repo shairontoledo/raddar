@@ -1,80 +1,60 @@
 require 'spec_helper'
 
 describe User do
-  let :user do
-    user = FactoryGirl.build :user
-  end
+  subject { FactoryGirl.build :user }
 
   it 'is a Raddar model' do
-    user.should be_a_kind_of(Raddar::Model)
+    should be_a_kind_of(Raddar::Model)
   end
 
-  it 'is valid given proper values' do
-    user.should be_valid
-  end
+  it { should be_valid }
 
   describe '#name' do
     it 'is required' do
-      user.name = nil
-      user.should_not be_valid
+      should validate_presence_of(:name)
     end
 
     it 'accepts only numbers, letters and _' do
-      user.name = 'user#1'
-      user.should_not be_valid
-      user.name = 'user 1'
-      user.should_not be_valid
+      should validate_format_of(:name).with_format(/^(([a-z]|[A-Z]|[0-9]|_)+)$/)
     end
 
     it 'has a maximum lenght of 20' do
-      user.name = 21.times.map{'e'}.join
-      user.should_not be_valid
+      should validate_length_of(:name).with_maximum(20)
     end
 
     it 'has a minimum lenght of 3' do
-      user.name = 'ee'
-      user.should_not be_valid
+      should validate_length_of(:name).with_minimum(3)
     end
 
     it 'is unique' do
-      other_user = FactoryGirl.create :user
-      user.name = other_user.name
-      user.should_not be_valid
+      should validate_uniqueness_of(:name)
     end
   end
 
   describe '#email' do
     it 'is required' do
-      user.email = nil
-      user.should_not be_valid
+      should validate_presence_of(:email)
     end
   end
 
   describe '#date_of_birth' do
     it 'is required' do
-      user.date_of_birth = nil
-      user.should_not be_valid
+      should validate_presence_of(:date_of_birth)
     end
 
     it 'reffers to 13 years ago at least' do
-      user.date_of_birth = 12.years.ago.to_date
-      user.should_not be_valid
+      subject.date_of_birth = 12.years.ago.to_date
+      should_not be_valid
     end
   end
 
   describe '#gender' do
     it 'is required' do
-      user.gender = nil
-      user.should_not be_valid
+      should validate_presence_of(:gender)
     end
 
     it 'only accepts :male or :female as value' do
-      user.gender = :female
-      user.should be_valid
-      user.gender = :male
-      user.should be_valid
-      user.gender = :lord_varys
-      user.should_not be_valid
+      should validate_inclusion_of(:gender).to_allow([:male, :female])
     end
   end
 
@@ -89,17 +69,7 @@ describe User do
         end
 
         it 'only accepts :public or :only_me' do
-          user["#{field}_privacy"] = :public
-          user.should be_valid
-          user["#{field}_privacy"] = :only_me
-          user.should be_valid
-          user["#{field}_privacy"] = :friends
-          user.should_not be_valid
-        end
-
-        it 'is required' do
-          user["#{field}_privacy"] = nil
-          user.should_not be_valid
+          should validate_inclusion_of(:"#{field}_privacy").to_allow([:public, :only_me])
         end
       end
     end
@@ -107,8 +77,7 @@ describe User do
 
   describe '#bio' do
     it 'has a maximum lenght of 500' do
-      user.bio = 501.times.map{'e'}.join
-      user.should_not be_valid
+      should validate_length_of(:bio).with_maximum(500)
     end
   end
 
@@ -119,28 +88,21 @@ describe User do
     end
 
     it 'only accepts :active or :blocked' do
-      user.status = :active
-      user.should be_valid
-      user.status = :blocked
-      user.should be_valid
-      user.status = :banned
-      user.should_not be_valid
+      should validate_inclusion_of(:status).to_allow([:active, :blocked])
     end
 
     it 'is required' do
-      user.status = nil
-      user.should_not be_valid
+      should validate_presence_of(:status)
     end
   end
 
   it 'has an image uploader' do
-    user.image.class.should == ImageUploader
+    subject.image.class.should == ImageUploader
   end
 
   describe '#location' do
     it 'has a maximum lenght of 200' do
-      user.location = 201.times.map{'e'}.join
-      user.should_not be_valid
+      should validate_length_of(:location).with_maximum(200)
     end
   end
 
@@ -188,32 +150,32 @@ describe User do
 
   describe '#role?' do
     it 'returns false if User does not have the given role' do
-      user.roles.should_receive(:where).with(instance_of(Hash)).and_return([])
-      user.role?(:baker).should be_false
+      subject.roles.should_receive(:where).with(instance_of(Hash)).and_return([])
+      subject.role?(:baker).should be_false
     end
 
     it 'returns true if User has the given role' do
-      user.roles.should_receive(:where).with(instance_of(Hash)).and_return([double('role')])
-      user.role?(:baker).should be_true
+      subject.roles.should_receive(:where).with(instance_of(Hash)).and_return([double('role')])
+      subject.role?(:baker).should be_true
     end
   end
 
   describe '#active?' do
     it 'returns true if the user is active' do
-      user.status = :active
-      user.active?.should be_true
+      subject.status = :active
+      subject.active?.should be_true
     end
 
     it 'returns false if the user is not active' do
-      user.status = :lazy
-      user.active?.should be_false
+      subject.status = :lazy
+      subject.active?.should be_false
     end
   end
 
   describe '#active_for_authentication?' do
     it 'returns false if the user is not active' do
-      user.status = :lazy
-      user.active_for_authentication?.should be_false
+      subject.status = :lazy
+      subject.active_for_authentication?.should be_false
     end
   end
 end

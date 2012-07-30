@@ -3,7 +3,7 @@
 FactoryGirl.define do
   factory :rank do
     universe
-    sequence :level
+    level { universe.ranks.count + 1 }
     name { "Hero #{level}"}
     description { "You have #{3 * level.to_i} heroic acts!" }
   end

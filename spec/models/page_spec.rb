@@ -1,48 +1,37 @@
 require 'spec_helper'
 
 describe Page do
-  let :page do
-    FactoryGirl.build :page
+  subject { FactoryGirl.build :page }
+
+  it { should be_valid }
+
+  describe '#name' do
+    it 'is required' do
+      should validate_presence_of(:name)
+    end
+
+    it 'has a maximum length of 100' do
+      should validate_length_of(:name).with_maximum(100)
+    end
+
+    it 'is unique' do
+      should validate_uniqueness_of(:name)
+    end
   end
 
-  it 'is valid given proper values' do
-    page.should be_valid
+  describe '#title' do
+    it 'has a maximum length of 200' do
+      should validate_length_of(:title).with_maximum(200)
+    end
   end
 
-  it 'is invalid if it has no name' do
-    page.name = nil
-    page.should_not be_valid
-  end
+  describe '#content' do
+    it 'is required' do
+      should validate_presence_of(:content)
+    end
 
-  it 'is invalid if it has no content' do
-    page.content = nil
-    page.should_not be_valid
-  end
-
-  it 'is valid if it has no title' do
-    page.title = nil
-    page.should be_valid
-  end
-
-  it 'has a unique name' do
-    page.save!
-    other_page = FactoryGirl.build :page
-    other_page.name = page.name
-    other_page.should_not be_valid
-  end
-
-  it 'has a maximum name lenght of 100' do
-    page.name = 101.times.map{'e'}.join
-    page.should_not be_valid
-  end
-
-  it 'has a maximum title lenght of 200' do
-    page.title = 201.times.map{'e'}.join
-    page.should_not be_valid
-  end
-
-  it 'has a maximum content lenght of 60_000' do
-    page.content = 60_001.times.map{'e'}.join
-    page.should_not be_valid
+    it 'has a maximum length of 60_000' do
+      should validate_length_of(:content).with_maximum(60_000)
+    end
   end
 end

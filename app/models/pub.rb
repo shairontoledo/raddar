@@ -17,7 +17,7 @@ class Pub
   validates_presence_of :name, :description, :user
   validates_length_of :name, maximum: 100
   validates_length_of :subtitle, maximum: 120
-  validates_length_of :description, maximum: 6000
+  validates_length_of :description, maximum: 6_000
 
   attr_accessible :name, :subtitle, :description, :image, :image_cache, :universe_id
 
@@ -30,7 +30,7 @@ class Pub
   end
 
   def last_stuffs
-    self.stuffs.order_by [:updated_at, :desc]
+    self.stuffs.order_by [:created_at, :desc]
   end
 
   def to_s

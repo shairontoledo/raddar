@@ -9,6 +9,7 @@ class Tag
 
   validates_presence_of :name
   validates_uniqueness_of :name, case_sensitive: false
+  validates_length_of :name, maximum: 100
 
   def self.find *args
     if args.length == 1 and not args[0].is_a? Symbol

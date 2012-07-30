@@ -7,8 +7,8 @@ class Stuff
   include Raddar::Commentable
   include Raddar::Searchable
 
-  field :name, :type => String
-  field :content, :type => String
+  field :name, type: String
+  field :content, type: String
   mount_uploader :image, ImageUploader
   slug :name
 
@@ -16,7 +16,7 @@ class Stuff
 
   validates_presence_of :name, :content, :pub
   validates_length_of :name, maximum: 100
-  validates_length_of :content, maximum: 30000
+  validates_length_of :content, maximum: 60_000
 
   attr_accessible :name, :content, :image, :image_cache
 

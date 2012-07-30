@@ -1,32 +1,27 @@
 require 'spec_helper'
 
 describe Role do
-  let :role do
-    FactoryGirl.build :role
-  end
+  subject { FactoryGirl.build :role }
 
-  it 'is valid given the proper values' do
-    role.should be_valid
+  it { should be_valid }
+
+  describe '#user' do
+    it 'is a relation with users' do
+      should have_and_belong_to_many(:users)
+    end
   end
 
   describe '#name' do
     it 'is required' do
-      role.name = nil
-      role.should_not be_valid
-    end
-
-    it 'is unique' do
-      other_role = FactoryGirl.build :role
-      other_role.save!
-      role.name = other_role.name
-      role.should_not be_valid
+      should validate_presence_of(:name)
     end
 
     it 'only accepts :admin as value' do
-      role.name = :admin
-      role.should be_valid
-      role.name = :hand_of_the_king
-      role.should_not be_valid
+      should validate_inclusion_of(:name).to_allow([:admin])
+    end
+
+    it 'is unique' do
+      should validate_uniqueness_of(:name)
     end
   end 
 end

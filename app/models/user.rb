@@ -82,7 +82,7 @@ class User
   has_many :accounts
 
   # Validations
-  validates_presence_of :name, :date_of_birth, :gender
+  validates_presence_of :name, :date_of_birth, :gender, :status
   validates_uniqueness_of :name
   validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|_)+)$/
   validates_length_of :name, maximum: 20, minimum: 3
