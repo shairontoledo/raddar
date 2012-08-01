@@ -5,9 +5,11 @@ describe Post do
     FactoryGirl.build :post
   end
 
-  it 'is valid given the proper values' do
-    should be_valid
-  end
+  it { should be_valid }
+
+  it { should be_a_raddar_model }
+  it { should be_votable }
+  it { should be_searchable }
 
   describe '#topic' do
     it 'is a relation with a topic' do
@@ -40,9 +42,8 @@ describe Post do
   end
 
   describe '#url' do
-    it 'returns the topic url'
-    it 'appends the #post_ID anchor in the url' do
-      subject.url.should match(/^(.*?)#post_#{subject.id}$/)
+    it 'returns the topic url with the #post_ID anchor in the url' do
+      subject.url.should match(/^\/forums\/(.*?)\/topics\/(.*?)#post_#{subject.id}$/)
     end
   end
 

@@ -5,6 +5,10 @@ describe Page do
 
   it { should be_valid }
 
+  it { should be_a_raddar_model }
+
+  it { should have_slug(:name) }
+
   describe '#name' do
     it 'is required' do
       should validate_presence_of(:name)

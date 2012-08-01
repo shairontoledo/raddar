@@ -16,12 +16,4 @@ class Page
 
   attr_accessible :name, :title, :content
 
-
-  def self.find *args
-    if args.length == 1 and not args[0].is_a? Symbol
-      find_by_slug(*args) || super
-    else
-      super
-    end
-  end
 end

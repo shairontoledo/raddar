@@ -5,6 +5,8 @@ describe Account do
 
   it { should be_valid }
 
+  it { should be_a_raddar_model }
+
   describe '#provider' do
     it 'is required' do
       should validate_presence_of(:provider)

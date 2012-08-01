@@ -3,11 +3,13 @@ require 'spec_helper'
 describe User do
   subject { FactoryGirl.build :user }
 
-  it 'is a Raddar model' do
-    should be_a_kind_of(Raddar::Model)
-  end
-
   it { should be_valid }
+
+  it { should be_a_raddar_model }
+  it { should be_followable }
+  it { should be_searchable }
+
+  it { should have_slug(:name) }
 
   describe '#name' do
     it 'is required' do

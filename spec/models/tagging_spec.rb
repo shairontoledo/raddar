@@ -5,9 +5,9 @@ describe Tagging do
     FactoryGirl.build :tagging
   end
 
-  it 'is valid given the proper values' do
-    should be_valid
-  end
+  it { should be_valid }
+
+  it { should be_a_raddar_model }
 
   describe '#tag' do
     it 'is a relation with a tag' do

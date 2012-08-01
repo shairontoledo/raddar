@@ -15,5 +15,13 @@ FactoryGirl.define do
     before :create do |user|
       user.confirm!
     end
+
+    factory :user_with_notifications do
+      ignore { notifications_count 3 }
+
+      after :create do |user, evaluator|
+        FactoryGirl.create_list :notification, evaluator.notifications_count, user: user
+      end
+    end
   end
 end

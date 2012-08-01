@@ -33,14 +33,6 @@ class Venue
   reverse_geocoded_by :coordinates
   #after_validation :reverse_geocode  # auto-fetch address
 
-  def self.find *args
-    if args.length == 1 and not args[0].is_a? Symbol
-      find_by_slug(*args) || super
-    else
-      super
-    end
-  end
-
   def complete_address
     [self.address, self.city].compact.join(', ')
   end

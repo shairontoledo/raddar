@@ -3,7 +3,6 @@ class User
   include Geocoder::Model::Mongoid
   include Mongoid::Slug
   include Raddar::Followable
-  include Mongoid::FullTextSearch
   include Raddar::Searchable
 
   # Include default devise modules. Others available are:
@@ -176,14 +175,6 @@ class User
 
   def inactive_message
      self.active? ? super : I18n.t('flash.account.blocked')
-  end
-
-  def self.find *args
-    if args.length == 1 and not args[0].is_a? Symbol
-      find_by_slug(*args) || super
-    else
-      super
-    end
   end
 
   def add_oauth_account access_data

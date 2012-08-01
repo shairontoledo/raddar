@@ -1,11 +1,11 @@
 GIT
-  remote: git://github.com/alexreisner/geocoder.git
+  remote: https://github.com/alexreisner/geocoder.git
   revision: 7c344826eccbd860b7f0a7479cb5a56698ba1e0b
   specs:
     geocoder (1.1.2)
 
 GIT
-  remote: git://github.com/collectiveidea/delayed_job_mongoid.git
+  remote: https://github.com/collectiveidea/delayed_job_mongoid.git
   revision: 4b32ef99f182232f2286f8fc8ce70fe5e60bfddf
   specs:
     delayed_job_mongoid (1.1.0)
@@ -13,7 +13,7 @@ GIT
       mongoid (~> 3.0)
 
 GIT
-  remote: git://github.com/digitalplaywright/carrierwave-mongoid.git
+  remote: https://github.com/digitalplaywright/carrierwave-mongoid.git
   revision: 4a000f4c2463bfb20972bbdc85e15175120bbb3e
   branch: mongoid-3.0
   specs:
@@ -22,11 +22,12 @@ GIT
       mongoid (~> 3.0.0.rc)
 
 GIT
-  remote: git://github.com/hakanensari/mongoid-slug.git
-  revision: 8b5a112d8324c254cccd602348bac04a823ba5fc
+  remote: https://github.com/hakanensari/mongoid-slug.git
+  revision: 4160f5029a779f045338ee3adf0bc3e52adad92f
+  branch: 0.20.0
   specs:
-    mongoid_slug (0.10.0)
-      mongoid (~> 3.0)
+    mongoid_slug (0.20.0)
+      mongoid (~> 3.0.0)
       stringex (~> 1.4)
 
 GEM
@@ -117,10 +118,10 @@ GEM
     eventmachine (1.0.0.rc.4)
     execjs (1.4.0)
       multi_json (~> 1.0)
-    factory_girl (3.5.0)
+    factory_girl (3.6.0)
       activesupport (>= 3.0.0)
-    factory_girl_rails (3.5.0)
-      factory_girl (~> 3.5.0)
+    factory_girl_rails (3.6.0)
+      factory_girl (~> 3.6.0)
       railties (>= 3.0.0)
     faraday (0.8.1)
       multipart-post (~> 1.1)
@@ -133,7 +134,7 @@ GEM
       yajl-ruby (>= 1.0.0)
     faye-websocket (0.4.6)
       eventmachine (>= 0.12.0)
-    ffi (1.1.1)
+    ffi (1.1.3)
     hashie (1.2.0)
     highline (1.6.13)
     hike (1.2.1)
@@ -156,10 +157,10 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    mongoid (3.0.2)
+    mongoid (3.0.3)
       activemodel (~> 3.1)
-      moped (~> 1.1.3)
-      origin (~> 1.0.3)
+      moped (~> 1.1)
+      origin (~> 1.0)
       tzinfo (~> 0.3.22)
     mongoid-rspec (1.5.1)
       mongoid (>= 3.0.1)
@@ -168,7 +169,7 @@ GEM
     mongoid_fulltext (0.6.0)
       mongoid (~> 3.0.1)
       unicode_utils (~> 1.0.0)
-    moped (1.1.5)
+    moped (1.2.0)
     multi_json (1.3.6)
     multipart-post (1.1.5)
     net-scp (1.0.4)

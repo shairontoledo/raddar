@@ -5,10 +5,17 @@ describe Stuff do
     FactoryGirl.build :stuff
   end
 
-  it 'is valid given the proper values' do
-    should be_valid
-  end
+  it { should be_valid }
 
+  it { should be_a_raddar_model }
+  it { should be_taggable }
+  it { should be_commentable }
+  it { should be_watchable }
+  it { should be_searchable }
+  it { should be_votable }
+
+  it { should have_slug(:name) }
+  
   describe '#pub' do
     it 'is a relation with a pub' do
       should belong_to(:pub)
@@ -40,7 +47,9 @@ describe Stuff do
   end
 
   describe '#url' do
-    it 'returns its url'
+    it 'returns its url' do
+      subject.url.should match(/^\/pubs\/(.*?)\/stuffs\/#{subject._slugs.first}$/)
+    end
   end
 
   describe '#to_s' do

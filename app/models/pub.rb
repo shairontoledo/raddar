@@ -21,14 +21,6 @@ class Pub
 
   attr_accessible :name, :subtitle, :description, :image, :image_cache, :universe_id
 
-  def self.find *args
-    if args.length == 1 and not args[0].is_a? Symbol
-      find_by_slug(*args) || super
-    else
-      super
-    end
-  end
-
   def last_stuffs
     self.stuffs.order_by [:created_at, :desc]
   end

@@ -5,9 +5,13 @@ describe Forum do
     FactoryGirl.build :forum
   end
 
-  it 'is valid given the proper values' do
-    should be_valid
-  end
+  it { should be_valid }
+
+  it { should be_a_raddar_model }
+  it { should be_followable }
+  it { should be_searchable }
+
+  it { should have_slug(:name) }
 
   it { should have_many(:topics)}
   it { should belong_to(:universe)}

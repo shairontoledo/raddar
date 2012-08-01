@@ -6,9 +6,9 @@ describe Rank do
     FactoryGirl.build :rank
   end
 
-  it 'is valid given the proper values' do
-    should be_valid
-  end
+  it { should be_valid }
+
+  it { should be_a_raddar_model }
 
   describe '#universe' do
     it 'is a relation with an universe' do
@@ -87,14 +87,51 @@ describe Rank do
     its(:is_last_level?) { should be_false }
   end
 
-  describe '#highest_users' do
-    it 'returns users that it owns'
-    it 'returns users that has the related rank as theirs highest rank in its universe'
-    it 'returns users ordered by rank acquirance'
+  context 'with users' do
+    before :each do 
+      @rank = FactoryGirl.create :rank
+      @user = FactoryGirl.create :user
+      @rank.users << @user
+      @universe = @rank.universe
+      @user.ranks << FactoryGirl.create(:rank, universe: @universe, level: (@rank.level + 1))
+      @another_user = FactoryGirl.create :user
+      @rank.users << @another_user
+    end
+
+    describe '#highest_users' do
+
+      it 'returns users that has the related rank as theirs highest rank in its universe' do
+        @rank.highest_users.should_not include(@user)
+        @rank.highest_users.should include(@another_user)
+      end
+
+      it 'returns users ordered by descending rank acquirance date' do
+        yet_another_user = FactoryGirl.create :user
+        @rank.users << yet_another_user
+        @rank.highest_users.should == [yet_another_user, @another_user]
+      end
+    end
   end
 
   describe '::highest' do
-    it 'returns the highest rank of the given user in the given universe'
-    it "adds the lowest rank of the given universe to the given user case he/she doesn't have one"
+    before :each do
+      @rank = FactoryGirl.create :rank
+      @user = FactoryGirl.create :user
+      @rank.users << @user
+      @universe = @rank.universe
+      @another_rank = FactoryGirl.create(:rank, universe: @universe, level: (@rank.level + 1))
+      @user.ranks << @another_rank
+    end
+
+    it 'returns the highest rank of the given user in the given universe' do
+      Rank.highest(@user, @universe).should == @another_rank
+    end
+
+    it "adds the lowest rank of the given universe to the given user case he/she doesn't have one" do
+      another_user = FactoryGirl.create :user
+      @rank.users << another_user
+
+      Rank.highest(another_user, @universe).should == @rank
+    end
   end
 end

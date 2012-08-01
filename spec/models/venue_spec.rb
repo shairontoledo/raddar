@@ -11,6 +11,15 @@ describe Venue do
 
   it { should belong_to(:user) }
 
+  it { should be_a_raddar_model }
+  it { should be_taggable }
+  it { should be_commentable }
+  it { should be_watchable }
+  it { should be_searchable }
+  it { should be_votable }
+
+  it { should have_slug(:name) }
+
   describe '#name' do
     it 'is required' do
       should validate_presence_of(:name)

@@ -5,9 +5,11 @@ describe Comment do
     FactoryGirl.build :comment
   end
 
-  it 'is valid given the proper values' do
-    should be_valid
-  end
+  it { should be_valid }
+
+  it { should be_a_raddar_model }
+  it { should be_votable }
+  it { should be_searchable }
 
   describe '#user' do
     it 'is a relation with User' do

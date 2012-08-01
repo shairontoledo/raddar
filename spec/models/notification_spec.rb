@@ -7,6 +7,8 @@ describe Notification do
 
   it { should be_valid }
 
+  it { should be_a_raddar_model }
+
   it { should have_fields(:item_path, :image_path) }
 
   describe '#user' do
@@ -39,12 +41,32 @@ describe Notification do
     end
   end 
 
-  describe '::read_all' do
-    it 'marks all notifications of the given user as read'
-  end
+  context 'Given an user with notifications' do
+    let :user do
+      FactoryGirl.create :user_with_notifications
+    end
 
-  describe '::all_unread' do
-    it 'returns all unread notifications of the given user'
-    it 'returns notifications ordered by descending date of creation'
+    describe '::read_all' do
+      it 'marks all notifications of the given user as read' do
+        Notification.read_all user
+        Notification.all_unread(user).should be_empty
+      end
+    end
+
+    describe '::all_unread' do
+      it 'returns all unread notifications of the given user' do
+        user.notifications = []
+        read_notification = FactoryGirl.create :notification, status: :read
+        unread_notification = FactoryGirl.create :notification, status: :unread
+        user.notifications << read_notification
+        user.notifications << unread_notification
+
+        Notification.all_unread(user).should == [unread_notification]
+      end
+
+      it 'returns notifications ordered by descending date of creation' do
+        Notification.all_unread(user).should be_ordered_by([:created_at, :desc])
+      end
+    end
   end
 end

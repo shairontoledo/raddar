@@ -47,9 +47,29 @@ class Message
 
   def self.find_chats user, status=nil
     chats = []
-    condition = (status.nil? ? {:recipient_status.ne => :deleted} : {recipient_status: status})
-    (user.incoming_messages.where(condition).distinct(:sender_id) | user.sent_messages.where(condition).distinct(:recipient_id)).each {|user_id| chats << find_chat(user, User.find(user_id))}
+    
+    if status.nil?
+      condition = {:recipient_status.ne => :deleted}
+    else
+      condition = {recipient_status: status}
+    end
+
+    incoming = user.incoming_messages.where(condition).distinct(:sender_id)
+
+    if status.nil?
+      condition = {:sender_status.ne => :deleted}
+    else
+      condition = {sender_status: status}
+    end
+
+    sent = user.sent_messages.where(condition).distinct(:recipient_id)
+
+    (incoming | sent).each do |user_id|
+      chats << find_chat(user, User.find(user_id))
+    end
+
     chats.sort_by!{|chat| chat.last.created_at}.reverse!
+
     chats
   end
 

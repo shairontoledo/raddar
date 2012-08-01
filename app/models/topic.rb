@@ -21,14 +21,6 @@ class Topic
     self.posts.order_by([:created_at, :asc])
   end
 
-  def self.find *args
-    if args.length == 1 and not args[0].is_a? Symbol
-      find_by_slug(*args) || super
-    else
-      super
-    end
-  end
-
   def url options={}
     forum_topic_path self.forum, self, options
   end

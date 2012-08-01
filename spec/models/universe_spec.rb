@@ -5,9 +5,12 @@ describe Universe do
     FactoryGirl.build :universe
   end
 
-  it 'is valid given the proper values' do
-    should be_valid
-  end
+  it { should be_valid }
+
+  it { should be_a_raddar_model }
+  it { should be_searchable }
+
+  it { should have_slug(:name) }
 
   it { should have_many(:forums) }
   it { should have_many(:pubs) }
@@ -34,6 +37,10 @@ describe Universe do
   end
 
   describe '#highest_rank' do
-    it 'returns its rank wich have the highest level value'
+    subject { FactoryGirl.create :universe_with_ranks }
+
+    it 'returns its rank wich have the highest level value' do
+      subject.highest_rank.level.should == subject.ranks.count
+    end
   end
 end

@@ -23,14 +23,6 @@ class Forum
     self.topics.order_by [:updated_at, :desc]
   end
 
-  def self.find *args
-    if args.length == 1 and not args[0].is_a? Symbol
-      find_by_slug(*args) || super
-    else
-      super
-    end
-  end
-
   private
   def ready_for_destruction?
     if self.topics.empty?

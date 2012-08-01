@@ -16,7 +16,7 @@ module Raddar::Model
   end
 
   def taggable?
-    check_in_association_as :tags, :taggable
+    check_in_association_as :taggings, :taggable
   end
 
   def watchable?
@@ -24,7 +24,11 @@ module Raddar::Model
   end
 
   def commentable?
-    check_in_association_as :tags, :taggable
+    check_in_association_as :comments, :commentable
+  end
+
+  def searchable?
+    kind_of? Raddar::Searchable
   end
 
   def add_error field, error

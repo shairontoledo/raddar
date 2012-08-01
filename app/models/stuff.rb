@@ -20,14 +20,6 @@ class Stuff
 
   attr_accessible :name, :content, :image, :image_cache
 
-  def self.find *args
-    if args.length == 1 and not args[0].is_a? Symbol
-      find_by_slug(*args) || super
-    else
-      super
-    end
-  end
-
   def url options={}
     pub_stuff_path self.pub, self, options
   end
