@@ -1,6 +1,6 @@
 require 'will_paginate/array'
 
-class Forums::TopicsController < ApplicationController
+class TopicsController < ApplicationController
   load_and_authorize_resource :forum
   load_and_authorize_resource through: :forum, find_by: :slug
 

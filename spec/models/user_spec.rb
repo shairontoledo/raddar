@@ -122,6 +122,14 @@ describe User do
   end
 
   describe '::find_for_oauth' do
+    let :access_data do
+      access_data = double('access_data')
+      access_data.stub(:provider).and_return(:facebook)
+      access_data.stub_chain(:credentials, :token).and_return('xpto')
+      access_data.stub_chain(:credentials, :token).and_return('xzva')
+      access_data
+    end
+    
     context 'no user is given' do
       it 'returns the corresponding user if credentials are already in use'
       it 'returns a new user with the given credentials case no user have them' 

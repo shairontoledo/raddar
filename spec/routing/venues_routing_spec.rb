@@ -15,20 +15,24 @@ describe VenuesController do
       get("/venues/1").should route_to("venues#show", :id => "1")
     end
 
-    it "routes to #edit" do
-      get("/venues/1/edit").should route_to("venues#edit", :id => "1")
+    it "doesn't route to #edit" do
+      get("/venues/1/edit").should_not be_routable
     end
 
     it "routes to #create" do
       post("/venues").should route_to("venues#create")
     end
 
-    it "routes to #update" do
-      put("/venues/1").should route_to("venues#update", :id => "1")
+    it "doesn't route to #update" do
+      put("/venues/1").should_not be_routable
     end
 
-    it "routes to #destroy" do
-      delete("/venues/1").should route_to("venues#destroy", :id => "1")
+    it "doesn't route to #destroy" do
+      delete("/venues/1").should_not be_routable
+    end
+
+    it "routes to #nearby" do
+      get("/venues/nearby").should route_to('venues#nearby')
     end
 
   end

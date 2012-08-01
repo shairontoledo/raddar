@@ -1,4 +1,4 @@
-class Forums::PostsController < ApplicationController
+class PostsController < ApplicationController
   load_and_authorize_resource :forum
   load_and_authorize_resource :topic, through: :forum
   load_and_authorize_resource through: :topic

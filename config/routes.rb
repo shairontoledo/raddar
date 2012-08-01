@@ -35,8 +35,8 @@ Raddar::Application.routes.draw do
   end
 
   resources :forums, only: [:index, :show] do
-    resources :topics, controller: 'forums/topics', except: [:index] do
-      resources :posts, controller: 'forums/posts', only: [:create, :destroy]
+    resources :topics, except: [:index] do
+      resources :posts, only: [:create, :destroy]
       resource :watching, only: [:destroy]
     end
     resources :followers, only: [:create, :index] do
@@ -77,8 +77,6 @@ Raddar::Application.routes.draw do
     get '/users/password/change' => 'users/passwords#change', as: :change_user_password
     put '/users/password/change' => 'users/passwords#do_change', as: :change_user_password
   end
-
-  get 'search' => 'home#search', as: :search
 
   resources :users, only: [:show] do
     resources :messages, only: [:index,:create] do
