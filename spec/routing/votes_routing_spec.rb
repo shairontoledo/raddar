@@ -27,31 +27,34 @@ describe VotesController do
       delete("/vote").should_not be_routable
     end
 
-    # For venues
+    [:venue, :stuff, :comment, :post].each do |parent|
 
-    it "doesn't route to #new" do
-      get("/venues/venue-slug/vote/new").should_not be_routable
+      context "nested with #{parent}" do
+
+        it "doesn't route to #new" do
+          get("/#{parent}s/#{parent}-slug/vote/new").should_not be_routable
+        end
+
+        it "doesn't route to #show" do
+          get("/#{parent}s/#{parent}-slug/vote").should_not be_routable
+        end
+
+        it "doesn't route to #edit" do
+          get("/#{parent}s/#{parent}-slug/vote/edit").should_not be_routable
+        end
+
+        it "routes to #create" do
+          post("/#{parent}s/#{parent}-slug/vote").should route_to("votes#create", :"#{parent}_id" => "#{parent}-slug")
+        end
+
+        it "doesn't route to #update" do
+          put("/#{parent}s/#{parent}-slug/vote").should_not be_routable
+        end
+
+        it "doesn't route to #destroy" do
+          delete("/#{parent}s/#{parent}-slug/vote").should_not be_routable
+        end
+      end
     end
-
-    it "doesn't route to #show" do
-      get("/venues/venue-slug/vote").should_not be_routable
-    end
-
-    it "doesn't route to #edit" do
-      get("/venues/venue-slug/vote/edit").should_not be_routable
-    end
-
-    it "routes to #create" do
-      post("/venues/venue-slug/vote").should route_to("votes#create", venue_id: 'venue-slug')
-    end
-
-    it "doesn't route to #update" do
-      put("/venues/venue-slug/vote").should_not be_routable
-    end
-
-    it "doesn't route to #destroy" do
-      delete("/venues/venue-slug/vote").should_not be_routable
-    end
-
   end
 end

@@ -37,7 +37,7 @@ Raddar::Application.routes.draw do
   resources :forums, only: [:index, :show] do
     resources :topics, except: [:index] do
       resources :posts, only: [:create, :destroy]
-      resource :watching, only: [:destroy]
+      #resource :watching, only: [:destroy]
     end
     resources :followers, only: [:create, :index] do
       delete 'destroy', on: :collection

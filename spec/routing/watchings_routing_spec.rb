@@ -27,31 +27,61 @@ describe WatchingsController do
       delete("/watching").should_not be_routable
     end
 
-    # For venues
+    [:venue, :stuff, :topic].each do |parent|
 
-    it "doesn't route to #new" do
-      get("/venues/venue-slug/watching/new").should_not be_routable
+      context "nested with topic" do
+
+        it "doesn't route to #new" do
+          get("/topics/topic-slug/watching/new").should_not be_routable
+        end
+
+        it "doesn't route to #show" do
+          get("/topics/topic-slug/watching/").should_not be_routable
+        end
+
+        it "doesn't route to #edit" do
+          get("/topics/topic-slug/watching/edit").should_not be_routable
+        end
+
+        it "doesn't route to #create" do
+          post("/topics/topic-slug/watching").should_not be_routable
+        end
+
+        it "doesn't route to #update" do
+          put("/topics/topic-slug/watching").should_not be_routable
+        end
+
+        it "routes to #destroy" do
+          delete("/topics/topic-slug/watching").should route_to("watchings#destroy", :"topic_id" => "topic-slug")
+        end
+      end
     end
 
-    it "doesn't route to #show" do
-      get("/venues/venue-slug/watching/").should_not be_routable
-    end
+    # context "nested with a topic and a forum" do
 
-    it "doesn't route to #edit" do
-      get("/venues/venue-slug/watching/edit").should_not be_routable
-    end
+    #   it "doesn't route to #new" do
+    #     get("/forums/forum-name/topics/topic-slug/watching/new").should_not be_routable
+    #   end
 
-    it "doesn't route to #create" do
-      post("/venues/venue-slug/watching").should_not be_routable
-    end
+    #   it "doesn't route to #show" do
+    #     get("/forums/forum-name/topics/topic-slug/watching/").should_not be_routable
+    #   end
 
-    it "doesn't route to #update" do
-      put("/venues/venue-slug/watching").should_not be_routable
-    end
+    #   it "doesn't route to #edit" do
+    #     get("/forums/forum-name/topics/topic-slug/watching/edit").should_not be_routable
+    #   end
 
-    it "routes to #destroy" do
-      delete("/venues/venue-slug/watching").should route_to("watchings#destroy", venue_id: 'venue-slug')
-    end
+    #   it "doesn't route to #create" do
+    #     post("/forums/forum-name/topics/topic-slug/watching").should_not be_routable
+    #   end
 
+    #   it "doesn't route to #update" do
+    #     put("/forums/forum-name/topics/topic-slug/watching").should_not be_routable
+    #   end
+
+    #   it "routes to #destroy" do
+    #     delete("/forums/forum-name/topics/topic-slug/watching").should route_to("watchings#destroy", topic_id: "topic-slug", forum_id: 'forum-name')
+    #   end
+    # end
   end
 end
