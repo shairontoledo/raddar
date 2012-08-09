@@ -19,7 +19,6 @@ gem 'devise'
 gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid', git: 'https://github.com/digitalplaywright/carrierwave-mongoid.git', branch: 'mongoid-3.0'
 gem 'rmagick'
 gem 'bootstrap-will_paginate'
-gem 'bootstrap-datepicker-rails'
 gem 'omniauth-facebook'
 gem 'omniauth-twitter'
 gem 'cancan'
@@ -35,9 +34,12 @@ gem 'recaptcha', :require => 'recaptcha/rails'
 
 group :development, :test do
   gem 'rspec-rails'
-  gem 'capybara'
   gem 'factory_girl_rails'
+end
+
+group :test do
+  gem 'capybara'
   gem 'database_cleaner'
   gem 'mongoid-rspec'
-  gem 'cucumber-rails'
+  gem 'cucumber-rails' 
 end

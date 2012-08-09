@@ -27,8 +27,8 @@
                 <span class="badge badge-important notification_count"></span>
               </a>
               <ul class="dropdown-menu">
-                <% if current_user.count_unread_chats > 0 %>
-                  <% current_user.unread_chats.each do |chat| %>
+                <% if Message.count_unread_chats(current_user) > 0 %>
+                  <% Message.find_chats(current_user, :unread).each do |chat| %>
                     <%= render 'messages/notification', {message: chat.last} %>
                   <% end %>
                 <% end %>
@@ -47,7 +47,7 @@
                 <span class="badge badge-important notification_count"></span>
               </a>
               <ul class="dropdown-menu">
-                <% current_user.unread_notifications.each do |notification| %>
+                <% Notification.all_unread(current_user).each do |notification| %>
                   <%= render 'notifications/notification', {notification: notification} %>
                 <% end %>
                 <li class="divider"></li>

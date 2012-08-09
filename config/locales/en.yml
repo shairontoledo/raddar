@@ -1,7 +1,191 @@
 en:
-  application:
-    title: Raddar
-    copyleft: Copyleft Raddar 2012
-  section:
+  index: Index
+  ajax:
+    loading: Loading...
+    sending: Sending...
   action:
+    add: Add
     search: Search
+    admin: Admin
+    edit: Edit
+    follow: Follow
+    unfollow: Unfollow
+    delete: Delete
+    reply: Reply
+    quote: Quote
+    comment: Comment
+    watch: Watch
+    change: Change
+    close: Close
+    send: Send
+    back: Back
+    more: More
+  feed:
+    title: '%{app_name} - Hot news'
+  rank:
+    s: Rank
+    p: Ranks
+    new: New rank
+    edit: Edit rank
+  contact:
+    s: Contact
+    p: Contacts
+    subtitle: "Do you have any doubt, suggestion, complain or do you want to report a problem? Contact us!"
+  venue:
+    s: Venue
+    p: Venues
+    author: Author
+    nearby:
+      html: "Venues near to <em>%{term}</em>"
+      empty:
+        html: "The are no venues registered near to <em>%{term}</em> yet..."
+    location:
+      change: Change location
+      change_to: Change to...
+      my: Your current location
+      other: Other location
+    new: Add venue
+    edit: Edit venue
+    report: Report a problem
+  page:
+    s: Page
+    p: Pages
+    url: Link
+    name_help: This will be the link to the page.
+    new: New page
+    edit: Edit page
+  tag:
+    s: Tag
+    p: Tags
+    help: Write tags separated by comma.
+  notification:
+    see_all: View all
+    comment:
+      html: "<strong>%{author}</strong> commented in <em>%{item}</em>."
+    forum_post:
+      html: "<strong>%{author}</strong> posted in the topic <em>%{topic}</em>."
+    follower:
+      html: "<strong>%{author}</strong> is following."
+    follower_item:
+      html: "<strong>%{author}</strong> is following <em>%{item}</em>."
+    rank:
+      html: "Congratulations! You are now a <strong>%{name}</strong>!"
+    s: Notification
+    p: Notifications
+  search:
+    for: "Search for %{term}"
+    none: No results found.
+    all: All
+  role:
+    s: Role
+    p: Roles
+    admin: Admin
+  follower:
+    s: Follower
+    p: Followers
+  universe:
+    s: Universe
+    p: Universes
+    new: New universe
+    edit: Edit universe
+  pub:
+    s: Pub
+    p: Pubs
+    edit: Edit pub
+    new: Create new pub
+    feed:
+      title: '%{name} - New stuffs'
+  stuff:
+    s: Stuff
+    p: Stuffs
+    new: New stuff
+    edit: Edit stuff
+  forum:
+    s: Forum
+    p: Forums
+    new: New forum
+    edit: Edit forum
+  comment:
+    s: Comment
+    p: Comments
+    new: Add a comment
+  topic:
+    s: Topic
+    p: Topics
+    last: Last topics
+    views: views
+    new: New topic
+    edit: Edit topic
+    created_by: "Created by %{user}"
+  post:
+    s: Post
+    p: Posts
+    last: Last activity
+    new: Post in this topic
+  user:
+    s: User
+    p: Users
+    last: New members
+    following: '%{user} is following'
+    privacy: Privacy
+    account:
+      s: Connected account
+      p: Connected accounts
+      no: "No account added"
+      as: "Signed in as %{user}"
+    notifications: Notifications
+    notifications_description: "E-mail me for:"
+    you: That's you!
+    edit: Edit user
+    confirmation:
+      resend: Resend confirmation instructions
+      not_received: "Didn't receive confirmation instructions?"
+    password:
+      edit: Change password
+      new: Forgot your password?
+    registration:
+      show: My profile
+      edit: Edit account
+      new: Register now!
+    session:
+      new: Sign in
+      with: "Entrar com %{provider}"
+      destroy: Sign out
+      invite: "Do you want to %{action}? Register now!"
+  vote:
+    like: Like
+    dislike: Dislike
+    new: Vote
+  message:
+    s: Message
+    p: Messages
+    destroy_all: Delete chat
+    previous: Previous messages
+    all: All messages
+  flash:
+    watching:
+      destroyed: You will no longer be notified for this item.
+    account:
+      blocked: Your account is blocked. Please contact us using the contact page.
+    password:
+      changed: Password changed!
+    privacy:
+      updated: Your privacy settings were updated.
+      error: Is not possible to update your privacy settings right now. Please try again later.
+    notifications:
+      updated: Your notification settings were updated.
+      error: Is not possible to update your notification settings right now. Please try again later.
+    accounts:
+      add:
+        success: 'Your %{provider} account was added!'
+        error: 'Is not possible to add this %{provider} account. Maybe another person is already using it.'
+    followership:
+      create: 'You are following %{name}'
+      destroy: 'You no longer follow %{name}'
+      error: 'Is not possible to follow %{name} right now. Please try again later.'
+  js:
+    confirm_unload: You have unsaved changes.
+    prompt:
+      confirm: Are you sure?
+  admin:
+    page_title: Administration

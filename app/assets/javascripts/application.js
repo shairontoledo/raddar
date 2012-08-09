@@ -13,8 +13,7 @@
 //= require jquery
 //= require jquery_ujs
 //= require bootstrap
-//= require bootstrap-datepicker/core
-//= require bootstrap-datepicker/locales/bootstrap-datepicker.br
+//= require datepicker
 //= require private_pub
 //= require wysihtml5
 //= require_tree .
