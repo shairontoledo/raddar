@@ -22,6 +22,14 @@ module NavigationHelpers
   def path_to_file filename
     Rails.root.to_s + "/public/" + filename
   end
+
+  def current_path
+    URI.parse(current_url).path
+  end
+
+  def have_alert text, type
+    has_css?("div#flash_#{type}", text: text, visible: true) || has_css?("div.alert-#{type}", text: text, visible: true)
+  end
 end
 
 World(NavigationHelpers)

@@ -9,7 +9,7 @@ class Users::PasswordsController < Devise::PasswordsController
   def do_change
     @user = User.find(current_user.id)
 
-    if @user.update_with_password(params[:user])
+    if @user.update_password_with_password(params[:user])
       flash[:notice] = t('flash.password.changed')
       sign_in @user, :bypass => true
       respond_with @user, location: root_path

@@ -188,4 +188,15 @@ describe User do
       subject.active_for_authentication?.should be_false
     end
   end
+
+  describe '#update_password_with_password' do
+    context 'with the correct current_password' do
+      it 'performs the update of attributes'
+    end
+
+    context 'with an incorrect current_password' do
+      it 'does not perform the update of attributes'
+      it 'adds an error to the current_password'
+    end
+  end
 end

@@ -1,0 +1,64 @@
+en:
+  mongoid:
+    errors:
+      messages:
+        validations: Validation failed!
+      models:
+        forum:
+          attributes:
+            base:
+              has_topics: Forum can't be destroyed because it contains topics
+        topic:
+          attributes:
+            base:
+              content_required: Content can't be blank
+        message:
+          attributes:
+            base:
+              self_message: You can't send messages to yourself
+        followership:
+          attributes:
+            base:
+              self_follow: You can't follow yourself
+        user:
+          attributes:
+            date_of_birth:
+              too_young: You need to be at least 13 years old
+    attributes:
+      contact: &contact_attributes
+      rank: &rank_attributes
+      page: &page_attributes
+      venue: &venue_attributes
+      universe: &universe_attributes
+      stuff: &stuff_attributes
+      pub: &pub_attributes
+      post: &post_attributes
+      topic: &topic_attributes
+      forum: &forum_attributes
+      message: &message_attributes
+      user: &user_attributes
+        login: Name or email
+        gender_options: &gender_options
+          male: Male
+          female: Female
+        facebook_url: Facebook profile
+        status_options: &status_options
+        notify_messages: New messages
+        notify_followers: New followers
+  user: *user_attributes
+  message: *message_attributes
+  pub: *pub_attributes
+  stuff: *stuff_attributes
+  forum: *forum_attributes
+  venue: *venue_attributes
+  topic: *topic_attributes
+  post: *post_attributes
+  page: *page_attributes
+  universe: *universe_attributes
+  rank: *rank_attributes
+  contact: *contact_attributes
+  simple_form:
+    options:
+      user:
+        status: *status_options
+        gender: *gender_options
