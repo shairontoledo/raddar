@@ -1,5 +1,4 @@
 pt-BR:
-  index: Início
   ajax:
     loading: Carregando...
     sending: Enviando...
@@ -125,7 +124,6 @@ pt-BR:
   user:
     s: Usuário
     p: Usuários
-    last: Novos membros
     following: '%{user} segue'
     privacy: Privacidade
     account:
@@ -189,3 +187,12 @@ pt-BR:
       confirm: Você tem certeza?
   admin:
     page_title: Administração
+  index:
+    page_title: Início
+    last_discussions: Últimas discussões
+    last_stuffs: Novidades
+    main_pubs: Principais
+    new_venues: Novos lugares
+    new_users: Novos membros
+    top_read: Mais lidos
+    top_discussed: Maiores discussões

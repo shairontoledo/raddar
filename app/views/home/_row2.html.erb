@@ -1,0 +1,34 @@
+<div class="row">
+  <div class="span5">
+    <% @main_stuffs.limit(3).each do |stuff| %>
+      <h4><%= stuff.name %></h4>
+      <p>
+        <%= link_to image_tag(stuff.image.thumb.url, :class => 'thumbnail', style: 'float: left'), stuff.url %>
+        <%= truncate strip_tags(stuff.content), length: 240 %>
+        <%= link_to t('action.more'), stuff.url, :class => 'btn btn-mini' %>
+      </p>
+    <% end %>
+  </div>
+
+  <div class="span2">
+    <h4><%= t 'index.last_stuffs' %></h4>
+    <% @last_stuffs.limit(4).each do |stuff| %>
+      <div class="row">
+        <%= link_to image_tag(stuff.image.thumb.url, :class => 'thumbnail', style: 'float: left'), stuff.url %>
+        <h6><%= link_to stuff.pub.name, stuff.url %></h6>
+        <small><%= stuff.name %></small>
+      </div>
+    <% end %>
+  </div>
+  
+  <div class="span2">
+    <h4><%= t 'index.main_pubs' %></h4>
+    <% @main_pubs.limit(4).each do |pub| %>
+      <div class="row">
+        <%= link_to image_tag(pub.image.thumb.url, :class => 'thumbnail', style: 'float: left'), pub.url %>
+        <h6><%= link_to pub.name, pub.url %></h6>
+        <small><%= pub.subtitle %></small>
+      </div>
+    <% end %>
+  </div>
+</div>

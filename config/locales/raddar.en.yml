@@ -1,5 +1,4 @@
 en:
-  index: Index
   ajax:
     loading: Loading...
     sending: Sending...
@@ -125,7 +124,6 @@ en:
   user:
     s: User
     p: Users
-    last: New members
     following: '%{user} is following'
     privacy: Privacy
     account:
@@ -189,3 +187,12 @@ en:
       confirm: Are you sure?
   admin:
     page_title: Administration
+  index:
+    page_title: Index
+    last_discussions: Last discussions
+    last_stuffs: New stuffs
+    main_pubs: Main pubs
+    new_venues: New venues
+    new_users: New members
+    top_read: Top read
+    top_discussed: Trending

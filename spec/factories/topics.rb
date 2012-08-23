@@ -2,8 +2,18 @@
 
 FactoryGirl.define do
   factory :topic do
-    name 'Polemic!'
+    name 'Oh, my God! This is Polemic!'
     forum
     user
+
+    factory :topic_with_posts do
+      ignore do
+        posts_count { rand(1..20) }
+      end
+
+      after :create do |topic, evaluator|
+        FactoryGirl.create_list :post, evaluator.posts_count, topic: topic, user: topic.user
+      end
+    end
   end
 end

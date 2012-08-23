@@ -1,0 +1,49 @@
+<div class="row">
+  <div class="span6">
+    <div id="index_carousel" class="carousel slide">
+      <div class="carousel-inner">
+        <% @pubs.limit(8).each_with_index do |pub, i| %>
+          <div class="item <%= 'active' if i == 0 %>">
+            <%= image_tag pub.image.full.url, style: 'width: 100%; height: 500px' %>
+            <div class="carousel-caption">
+              <h4><%= link_to pub.name, pub.url %></h4>
+              <p><%= pub.subtitle %></p>
+            </div>
+          </div>
+        <% end %> 
+      </div>
+
+      <a class="carousel-control left" href="#index_carousel" data-slide="prev">&lsaquo;</a>
+      <a class="carousel-control right" href="#index_carousel" data-slide="next">&rsaquo;</a>
+    </div>
+
+    <ul class="thumbnails">
+      <% @pubs.limit(3).each do |pub| %>
+        <li class="span2">
+          <% stuff = pub.last_stuffs.first %>
+          <%= link_to stuff.url, :class => 'thumbnail' do %>
+            <%= image_tag stuff.image.medium.url %>
+            <div class="caption">
+              <h6><%= pub.name %></h6>
+              <small><%= stuff.name %></small>
+            </div>
+          <% end %> 
+        </li>
+      <% end %> 
+    </ul>
+  </div>
+
+  <div class="span3">
+    <h3><%= t 'index.last_discussions' %></h3>
+    <ul class="unstyled">
+      <% @topics.limit(6).each do |topic| %>
+        <li>
+          <h3><%= link_to topic.name, topic.url %></h3>
+          <h6><%= link_to topic.forum.name, topic.forum.url %></h6>
+        </li>
+      <% end %> 
+    </ul>
+    <hr/>
+    <%= link_to t('action.more'), forums_path, :class => 'btn btn-primary' %>
+  </div>
+</div>
