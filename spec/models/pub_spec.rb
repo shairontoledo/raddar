@@ -53,6 +53,17 @@ describe Pub do
     end
   end
 
+  describe '#main' do
+
+    it 'has the default value of false' do
+      should have_field(:main).of_type(Boolean).with_default_value_of(false)
+    end
+
+    it 'has the alias main?' do
+      should have_field(:main).with_alias(:main?)
+    end
+  end
+
   describe '#last_stuffs' do
     it 'returns its stuffs ordered by the descendent creation date' do
       subject.stuffs.should_receive(:order_by).with([:created_at, :desc])

@@ -18,6 +18,16 @@ FactoryGirl.define do
 
     factory :pub_with_stuffs do
       ignore do
+        stuffs_count 3
+      end
+
+      after :create do |pub, evaluator|
+        FactoryGirl.create_list :stuff_with_comments, evaluator.stuffs_count, pub: pub
+      end
+    end
+
+    factory :pub_with_random_stuffs do
+      ignore do
         stuffs_count { rand(1..20) }
       end
 

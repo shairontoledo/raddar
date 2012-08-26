@@ -4,9 +4,10 @@ class Pub
   include Raddar::Followable
   include Raddar::Searchable
 
-  field :name, :type => String
-  field :subtitle, :type => String
-  field :description, :type => String
+  field :name, type: String
+  field :subtitle, type: String
+  field :description, type: String
+  field :main, as: :main?, type: Boolean, default: false
   mount_uploader :image, ImageUploader
   slug :name
 

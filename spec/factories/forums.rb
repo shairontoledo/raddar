@@ -9,11 +9,21 @@ FactoryGirl.define do
 
     factory :forum_with_topics do
       ignore do
-        topics_count { rand(3..20) }
+        topics_count 3
       end
 
       after :create do |forum, evaluator|
         FactoryGirl.create_list :topic_with_posts, evaluator.topics_count, forum: forum
+      end
+    end
+
+    factory :forum_with_random_topics do
+      ignore do
+        topics_count { rand(3..20) }
+      end
+
+      after :create do |forum, evaluator|
+        FactoryGirl.create_list :topic_with_random_posts, evaluator.topics_count, forum: forum
       end
     end
   end
