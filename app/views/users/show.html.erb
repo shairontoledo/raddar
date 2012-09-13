@@ -1,8 +1,8 @@
 <% page_title @user.name %>
 
-<div class="row">
+<div class="row user_page">
   <div class="span4">
-    <%= thumbnail @user.image.medium.url, :class => 'img-polaroid' %>
+    <%= image_tag @user.image.medium.url, :class => 'img-polaroid', id: 'main_image' %>
     <div class="well">
       <h5><%= t 'rank.p' %></h5>
       <% Universe.all.each do |universe| %>
@@ -21,24 +21,31 @@
   </div>
   <div class="span8">
     <h1><%= @user.name %></h1>
-    <hr/>
-    <div class="info clearfix">
-      <% unless @user == current_user %>
-        <%= link_to t('message.p'), user_messages_path(@user) %>
-        <br/>
-        <%= render 'followers/follow_button', {followable: @user} %>
-      <% else %>
-        <%= t 'user.you' %>
-      <% end %>
-      
-      <div class="pull-right">
+
+    <div class="row">
+      <div class="span6">
+        <% unless @user == current_user %>
+          <%= link_to t('message.p'), user_messages_path(@user) %>
+          <br/>
+          <%= render 'followers/follow_button', {followable: @user} %>
+        <% else %>
+          <%= t 'user.you' %>
+        <% end %>
+      </div>
+
+      <div class="span1">
         <%= render 'followers/link_with_count', {followable: @user} %>
+      </div>
+
+      <div class="span1">
         <%= link_to user_followees_path(@user), :class => 'followers_count' do %>
           <strong><%= @user.followerships.count %></strong>
           <span><%= t 'user.following' %></span>
         <% end %>
       </div>
     </div>
+
+    <hr/>
 
     <%= simple_text @user.bio %>
 

@@ -45,10 +45,6 @@ module ApplicationHelper
     render 'shared/destroy_button', {path: path, text: text}
   end
 
-  def thumbnail url, imageclass=nil
-    raw "<ul class=\"thumbnails\"><li><div class=\"thumbnail\">#{image_tag url, :class => imageclass}</div></li></ul>"
-  end
-
   def captcha model_instance
     render 'shared/captcha', {model_instance: model_instance} if Raddar::config.recaptcha['enabled']
   end
