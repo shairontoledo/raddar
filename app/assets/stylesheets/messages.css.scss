@@ -37,16 +37,11 @@ div.chat div.message time{
   font-size: 10px;
 }
 
-ul#all_chats li{
-  border-bottom: 1px solid #EEEEEE;
-  padding: 15px 0px 20px 0px;
+#all_chats td time {
+  font-size: 11px;
 }
 
-ul#all_chats li:nth-child(odd) {
-  background-color: #fff;
-}
-
-ul#all_chats li.unread{
+#all_chats tr.unread{
   font-weight: bold;
 }
 

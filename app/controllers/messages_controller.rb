@@ -8,7 +8,7 @@ class MessagesController < ApplicationController
   # GET /messages.xml
   def index
     if params[:user_id].blank?
-      @messages = Message.find_last_messages(current_user).paginate(page: params[:page], per_page: 20)
+      @messages = Message.find_last_messages(current_user).paginate(page: params[:page], per_page: 15)
       render 'all'
     else
       @user = User.find(params[:user_id])
