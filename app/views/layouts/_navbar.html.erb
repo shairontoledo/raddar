@@ -22,10 +22,10 @@
           <% else %>
             
             <li class="dropdown" id="messages_notifications">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown" >
+              <%= link_to messages_path, :class => 'dropdown-toggle', :'data-toggle' => 'dropdown', :'data-target' => '#' do %>
                 <i class="icon-envelope"></i>
                 <span class="badge badge-important notification_count"></span>
-              </a>
+              <% end %>
               <ul class="dropdown-menu">
                 <% if Message.count_unread_chats(current_user) > 0 %>
                   <% Message.find_last_messages(current_user, :unread).each do |message| %>
@@ -42,10 +42,10 @@
             <li class="divider-vertical"></li>
 
             <li class="dropdown" id="general_notifications">
-              <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+              <%= link_to notifications_path, :class => 'dropdown-toggle', :'data-toggle' => 'dropdown', :'data-target' => '#' do %>
                 <i class="icon-flag"></i>
                 <span class="badge badge-important notification_count"></span>
-              </a>
+              <% end %>
               <ul class="dropdown-menu">
                 <% Notification.all_unread(current_user).each do |notification| %>
                   <%= render 'notifications/notification', {notification: notification} %>
@@ -58,7 +58,7 @@
             <li class="divider-vertical"></li>
 
             <li class="dropdown">
-              <%= link_to current_user.url, :class => 'dropdown-toggle', :'data-toggle' => 'dropdown', id: 'current_user_data' do %>
+              <%= link_to current_user.url, :class => 'dropdown-toggle', :'data-toggle' => 'dropdown', id: 'current_user_data', :'data-target' => '#' do %>
                 <%= image_tag current_user.image.thumb.url, :class => 'size20' %>
                 <%= current_user.name %>
               <% end %>
@@ -86,7 +86,7 @@
                 <% end %>
                 <li class="divider"></li>
                 <li>
-                  <%= link_to destroy_user_session_path, :method=>'delete' do %>
+                  <%= link_to destroy_user_session_path, method: :delete do %>
                     <i class="icon-off"></i>
                     <%= t 'user.session.destroy' %>
                   <% end %>
