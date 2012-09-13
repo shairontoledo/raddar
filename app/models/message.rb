@@ -73,8 +73,17 @@ class Message
     chats
   end
 
-  def self.find_last_messages user
-    msgs = Message.any_of({sender_id: user.id, :sender_status.ne => :deleted}, {recipient_id: user.id, :recipient_status.ne => :deleted}).order_by([:created_at, :desc])
+  def self.find_last_messages user, status=nil
+
+    if status.nil?
+      recipient_condition = {recipient_id: user.id, :recipient_status.ne => :deleted}
+      sender_condition = {sender_id: user.id, :sender_status.ne => :deleted}
+    else
+      recipient_condition = {recipient_id: user.id, recipient_status: status}
+      sender_condition = {sender_id: user.id, sender_status: status}
+    end
+
+    msgs = Message.any_of(sender_condition, recipient_condition).order_by([:created_at, :desc])
     msgs.to_a.uniq_by {|m| m.sender_id == user.id ? m.recipient_id : m.sender_id }
   end
 

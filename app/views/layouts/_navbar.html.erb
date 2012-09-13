@@ -28,8 +28,8 @@
               </a>
               <ul class="dropdown-menu">
                 <% if Message.count_unread_chats(current_user) > 0 %>
-                  <% Message.find_chats(current_user, :unread).each do |chat| %>
-                    <%= render 'messages/notification', {message: chat.last} %>
+                  <% Message.find_last_messages(current_user, :unread).each do |message| %>
+                    <%= render 'messages/notification', {message: message} %>
                   <% end %>
                 <% end %>
                 <li class="divider"></li>
