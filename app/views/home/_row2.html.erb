@@ -27,7 +27,7 @@
       <div class="row">
         <%= link_to image_tag(pub.image.thumb.url, :class => 'thumbnail', style: 'float: left'), pub.url %>
         <h6><%= link_to pub.name, pub.url %></h6>
-        <small><%= pub.subtitle %></small>
+        <small><%= pub.name %></small>
       </div>
     <% end %>
   </div>
