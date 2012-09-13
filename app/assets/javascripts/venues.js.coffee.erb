@@ -3,7 +3,7 @@ map = null
 window.venues_map = (center)->
   map = simple_map 'map_venues', center
 
-  $('div.venue').each (i)->
+  $('#venues_list li').each (i)->
     lat = $(this).find("input[type=hidden][name=lat]").val()
     lng = $(this).find("input[type=hidden][name=lng]").val()
     marker = new google.maps.Marker
@@ -21,9 +21,12 @@ update_nearby_venues = (data)->
   $.ajax
     url: '/venues/nearby'
     data: data
+    error: ->
+      $('#venues_list').html "<%= I18n.t 'ajax.error' %>"
 
 venues_nearby_user = ->
   user_location (location)->
+    map = simple_map 'map_venues', new google.maps.LatLng(location.lat, location.lng)
     data = ''
     if location isnt null
       data =
@@ -38,9 +41,6 @@ $ ->
 
     venues_nearby_user()
 
-    $('#change_location_modal').modal
-      show: false
-
     $('#location_my').click ->
       $('#term').attr 'disabled', 'disabled'
 
@@ -49,7 +49,7 @@ $ ->
 
     $('button#modal_submit').click ->
       $('#change_location_modal').modal 'hide'
-      switch $("input[@name=location]:checked").attr('id')
+      switch $("input[name=location]:checked").attr('id')
         when 'location_my'
           venues_nearby_user()
         when 'location_other'

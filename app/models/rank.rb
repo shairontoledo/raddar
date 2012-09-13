@@ -12,7 +12,7 @@ class Rank
   validates_uniqueness_of :name, scope: :universe_id
   validates_uniqueness_of :level, scope: :universe_id
   validates_length_of :name, maximum: 30
-  validates_length_of :description, maximum: 100
+  validates_length_of :description, maximum: 200
   validates_numericality_of :level, greater_than_or_equal_to: 1
 
   attr_accessible :name, :description

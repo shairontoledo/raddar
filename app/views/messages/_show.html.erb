@@ -1,8 +1,5 @@
 <div id="message_<%= message.id %>" class="message <%= (user.id == message.sender.id) ? 'received' : 'sent' %>">
-  <div class="message_content">
-    <%= link_to image_tag(message.sender.image.thumb.url, :class => 'thumbnail'), message.sender %>
-    <%= simple_text message.content %>
-    <%= raw time_tag(message.created_at, humanize_datetime(message.created_at)) %>
-  </div>
+  <%= link_to image_tag(message.sender.image.thumb.url, :class => 'img-rounded'), message.sender %>
+  <%= simple_text message.content %>
+  <%= time_tag message.created_at, humanize_datetime(message.created_at) %>
 </div>
-<hr/>

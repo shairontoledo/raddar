@@ -4,32 +4,32 @@
   <h1><%= @venue.name %></h1>
 </div>
 
-<%= image_tag @venue.image.thumb.url %>
+<div class="row venue">
+  <div class="span6">
+    <%= image_tag @venue.image.full.url, :class => 'img-polaroid main_img' unless @venue.image.file.nil? %>
 
-<div id="map_venue" class="map_canvas"></div>
+    <div class="description justified">
+      <%= rich_format @venue.description %>
+    </div>
 
-<p>
-  <b>Address:</b>
-  <%= @venue.address %>
-</p>
+    <address>
+      <%= @venue.address %>
+      <br/>
+      <%= @venue.city %>
+    </address>
 
-<p>
-  <b>City:</b>
-  <%= @venue.city %>
-</p>
+    <%= render 'tags/index', {taggable: @venue} %>
+  </div>
 
-<%= hidden_field_tag :lat, @venue.coordinates.last %>
-<%= hidden_field_tag :lng, @venue.coordinates.first %>
+  <div class="span6">
+    <div id="map_venue" class="map_canvas"></div>
+    <%= hidden_field_tag :lat, @venue.coordinates.last %>
+    <%= hidden_field_tag :lng, @venue.coordinates.first %>
 
+    <%= render 'votes/show', {votable: @venue} %>
 
-<div class="well">
-  <%= rich_format @venue.description %>
+    <%= link_to t('venue.report'), new_contact_path, :class => 'btn btn-mini pull-right' %>    
+  </div>
 </div>
-
-<%= link_to t('venue.report'), new_contact_path, :class => 'btn btn-mini' %>
-
-<%= render 'tags/index', {taggable: @venue} %>
-
-<%= render 'votes/show', {votable: @venue} %>
 
 <%= render 'comments/index', {commentable: @venue} %>

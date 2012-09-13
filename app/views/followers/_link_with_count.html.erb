@@ -1,1 +1,4 @@
-<%= link_to "#{t('follower.p')}: #{followable.followers.count}", followers_path(followable) %>
+<%= link_to followers_path(followable), :class => 'followers_count' do %>
+  <strong><%= followable.followers.count %></strong>
+  <span><%= t 'follower.p' %></span>
+<% end %>

@@ -1,25 +1,26 @@
 <% page_title @topic.name + ' - ' + @topic.forum.name %>
 
 <div class="page-header">
-  <h1><%= @topic.name %></h1>
-  <%= link_to @topic.forum.name, @topic.forum %>
-</div>
+  <h1>
+    <%= @topic.name %>
+    <small><%= link_to @topic.forum.name, @topic.forum.url %></small>
+  </h1>
 
-<div class="well">
   <%= link_to t('topic.created_by', user: @topic.user.name), @topic.user %> ::
-  <%= @topic.views %> <%= t('topic.views') %> ::  
+  <%= posts_count @topic %>
   <%= edit_button edit_forum_topic_path(@topic.forum, @topic) if can? :edit, @topic %>
 </div>
 
+<%= will_paginate @posts %>
+
 <% @posts.each do |post| %>
-  <%= render 'forums/posts/show', {post: post} %>
-  <hr/>
+  <%= render 'posts/show', {post: post} %>
 <% end %>
 
 <%= will_paginate @posts %>
 
 <% if can?(:create, Post) %>
-  <%= render 'forums/posts/form' %>
+  <%= render 'posts/new' %>
 <% else %>
   <%= render 'users/sessions/invite', {action: t('post.new')} unless user_signed_in? %>
 <% end %>

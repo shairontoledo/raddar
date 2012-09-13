@@ -1,53 +1,58 @@
 <% page_title @user.name %>
 
-<div class="page-header">
-  <h1><%= @user.name %></h1>
-</div>
-
 <div class="row">
-  <div class="span3">
-    <%= thumbnail @user.image.medium.url %>
+  <div class="span4">
+    <%= thumbnail @user.image.medium.url, :class => 'img-polaroid' %>
+    <div class="well">
+      <h5><%= t 'rank.p' %></h5>
+      <% Universe.all.each do |universe| %>
+        <% rank = Rank.highest @user, universe %>
+        <% unless rank.nil? %>
+          <div class="user_rank">
+            <%= link_to image_tag(universe.image.thumb.url), universe.url %>
+            <h3><%= rank.level %>. <%= rank.name %></h3>
+            <small><%= rank.description %></small>
+            <br/>
+            <h6><%= link_to universe.name, universe.url %></h6>
+          </div>
+        <% end %>
+      <% end %>
+    </div>
   </div>
-  <div class="span6">
-    <% unless @user == current_user %>
-      <%= link_to t('message.p'), user_messages_path(@user) %>
-      <br/>
-      <%= render 'followers/follow_button', {followable: @user} %>
-    <% else %>
-      <%= t 'user.you' %>
-    <% end %>
-    <br/>
-    <%= render 'followers/link_with_count', {followable: @user} %>
-    <br/>
-    <%= link_to "#{t('user.following', user: @user.name)}: #{@user.followerships.count}", user_followees_path(@user) %>
+  <div class="span8">
+    <h1><%= @user.name %></h1>
+    <hr/>
+    <div class="info clearfix">
+      <% unless @user == current_user %>
+        <%= link_to t('message.p'), user_messages_path(@user) %>
+        <br/>
+        <%= render 'followers/follow_button', {followable: @user} %>
+      <% else %>
+        <%= t 'user.you' %>
+      <% end %>
+      
+      <div class="pull-right">
+        <%= render 'followers/link_with_count', {followable: @user} %>
+        <%= link_to user_followees_path(@user), :class => 'followers_count' do %>
+          <strong><%= @user.followerships.count %></strong>
+          <span><%= t 'user.following' %></span>
+        <% end %>
+      </div>
+    </div>
+
+    <%= simple_text @user.bio %>
 
     <% @user.accounts.each do |account| %>
       <%= account_link account %>
     <% end %>
-    <%= show_protected_user_field @user, :email %>
-    <%= show_protected_user_field @user, :date_of_birth %>
-    <%= show_protected_user_field @user, :gender %>
-    <%= show_protected_user_field @user, :location %>
-  </div>
-</div>
 
-<div class="row">
-  <div class="span4">
-    <h6><%= t 'rank.p' %></h6>
-    <% Universe.all.each do |universe| %>
-      <% rank = @user.highest_rank universe %>
-      <div class="user_rank">
-        <%= link_to image_tag(universe.image.thumb.url), universe.url %>
-        <h3><%= rank.level %>. <%= rank.name %></h3>
-        <small><%= rank.description %></small>
-        <br/>
-        <h6><%= link_to universe.name, universe.url %></h6>
-      </div>
-    <% end %>
-  </div>
+    <dl>
+      <%= show_protected_user_field @user, :email %>
+      <%= show_protected_user_field @user, :date_of_birth %>
+      <%= show_protected_user_field @user, :gender %>
+      <%= show_protected_user_field @user, :location %>
+    </dl>
 
-  <div class="span5">
-    <p><b><%= t 'user.bio' %></b></p>
-    <%= simple_text @user.bio %>
+
   </div>
 </div>

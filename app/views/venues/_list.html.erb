@@ -1,25 +1,24 @@
-<h4><%= t 'venue.nearby.html', term: term %></h4>
-<%= link_to t('action.change'), '#change_location_modal', :class => 'btn', 'data-toggle'.to_sym => 'modal' %>
+<h5><%= t 'venue.nearby.html', term: term.downcase %></h5>
 
 <% if venues.empty? %>
-  <p><%= t 'venue.nearby.empty.html', term: term %></p>
+  <p><%= t 'venue.nearby.empty.html', term: term.downcase %></p>
 <% else %>
-  <% venues.each do |venue| %>
-    <div class="venue"  id="venue_<%= venue.id %>">
-      <%= link_to venue, :class => 'venue_link' do %>
-        <%= image_tag venue.image.thumb.url %>
-        <address>
-          <strong><%= venue.name %></strong>
-          
-          <br/>
-          <%= venue.address %>
-          <br/>
-          <%= venue.city %>
-        </address>
-      <% end %>
-      <%= hidden_field_tag :lat, venue.coordinates.last, id: nil %>
-      <%= hidden_field_tag :lng, venue.coordinates.first, id: nil %>
-    </div>
-    <hr/>
-  <% end %>
+  <ul class="unstyled">
+    <% venues.each do |venue| %>
+      <li class="venues_list_item clearfix"  id="venue_<%= venue.id %>">
+        <%= link_to venue, :class => 'venue_link' do %>
+          <%= image_tag venue.image.thumb.url, :class => 'img-rounded cover pull-left' %>
+          <address>
+            <strong><%= venue.name %></strong>
+            <br/>
+            <%= venue.address %>
+            <br/>
+            <%= venue.city %>
+          </address>
+        <% end %>
+        <%= hidden_field_tag :lat, venue.coordinates.last, id: nil %>
+        <%= hidden_field_tag :lng, venue.coordinates.first, id: nil %>
+      </li>
+    <% end %>
+  </ul>
 <% end %>

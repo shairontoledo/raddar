@@ -7,16 +7,22 @@ module ApplicationHelper
 
   def humanize_datetime datetime
     str = ''
-    if datetime > 1.day.ago
+    if datetime > 1.week.ago
       str = distance_of_time_in_words_to_now datetime
+    elsif datetime > 1.year.ago
+      str = l(datetime.to_date, format: :short)
     else
-      str = l(datetime, format: :short)
+      str = l(datetime.to_date, format: :long)
     end
     str
   end
 
   def rich_format html
     sanitize html
+  end
+
+  def hide_html text
+    sanitize simple_format(text), tags: [], attributes: []
   end
 
   def simple_text text

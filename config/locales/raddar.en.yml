@@ -2,6 +2,7 @@ en:
   ajax:
     loading: Loading...
     sending: Sending...
+    error: An error occurred. Try again later.
   action:
     add: Add
     search: Search
@@ -43,7 +44,7 @@ en:
       change_to: Change to...
       my: Your current location
       other: Other location
-    new: Add venue
+    new: Add a venue
     edit: Edit venue
     report: Report a problem
   page:
@@ -90,6 +91,7 @@ en:
   pub:
     s: Pub
     p: Pubs
+    author: Author
     edit: Edit pub
     new: Create new pub
     feed:
@@ -97,8 +99,11 @@ en:
   stuff:
     s: Stuff
     p: Stuffs
-    new: New stuff
+    new: Create new stuff
     edit: Edit stuff
+    vote: Rate this stuff
+    info: 
+      html: 'Posted by %{author} on %{time}'
   forum:
     s: Forum
     p: Forums
@@ -113,7 +118,7 @@ en:
     p: Topics
     last: Last topics
     views: views
-    new: New topic
+    new: Create new topic
     edit: Edit topic
     created_by: "Created by %{user}"
   post:
@@ -124,7 +129,7 @@ en:
   user:
     s: User
     p: Users
-    following: '%{user} is following'
+    following: following
     privacy: Privacy
     account:
       s: Connected account
@@ -185,6 +190,7 @@ en:
     confirm_unload: You have unsaved changes.
     prompt:
       confirm: Are you sure?
+      delete_confirm: Are you sure you want to delete this? This action cannot be undone.
   admin:
     page_title: Administration
   index:

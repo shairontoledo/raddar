@@ -4,19 +4,25 @@
   <h1><%= t 'venue.p' %></h1>
 </div>
 
-<div id="map_venues" class="map_canvas"></div>
+<div class="row">
+  <div class="span8">
+    <div id="map_venues" class="map_canvas"></div>
+    <%= link_to t('venue.location.change'), '#change_location_modal', :class => 'btn', :'data-toggle' => 'modal' %>
+  </div>
+  <div class="span4">
+    <div id="venues_list"></div>
 
-<div id="venues_list"></div>
+    <div class="well">
+      <% if can?(:create, Venue) %>
+        <%= link_to t('venue.new'), new_venue_path, id: 'new_venue_link', :class => 'btn btn-large btn-primary btn-block' %>
+      <% else %>
+        <%= render 'users/sessions/invite', {action: t('venue.new')} unless user_signed_in? %>
+      <% end %>
+    </div>
+  </div>
+</div>
 
-<br />
-
-<% if can?(:create, Venue) %>
-  <%= link_to t('venue.new'), new_venue_path, id: 'new_venue_link' %>
-<% else %>
-  <%= render 'users/sessions/invite', {action: t('venue.new')} unless user_signed_in? %>
-<% end %>
-
-<div class="modal hide fade" id="change_location_modal">
+<div class="modal hide fade in" id="change_location_modal">
   <div class="modal-header">
     <button type="button" class="close" data-dismiss="modal">×</button>
     <h3><%= t 'venue.location.change' %></h3>

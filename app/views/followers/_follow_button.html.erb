@@ -1,5 +1,5 @@
 <% if followable.followers.where(user_id: current_user.id).empty? %>
-  <%= link_to t('action.follow'), followers_path(followable), :class => 'btn', method: :post %>
+  <%= link_to t('action.follow'), followers_path(followable), :class => 'btn btn-primary', method: :post %>
 <% else %>
   <%= link_to t('action.unfollow'), followers_path(followable), :class => 'btn', method: :delete %>
 <% end %>

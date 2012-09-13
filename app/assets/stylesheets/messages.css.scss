@@ -4,18 +4,20 @@ div.chat{
   padding: 30px 10px 0px 10px;
 }
 
-div.chat div.message div.message_content {
+div.chat div.message{
   min-height: 40px;
+  border-bottom: 1px solid #EEEEEE;
+  padding-bottom: 15px;
+  margin-bottom: 20px;
 }
 
 div.chat div.message img{
-  width: 30px;
-  height: 30px;
+  //margin-bottom: 8px;
 }
 
 div.chat div.sent img{
   float: left;
-  margin-right: 6px;
+  margin-right: 8px;
 }
 
 div.chat div.sent{
@@ -24,7 +26,7 @@ div.chat div.sent{
 
 div.chat div.received img{
   float: right;
-  margin-left: 6px;
+  margin-left: 8px;
 }
 
 div.chat div.received{
@@ -35,12 +37,23 @@ div.chat div.message time{
   font-size: 10px;
 }
 
-table#all_chats tr td a{
-  display: block;
-  width: 100%;
-  height: 100%;
+ul#all_chats li{
+  border-bottom: 1px solid #EEEEEE;
+  padding: 15px 0px 20px 0px;
 }
 
-table#all_chats tr.unread td{
+ul#all_chats li:nth-child(odd) {
+  background-color: #fff;
+}
+
+ul#all_chats li.unread{
   font-weight: bold;
+}
+
+.new_message textarea{
+  width: 100%;
+}
+
+.more_messages_link {
+  margin-bottom: 15px;
 }

@@ -1,12 +1,14 @@
 <div class="form-inputs">
-  <%= form.input :name %>
-  <%= image_tag @venue.image.thumb.url unless @venue.image.file.nil? %>
+  <%= form.input :name, input_html: {:class => 'span4'} %>
+  
+  <%= form.input :description, as: :text, input_html: {:class => 'span4', rows: '7'} %>
+
+  <%= form.input :address, input_html: {:class => 'span4'} %>
+  <%= form.input :city, input_html: {:class => 'span4'} %>
+
+  <%= image_tag @venue.image.thumb.url, :class => 'img-polaroid' unless @venue.image.file.nil? %>
   <%= form.input :image, as: :file %>
   <%= form.input :image_cache, as: :hidden %>
-  <%= form.input :description, as: :text, input_html: {:class => 'span6', rows: '8'} %>
-
-  <%= form.input :address %>
-  <%= form.input :city %>
 
   <%= hidden_field_tag :lat, @venue.coordinates.last %>
   <%= hidden_field_tag :lng, @venue.coordinates.first %>

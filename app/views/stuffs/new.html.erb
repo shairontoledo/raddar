@@ -1,6 +1,12 @@
 <% page_title t('stuff.new') %>
 
-<h1><%= t 'stuff.new' %></h1>
+<div class="page-header">
+  <h1>
+    <%= t 'stuff.new' %>
+    <small><%= @stuff.pub.name %></small>
+  </h1>
+</div>
+
 
 <%= render 'form' %>
 

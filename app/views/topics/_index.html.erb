@@ -1,0 +1,23 @@
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= t 'topic.last' %></th>
+      <th><%= t 'post.p' %></th>
+      <th><%= t 'post.last' %></th>
+    </tr>
+  </thead>
+  <tbody>
+  <% topics.each do |topic| %>
+    <tr>
+      <td><%= link_to topic.name, forum_topic_path(forum,topic) %></td>
+      <td><%= topic.posts.count %></td>
+      <td>
+        <% last = topic.posts.last %>
+        <% unless last.blank? %>
+          <%= link_to raw("#{last.user.name}, #{time_tag last.created_at, humanize_datetime(last.created_at)}"), last.url %>
+        <% end %>
+      </td>
+    </tr>
+  <% end %>
+  </tbody>
+</table>

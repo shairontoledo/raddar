@@ -9,6 +9,7 @@ class Stuff
 
   field :name, type: String
   field :content, type: String
+  field :views, type: Integer, default: 0
   mount_uploader :image, ImageUploader
   slug :name
 
@@ -16,7 +17,7 @@ class Stuff
 
   validates_presence_of :name, :content, :pub
   validates_length_of :name, maximum: 100
-  validates_length_of :content, maximum: 60_000
+  validates_length_of :content, maximum: 66_000
 
   attr_accessible :name, :content, :image, :image_cache
 

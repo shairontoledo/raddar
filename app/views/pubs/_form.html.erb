@@ -2,18 +2,16 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :subtitle %>
-    <%= image_tag @pub.image.thumb.url unless @pub.image.file.nil? %>
-    <%= f.input :image, as: :file %>
-    <%= f.input :image_cache, as: :hidden %>
-    <%= f.input :description, as: :text, input_html: {:class => 'span6', rows: '8'} %>
+    <%= f.input :name, input_html: {:class => 'span4'} %>
+    <%= f.input :description, as: :text, input_html: {:class => 'span6', rows: '12'} %>
     <%= f.input :universe_id, collection: available_universes, label: t('universe.s') %>
+    <%= image_tag @pub.image.thumb.url, :class => 'img-polaroid' unless @pub.image.file.nil? %>
+    <%= f.input :image, as: :file, input_html: {:class => 'span4'}  %>
+    <%= f.input :image_cache, as: :hidden %>
   </div>
 
   <div class="form-actions">
     <%= submit_button f %>
-    <%= back_button %>
     <%= destroy_button @pub if @pub.persisted? && can?(:destroy, @pub) %>
   </div>
 <% end %>

@@ -42,9 +42,16 @@ class VenuesController < ApplicationController
     end
 
     unless @coordinates.blank?
-      @venues = Venue.near(@coordinates, 10).limit(10)
+      begin
+        @venues = Venue.near(@coordinates, 10).limit(10).to_a
+      rescue
+        @venues = []
+      end
+
     else
       @venues = []
     end
+
+    @venues = Venue.order_by([:created_at, :desc]) if @venues.empty?
   end
 end

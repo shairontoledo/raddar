@@ -1,6 +1,8 @@
 <% page_title t('venue.new') %>
 
-<h1><%= t 'venue.new' %></h1>
+<div class="page-header">
+  <h1><%= t 'venue.new' %></h1>
+</div>
 
 <%= simple_form_for(@venue, :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>
@@ -11,6 +13,5 @@
 
   <div class="form-actions">
     <%= submit_button f %>
-    <%= back_button %>
   </div>
 <% end %>

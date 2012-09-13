@@ -2,24 +2,61 @@
 
 <% content_for :feed_tag, pub_feed_tag(@stuff.pub) %>
 
-<div class="page-header">
-  <h1>
-    <%= @stuff.name %>
-    <small><%= @stuff.pub.name %></small>
-  </h1>
+<div class="row" id="stuff_container">
+  <div class="span8">
+    <div class="stuff clearfix">
+      <h1>
+        <%= @stuff.name %>
+      </h1>
+
+      <div class="info clearfix">
+        <%= t 'stuff.info.html', author: link_to(@stuff.pub.user.name, @stuff.pub.user.url), time: time_tag(@stuff.created_at, humanize_datetime(@stuff.created_at)) %>
+        <span class="pull-right">
+          <%= edit_button edit_pub_stuff_path(@stuff.pub, @stuff) if can? :edit, @stuff %>
+        </span>
+      </div>
+
+      <hr />
+
+      <%= image_tag(@stuff.image.full.url, :class => 'main center') unless @stuff.image.file.nil? %>
+
+      <div class="content clearfix">
+        <%= rich_format @stuff.content %>
+      </div>
+    </div>
+
+    <%= render 'tags/index', {taggable: @stuff} %>
+
+    <div class="votes">
+      <%= t 'stuff.vote' %>: <%= render 'votes/show', {votable: @stuff} %>
+    </div>
+  </div>
+  <div class="span4 sidebar">
+    <div class="well sidebar">
+      <h4><%= link_to @stuff.pub.name, @stuff.pub.url %></h4>
+      <div class="author clearfix">
+        <%= link_to image_tag(@stuff.pub.user.image.thumb.url, :class => 'img-polaroid pull-left cover'), @stuff.pub.user.url %>
+        <%= t 'pub.author' %>
+        <br/>
+        <%= link_to @stuff.pub.user.name, @stuff.pub.user.url %>
+      </div>
+      
+      <ul class="nav nav-list">
+        <% stuffs = @stuff.pub.stuffs.order_by([:created_at, :desc]) %>
+        <% stuffs.limit(50).each do |stuff| %>
+          <li class="divider"></li>
+          <li class="<%= 'active' if stuff == @stuff %> clearfix" >
+            <%= link_to stuff.url do %>
+              <%#= image_tag stuff.image.thumb.url, :class => 'size40 pull-left' %>
+              <%= stuff.name %>
+            <% end %>
+          </li>
+        <% end %>
+      </ul>
+      <%= link_to t('action.more'), @stuff.pub.url, :class => 'btn' if stuffs.count > 50 %>
+    </div>
+  </div>
 </div>
-
-<%= image_tag @stuff.image.thumb.url unless @stuff.image.file.nil? %>
-
-<div class="well">
-  <%= rich_format @stuff.content %>
-</div>
-
-<%= render 'tags/index', {taggable: @stuff} %>
-
-<%= render 'votes/show', {votable: @stuff} %>
-
-
-<%= edit_button edit_pub_stuff_path(@stuff.pub, @stuff) if can? :edit, @stuff %>
 
 <%= render 'comments/index', {commentable: @stuff} %>
+

@@ -1,42 +1,28 @@
 <% page_title @forum.name %>
 
-<div class="page-header">
+<div class="page-header clearfix">
   <h1><%= @forum.name %></h1>
+  <span class="pull-right">
+    <%= render 'followers/link_with_count', {followable: @forum} %>
+    <%= render 'followers/follow_button', {followable: @forum} if user_signed_in? %>
+  </span>
 </div>
 
-<div class="well">
-  <%= simple_text @forum.description %>
+<div class="row">
+  <div class="span8 justified">
+    <%= simple_text @forum.description %>
+  </div>
+  <div class="span4">
+    <div class="well">
+      <% if can? :create, Topic %>
+        <%= link_to t('topic.new'), new_forum_topic_path(@forum), :class => 'btn btn-primary btn-block'  %>
+      <% else %>
+        <%= render 'users/sessions/invite', {action: t('topic.new')} unless user_signed_in? %>
+      <% end %>
+    </div>
+  </div>  
 </div>
 
-<%= render 'followers/link_with_count', {followable: @forum} %>
-<br/>
-<%= render 'followers/follow_button', {followable: @forum} if user_signed_in? %>
-
-<table class="table table-striped table-bordered">
-  <thead>
-    <tr>
-      <th><%= t 'topic.last' %></th>
-      <th><%= t 'post.p' %></th>
-      <th><%= t 'topic.views' %></th>
-      <th><%= t 'post.last' %></th>
-    </tr>
-  </thead>
-  <tbody>
-  <% @topics.each do |topic| %>
-    <tr>
-      <td><%= link_to topic.name, forum_topic_path(@forum,topic) %></td>
-      <td><%= topic.posts.count %></td>
-      <td><%= topic.views %></td>
-      <td>
-        <% last = topic.posts.last %>
-        <% unless last.blank? %>
-          <%= link_to raw("#{last.user.name}, #{time_tag last.created_at, humanize_datetime(last.created_at)}"), last.url %>
-        <% end %>
-      </td>
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+<%= render 'topics/index', {topics: @topics, forum: @forum} %>
 
 <%= will_paginate @topics %>
-<%= link_to t('topic.new'), new_forum_topic_path(@forum), :class => 'btn' if can? :new, Topic %>

@@ -1,4 +1,0 @@
-<%= form.input :content, as: :text, label: false, input_html: {id: 'new_forum_post_content', :class => 'span6', rows: '8'} %>
-<% if post.topic.watchings.where(user_id: current_user.id).empty? %>
-  <%= render 'shared/watch_checkbox' %>
-<% end %>

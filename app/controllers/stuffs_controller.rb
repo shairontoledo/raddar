@@ -6,6 +6,7 @@ class StuffsController < ApplicationController
   # GET /stuffs/1
   # GET /stuffs/1.xml
   def show
+    @stuff.update_attribute(:views, @stuff.views+1)
     respond_with @stuff
   end
 
@@ -22,7 +23,11 @@ class StuffsController < ApplicationController
   # POST /stuffs
   # POST /stuffs.xml
   def create
-    current_user.watchings.create(watchable: @stuff) if @stuff.save
+    if @stuff.save
+      current_user.watchings.create(watchable: @stuff) 
+      @stuff.touch
+    end
+
     respond_with @pub, @stuff
   end
 

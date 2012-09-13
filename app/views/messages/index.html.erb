@@ -4,10 +4,15 @@
   <h1><%= t('message.p') %> - <%= link_to @user.name, @user %></h1>
 </div>
 
-<div class="chat" id="chat_<%= @user.id %>">
-  <%= render 'chat', {messages: @messages, user: @user} %>
+<div class="row">
+  <div class="chat span8 offset2" id="chat_<%= @user.id %>">
+    <%= render 'chat', {messages: @messages, user: @user} %>
+  </div>
 </div>
 
-<%= render 'form' %>
-
-<%= destroy_button destroy_all_user_messages_path(@user), 'message.destroy_all' %>
+<div class="row">
+  <div class="span8 offset2">
+    <%= render 'form' %>
+    <%= destroy_button destroy_all_user_messages_path(@user), 'message.destroy_all' %>
+  </div>
+</div>

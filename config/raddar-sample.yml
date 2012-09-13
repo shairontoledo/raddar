@@ -9,10 +9,13 @@ oauth:
   twitter:
     consumer_key: 'CONSUMER_KEY'
     consumer_secret: 'CONSUMER_SECRET'
-locale: 'pt-BR'
+locale: 'en'
 recaptcha:
   enabled: true
   public_key: 'PUBLIC_KEY'
   private_key: 'PRIVATE_KEY'
   proxy: 'http://proxy.example.com'
   theme: 'white'
+authentication:
+  encryptor: 'bcrypt'
+  pepper: 'samplexpepper'

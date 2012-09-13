@@ -58,6 +58,7 @@ pt-BR:
         description: Descrição
         address: Endereço
         city: Cidade
+        image: Imagem
       universe: &universe_attributes
         name: Nome
       stuff: &stuff_attributes

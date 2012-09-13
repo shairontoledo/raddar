@@ -2,6 +2,7 @@ pt-BR:
   ajax:
     loading: Carregando...
     sending: Enviando...
+    error: Um erro aconteceu. Tente novamente mais tarde.
   action:
     add: Adicionar
     search: Pesquisar
@@ -9,7 +10,7 @@ pt-BR:
     edit: Editar
     follow: Seguir
     unfollow: Deixar de seguir
-    delete: Apagar
+    delete: Excluir
     reply: Responder
     quote: Citar
     comment: Comentar
@@ -43,7 +44,7 @@ pt-BR:
       change_to: Alterar para...
       my: Sua localização atual
       other: Outro local
-    new: Adicionar lugar
+    new: Adicionar um lugar
     edit: Editar lugar
     report: Reportar um problema
   page:
@@ -90,6 +91,7 @@ pt-BR:
   pub:
     s: Publicação
     p: Publicações
+    author: Autor
     edit: Editar publicação
     new: Criar nova publicação
     feed:
@@ -97,8 +99,11 @@ pt-BR:
   stuff:
     s: Material
     p: Materiais
-    new: Novo material
+    new: Criar novo material
     edit: Editar material
+    vote: Avalie este material
+    info: 
+      html: 'Publicado por %{author} em %{time}'
   forum:
     s: Fórum
     p: Fóruns
@@ -113,7 +118,7 @@ pt-BR:
     p: Tópicos
     last: Últimos tópicos
     views: visualizações
-    new: Novo tópico
+    new: Criar novo tópico
     edit: Editar tópico
     created_by: "Criado por %{user}"
   post:
@@ -124,7 +129,7 @@ pt-BR:
   user:
     s: Usuário
     p: Usuários
-    following: '%{user} segue'
+    following: seguindo
     privacy: Privacidade
     account:
       s: Rede conectada
@@ -185,6 +190,7 @@ pt-BR:
     confirm_unload: As suas modificações ainda não foram gravadas.
     prompt:
       confirm: Você tem certeza?
+      delete_confirm: Confirma a exclusão? Esta ação não pode ser revertida.
   admin:
     page_title: Administração
   index:
@@ -195,4 +201,4 @@ pt-BR:
     new_venues: Novos lugares
     new_users: Novos membros
     top_read: Mais lidos
-    top_discussed: Maiores discussões
+    top_discussed: Mais vistos

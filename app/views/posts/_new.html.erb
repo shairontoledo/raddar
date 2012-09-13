@@ -1,0 +1,16 @@
+<div class="row">
+  <div class="span10 offset2">
+    <h4><%= t 'post.new' %></h4>
+    <%= simple_form_for([@post.topic.forum,@post.topic,@post]) do |f| %>
+      <%= f.error_notification %>
+
+      <div class="form-inputs">
+        <%= render 'posts/form_inputs', {form: f, post: @post} %>
+      </div>
+
+      <div class="form-actions">
+        <%= submit_button f, t('action.send') %>
+      </div>
+    <% end %>
+  </div>
+</div>

@@ -45,7 +45,7 @@ class Message
     end
   end
 
-  def self.find_chats user, status=nil
+  def self.find_chatus user, status=nil
     chats = []
     
     if status.nil?
@@ -71,6 +71,11 @@ class Message
     chats.sort_by!{|chat| chat.last.created_at}.reverse!
 
     chats
+  end
+
+  def self.find_last_messages user
+    msgs = Message.any_of({sender_id: user.id, :sender_status.ne => :deleted}, {recipient_id: user.id, :recipient_status.ne => :deleted}).order_by([:created_at, :desc])
+    msgs.to_a.uniq_by {|m| m.sender_id == user.id ? m.recipient_id : m.sender_id }
   end
 
   def self.count_unread_chats user

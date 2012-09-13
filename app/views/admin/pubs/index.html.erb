@@ -1,0 +1,47 @@
+<% admin_page_title t('pub.p') %>
+
+<%= render 'admin/shared/header', {active: :pubs} %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= t('pub.name') %></th>
+      <th><%= t('user.s') %></th>
+      <th><%= t('universe.s') %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @pubs.each do |pub| %>
+      <tr>
+        <td>
+          <%= image_tag pub.image.thumb.url, :class => 'size20' %>
+          <%= link_to pub.name, pub %>
+          <% if pub.main? %>
+            <i class="icon-star"></i>
+          <% end %>
+        </td>
+        <td>
+          <%= link_to pub.user.name, pub.user %>
+        </td>
+        <td>
+          <%= link_to(pub.universe.name, pub.universe) unless pub.universe.nil? %>
+        </td>
+        <td>
+          <% unless pub.main? %>
+            <%= link_to set_main_admin_pub_path(pub), :class => "btn", method: :put, confirm: t('js.prompt.confirm') do %>
+              <i class="icon-star"></i>
+            <% end %>
+          <% else %>
+            <%= link_to remove_main_admin_pub_path(pub), :class => "btn", method: :put, confirm: t('js.prompt.confirm') do %>
+              <i class="icon-star-empty"></i>
+            <% end %>
+          <% end %>
+          <%= destroy_button [:admin, pub] %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+<%= will_paginate @pubs %>

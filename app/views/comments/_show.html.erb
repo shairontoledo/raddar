@@ -1,12 +1,24 @@
-<div id="comment_<%= comment.id %>" class="well comment">
-  <%= link_to comment.user do %>
-    <%= image_tag comment.user.image.thumb.url %>
-    <%= comment.user.name %>
-  <% end %>
-
-  <div><%= simple_text comment.content %></div>
-  <hr/>
-  <%= link_to humanize_datetime(comment.created_at), "#comment_#{comment.id}" %>
-  <%= destroy_button polymorphic_path([comment.commentable, comment]) if can? :destroy, comment %>
-  <%= render 'votes/show', {votable: comment} %>
+<div id="comment_<%= comment.id %>" class="comment">
+  <div class="row">
+    <div class="span1">
+      <%= link_to image_tag(comment.user.image.thumb.url, :class => 'img-rounded'), comment.user.url %>
+    </div>
+    <div class="span5">
+      <div class="clearfix">
+        <%= link_to comment.user.name, comment.user.url, :class => 'author_name' %>:
+        <%= link_to time_tag(comment.created_at, humanize_datetime(comment.created_at)), "#comment_#{comment.id}", :class => 'pull-right' %>
+      </div>
+      <div class="content justified">
+        <%= simple_text comment.content %>
+      </div>
+      <div class="clearfix">
+        <%= render 'votes/show', {votable: comment} %>
+        <% if can? :destroy, comment %>
+          <span class="pull-right">
+            <%= destroy_button polymorphic_path([comment.commentable, comment]) %>
+          </span>
+        <% end %>
+      </div>
+    </div>
+  </div>
 </div>

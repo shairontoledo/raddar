@@ -1,6 +1,7 @@
+require Rails.root.join('lib', 'devise', 'encryptors', Raddar::config.authentication['encryptor'])
+
 class User
   include Raddar::Model
-  include Geocoder::Model::Mongoid
   include Mongoid::Slug
   include Raddar::Followable
   include Raddar::Searchable
@@ -8,7 +9,8 @@ class User
   # Include default devise modules. Others available are:
   # :token_authenticatable, :encryptable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable
+         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, 
+         :encryptable
 
   ## Database authenticatable
   field :email,              :type => String, :default => ""
@@ -31,7 +33,7 @@ class User
   field :last_sign_in_ip,    :type => String
 
   ## Encryptable
-  # field :password_salt, :type => String
+  field :password_salt, :type => String
 
   ## Confirmable
   field :confirmation_token,   :type => String
@@ -57,7 +59,6 @@ class User
   field :email_privacy, type: Symbol, default: :public
   field :status, type: Symbol, default: :active
   mount_uploader :image, ImageUploader
-  field :coordinates, type: Array
   field :location, type: String
   field :location_privacy, type: Symbol, default: :public
   field :notify_messages, type: Boolean, default: true
@@ -102,12 +103,6 @@ class User
   validate  do
     add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
   end
-
-  # Geocoding
-  geocoded_by :location               # can also be an IP address
-  after_validation :geocode, :if => :location_changed?
-  reverse_geocoded_by :coordinates
-  #after_validation :reverse_geocode  # auto-fetch address
 
   def self.find_first_by_auth_conditions warden_conditions
     conditions = warden_conditions.dup

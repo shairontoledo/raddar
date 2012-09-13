@@ -4,8 +4,48 @@
   <h1><%= t 'forum.p' %></h1>
 </div>
 
-<% @forums.each do |forum| %>
-  <div class="well">
-    <%= link_to forum.name, forum %>
+<div class="row">
+  <div class="span8">
+    <% @forums.each do |forum| %>
+      <div class="row">
+        <div class="span8">
+          <h3><%= link_to forum.name, forum %></h3>
+          <div class="justified">
+            <%= simple_text forum.description %>
+          </div>
+
+          <%= render 'topics/index', {topics: forum.topics.order_by([:created_at, :desc]).limit(4), forum: forum} %>
+        </div>
+      </div>
+      <hr/>
+    <% end %>
   </div>
-<% end %>
+  <div class="span4">
+    <div class="well">
+      <h4><%= t 'index.last_discussions' %></h4>
+      <hr/>
+      <ul class="unstyled">
+        <% Topic.order_by([:created_at, :desc]).limit(6).each do |topic| %>
+          <li>
+            <h5><%= link_to topic.name, topic.url %></h5>
+            <%= link_to topic.forum.name, topic.forum.url %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+
+    <div class="well">
+      <h4><%= t 'index.top_discussed' %></h4>
+      <hr/>
+      <ul class="unstyled">
+        <% Topic.order_by([:views, :desc]).limit(6).each do |topic| %>
+          <li>
+            <h5><%= link_to topic.name, topic.url %></h5>
+            <%= link_to topic.forum.name, topic.forum.url %>
+          </li>
+        <% end %> 
+      </ul>
+    </div>
+  </div>
+</div>
+

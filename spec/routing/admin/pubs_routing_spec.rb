@@ -31,5 +31,13 @@ describe Admin::PubsController do
       delete("/admin/pubs/1").should route_to("admin/pubs#destroy", :id => "1")
     end
 
+    it "routes to #set_main" do
+      put("/admin/pubs/1/set_main").should route_to("admin/pubs#set_main", :id => "1")
+    end
+
+    it "routes to #remove_main" do
+      put("/admin/pubs/1/remove_main").should route_to("admin/pubs#remove_main", :id => "1")
+    end
+
   end
 end

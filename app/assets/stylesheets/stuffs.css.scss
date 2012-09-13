@@ -1,3 +1,28 @@
-// Place all the styles related to the Stuffs controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#stuff_container{
+  margin-bottom: 20px;
+}
+
+.stuff .content img{
+  float: left;
+  margin: 10px;
+}
+
+.stuff .content {
+  text-align: justify;
+}
+
+.stuff img.main {
+  margin-bottom: 20px;
+}
+
+.stuff {
+  margin-bottom: 10px;
+}
+
+#stuff_container .sidebar{
+  height: 100%;
+}
+
+.stuff_resumed .content{
+  text-align: justify;
+}

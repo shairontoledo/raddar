@@ -2,35 +2,45 @@
 
 <% content_for :feed_tag, pub_feed_tag(@pub) %>
 
-<div class="page-header">
-  <h1>
-    <%= @pub.name %>
-    <small><%= @pub.subtitle %></small>
-  </h1>
-</div>
-<%= edit_button edit_pub_path(@pub) if can? :edit, @pub %>
+<div class="row">
+  <div class="span6">
+    <h1><%= @pub.name %></h1>
 
-<%= render 'followers/link_with_count', {followable: @pub} %>
-<br/>
-<%= render 'followers/follow_button', {followable: @pub} if user_signed_in? %>
+    <div class="clearfix">
+      <%= link_to image_tag(@pub.user.image.thumb.url, :class => 'img-polaroid pull-left cover'), @pub.user.url %>
+      <%= t 'pub.author' %>
+      <br/>
+      <%= link_to @pub.user.name, @pub.user.url %>
 
-<%= image_tag @pub.image.thumb.url %>
-
-<div class="well">
-  <%= rich_format @pub.description %>
-</div>
-
-<% @stuffs.each do |stuff| %>
-  <div>
-    <h3><%= link_to stuff.name, [@pub, stuff] %></h3>
-    <%= image_tag stuff.image.thumb.url %>
-
-    <div>
-      <%= rich_format stuff.content %>
+      <span class="pull-right">
+        <%= render 'followers/link_with_count', {followable: @pub} %>
+        <%= render 'followers/follow_button', {followable: @pub} if user_signed_in? %>
+        <%= edit_button edit_pub_path(@pub) if can? :edit, @pub %>
+      </span>
+    </div>
+    
+    <hr/>
+    <%= image_tag @pub.image.full.url unless @pub.image.file.nil? %>
+    <div class="justified">
+      <%= rich_format @pub.description %>
     </div>
   </div>
-<% end %>
+  <div class="span6">
+    <% if can? :create, @pub => Stuff %>
+      <div class="well">
+        <%= link_to t('stuff.new'), new_pub_stuff_path(@pub), :class => 'btn btn-primary btn-block' %>
+      </div>
+    <% end %>
+    <% @stuffs.each do |stuff| %>
+      <%= render 'stuffs/show_resumed', {stuff: stuff, hide_pub: true} %>
+    <% end %>
+    <%= will_paginate @stuffs %>
+  </div>
+</div>
 
 
 
-<%= link_to t('stuff.new'), new_pub_stuff_path(@pub), :class => 'btn' if can? :create, @pub => Stuff %>
+
+
+
+

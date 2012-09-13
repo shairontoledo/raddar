@@ -1,21 +1,37 @@
 <% page_title t('pub.p') %>
 
-<div class="page-header">
-  <h1><%= t 'pub.p' %></h1>
-</div>
-
-<div>
-<% @pubs.each do |pub| %>
-  <div class="well">
-    <h5><%= pub.name %></h5>
-    <%= image_tag pub.image.thumb.url %>
-    <p><%= link_to pub.subtitle, pub %></p>
+<div class="row">
+  <div class="span8">
+    <div class="page-header">
+      <h1><%= t 'pub.p' %></h1>
+    </div>
+    <div class="row">
+      <%= last_stuffs_carousel %>
+    </div>
+    <%= main_pubs_span %>
   </div>
-<% end %>
+  <div class="span4">
+    <div class="well">
+        <% if can?(:create, Pub) %>
+          <%= link_to t('pub.new'), new_pub_path, :class => 'btn btn-block btn-large btn-primary' %>
+        <% else %>
+          <%= render 'users/sessions/invite', {action: t('pub.new')} unless user_signed_in? %>
+        <% end %>
+    </div>
+    
+    <% Universe.order_by([:name, :asc]).each do |universe| %>
+      <div class="well">
+        <h4><%= link_to universe.name, universe.url %></h4>
+        <% Pub.where(universe_id: universe.id).and(main: false).order_by([:updated_at, :desc]).limit(4).each do |pub| %>
+          <% stuff = pub.stuffs.last %>
+          <div class="clearfix">
+            <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff.url %>
+            <%= link_to stuff.name, stuff.url %>
+            <br/>
+            <small><%= pub.name %></small>
+          </div>
+        <% end %>
+      </div>
+    <% end %>
+  </div>
 </div>
-
-<% if can?(:create, Pub) %>
-  <%= link_to t('pub.new'), new_pub_path %>
-<% else %>
-  <%= render 'users/sessions/invite', {action: t('pub.new')} unless user_signed_in? %>
-<% end %>

@@ -8,15 +8,15 @@ class MessagesController < ApplicationController
   # GET /messages.xml
   def index
     if params[:user_id].blank?
-      @chats = current_user.all_chats.paginate(page: params[:page], per_page: 10)
+      @messages = Message.find_last_messages(current_user).paginate(page: params[:page], per_page: 20)
       render 'all'
     else
       @user = User.find(params[:user_id])
       if @user.id == current_user.id
         redirect_to @user
       else
-        current_user.mark_chat_as_read_with @user.id
-        @messages = current_user.chat_with(@user.id)
+        Message.read_chat(current_user, @user)
+        @messages = Message.find_chat(current_user, @user)
         @message = Message.new
         @message[:edit_content] = ''
         respond_with(@messages)
@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
   def more
     @user = User.find(params[:user_id])
     last = Message.find(params[:last])
-    @messages = current_user.chat_with(@user.id, last)
+    @messages = Message.find_chat(current_user, @user.id, last)
   end
 
 
@@ -45,17 +45,17 @@ class MessagesController < ApplicationController
 
 
   def destroy_all
-    @user = User.find(params[:user_id])
-    current_user.destroy_chat_with(@user)
+    @user = User.find params[:user_id]
+    Message.destroy_chat current_user, @user
     redirect_to user_messages_path(@user)
   end
 
   def read
     if params[:user_id].blank?
-      current_user.mark_chats_as_read
+      Message.read_chats current_user
     else
       @user = User.find(params[:user_id])
-      current_user.mark_chat_as_read_with @user.id
+      Message.read_chat current_user, @user
     end
   end
 end

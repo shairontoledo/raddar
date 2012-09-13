@@ -3,14 +3,14 @@ class PubsController < ApplicationController
   # GET /pubs
   # GET /pubs.xml
   def index
-    @stuffs = Stuff.all
     respond_with @pubs
   end
 
   # GET /pubs/1
   # GET /pubs/1.xml
   def show
-    @stuffs = @pub.stuffs.order_by([:created_at, :desc])
+    @stuffs = @pub.stuffs.order_by([:created_at, :desc]).paginate(page: params[:page], per_page: 10)
+
     respond_with @pub
   end
 

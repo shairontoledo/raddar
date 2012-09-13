@@ -1,10 +1,4 @@
 GIT
-  remote: https://github.com/alexreisner/geocoder.git
-  revision: 44a6212dfe7085782dc341f601838170ebbd09b1
-  specs:
-    geocoder (1.1.2)
-
-GIT
   remote: https://github.com/digitalplaywright/carrierwave-mongoid.git
   revision: 4a000f4c2463bfb20972bbdc85e15175120bbb3e
   branch: mongoid-3.0
@@ -14,7 +8,7 @@ GIT
       mongoid (~> 3.0.0.rc)
 
 GIT
-  remote: https://github.com/hakanensari/mongoid-slug.git
+  remote: https://github.com/digitalplaywright/mongoid-slug.git
   revision: 4160f5029a779f045338ee3adf0bc3e52adad92f
   branch: 0.20.0
   specs:
@@ -55,7 +49,7 @@ GEM
     addressable (2.3.2)
     arel (3.0.2)
     bcrypt-ruby (3.0.1)
-    bootstrap-will_paginate (0.0.7)
+    bootstrap-will_paginate (0.0.8)
       will_paginate
     builder (3.0.0)
     cancan (1.6.8)
@@ -107,6 +101,8 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
+    devise-encryptable (0.1.1)
+      devise (>= 2.1.0.rc)
     diff-lcs (1.1.3)
     em-http-request (1.0.3)
       addressable (>= 2.2.3)
@@ -137,14 +133,15 @@ GEM
     faye-websocket (0.4.6)
       eventmachine (>= 0.12.0)
     ffi (1.1.5)
+    geocoder (1.1.3)
     gherkin (2.11.2)
       json (>= 1.4.6)
     hashie (1.2.0)
-    highline (1.6.13)
+    highline (1.6.14)
     hike (1.2.1)
     http_parser.rb (0.5.3)
     httpauth (0.1)
-    i18n (0.6.0)
+    i18n (0.6.1)
     journey (1.0.4)
     jquery-rails (2.1.1)
       railties (>= 3.1.0, < 5.0)
@@ -161,7 +158,7 @@ GEM
       mime-types (~> 1.16)
       treetop (~> 1.4.8)
     mime-types (1.19)
-    mongoid (3.0.4)
+    mongoid (3.0.5)
       activemodel (~> 3.1)
       moped (~> 1.1)
       origin (~> 1.0)
@@ -173,9 +170,10 @@ GEM
     mongoid_fulltext (0.6.0)
       mongoid (~> 3.0.1)
       unicode_utils (~> 1.0.0)
-    moped (1.2.0)
+    moped (1.2.1)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -191,7 +189,7 @@ GEM
       jwt (~> 0.1.4)
       multi_json (~> 1.0)
       rack (~> 1.2)
-    omniauth (1.1.0)
+    omniauth (1.1.1)
       hashie (~> 1.2)
       rack
     omniauth-facebook (1.4.1)
@@ -205,7 +203,7 @@ GEM
     omniauth-twitter (0.0.12)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
-    origin (1.0.6)
+    origin (1.0.8)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
     private_pub (1.0.3)
@@ -317,13 +315,15 @@ DEPENDENCIES
   database_cleaner
   delayed_job_mongoid
   devise
+  devise-encryptable
   factory_girl_rails
-  geocoder!
+  geocoder
   jquery-rails
   mongoid
   mongoid-rspec
   mongoid_fulltext
   mongoid_slug!
+  mysql2
   omniauth-facebook
   omniauth-twitter
   private_pub

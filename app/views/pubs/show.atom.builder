@@ -1,9 +1,9 @@
 atom_feed language: I18n.locale do |feed|
   feed.title @pub.name + ' · ' + Raddar::config.app['name']
-  feed.updated @stuffs.first.created_at unless @stuffs.empty?
+  feed.updated @pub.updated_at
 
-  @stuffs.limit(20).each do |stuff|
-    feed.entry stuff do |entry|
+  @pub.stuffs.order_by([:created_at, :desc]).limit(20).each do |stuff|
+    feed.entry stuff, {url: stuff.url} do |entry|
       entry.title stuff.name
       entry.content stuff.content, type: 'html'
 

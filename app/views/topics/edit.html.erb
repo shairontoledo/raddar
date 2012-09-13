@@ -1,0 +1,10 @@
+<% page_title t('topic.edit') %>
+
+<div class="page-header">
+  <h1>
+    <%= t 'topic.edit' %>
+    <small><%= @topic.forum.name %></small>
+  </h1>
+</div>
+
+<%= render 'form' %>

@@ -1,10 +1,4 @@
-<div class="row">
-  <div class="span6">
-    <p>
-      <% unless label.blank? %>
-        <b><%= label %></b>
-      <% end %>
-      <%= value %>
-    </p>
-  </div>
-</div>
+<% unless label.blank? %>
+  <dt><%= label %></dt>
+<% end %>
+<dd><%= value %></dd>

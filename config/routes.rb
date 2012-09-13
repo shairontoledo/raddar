@@ -55,6 +55,12 @@ Raddar::Application.routes.draw do
   namespace 'admin' do
     root to: 'home#index'
     resources :users, only: [:index, :edit, :update]
+    resources :pubs, only: [:index, :destroy] do
+      member do
+        put 'set_main'
+        put 'remove_main'
+      end
+    end
     resources :forums, except: [:show]
     resources :venues, except: [:show, :new, :create]
     resources :universes, except: [:show] do

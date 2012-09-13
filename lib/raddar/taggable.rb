@@ -27,13 +27,16 @@ module Raddar::Taggable
   def set_taggings
     unless self[:tagnames].nil?
       self.taggings.destroy_all
-      self[:tagnames].split(',').each do |tagname|
+      tag_names = self[:tagnames].split(',')
+      self.unset :tagnames
+      tag_names.each do |tagname|
         tagname.strip!
         tagname.downcase!
         tag = Tag.find_or_create_by name: tagname
-        self.taggings.create tag_id: tag.id
+        if( (!tag.nil?) && tag.persisted?)
+          self.taggings.create(tag_id: tag.id)
+        end
       end
-      self.unset :tagnames
     end
   end
 end
