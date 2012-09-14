@@ -39,27 +39,18 @@
 
   <body>
     <%= render 'layouts/navbar' %>
+    <div class="layout_top">
+      <div class="container"><%= render 'layouts/top' %></div>
+    </div>
     <div class="container">
+
       <%= render 'layouts/messages' %>
-
-      <div class="hero-unit hidden-phone">
-        <h1><%= Raddar::config.app['name'] %></h1>
-        <p>Zombie ipsum reversus ab viral inferno, nam rick grimes malum cerebro. De carne lumbering animata corpora quaeritis. Summus brains sit​​, morbo vel maleficia? De apocalypsi gorger omero undead survivor dictum mauris.</p>
-      </div>
       
-      <div class="row">
-        <div class="span12">
-          <%= yield %>
-        </div>
-      </div>
+      <%= yield %>
 
-      <hr>
-
-      <footer>
-        &copy; <%= Raddar::config.app['name'] %> <%= Time.now.year %> ::
-        <%= link_to t('contact.s'), new_contact_path %>
-      </footer>
-
-    </div><!--/.fluid-container-->
+    </div>
+    <footer>
+      <div class="container"><%= render 'layouts/footer' %></div>
+    </footer>
   </body>
 </html>
