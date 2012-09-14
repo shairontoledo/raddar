@@ -94,8 +94,8 @@ pt-BR:
           male: Masculino
           female: Feminino
         remember_me: Lembrar
-        image: Avatar
-        remove_image: Remover avatar
+        image: Imagem
+        remove_image: Remover imagem
         bio: Sobre mim
         facebook_url: Perfil do Facebook
         roles: Papéis

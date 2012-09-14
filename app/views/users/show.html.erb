@@ -3,21 +3,17 @@
 <div class="row user_page">
   <div class="span4">
     <%= image_tag @user.image.medium.url, :class => 'img-polaroid', id: 'main_image' %>
-    <div class="well">
-      <h5><%= t 'rank.p' %></h5>
-      <% Universe.all.each do |universe| %>
-        <% rank = Rank.highest @user, universe %>
-        <% unless rank.nil? %>
-          <div class="user_rank">
-            <%= link_to image_tag(universe.image.thumb.url), universe.url %>
-            <h3><%= rank.level %>. <%= rank.name %></h3>
-            <small><%= rank.description %></small>
-            <br/>
-            <h6><%= link_to universe.name, universe.url %></h6>
-          </div>
-        <% end %>
+    
+    <% Universe.all.each do |universe| %>
+      <% rank = Rank.highest @user, universe %>
+      <% unless rank.nil? %>
+        <div class="well clearfix rank">
+          <%= link_to image_tag(universe.image.thumb.url, :class => 'img-rounded'), universe.url, :class => 'pull-left' %>
+          <h4><%= rank.name %></h4>
+          <p><%= rank.description %></p>
+        </div>
       <% end %>
-    </div>
+    <% end %>
   </div>
   <div class="span8">
     <h1><%= @user.name %></h1>
@@ -25,9 +21,11 @@
     <div class="row">
       <div class="span6">
         <% unless @user == current_user %>
-          <%= link_to t('message.p'), user_messages_path(@user) %>
-          <br/>
           <%= render 'followers/follow_button', {followable: @user} %>
+          <%= link_to user_messages_path(@user), :class => 'btn' do %>
+            <i class="icon-envelope"></i>
+            <%= t 'message.send' %>
+          <% end %>
         <% else %>
           <%= t 'user.you' %>
         <% end %>
@@ -60,6 +58,25 @@
       <%= show_protected_user_field @user, :location %>
     </dl>
 
+    <% unless @user.pubs.empty? %>
 
+      <h3><%= t 'pub.p' %></h3>
+
+      <% @user.pubs.order_by([:updated_at, :desc]).each do |pub| %>
+        <div class="row pub_snippet">
+          <div class="span1">
+            <%= link_to image_tag(pub.image.small.url, :class => 'img-polaroid'), pub.url %>
+          </div>
+          <div class="span7">
+            <strong><%= link_to pub.name, pub.url %></strong>
+            <p>
+              <%= pub.stuffs.count %> <%= t(pub.stuffs.count == 1 ? 'stuff.s' : 'stuff.p').downcase %> - 
+              <em><%= truncate hide_html(pub.description), length: 170, separator: ' ' %></em>
+            </p>
+          </div>
+        </div>
+        <hr/>
+      <% end %>
+    <% end %>
   </div>
 </div>

@@ -20,26 +20,26 @@ class ImageUploader < CarrierWave::Uploader::Base
   end
 
   # Process files as they are uploaded:
-  process :resize_to_fit => [1170, 2000]
+  process :resize_to_fit => [1160, 2000]
   process :convert => 'png'
 
   version :full do
-    process :resize_to_fit => [770, 2000]
+    process :resize_to_fit => [760, 2000]
     process :convert => 'png'
   end
 
   version :medium do
-    process :resize_to_fill => [370, 370]
+    process :resize_to_fill => [360, 360]
     process :convert => 'png'
   end
 
   version :small do
-    process :resize_to_fill => [170, 170]
+    process :resize_to_fill => [160, 160]
     process :convert => 'png'
   end
 
   version :thumb do
-    process :resize_to_fill => [70, 70]
+    process :resize_to_fill => [60, 60]
     process :convert => 'png'
   end
 

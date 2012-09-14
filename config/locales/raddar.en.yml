@@ -165,6 +165,7 @@ en:
     destroy_all: Delete chat
     previous: Previous messages
     all: All messages
+    send: Send message
   flash:
     watching:
       destroyed: You will no longer be notified for this item.
