@@ -37,3 +37,7 @@ img.center {
 .justified {
   text-align: justify;
 }
+
+.centered {
+  text-align: center;
+}

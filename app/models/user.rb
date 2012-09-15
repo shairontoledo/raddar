@@ -3,6 +3,7 @@ require Rails.root.join('lib', 'devise', 'encryptors', Raddar::config.authentica
 class User
   include Raddar::Model
   include Mongoid::Slug
+  include Mongoid::Paranoia
   include Raddar::Followable
   include Raddar::Searchable
 
@@ -83,7 +84,7 @@ class User
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender, :status
-  validates_uniqueness_of :name
+  validates_uniqueness_of :name, case_sensitive: false
   validates_format_of :name, with: /^(([a-z]|[A-Z]|[0-9]|_)+)$/
   validates_length_of :name, maximum: 20, minimum: 3
   validates_length_of :bio, maximum: 500

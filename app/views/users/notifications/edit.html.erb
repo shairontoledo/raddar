@@ -2,7 +2,7 @@
 
 <%= render 'users/shared/settings_header', {active: :notifications} %>
 
-<h3><%= t 'user.notifications_description' %></h3>
+<h4><%= t 'user.notifications_description' %></h4>
 
 <%= simple_form_for(@user, url: user_notifications_path, :html => {:class => 'form-horizontal'}) do |f| %>
   <%= f.error_notification %>

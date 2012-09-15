@@ -4,16 +4,23 @@
   <h1><%= t 'user.session.new' %></h1>
 </div>
 
-<%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal'} do |f| %>
-  <div class="form-inputs">
-    <%= f.input :login, :required => false, :autofocus => true %>
-    <%= f.input :password, :required => false %>
-    <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+<div class="row">
+  <div class="span6">
+
+    <%= simple_form_for resource, :as => resource_name, :url => session_path(resource_name), :html => {:class => 'form-horizontal'} do |f| %>
+      <div class="form-inputs">
+        <%= f.input :login, :required => false, :autofocus => true %>
+        <%= f.input :password, :required => false %>
+        <%= f.input :remember_me, :as => :boolean if devise_mapping.rememberable? %>
+      </div>
+
+      <div class="form-actions">
+        <%= submit_button f, t('user.session.new') %>
+      </div>
+    <% end %>
   </div>
 
-  <div class="form-actions">
-    <%= submit_button f, t('user.session.new') %>
+  <div class="span6">
+    <%= render 'users/shared/links' %>
   </div>
-<% end %>
-
-<%= render "users/shared/links" %>
+</div>

@@ -1,6 +1,7 @@
 class Stuff
   include Raddar::Model
   include Mongoid::Slug
+  include Mongoid::Paranoia
   include Raddar::Taggable
   include Raddar::Watchable
   include Raddar::Votable

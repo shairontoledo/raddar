@@ -9,7 +9,7 @@
       <td><%= provider.to_s.titleize %></td>
       <td>
         <% if account.blank? %>
-          <%= t 'user.account.no' %>
+          <%= t 'user.account.not' %>
         <% else %>
           <%= link_to t('user.account.as', user: account.name), account.url, target: '_blank' %>
         <% end %>

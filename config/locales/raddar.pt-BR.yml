@@ -1,4 +1,5 @@
 pt-BR:
+  or: ou
   ajax:
     loading: Carregando...
     sending: Enviando...
@@ -135,7 +136,7 @@ pt-BR:
     account:
       s: Rede conectada
       p: Redes conectadas
-      no: "Não há conta adicionada"
+      not: Não há conta adicionada
       as: "Conectado como %{user}"
     notifications: Avisos
     notifications_description: "Receber avisos por e-mails sobre:"
@@ -151,9 +152,10 @@ pt-BR:
       show: Meu perfil
       edit: Editar conta
       new: Cadastre-se! 
+      destroy: Cancelar conta
     session:
       new: Entrar
-      with: "Entrar com %{provider}"
+      with: "Entre com %{provider}"
       destroy: Sair
       invite: "Quer %{action}? Entre agora!"
   vote:
