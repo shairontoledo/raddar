@@ -27,6 +27,7 @@ en:
     p: Ranks
     new: New rank
     edit: Edit rank
+    no_members: Nobody owns this rank at the moment.
   contact:
     s: Contact
     p: Contacts
@@ -200,6 +201,9 @@ en:
     last_stuffs: New stuffs
     main_pubs: Main pubs
     new_venues: New venues
-    new_users: New members
     top_read: Top read
     top_discussed: Trending
+  member:
+    p: Members
+    s: Member
+    new: New members

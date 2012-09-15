@@ -27,6 +27,7 @@ pt-BR:
     p: Ranks
     new: Novo rank
     edit: Editar rank
+    no_members: Ninguém possui este rank no momento.
   contact:
     s: Contato
     p: Contatos
@@ -200,6 +201,9 @@ pt-BR:
     last_stuffs: Novidades
     main_pubs: Principais
     new_venues: Novos lugares
-    new_users: Novos membros
     top_read: Mais lidos
     top_discussed: Mais vistos
+  member:
+    p: Membros
+    s: Membro
+    new: Novos membros

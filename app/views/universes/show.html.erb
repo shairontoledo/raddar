@@ -1,45 +1,78 @@
 <% page_title @universe.name %>
 
+<%= image_tag @universe.image.url %>
+
 <div class="page-header">
   <h1><%= @universe.name %></h1>
 </div>
 
-<%= image_tag @universe.image.thumb.url %>
-
-<div class="well">
+<div class="justified">
   <%= rich_format @universe.description %>
 </div>
 
-<h3><%= t 'forum.p' %></h3>
-<ul>
-<% @universe.forums.each do |forum| %>
-  <li><%= link_to forum.name, forum %></li>
-<% end %>
-</ul>
-
-<h3><%= t 'pub.p' %></h3>
-<ul>
-<% @universe.pubs.each do |pub| %>
-  <li><%= link_to pub.name, pub %></li>
-<% end %>
-</ul>
-
-<h3><%= t 'rank.p' %></h3>
-<ol>
-<% @universe.ranks.order_by([:level, :asc]).each do |rank| %>
-  <li>
-    <h4><%= rank.name %></h4>
-    <p><%= rank.description %></p>
-    <ul>
-      <% rank.highest_users.first(5).each do |user| %>
-        <li>
-          <%= link_to user.url do %>
-            <%= image_tag user.image.thumb.url, :class => 'size20' %>
-            <%= user.name %> 
-          <% end %>
-        </li>
+<div class="page-header">
+  <h2><%= t 'pub.p' %></h2>
+</div>
+<div class="row">
+  <div class="span8">
+    <% main_pubs = @universe.pubs.where(main: true).order_by([:updated_at, :desc]) %>
+    <% main_pubs.each do |pub| %>
+      <%= render 'stuffs/show_resumed', {stuff: pub.stuffs.last} %>
+    <% end %>
+  </div>
+  <div class="span4">
+    <div class="well well-small">
+      <% @universe.pubs.where(main: false).order_by([:updated_at, :desc]).limit((main_pubs.length * 3.2).to_i).each do |pub| %>
+        <% stuff = pub.stuffs.last %>
+        <div class="clearfix">
+          <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff.url %>
+          <%= link_to stuff.name, stuff.url %>
+          <br/>
+          <small><%= pub.name %></small>
+        </div>
       <% end %>
-    </ul>
-  </li>
+    </div>
+  </div>
+</div>
+
+<div class="page-header">
+  <h2><%= t 'rank.p' %></h2>
+</div>
+<% @universe.ranks.order_by([:level, :desc]).each_with_index do |rank, i| %>
+  <h3>
+    <%= rank.level %>. <%= rank.name %>
+    <small><%= rank.description %></small>
+  </h3>
+
+  <% if false %>
+    <p>
+      <a class="btn btn-mini" data-toggle="collapse" href="#members_<%= i %>">
+        <%= t 'member.p' %>
+      </a>
+    </p>
+  <% end %>
+
+  <ul class="collapse in thumbnails" id="members_<%= i %>">
+    <% users = rank.highest_users %>
+    <% users.first(120).each do |user| %>
+      <li class="span1">
+        <%= link_to user.url, :class => 'thumbnail', title: user.name do %>
+          <%= image_tag user.image.thumb.url %>
+        <% end %>
+      </li>
+    <% end %>
+    <% if users.empty? %>
+      <li><%= t 'rank.no_members' %></li>
+    <% end %>
+  </ul>
+  <% if users.length > 120 %>
+    <p><%= t 'action.more' %></p>
+  <% end %>
 <% end %>
-</ol>
+
+<div class="page-header">
+  <h2><%= t 'forum.p' %></h2>
+</div>
+<% @universe.forums.each do |forum| %>
+  <div class="well"><%= link_to forum.name, forum %></div>
+<% end %>

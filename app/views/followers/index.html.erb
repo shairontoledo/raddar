@@ -16,10 +16,7 @@
         <li class="span2">
           <%= link_to user.url, :class => 'thumbnail' do %>
             <%= image_tag user.image.small.url %>
-            <div class="caption">
-              <h5><%= user.name %></h5>
-              <p></p>
-            </div>
+            <h5><%= user.name %></h5>
           <% end %>
         </li>
           
