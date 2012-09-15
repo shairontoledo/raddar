@@ -28,7 +28,7 @@ gem 'thin'
 gem 'geocoder'
 gem 'delayed_job_mongoid'
 gem 'daemons'
-gem 'mongoid_slug', git: 'https://github.com/digitalplaywright/mongoid-slug.git', branch: '0.20.0'
+gem 'mongoid_slug', '>= 1.0.0.rc2'
 gem 'mongoid_fulltext'
 gem 'whenever', :require => false
 gem 'recaptcha', :require => 'recaptcha/rails'

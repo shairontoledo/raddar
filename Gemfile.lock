@@ -7,15 +7,6 @@ GIT
       carrierwave (~> 0.6.1)
       mongoid (~> 3.0.0.rc)
 
-GIT
-  remote: https://github.com/digitalplaywright/mongoid-slug.git
-  revision: 4160f5029a779f045338ee3adf0bc3e52adad92f
-  branch: 0.20.0
-  specs:
-    mongoid_slug (0.20.0)
-      mongoid (~> 3.0.0)
-      stringex (~> 1.4)
-
 GEM
   remote: https://rubygems.org/
   specs:
@@ -137,7 +128,7 @@ GEM
     gherkin (2.11.2)
       json (>= 1.4.6)
     hashie (1.2.0)
-    highline (1.6.14)
+    highline (1.6.15)
     hike (1.2.1)
     http_parser.rb (0.5.3)
     httpauth (0.1)
@@ -170,6 +161,9 @@ GEM
     mongoid_fulltext (0.6.0)
       mongoid (~> 3.0.1)
       unicode_utils (~> 1.0.0)
+    mongoid_slug (1.0.0.rc2)
+      mongoid (~> 3.0)
+      stringex (~> 1.4)
     moped (1.2.1)
     multi_json (1.3.6)
     multipart-post (1.1.5)
@@ -321,7 +315,7 @@ DEPENDENCIES
   mongoid
   mongoid-rspec
   mongoid_fulltext
-  mongoid_slug!
+  mongoid_slug (>= 1.0.0.rc2)
   omniauth-facebook
   omniauth-twitter
   private_pub
