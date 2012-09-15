@@ -10,21 +10,20 @@
 <div class="row">
   <div class="span12">
     <ul class="thumbnails">
-    <% @followerships.each do |followership| %>
-      <% followable = followership.followable %>
-      
+      <% @followerships.each do |followership| %>
+        <% followable = followership.followable %>
+        
         <li class="span2">
           <%= link_to followable.url, :class => 'thumbnail' do %>
             <%= image_tag followable.image.small.url unless followable === Forum %>
             <div class="caption">
-              <h5 class="post_user_name"><%= followable.name %></h5>
+              <h5><%= followable.name %></h5>
               <p></p>
             </div>
-         
           <% end %>
         </li>
-      
-    <% end %>
+        
+      <% end %>
     </ul>
   </div>
 </div>
