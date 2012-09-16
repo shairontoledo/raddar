@@ -1,2 +1,2 @@
 $ ->
-  wysiwyg_editor '#universe_description'
+  #wysiwyg_editor '#universe_description'

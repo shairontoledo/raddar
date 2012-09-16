@@ -1,2 +1,2 @@
 $ ->  
-  wysiwyg_editor '#page_content'
+  #wysiwyg_editor '#page_content'

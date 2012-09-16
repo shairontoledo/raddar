@@ -1,2 +1,2 @@
 $ ->
-  wysiwyg_editor '#pub_description'
+  #wysiwyg_editor '#pub_description'
