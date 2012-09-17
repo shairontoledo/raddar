@@ -1,7 +1,7 @@
 class Page
-
   include Raddar::Model
   include Mongoid::Slug
+  include Bootsy::MediaContainer
 
   field :name, type: String
   field :title, type: String

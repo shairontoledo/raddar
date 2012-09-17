@@ -1,8 +1,10 @@
 class Pub
   include Raddar::Model
   include Mongoid::Slug
+  include Mongoid::Paranoia
   include Raddar::Followable
   include Raddar::Searchable
+  include Bootsy::MediaContainer
 
   field :name, type: String
   field :description, type: String

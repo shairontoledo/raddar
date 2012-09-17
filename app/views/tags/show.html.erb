@@ -15,21 +15,23 @@
     <% if @taggings.empty? %>
       <p><%= t 'search.none' %></p>
     <% else %>
-      <ul>
-        <% @taggings.each do |tagging| %>
-          <li>
-            <%= link_to tagging.taggable.url do %> 
-              <strong>
-                <%= tagging.taggable.class.model_name.human %>
-                <%= tagging.taggable.name unless tagging.taggable[:name].blank? %>
-              </strong>
-              <br/>
-              <small><%= tag_result_text tagging.taggable, @tag %></small>
-            <% end %>
-          </li>
-        <% end %>
-      </ul>
-      <%= will_paginate @taggings %>
+      <div class="tab-pane active">
+        <ul>
+          <% @taggings.each do |tagging| %>
+            <li>
+              <%= link_to tagging.taggable.url do %> 
+                <strong>
+                  <%= tagging.taggable.class.model_name.human %>
+                  <%= tagging.taggable.name unless tagging.taggable[:name].blank? %>
+                </strong>
+                <br/>
+                <small><%= tag_result_text tagging.taggable, @tag %></small>
+              <% end %>
+            </li>
+          <% end %>
+        </ul>
+        <%= will_paginate @taggings %>
+      </div>
     <% end %>
   </div>
 </div>

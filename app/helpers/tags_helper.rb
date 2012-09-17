@@ -1,7 +1,7 @@
 module TagsHelper
   def tag_result_text result, tag
-    text = excerpt result.to_s, tag.name, radius: 80
-    text = truncate result.to_s, length: 80 if text.blank?
+    text = excerpt hide_html(result.to_s), tag.name, radius: 80
+    text = truncate hide_html(result.to_s), length: 80 if text.blank?
     text = highlight text, tag.name unless text.blank?
     text
   end

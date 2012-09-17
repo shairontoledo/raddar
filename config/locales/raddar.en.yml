@@ -1,4 +1,5 @@
 en:
+  or: or
   ajax:
     loading: Loading...
     sending: Sending...
@@ -27,6 +28,7 @@ en:
     p: Ranks
     new: New rank
     edit: Edit rank
+    no_members: Nobody owns this rank at the moment.
   contact:
     s: Contact
     p: Contacts
@@ -134,7 +136,7 @@ en:
     account:
       s: Connected account
       p: Connected accounts
-      no: "No account added"
+      not: No account added
       as: "Signed in as %{user}"
     notifications: Notifications
     notifications_description: "E-mail me for:"
@@ -150,6 +152,7 @@ en:
       show: My profile
       edit: Edit account
       new: Register now!
+      destroy: Cancel account
     session:
       new: Sign in
       with: "Entrar com %{provider}"
@@ -200,6 +203,9 @@ en:
     last_stuffs: New stuffs
     main_pubs: Main pubs
     new_venues: New venues
-    new_users: New members
     top_read: Top read
     top_discussed: Trending
+  member:
+    p: Members
+    s: Member
+    new: New members

@@ -22,7 +22,7 @@
     <% Universe.order_by([:name, :asc]).each do |universe| %>
       <div class="well">
         <h4><%= link_to universe.name, universe.url %></h4>
-        <% Pub.where(universe_id: universe.id).and(main: false).order_by([:updated_at, :desc]).limit(4).each do |pub| %>
+        <% universe.pubs.where(main: false).order_by([:updated_at, :desc]).limit(4).each do |pub| %>
           <% stuff = pub.stuffs.last %>
           <div class="clearfix">
             <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff.url %>

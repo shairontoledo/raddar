@@ -10,13 +10,13 @@ class NotificationsController < ApplicationController
 
   def index
     @notifications = @notifications.order_by([:created_at, :desc]).paginate(page: params[:page], per_page: 10)
-    current_user.read_notifications
+    Notification.read_all current_user
 
     respond_with @notifications
   end
 
   def read
-    current_user.read_notifications
+    Notification.read_all current_user
   end
 
   def destroy

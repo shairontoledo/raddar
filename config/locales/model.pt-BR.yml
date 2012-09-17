@@ -82,7 +82,7 @@ pt-BR:
         sender: Remetente
         recipient: Destinatário
       user: &user_attributes
-        login: Nome de usuário ou e-mail
+        login: Usuário ou e-mail
         email: E-mail
         password: Senha
         current_password: Senha atual

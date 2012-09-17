@@ -1,4 +1,5 @@
 pt-BR:
+  or: ou
   ajax:
     loading: Carregando...
     sending: Enviando...
@@ -27,6 +28,7 @@ pt-BR:
     p: Ranks
     new: Novo rank
     edit: Editar rank
+    no_members: Ninguém possui este rank no momento.
   contact:
     s: Contato
     p: Contatos
@@ -129,12 +131,12 @@ pt-BR:
   user:
     s: Usuário
     p: Usuários
-    following: seguindo
+    following: Seguindo
     privacy: Privacidade
     account:
       s: Rede conectada
       p: Redes conectadas
-      no: "Não há conta adicionada"
+      not: Não há conta adicionada
       as: "Conectado como %{user}"
     notifications: Avisos
     notifications_description: "Receber avisos por e-mails sobre:"
@@ -150,9 +152,10 @@ pt-BR:
       show: Meu perfil
       edit: Editar conta
       new: Cadastre-se! 
+      destroy: Cancelar conta
     session:
       new: Entrar
-      with: "Entrar com %{provider}"
+      with: "Entre com %{provider}"
       destroy: Sair
       invite: "Quer %{action}? Entre agora!"
   vote:
@@ -200,6 +203,9 @@ pt-BR:
     last_stuffs: Novidades
     main_pubs: Principais
     new_venues: Novos lugares
-    new_users: Novos membros
     top_read: Mais lidos
     top_discussed: Mais vistos
+  member:
+    p: Membros
+    s: Membro
+    new: Novos membros

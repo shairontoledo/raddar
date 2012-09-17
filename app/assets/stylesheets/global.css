@@ -39,3 +39,7 @@ footer {
   padding: 20px 0px 40px 0px;
   background-color: #F0F0F0;
 }
+
+.centered {
+  text-align: center;
+}
