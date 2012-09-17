@@ -3,7 +3,7 @@
 
   <div class="form-inputs">
     <%= f.input :name, input_html: {:class => 'span4'} %>
-    <%= f.input :content, as: :text, input_html: {:class => 'span8', rows: '16'} %>
+    <%= f.input :content, as: :bootsy, container: @stuff.pub, input_html: {:class => 'span8', rows: '16'} %>
     <%= render 'tags/input', {form: f} %>
     <%= image_tag @stuff.image.thumb.url, :class => 'img-polaroid' unless @stuff.image.file.nil? %>
     <%= f.input :image, as: :file, input_html: {:class => 'span4'}  %>

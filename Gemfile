@@ -32,6 +32,8 @@ gem 'mongoid_slug', '>= 1.0.0.rc2'
 gem 'mongoid_fulltext'
 gem 'whenever', :require => false
 gem 'recaptcha', :require => 'recaptcha/rails'
+gem 'bootsy-mongoid'
+gem 'bootsy-simple_form'
 
 group :development, :test do
   gem 'rspec-rails'

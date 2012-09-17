@@ -1,5 +1,7 @@
 Raddar::Application.routes.draw do
 
+  mount Bootsy::Engine => '/bootsy', as: 'bootsy'
+
   resources :pages, only: [:show]
 
   resources :tags, only: [:show]

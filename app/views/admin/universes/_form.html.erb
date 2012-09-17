@@ -6,7 +6,7 @@
     <%= image_tag @universe.image.thumb.url unless @universe.image.file.nil? %>
     <%= f.input :image, as: :file %>
     <%= f.input :image_cache, as: :hidden %>
-    <%= f.input :description, as: :text, input_html: {:class => 'span6', rows: '8'} %>
+    <%= f.input :description, as: :bootsy, input_html: {:class => 'span7', rows: '8'} %>
   </div>
 
   <div class="form-actions">
