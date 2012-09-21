@@ -42,7 +42,7 @@ GEM
     bcrypt-ruby (3.0.1)
     bootstrap-will_paginate (0.0.8)
       will_paginate
-    bootsy (0.1.1)
+    bootsy (0.1.2)
       carrierwave (~> 0.6)
       mini_magick (~> 3.4)
       remotipart (~> 1.0)
