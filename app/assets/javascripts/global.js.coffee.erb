@@ -27,16 +27,6 @@ build_notifications_count = (id, read_url)->
         type: 'POST'
         url: read_url
 
-
-# Confirm on unload window 
-
-confirm_form_changed = false
-  
-check_confirm_unload = ->  
-  if confirm_form_changed  
-    return "<%= I18n.t 'js.confirm_unload' %>";  
-
-
 # WYSIWYG
 
 window.wysiwyg_editor = (textarea_id, editor_callback = null)->
