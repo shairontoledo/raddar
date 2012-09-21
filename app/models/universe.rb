@@ -2,7 +2,7 @@ class Universe
   include Raddar::Model
   include Mongoid::Slug
   include Raddar::Searchable
-  include Bootsy::MediaContainer
+  include Bootsy::Container
 
   field :name, type: String
   field :description, type: String
