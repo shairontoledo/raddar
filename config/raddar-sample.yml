@@ -19,3 +19,5 @@ recaptcha:
 authentication:
   encryptor: 'bcrypt'
   pepper: 'samplexpepper'
+google_analytics:
+  account_id: ''
