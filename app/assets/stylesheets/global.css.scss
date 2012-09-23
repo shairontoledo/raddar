@@ -43,3 +43,22 @@ footer {
 .centered {
   text-align: center;
 }
+
+.editable_content {
+  @extend .justified;
+}
+
+.editable_content {
+  *zoom: 1;
+}
+
+.editable_content:before,
+.editable_content:after {
+  display: table;
+  line-height: 0;
+  content: "";
+}
+
+.editable_content:after {
+  clear: both;
+}

@@ -8,7 +8,7 @@
     </div>
 
     <div class="span10 clearfix">
-      <div class="post_content justified"><%= rich_format post.content %></div>
+      <div class="post_content editable_content"><%= rich_format post.content %></div>
       <hr/>
       <%= render 'votes/show', {votable: post} %>
       
