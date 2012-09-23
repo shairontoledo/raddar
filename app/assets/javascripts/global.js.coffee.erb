@@ -27,21 +27,6 @@ build_notifications_count = (id, read_url)->
         type: 'POST'
         url: read_url
 
-# WYSIWYG
-
-window.wysiwyg_editor = (textarea_id, editor_callback = null)->
-  text_area = $(textarea_id)
-  if text_area.length > 0
-    editor = text_area.wysihtml5().data("wysihtml5").editor
-    editor.on "change", ->
-      confirm_form_changed = true
-
-    text_area.closest('form').submit (e)->
-      confirm_form_changed = false
-      true
-
-    editor_callback editor if editor_callback isnt null
-
 
 # Maps and geolocation
 
@@ -97,7 +82,6 @@ $ ->
 
   build_notifications_count 'messages_notifications', '/messages/read'
   build_notifications_count 'general_notifications', '/notifications/read'
-  window.onbeforeunload = check_confirm_unload
 
   $('body').off 'click.dropdown touchstart.dropdown.data-api', '.dropdown'
   $('body').on 'click.dropdown touchstart.dropdown.data-api', '.dropdown form', (e) -> 
