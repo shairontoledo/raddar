@@ -1,0 +1,9 @@
+<div class="row">
+  <% universes.each do |universe| %>
+    <div class="span3">
+      <div class="well universe_link" style="background-image: url(<%= universe.image.medium.url %>)">
+        <%= link_to universe.name, universe.url, title: universe.name %>
+      </div>
+    </div>
+  <% end %>
+</div>

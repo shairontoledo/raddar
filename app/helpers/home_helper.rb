@@ -21,4 +21,11 @@ module HomeHelper
 
     raw "<li class=\"#{active_class}\">#{link_to label, url}</li>"
   end
+
+  def tag_btn_size total, i
+    sizes = [:large, :default, :small, :mini]
+    pos = i / (total / sizes.count)
+
+    sizes[pos >= sizes.count ? sizes.count - 1 : pos]
+  end
 end

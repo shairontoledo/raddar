@@ -16,6 +16,6 @@ module UsersHelper
   end
 
   def last_users
-    User.where(:confirmed_at.exists => true).limit(10).order_by([:confirmed_at, :desc])
+    User.where(:confirmed_at.exists => true).order_by([:confirmed_at, :desc])
   end
 end

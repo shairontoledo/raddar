@@ -4,14 +4,13 @@ class HomeController < ApplicationController
   authorize_resource :class => false
   
   def index
-    @pubs = Pub.all.order_by [:created_at, :desc]
-    @main_pubs = Pub.all.order_by [:created_at, :desc]
-    @stuffs = Stuff.all.order_by [:created_at, :desc]
-    @main_stuffs = Stuff.all.order_by [:created_at, :desc]
-    @last_stuffs = Stuff.all.order_by [:created_at, :desc]
+    @top_read = Stuff.all.order_by [:views, :desc]
+    @top_discussed = Topic.all.sort_by {|t| t.posts.count }.reverse
+    @best = Stuff.all.sort_by {|s| s.votes.where(value: :like).count }.reverse
     @topics = Topic.all.order_by [:created_at, :desc]
-    @venues = Venue.all.order_by [:created_at, :desc]
-    @tags = Tag.all.order_by ['taggings.count', :desc]
+    @tags = Tag.all.sort_by {|t| t.taggings.count }.reverse
+    @comments = Comment.all.order_by [:created_at, :desc]
+    @universes = Universe.all.order_by [:name, :asc]
   end
 
   def search

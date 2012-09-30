@@ -2,22 +2,18 @@
 
 <div class="row">
   <div class="span9">
+    <%= last_stuffs_carousel %>
+
+    <%= main_pubs_span 3 %>
 
     <%= render 'row1' %>
-
-    <hr/>
-
-    <%= render 'row2' %>
-
-    <hr/>
-
-    <%= render 'row3' %>
-
-    <hr/>
-    
-    <%= render 'row4' %>
-
   </div>
 
-  <%= render 'sidebar' %>
+  <div class="span3">
+    <%= render 'sidebar' %>
+  </div>
 </div>
+
+<hr/>
+
+<%= render 'universes', {universes: @universes} %>

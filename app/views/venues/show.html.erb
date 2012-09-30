@@ -6,7 +6,7 @@
 
 <div class="row venue">
   <div class="span6">
-    <%= image_tag @venue.image.full.url, :class => 'img-polaroid main_img' unless @venue.image.file.nil? %>
+    <%= image_tag @venue.image.large.url, :class => 'img-polaroid main_img' unless @venue.image.file.nil? %>
 
     <div class="description justified">
       <%= rich_format @venue.description %>

@@ -18,7 +18,7 @@
 
       <hr />
 
-      <%= image_tag(@stuff.image.full.url, :class => 'main center') unless @stuff.image.file.nil? %>
+      <%= image_tag(@stuff.image.large.url, :class => 'main center') unless @stuff.image.file.nil? %>
 
       <div class="content editable_content">
         <%= rich_format @stuff.content %>

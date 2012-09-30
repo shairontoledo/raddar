@@ -1,14 +1,8 @@
 app:
   name: 'My Community'
+domain: 'mycommunity.example.com'
 sysop:
   email: 'sysop@example.com'
-oauth:
-  facebook:
-    app_id: 'APP_ID'
-    app_secret: 'APP_SECRET'
-  twitter:
-    consumer_key: 'CONSUMER_KEY'
-    consumer_secret: 'CONSUMER_SECRET'
 locale: 'en'
 recaptcha:
   enabled: true
@@ -21,3 +15,12 @@ authentication:
   pepper: 'samplexpepper'
 google_analytics:
   account_id: ''
+facebook:
+  page: 'platform'
+  app_id: 'APP_ID'
+  app_secret: 'APP_SECRET'
+twitter:
+  username: 'my_twitter_user'
+  widget_id: 'WIDGET_ID'
+  consumer_key: 'CONSUMER_KEY'
+  consumer_secret: 'CONSUMER_SECRET'

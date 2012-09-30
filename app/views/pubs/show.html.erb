@@ -20,7 +20,7 @@
     </div>
     
     <hr/>
-    <%= image_tag @pub.image.full.url unless @pub.image.file.nil? %>
+    <%= image_tag @pub.image.large.url unless @pub.image.file.nil? %>
     <div class="editable_content">
       <%= rich_format @pub.description %>
     </div>

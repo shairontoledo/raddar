@@ -1,34 +1,51 @@
 <div class="row">
-  <div class="span6">
-    <%= last_stuffs_carousel %>
-
-    <ul class="thumbnails">
-      <% @pubs.limit(3).each do |pub| %>
-        <li class="span2">
-          <% stuff = pub.last_stuffs.first %>
-          <%= link_to stuff.url, :class => 'thumbnail' do %>
-            <%= image_tag stuff.image.medium.url %>
-            <div class="caption">
-              <h6><%= pub.name %></h6>
-              <small><%= stuff.name %></small>
-            </div>
-          <% end %> 
-        </li>
-      <% end %> 
-    </ul>
+  <div class="span3">
+    <h3><%= t 'index.top_read' %></h3>
+    <% @top_read.limit(8).each do |stuff| %>
+      <div class="clearfix index_item">
+        <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff.url %>
+        <%= link_to truncate(stuff.name, length: 50, separator: ' '), stuff.url %>
+        <br/>
+        <small><%= stuff.pub.name %></small>
+      </div>
+    <% end %>
   </div>
 
   <div class="span3">
-    <h3><%= t 'index.last_discussions' %></h3>
-    <ul class="unstyled">
-      <% @topics.limit(6).each do |topic| %>
-        <li>
-          <h3><%= link_to topic.name, topic.url %></h3>
-          <h6><%= link_to topic.forum.name, topic.forum.url %></h6>
+    <h3><%= t 'index.best' %></h3>
+    <ul class="thumbnails">
+      <% @best.first(2).each do |stuff| %>
+        <li class="span3">
+          <%= link_to stuff.url, :class => 'thumbnail' do %>
+            <%= image_tag stuff.image.medium.url %>
+            <p><%= stuff.name %></p>
+          <% end %>
         </li>
-      <% end %> 
+      <% end %>
     </ul>
-    <hr/>
-    <%= link_to t('action.more'), forums_path, :class => 'btn btn-primary' %>
+  </div>
+  
+  <div class="span3">
+    <h4><%= t 'index.last_discussions' %></h4>
+    
+    <% @topics.limit(4).each do |topic| %>
+      <div class="clearfix index_item">
+        <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), topic.url %>
+        <%= link_to truncate(topic.name, length: 50, separator: ' '), topic.url %>
+        <br/>
+        <small><%= topic.forum.name %></small>
+      </div>
+    <% end %>
+
+    <h4><%= t 'index.top_discussed' %></h4>
+    
+    <% @top_discussed.first(4).each do |topic| %>
+      <div class="clearfix index_item">
+        <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), topic.url %>
+        <%= link_to truncate(topic.name, length: 50, separator: ' '), topic.url %>
+        <br/>
+        <small><%= topic.forum.name %></small>
+      </div>
+    <% end %>
   </div>
 </div>

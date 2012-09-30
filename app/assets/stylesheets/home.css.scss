@@ -1,3 +1,30 @@
-// Place all the styles related to the home controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+.fb-like-box {
+  margin-bottom: 20px;
+}
+
+.tags_list a {
+  margin: 0px 5px 5px 0px;
+}
+
+.index_item {
+  margin-bottom: 8px;
+}
+
+.universe_link {
+  background-position: center;
+  text-align: center;
+  padding: 0;
+}
+
+.universe_link a{
+  font-size: 1.3em;
+  font-weight: bold;
+  color: #999999;
+  display: block;
+  padding: 15px;
+}
+
+.universe_link a:hover{
+  text-decoration: none;
+  color: #F0F0F0;
+}

@@ -1,22 +1,57 @@
-<div class="span3">
+<% if Raddar::config.respond_to?(:facebook) && !Raddar::config.facebook['page'].nil? %>
+  <div class="fb-like-box" data-href="http://www.facebook.com/<%= Raddar::config.facebook['page'] %>" data-width="270" data-show-faces="true" data-stream="false" data-header="false" data-border-color="#F0F0F0"></div>
+<% end %>
+
+
+<% if Raddar::config.respond_to?(:twitter) && !Raddar::config.twitter['widget_id'].nil? %>
+  <a class="twitter-timeline"  href="https://twitter.com/<%= Raddar::config.twitter['username'] %>" data-widget-id="<%= Raddar::config.twitter['widget_id'] %>">@<%= Raddar::config.twitter['username'] %></a>
+<% end %>
+
+
+<h5><%= t 'member.new' %></h5>
+
+<ul class="thumbnails">
+  <% last_users.limit(9).each do |user| %>
+    <li class="span1">
+      <%= link_to user.url, :class => 'thumbnail', title: user.name do %>
+        <%= image_tag user.image.thumb.url, alt: user.name %>
+      <% end %>
+    </li>
+  <% end %>
+</ul>
+
+
+<% if Raddar::config.respond_to?(:sidebar) %>
   <div class="well sidebar-nav">
-    <ul class="nav nav-list">
-      
-      <li class="nav-header"><%= t 'universe.p' %></li>
-      <% available_universes.each do |universe| %>
-        <li><%= link_to universe.name, universe %></li>
-      <% end %>
-
-      <li class="nav-header"><%= t 'index.new_users' %></li>
-      <% last_users.each do |user| %>
-        <li>
-          <%= link_to user do %>
-            <%= image_tag user.image.thumb.url, :class => 'size20' %>
-            <%= user.name %>
-          <% end %>
-        </li>
-      <% end %>
-
-    </ul>
+    <% Raddar::config.sidebar.each do |k, group| %>
+      <ul class="nav nav-list">
+        <li class="nav-header"><%= group['title'] %></li>
+        <% group['links'].each do |k, link| %>
+          <li><%= link_to link['name'], link['url'], target: '_blank' %></li>
+        <% end %>
+      </ul>
+    <% end %>
   </div>
+<% end %>
+
+
+<h5><%= t 'tag.p' %></h5>
+<p class="tags_list">
+  <% @tags.first(20).each_with_index do |tag, i| %>
+    <%= link_to tag.name, tag.url, :class => "btn btn-#{tag_btn_size(@tags.count, i)} btn-primary" %>
+  <% end %>
+</p>
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li class="nav-header"><%= t 'comment.p' %></li>
+    <% @comments.limit(8).each do |comment| %>
+      <li class="justified">
+        <%= link_to comment.url do %>
+          <strong><%= comment.user.name %>:</strong>
+          <em><%= truncate comment.content, length: 60, separator: ' ' %></em>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
 </div>

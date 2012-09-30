@@ -1,0 +1,10 @@
+<% if Raddar::config.respond_to?(:facebook) %>
+((d, s, id)->
+  fjs = d.getElementsByTagName(s)[0]
+  unless d.getElementById(id)
+    js = d.createElement s
+    js.id = id
+    js.src = "//connect.facebook.net/<%= I18n.locale.to_s.gsub('-', '_') %>/all.js#xfbml=1&appId=<%= Raddar::config.facebook['app_id'] %>"
+    fjs.parentNode.insertBefore js, fjs
+)(document, 'script', 'facebook-jssdk')
+<% end %>

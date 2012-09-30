@@ -200,11 +200,9 @@ pt-BR:
   index:
     page_title: Início
     last_discussions: Últimas discussões
-    last_stuffs: Novidades
-    main_pubs: Principais
-    new_venues: Novos lugares
     top_read: Mais lidos
-    top_discussed: Mais vistos
+    top_discussed: Maiores discussões
+    best: Melhores materiais
   member:
     p: Membros
     s: Membro

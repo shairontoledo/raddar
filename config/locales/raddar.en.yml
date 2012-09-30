@@ -200,11 +200,9 @@ en:
   index:
     page_title: Index
     last_discussions: Last discussions
-    last_stuffs: New stuffs
-    main_pubs: Main pubs
-    new_venues: New venues
     top_read: Top read
     top_discussed: Trending
+    best: The best
   member:
     p: Members
     s: Member
