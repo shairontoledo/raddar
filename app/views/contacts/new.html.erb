@@ -13,13 +13,13 @@
 
   <div class="form-inputs">
     <% if user_signed_in? %>
-      <%= f.input :name, disabled: true, input_html: {value: current_user.name} %>
-      <%= f.input :email, disabled: true, input_html: {value: current_user.email} %>
+      <%= f.input :name, disabled: true, input_html: {value: current_user.name, :class => 'span4'} %>
+      <%= f.input :email, disabled: true, input_html: {value: current_user.email, :class => 'span4'} %>
     <% else %>
-      <%= f.input :name %>
-      <%= f.input :email %>
+      <%= f.input :name, input_html: {:class => 'span4'} %>
+      <%= f.input :email, input_html: {:class => 'span4'} %>
     <% end %>
-    <%= f.input :message, as: :text, input_html: {rows: '8'} %>
+    <%= f.input :message, as: :text, input_html: {rows: '4', :class => 'span8'} %>
     <% unless user_signed_in? %>
       <%= captcha @contact %>
     <% end %>
