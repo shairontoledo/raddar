@@ -4,7 +4,6 @@ class HomeController < ApplicationController
   authorize_resource :class => false
   
   def index
-    a
     @top_read = Stuff.all.order_by [:views, :desc]
     @top_discussed = Topic.all.sort_by {|t| t.posts.count }.reverse
     @best = Stuff.all.sort_by {|s| s.votes.where(value: :like).count }.reverse
