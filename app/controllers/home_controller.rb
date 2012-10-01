@@ -2,6 +2,7 @@ require 'will_paginate/array'
 
 class HomeController < ApplicationController
   authorize_resource :class => false
+  caches_action :index, layout: false
   
   def index
     @top_read = Stuff.all.order_by [:views, :desc]
