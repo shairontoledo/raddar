@@ -1,3 +1,7 @@
-// Place all the styles related to the notifications controller here.
-// They will automatically be included in application.css.
-// You can use Sass (SCSS) here: http://sass-lang.com/
+#all_notifications td time {
+  font-size: 11px;
+}
+
+#all_notifications .notification_text{
+  width: 100%
+}

@@ -4,14 +4,25 @@
   <h1><%= t 'notification.p' %></h1>
 </div>
 
-<% @notifications.each do |notification| %>
-  <div class="well">
-    <%= link_to notification do %>
-      <%= image_tag notification.image_path %>
-      <%= raw notification.content %>
+<div class="span8 offset2">
+  <table class="table table-striped" id="all_notifications">
+    <% @notifications.each do |notification| %>
+      <tr>
+        <td rowspan="2">
+          <%= link_to image_tag(notification.image_path, :class => 'img-rounded'), notification %>
+        </td>
+        <td class="notification_text">
+          <%= link_to notification do %>
+            <%= raw notification.content %>
+          <% end %>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          <%= link_to time_tag(notification.created_at, humanize_datetime(notification.created_at)), notification %>
+        </td>  
+      </tr>
     <% end %>
-    <%= destroy_button notification %>
-  </div>
-<% end %>
-
-<%= will_paginate @notifications %>
+  </table>
+  <%= will_paginate @notifications %>
+</div>
