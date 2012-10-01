@@ -198,7 +198,6 @@ en:
   admin:
     page_title: Administration
   index:
-    page_title: Index
     last_discussions: Last discussions
     top_read: Top read
     top_discussed: Trending

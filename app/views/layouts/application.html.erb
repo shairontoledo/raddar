@@ -9,7 +9,7 @@
     <meta content="text/css" http-equiv="content-style-type">
     <meta content="no-cache" http-equiv="pragma">
     <title>
-      <%= content_for(:page_title) + ' · ' + Raddar::config.app['name'] %>
+      <%= [content_for(:page_title), Raddar::config.app['name']].reject(&:blank?).join(' · ') %>
     </title>
 
     <%= favicon_link_tag %>
