@@ -12,5 +12,6 @@
  *= require datepicker
  *= require_self
  *= require_tree .
-*= require bootsy
+ *= require bootsy
+ *= require theme
 */
