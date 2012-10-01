@@ -207,3 +207,13 @@ pt-BR:
     p: Membros
     s: Membro
     new: Novos membros
+  exception:
+    e404:
+      title: "A página que você procura não existe"
+      text: "Talvez você errou o endereço ou a página foi movida."
+    e422:
+      title: 'Acesso negado'
+      text: "Talvez você tentou fazer algo ao qual você não tem permissão."
+    e500:
+      title: "Desculpe, mas algo deu errado."
+      text: "Por favor, tente novamente em alguns instantes."

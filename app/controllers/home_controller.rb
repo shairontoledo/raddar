@@ -4,6 +4,7 @@ class HomeController < ApplicationController
   authorize_resource :class => false
   
   def index
+    a
     @top_read = Stuff.all.order_by [:views, :desc]
     @top_discussed = Topic.all.sort_by {|t| t.posts.count }.reverse
     @best = Stuff.all.sort_by {|s| s.votes.where(value: :like).count }.reverse
@@ -21,5 +22,9 @@ class HomeController < ApplicationController
     end
 
     @results = User.fulltext_search(params[:q], filters).paginate(page: params[:page], per_page: 10)
+  end
+
+  def exception
+    @type = env["PATH_INFO"][1..-1]
   end
 end

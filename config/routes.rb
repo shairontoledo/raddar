@@ -110,4 +110,8 @@ Raddar::Application.routes.draw do
 
   root to: 'home#index'
 
+  match '/404', to: 'home#exception'
+  match '/422', to: 'home#exception'
+  match '/500', to: 'home#exception'
+
 end

@@ -207,3 +207,13 @@ en:
     p: Members
     s: Member
     new: New members
+  exception:
+    e404:
+      title: "The page you were looking for doesn't exist"
+      text: "You may have mistyped the address or the page may have moved."
+    e422:
+      title: 'The change you wanted was rejected'
+      text: "Maybe you tried to change something you didn't have access to."
+    e500:
+      title: "We're sorry, but something went wrong"
+      text: "Please try again in a few minutes."
