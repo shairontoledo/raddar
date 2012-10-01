@@ -1,0 +1,19 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta content="text/html; charset=UTF-8" http-equiv="Content-Type" />
+  </head>
+  <body>
+    <div class="header">
+      <%= link_to root_url do %>
+        <h1><%= Raddar::config.app['name'] %></h1>
+      <% end %>
+    </div>
+
+    <div class="content"><%= yield %></div>
+
+    <footer>
+      <%= t('mailer.template.automatic') %> :: <%= link_to t('contact.s'), new_contact_url %>
+    </footer>
+  </body>
+</html>

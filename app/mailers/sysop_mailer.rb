@@ -1,6 +1,7 @@
 class SysopMailer < ActionMailer::Base
   helper :application
-  default from: "from@example.com"
+  layout 'mailer'
+  default from: Raddar::config.email['from']
 
   def contact_email contact
     

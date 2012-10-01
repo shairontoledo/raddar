@@ -1,6 +1,7 @@
 class NoticeMailer < ActionMailer::Base
   helper :application
-  default from: "System <from@example.com>"
+  layout 'mailer'
+  default from: Raddar::config.email['from']
 
   def new_forum_post_email(notification, post)
     @notification = notification

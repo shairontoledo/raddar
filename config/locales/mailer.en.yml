@@ -1,0 +1,36 @@
+en:
+  mailer:
+    template:
+      automatic: This is an automatic email. Please do not write to this address.
+      hello: "Hello, %{name}!"
+  sysop_mailer:
+    subject:
+      contact: "New contact from %{name}"
+    body:
+      contact:
+        html: "<h3>New contact<h3>Name: %{name}<br/>E-mail: %{email}<br/>User: %{user}<br/>Message:<pre>%{message}</pre>"
+  user_mailer:
+    body:
+      confirmation:
+        html: "<p>You can confirm your account email through the link below:</p><p>%{url}</p>"
+      reset_password:
+        html: "<p>Someone has requested a link to change your password, and you can do this through the link below.</p><p>%{url}</p><p>If you didn't request this, please ignore this email. Your password won't change until you access the link above and create a new one.</p>"
+  notice_mailer:
+    subject:
+      new_message: "%{sender} sent you a messsage"
+      new_follower: "%{follower} started following you"
+      new_forum_post: "New forum post"
+      new_forum_post: "New comment"
+      new_rank: "Congratulations! Now you are %{rank}!"
+    body:
+      new_message:
+        html: "<p><b>%{sender}</b> sent you a message:</p><div style=\"background-color: grey\">%{message}</div><br/><p>To see and answer it, please visit: %{url}</p><p>If you do not want to be warned about new messages anymore, please change your settings at: %{edit_conf_url}</p>"
+      new_follower:
+        html: "<p><b>%{follower}</b> started following you!</p><p>To see the %{follower} s profile, please visit: %{url}</p><p>If you do not want to be warned about new followers anymore, please change your settings at: %{edit_conf_url}</p>"
+      new_forum_post:
+        html: "<p><b>%{author}</b> posted in the topic <b>%{topic}</b></p><p>To see the post, please visit: %{url}</p><p>If you do not want to be warned about this topic anymore, please change your settings at: %{unwatch_url}</p>"
+      new_comment_post:
+        html: "<p><b>%{author}</b> added a comment at <b>%{commentable}</b></p><p>To see the post, please visit: %{url}</p><p>If you do not want to be warned about new comments anymore, please change your settings at: %{unwatch_url}</p>"
+      new_rank:
+        html: "<p>Congratulations! For your efforts in <em>%{universe}</em> you have been promoted to <strong>%{rank}</strong>!</p><p>Thank you very much for your support!</p>"
+      

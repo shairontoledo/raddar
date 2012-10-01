@@ -24,3 +24,5 @@ twitter:
   widget_id: 'WIDGET_ID'
   consumer_key: 'CONSUMER_KEY'
   consumer_secret: 'CONSUMER_SECRET'
+email:
+  from: 'Noreply <noreply@example.com>'
