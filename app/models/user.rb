@@ -162,7 +162,7 @@ class User
   end
 
   def active?
-    self.status == :active
+    (self.status == :active) && self.confirmed?
   end
 
   def active_for_authentication?

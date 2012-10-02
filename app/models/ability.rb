@@ -31,7 +31,7 @@ class Ability
         can :manage, Stuff, pub: {user_id: user.id}
         can :create, Tag
         can :manage, Topic, user_id: user.id
-        can :read, User
+        can :read, User, active?: true
         can [:new, :create], Venue
         can :create, Vote
         can :manage, Watching, user_id: user.id
