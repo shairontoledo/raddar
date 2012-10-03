@@ -118,11 +118,7 @@ class User
 
     provider = access_data.provider.to_sym
 
-    if provider == :facebook
-      account = Account.where(provider: provider).and(token: access_data.credentials.token).first
-    else
-      account = Account.where(provider: provider).and(token: access_data.credentials.token).and(secret: access_data.credentials.secret).first
-    end
+    account = Account.where(provider: provider).and(token: access_data.credentials.token).and(secret: access_data.credentials.secret).first
 
     if user.nil?
       
@@ -214,11 +210,10 @@ class User
     self.bio = oauth_bio if self.bio.blank?
     self.location = oauth_location if self.location.blank?
     self.remote_image_url = oauth_image_url if self.image.file.nil?
+
+    account.user_id = self.id
     
-    if account.valid?
-      account.user = self
-      account.save
-    end
+    account.save
 
     account
   end
