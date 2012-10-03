@@ -153,6 +153,7 @@ pt-BR:
       edit: Editar conta
       new: Cadastre-se! 
       destroy: Cancelar conta
+      agree_terms: "Ao se registrar você declara estar de acordo com nossos Termos de Uso"
     session:
       new: Entrar
       with: "Entre com %{provider}"

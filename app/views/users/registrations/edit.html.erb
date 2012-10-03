@@ -9,7 +9,7 @@
     <%= f.input :name, :required => true %>
     <%= f.input :email, :required => true %>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
-    <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth),  :type => 'date', :class => 'datepicker' } %>
+    <%= f.input :date_of_birth, :input_html => {:value => l(resource.date_of_birth), :class => 'datepicker' } %>
     <%= f.input :location %>
     <hr/>
     <%= f.input :bio, as: :text, input_html: {rows: '6', :class => 'span6'} %>

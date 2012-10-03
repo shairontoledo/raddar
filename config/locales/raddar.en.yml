@@ -153,6 +153,7 @@ en:
       edit: Edit account
       new: Register now!
       destroy: Cancel account
+      agree_terms: "When registering, you explicitly agree to our Terms of Use"
     session:
       new: Sign in
       with: "Entrar com %{provider}"
