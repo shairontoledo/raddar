@@ -8,7 +8,7 @@ class User
   include Raddar::Searchable
 
   # Include default devise modules. Others available are:
-  # :token_authenticatable, :encryptable, :lockable, :timeoutable
+  # :token_authenticatable, :lockable, :timeoutable
   devise :database_authenticatable, :registerable,
          :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, 
          :encryptable

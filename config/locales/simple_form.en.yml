@@ -10,17 +10,15 @@ en:
       # html: '<abbr title="required">*</abbr>'
     error_notification:
       default_message: "Please review the problems below:"
-    # Labels and hints examples
-    # labels:
-    #   defaults:
-    #     password: 'Password'
-    #   user:
-    #     new:
-    #       email: 'E-mail to sign in.'
-    #     edit:
-    #       email: 'E-mail.'
-    # hints:
-    #   defaults:
-    #     username: 'User name to sign in.'
-    #     password: 'No special characters, please.'
+    options:
+      user:
+        privacy_options: &privacy_options
+          public: Public
+          only_me: Do not show
+        gender_privacy: *privacy_options
+        date_of_birth_privacy: *privacy_options
+        email_privacy: *privacy_options
+        facebook_privacy: *privacy_options
+        twitter_privacy: *privacy_options
+        location_privacy: *privacy_options
 

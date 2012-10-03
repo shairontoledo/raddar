@@ -11,6 +11,10 @@
     <% end %>
   </div>
 
+  <% @user.accounts.each do |account| %>
+    <%= f.input "#{account.provider}_privacy".to_sym, collection: [:public, :only_me], as: :radio_buttons, label: account.provider.to_s.titleize, include_blank: false %>
+  <% end %>
+
   <div class="form-actions">
     <%= submit_button f %>
   </div>

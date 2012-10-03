@@ -11,8 +11,16 @@ module UsersHelper
     end
   end
 
-  def account_link account
-    render 'users/show_protected_field', {label: nil, value: link_to(account.provider.to_s.titleize, account.url, target: '_blank')}
+  def accounts_links user
+    html = ''
+
+    user.accounts.each do |account|
+      if user.id == current_user.id || account.privacy == :public
+        html = html + link_to(image_tag("omniauth/#{account.provider}/logo.png", alt: account.provider.to_s.titleize, :class => 'size40'), account.url, target: '_blank', :class => 'user_account_link')
+      end
+    end
+
+    raw html
   end
 
   def last_users

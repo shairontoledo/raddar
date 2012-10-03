@@ -18,5 +18,6 @@ pt-BR:
         gender_privacy: *privacy_options
         date_of_birth_privacy: *privacy_options
         email_privacy: *privacy_options
-        facebook_url_privacy: *privacy_options
+        facebook_privacy: *privacy_options
+        twitter_privacy: *privacy_options
         location_privacy: *privacy_options

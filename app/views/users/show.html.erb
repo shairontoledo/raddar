@@ -20,15 +20,17 @@
 
     <div class="row">
       <div class="span6">
-        <% unless @user == current_user %>
-          <%= render 'followers/follow_button', {followable: @user} %>
-          <%= link_to user_messages_path(@user), :class => 'btn' do %>
-            <i class="icon-envelope"></i>
-            <%= t 'message.send' %>
+        <p>
+          <% unless @user == current_user %>
+            <%= render 'followers/follow_button', {followable: @user} %>
+            <%= link_to user_messages_path(@user), :class => 'btn' do %>
+              <i class="icon-envelope"></i>
+              <%= t 'message.send' %>
+            <% end %>
+          <% else %>
+            <%= t 'user.you' %>
           <% end %>
-        <% else %>
-          <%= t 'user.you' %>
-        <% end %>
+        </p>
       </div>
 
       <div class="span1">
@@ -47,9 +49,7 @@
 
     <%= simple_text @user.bio %>
 
-    <% @user.accounts.each do |account| %>
-      <%= account_link account %>
-    <% end %>
+    <%= accounts_links @user %>
 
     <dl>
       <%= show_protected_user_field @user, :email %>
