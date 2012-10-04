@@ -17,7 +17,7 @@ class Account
   validates_uniqueness_of :provider, scope: :user_id
   validates_inclusion_of :url_privacy, :in => [:public,:only_me], allow_blank: false
 
-  def fill_in_with access_data
+  def fill_in_with user, access_data
     self.provider = access_data.provider.to_sym
     self.token = access_data.credentials.token
     self.secret = access_data.credentials.secret
@@ -26,7 +26,7 @@ class Account
       data = access_data.extra.raw_info
 
       oauth_gender = data.gender
-      oauth_date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y')
+      oauth_date_of_birth = data.birthday.nil? ? nil : Date.strptime(data.birthday, '%m/%d/%Y')
       oauth_bio = data.bio
       oauth_location = data.location.name
       oauth_image_url = access_data.info.image
@@ -38,7 +38,6 @@ class Account
     end
 
     if self.provider == :twitter
-
       oauth_bio = access_data.info.description
       oauth_location = access_data.info.location
       oauth_image_url = access_data.info.image
@@ -56,44 +55,40 @@ class Account
     user.remote_image_url = oauth_image_url if user.image.file.nil?
 
     user.save
+
+    self.user = user
     
     self.save
   end
 
-  def self.find_for_oauth access_data, user=nil
+  def self.find_for_oauth access_data, current_user=nil
 
     provider = access_data.provider.to_sym
 
     account = self.where(provider: provider).and(token: access_data.credentials.token).and(secret: access_data.credentials.secret).first
 
-    account = self.new if account.nil?
-
-    if user.nil?
-
-      user = account.user
+    if account.nil?
+      user = current_user
 
       if user.nil?
-
         user = User.where(email: access_data.extra.raw_info.email).first if provider == :facebook
 
-        if user.nil?
-          user = User.new
-          user.password = Devise.friendly_token[0,20]
-        end 
+        user = User.new(password: Devise.friendly_token[0,20]) if user.nil?
       end
-      
+
+      account = self.new
+    else
+      user = account.user
     end
 
-    account.user = user
+    account.fill_in_with user, access_data
 
-    account.fill_in_with access_data
-
-    user.reload
+    user = account.user
 
     if user.persisted? 
       user.confirm! unless user.confirmed?
     end
 
-    account.reload
+    account
   end
 end

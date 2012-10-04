@@ -7,49 +7,32 @@ class User
   include Raddar::Followable
   include Raddar::Searchable
 
-  # Include default devise modules. Others available are:
-  # :token_authenticatable, :lockable, :timeoutable
-  devise :database_authenticatable, :registerable,
-         :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, 
-         :encryptable
+  # Include default devise modules
+  devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :encryptable
 
   ## Database authenticatable
-  field :email,              :type => String, :default => ""
-  field :encrypted_password, :type => String, :default => ""
+  field :email, type: String, default: ''
+  field :encrypted_password, type: String, default: ''
   validates_presence_of :email
   validates_presence_of :encrypted_password
-
   ## Recoverable
-  field :reset_password_token,   :type => String
-  field :reset_password_sent_at, :type => Time
-
+  field :reset_password_token, type: String
+  field :reset_password_sent_at, type: Time
   ## Rememberable
-  field :remember_created_at, :type => Time
-
+  field :remember_created_at, type: Time
   ## Trackable
-  field :sign_in_count,      :type => Integer, :default => 0
-  field :current_sign_in_at, :type => Time
-  field :last_sign_in_at,    :type => Time
-  field :current_sign_in_ip, :type => String
-  field :last_sign_in_ip,    :type => String
-
+  field :sign_in_count, type: Integer, default: 0
+  field :current_sign_in_at, type: Time
+  field :last_sign_in_at, type: Time
+  field :current_sign_in_ip, type: String
+  field :last_sign_in_ip, type: String
   ## Encryptable
-  field :password_salt, :type => String
-
+  field :password_salt, type: String
   ## Confirmable
-  field :confirmation_token,   :type => String
-  field :confirmed_at,         :type => Time
-  field :confirmation_sent_at, :type => Time
-  field :unconfirmed_email,    :type => String # Only if using reconfirmable
-
-  ## Lockable
-  # field :failed_attempts, :type => Integer, :default => 0 # Only if lock strategy is :failed_attempts
-  # field :unlock_token,    :type => String # Only if unlock strategy is :email or :both
-  # field :locked_at,       :type => Time
-
-  ## Token authenticatable
-  # field :authentication_token, :type => String
-
+  field :confirmation_token, type: String
+  field :confirmed_at, type: Time
+  field :confirmation_sent_at, type: Time
+  field :unconfirmed_email, type: String # Only if using reconfirmable
   # User fields
   field :name, type: String
   field :date_of_birth, type: Date
@@ -91,8 +74,8 @@ class User
   validates_length_of :location, maximum: 200
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
   validates_inclusion_of :status, :in => [:active,:blocked], allow_blank: false
-  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :location_privacy,
-    :in => [:public,:only_me], allow_blank: false
+  validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :location_privacy, :in => [:public,:only_me], allow_blank: false
+  validate { add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date) }
 
   # Virtual attributes
   attr_accessor :login
@@ -100,10 +83,6 @@ class User
   # Accessible (mass assignment)
   attr_accessible :login, :image, :image_cache, :remove_image, :email, :name, :date_of_birth, :location,
     :bio, :password, :password_confirmation, :gender, :facebook_access_token, :facebook_url, :remote_image_url
-
-  validate  do
-    add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date)
-  end
 
   def self.find_first_by_auth_conditions warden_conditions
     conditions = warden_conditions.dup
@@ -118,8 +97,7 @@ class User
     super.tap do |user|
       if data = session['devise.oauth_temp_data']
         account = Account.new
-        account.user = user
-        account.fill_in_with data
+        account.fill_in_with user, data
         account.user
       end
     end
