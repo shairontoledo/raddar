@@ -114,41 +114,13 @@ class User
     end
   end
 
-  def self.find_for_oauth access_data, user=nil
-
-    provider = access_data.provider.to_sym
-
-    account = Account.where(provider: provider).and(token: access_data.credentials.token).and(secret: access_data.credentials.secret).first
-
-    if user.nil?
-      
-      user = account.user unless account.nil?
-
-      if user.nil?
-
-        user = User.where(email: access_data.extra.raw_info.email).first if provider == :facebook
-
-        if user.nil?
-          user = User.new
-          user.password = Devise.friendly_token[0,20]
-        end 
-      end
-    end
-
-    user.add_oauth_account access_data
-    user.save
-
-    if user.persisted? 
-      user.confirm! unless user.confirmed?
-    end
-
-    user
-  end
-
   def self.new_with_session params, session
     super.tap do |user|
       if data = session['devise.oauth_temp_data']
-        user.add_oauth_account data
+        account = Account.new
+        account.user = user
+        account.fill_in_with data
+        account.user
       end
     end
   end
@@ -167,55 +139,6 @@ class User
 
   def inactive_message
      self.active? ? super : I18n.t('flash.account.blocked')
-  end
-
-  def add_oauth_account access_data
-
-    provider = access_data.provider.to_sym
-
-    account = Account.new 
-    account.provider = provider
-    account.token = access_data.credentials.token
-    account.secret = access_data.credentials.secret
-   
-    if provider == :facebook
-      data = access_data.extra.raw_info
-
-      oauth_gender = data.gender
-      oauth_date_of_birth = Date.strptime(data.birthday, '%m/%d/%Y')
-      oauth_bio = data.bio
-      oauth_location = data.location.name
-      oauth_image_url = access_data.info.image
-
-      account.verified = data.verified
-      account.name = data.username
-      account.url  = data.link
-      account.email = data.email
-    end
-
-    if provider == :twitter
-
-      oauth_bio = access_data.info.description
-      oauth_location = access_data.info.location
-      oauth_image_url = access_data.info.image
-
-      account.name = access_data.info.nickname
-      account.url  = access_data.info.urls.Twitter
-    end
-
-    self.email = account.email if self.email.blank?
-    self.gender = oauth_gender if self.gender.blank?
-    self.name = account.name if self.name.blank?
-    self.date_of_birth = oauth_date_of_birth if self.date_of_birth.blank?
-    self.bio = oauth_bio if self.bio.blank?
-    self.location = oauth_location if self.location.blank?
-    self.remote_image_url = oauth_image_url if self.image.file.nil?
-
-    account.user_id = self.id
-    
-    account.save
-
-    account
   end
 
   def update_password_with_password(params, *options)
