@@ -49,7 +49,7 @@ Raddar::Application.configure do
   # config.assets.precompile += %w( search.js )
 
   # Disable delivery errors, bad email addresses will be ignored
-  # config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.raise_delivery_errors = false
 
   # Enable threaded mode
   # config.threadsafe!
@@ -60,5 +60,19 @@ Raddar::Application.configure do
 
   # Send deprecation notices to registered listeners
   config.active_support.deprecation = :notify
+
+  config.action_mailer.delivery_method = :smtp
+  config.action_mailer.perform_deliveries = true
+  config.action_mailer.default charset: "utf-8"
+  config.action_mailer.default_url_options = { host: Raddar::config.domain }
+  config.action_mailer.smtp_settings = {
+    address:              Raddar::config.email['address'],
+    port:                 Raddar::config.email['port'],
+    domain:               Raddar::config.email['domain'],
+    user_name:            Raddar::config.email['user_name'],
+    password:             Raddar::config.email['password'],
+    authentication:       Raddar::config.email['authentication'],
+    enable_starttls_auto: !(Raddar::config.email['enable_starttls_auto'] == 'false')
+  }
 
 end

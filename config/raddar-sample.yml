@@ -26,3 +26,11 @@ twitter:
   consumer_secret: 'CONSUMER_SECRET'
 email:
   from: 'Noreply <noreply@example.com>'
+  settings:
+    address: 'smtp.example.com'
+    port: 25
+    domain: 'sub.example.net'
+    user_name: '<username>'
+    password: '<password>'
+    authentication: 'plain'
+    enable_starttls_auto: true
