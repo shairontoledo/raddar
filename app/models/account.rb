@@ -54,7 +54,10 @@ class Account
     user.location = oauth_location if user.location.blank?
     user.remote_image_url = oauth_image_url if user.image.file.nil?
 
-    user.save
+    if user.valid?
+      user.confirm! unless user.confirmed?
+      user.save
+    end
 
     self.user = user
     
@@ -65,9 +68,11 @@ class Account
 
     provider = access_data.provider.to_sym
 
-    account = self.where(provider: provider).and(token: access_data.credentials.token).and(secret: access_data.credentials.secret).first
+    account = self.where(provider: provider).and(token: access_data.credentials.token).and(secret: access_data.credentials.secret).and(:user_id.ne => nil).first
 
-    if account.nil?
+    account.destroy if (!account.nil?) && account.user.nil?
+
+    if account.nil? || account.frozen?
       user = current_user
 
       if user.nil?
@@ -82,12 +87,6 @@ class Account
     end
 
     account.fill_in_with user, access_data
-
-    user = account.user
-
-    if user.persisted? 
-      user.confirm! unless user.confirmed?
-    end
 
     account
   end

@@ -1,5 +1,3 @@
-require 'pp'
-
 class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   def facebook
@@ -16,7 +14,8 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
   private
   def perform access_data
-    @user = Account.find_for_oauth(access_data, current_user).user
+    acc = Account.find_for_oauth(access_data, current_user)
+    @user = acc.user
     provider_name = access_data.provider.titleize
 
     if user_signed_in?
@@ -28,7 +27,6 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
       redirect_to user_accounts_path
     else
       if @user.persisted?
-        pp @user
         flash[:notice] = t "devise.omniauth_callbacks.success", kind: provider_name
         sign_in_and_redirect @user, event: :authentication
       else

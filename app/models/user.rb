@@ -3,7 +3,6 @@ require Rails.root.join('lib', 'devise', 'encryptors', Raddar::config.authentica
 class User
   include Raddar::Model
   include Mongoid::Slug
-  include Mongoid::Paranoia
   include Raddar::Followable
   include Raddar::Searchable
 
@@ -63,7 +62,7 @@ class User
   has_many :notifications, dependent: :destroy
   has_many :venues, dependent: :nullify
   has_and_belongs_to_many :ranks, dependent: :nullify
-  has_many :accounts
+  has_many :accounts, dependent: :destroy
 
   # Validations
   validates_presence_of :name, :date_of_birth, :gender, :status
