@@ -1,3 +1,6 @@
+require 'will_paginate/array'
+
+
 class Users::FolloweesController < ApplicationController
   load_and_authorize_resource :user
   load_and_authorize_resource :followership, through: :user, parent: false
