@@ -1,7 +1,6 @@
 class Comment
   include Raddar::Model
   include Raddar::Votable
-  include Raddar::Searchable
 
   field :content, type: String
 
@@ -15,9 +14,5 @@ class Comment
 
   def url options={}
     commentable.url anchor: 'comments'
-  end
-
-  def to_s
-    self.content
   end
 end

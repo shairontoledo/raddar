@@ -27,6 +27,6 @@ class Pub
   end
 
   def to_s
-    "#{self.name} #{self.description}"
+    [self.name, (self.universe.nil? ? nil : self.universe.name)].compact.join(' ')
   end
 end

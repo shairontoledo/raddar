@@ -38,6 +38,6 @@ class Venue
   end
 
   def to_s
-    "#{self.name} #{self.description} #{self.address} #{self.city} #{self.tags}"
+    [self.name, self.description, self.address, self.city, self.tags].compact.join(' ')
   end
 end

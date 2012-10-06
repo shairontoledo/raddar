@@ -31,3 +31,14 @@
     color: #F0F0F0;
   }
 }
+
+dl.search_results {
+  dt {
+    font-weight: inherit;
+    font-size: 1.25em;
+  }
+
+  dd {
+    margin-bottom: 20px;
+  }
+}

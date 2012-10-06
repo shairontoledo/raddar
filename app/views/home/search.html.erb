@@ -7,7 +7,7 @@
 
 <div class="tabbable tabs-left">
   <ul class="nav nav-tabs">
-    <% [:all, :user, :forum, :topic, :post, :pub, :stuff, :universe, :venue, :comment].each do |scope| %>
+    <% [:all, :user, :forum, :topic, :pub, :stuff, :venue].each do |scope| %>
       <%= search_scope_option scope, params %>
     <% end %>
   </ul>
@@ -15,20 +15,12 @@
     <% if @results.empty? %>
       <p><%= t 'search.none' %></p>
     <% else %>
-      <ul>
+      <dl class="search_results">
         <% @results.each do |result| %>
-          <li>
-            <%= link_to result.url do %> 
-              <strong>
-                <%= result.class.model_name.human %>
-                <%= result.name unless result[:name].blank? %>
-              </strong>
-              <br/>
-              <small><%= search_result_text result, params[:q] %></small>
-            <% end %>
-          </li>
+          <dt><%= link_to search_result_text(result[:name], params[:q]), result.url %></dt>
+          <dd><%= search_result_text result.to_s, params[:q] %></dd>
         <% end %>
-      </ul>
+      </dl>
       <%= will_paginate @results %>
     <% end %>
   </div>

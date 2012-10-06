@@ -24,4 +24,8 @@ class Topic
   def url options={}
     forum_topic_path self.forum, self, options
   end
+
+  def to_s
+    [self.name, self.forum.to_s].compact.join(' ')
+  end
 end
