@@ -11,7 +11,7 @@
 <h5><%= t 'member.new' %></h5>
 
 <ul class="thumbnails">
-  <% last_users.limit(9).each do |user| %>
+  <% @last_users.limit(9).each do |user| %>
     <li class="span1">
       <%= link_to user.url, :class => 'thumbnail', title: user.name do %>
         <%= image_tag user.image.thumb.url, alt: user.name %>

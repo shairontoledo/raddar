@@ -12,6 +12,7 @@ class HomeController < ApplicationController
     @tags = Tag.all.sort_by {|t| t.taggings.count }.reverse
     @comments = Comment.all.order_by [:created_at, :desc]
     @universes = Universe.all.order_by [:name, :asc]
+    @last_users = User.where(:confirmed_at.exists => true).order_by([:created_at, :desc])
   end
 
   def search
