@@ -64,7 +64,7 @@ describe CommentsController do
     it "redirects to the commentable" do
       comment = FactoryGirl.create :comment
       delete :destroy, {:id => comment.to_param}, valid_session
-      response.should redirect_to(comment.commentable.url)
+      response.should redirect_to(raddar_path(comment.commentable))
     end
   end
 end

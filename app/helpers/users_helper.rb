@@ -30,7 +30,7 @@ module UsersHelper
   def terms_of_use_field
     page = Page.where(name: 'terms').first
     unless page.nil?
-      raw '<p>' + link_to(t('user.registration.agree_terms'), page.url, :class => 'terms_of_use_field') + '</p>'
+      raw '<p>' + link_to(t('user.registration.agree_terms'), page, :class => 'terms_of_use_field') + '</p>'
     end
   end
 end

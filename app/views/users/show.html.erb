@@ -8,7 +8,7 @@
       <% rank = Rank.highest @user, universe %>
       <% unless rank.nil? %>
         <div class="well clearfix rank">
-          <%= link_to image_tag(universe.image.thumb.url, :class => 'img-rounded'), universe.url, :class => 'pull-left' %>
+          <%= link_to image_tag(universe.image.thumb.url, :class => 'img-rounded'), universe, :class => 'pull-left' %>
           <h4><%= rank.name %></h4>
           <p><%= rank.description %></p>
         </div>
@@ -65,10 +65,10 @@
       <% @user.pubs.order_by([:updated_at, :desc]).each do |pub| %>
         <div class="row pub_snippet">
           <div class="span1">
-            <%= link_to image_tag( ((pub.image.file.nil? && !pub.universe.nil?) ? pub.universe.image.small.url : pub.image.small.url), :class => 'img-polaroid'), pub.url %>
+            <%= link_to image_tag( ((pub.image.file.nil? && !pub.universe.nil?) ? pub.universe.image.small.url : pub.image.small.url), :class => 'img-polaroid'), pub %>
           </div>
           <div class="span7">
-            <h5><%= link_to pub.name, pub.url %></h5>
+            <h5><%= link_to pub.name, pub %></h5>
             <p>
               <span class="label"><%= pub.stuffs.count %> <%= t(pub.stuffs.count == 1 ? 'stuff.s' : 'stuff.p').downcase %></span>
               <em><%= truncate hide_html(pub.description), length: 170, separator: ' ' %></em>

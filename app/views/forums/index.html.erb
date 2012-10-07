@@ -27,8 +27,8 @@
       <ul class="unstyled">
         <% Topic.order_by([:created_at, :desc]).limit(6).each do |topic| %>
           <li>
-            <h5><%= link_to topic.name, topic.url %></h5>
-            <%= link_to topic.forum.name, topic.forum.url %>
+            <h5><%= link_to topic.name, topic_path(topic) %></h5>
+            <%= link_to topic.forum.name, topic.forum %>
           </li>
         <% end %> 
       </ul>
@@ -40,8 +40,8 @@
       <ul class="unstyled">
         <% Topic.order_by([:views, :desc]).limit(6).each do |topic| %>
           <li>
-            <h5><%= link_to topic.name, topic.url %></h5>
-            <%= link_to topic.forum.name, topic.forum.url %>
+            <h5><%= link_to topic.name, topic_path(topic) %></h5>
+            <%= link_to topic.forum.name, topic.forum %>
           </li>
         <% end %> 
       </ul>

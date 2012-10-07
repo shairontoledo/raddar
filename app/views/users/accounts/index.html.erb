@@ -11,7 +11,7 @@
         <% if account.blank? %>
           <%= t 'user.account.not' %>
         <% else %>
-          <%= link_to t('user.account.as', user: account.name), account.url, target: '_blank' %>
+          <%= link_to t('user.account.as', user: account.name), account, target: '_blank' %>
         <% end %>
       </td>
       <td>

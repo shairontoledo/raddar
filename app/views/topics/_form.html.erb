@@ -12,6 +12,6 @@
 
   <div class="form-actions">
     <%= submit_button f %>
-    <%= destroy_button @topic.url if can? :destroy, @topic %>
+    <%= destroy_button topic_path(@topic) if can? :destroy, @topic %>
   </div>
 <% end %>

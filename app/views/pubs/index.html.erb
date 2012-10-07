@@ -19,12 +19,12 @@
     
     <% Universe.order_by([:name, :asc]).each do |universe| %>
       <div class="well">
-        <h4><%= link_to universe.name, universe.url %></h4>
+        <h4><%= link_to universe.name, universe %></h4>
         <% universe.pubs.where(main: false).order_by([:updated_at, :desc]).limit(4).each do |pub| %>
           <% stuff = pub.stuffs.last %>
           <div class="clearfix">
-            <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff.url %>
-            <%= link_to stuff.name, stuff.url %>
+            <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff_path(stuff) %>
+            <%= link_to stuff.name, stuff_path(stuff) %>
             <br/>
             <small><%= pub.name %></small>
           </div>

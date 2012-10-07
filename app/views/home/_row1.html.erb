@@ -3,8 +3,8 @@
     <h3><%= t 'index.top_read' %></h3>
     <% @top_read.limit(8).each do |stuff| %>
       <div class="clearfix index_item">
-        <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff.url %>
-        <%= link_to truncate(stuff.name, length: 50, separator: ' '), stuff.url %>
+        <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff_path(stuff) %>
+        <%= link_to truncate(stuff.name, length: 50, separator: ' '), stuff_path(stuff) %>
         <br/>
         <small><%= stuff.pub.name %></small>
       </div>
@@ -16,7 +16,7 @@
     <ul class="thumbnails">
       <% @best.first(2).each do |stuff| %>
         <li class="span3">
-          <%= link_to stuff.url, :class => 'thumbnail' do %>
+          <%= link_to stuff_path(stuff), :class => 'thumbnail' do %>
             <%= image_tag stuff.image.medium.url %>
             <p><%= stuff.name %></p>
           <% end %>
@@ -30,8 +30,8 @@
     
     <% @topics.limit(4).each do |topic| %>
       <div class="clearfix index_item">
-        <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), topic.url %>
-        <%= link_to truncate(topic.name, length: 50, separator: ' '), topic.url %>
+        <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), topic_path(topic) %>
+        <%= link_to truncate(topic.name, length: 50, separator: ' '), topic_path(topic) %>
         <br/>
         <small><%= topic.forum.name %></small>
       </div>
@@ -41,8 +41,8 @@
     
     <% @top_discussed.first(4).each do |topic| %>
       <div class="clearfix index_item">
-        <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), topic.url %>
-        <%= link_to truncate(topic.name, length: 50, separator: ' '), topic.url %>
+        <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), topic_path(topic) %>
+        <%= link_to truncate(topic.name, length: 50, separator: ' '), topic_path(topic) %>
         <br/>
         <small><%= topic.forum.name %></small>
       </div>

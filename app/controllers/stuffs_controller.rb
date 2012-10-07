@@ -1,6 +1,7 @@
 class StuffsController < ApplicationController
   load_and_authorize_resource :pub
   load_and_authorize_resource through: :pub, find_by: :slug
+  helper_method :stuff_path
 
 
   # GET /stuffs/1
@@ -43,5 +44,9 @@ class StuffsController < ApplicationController
   def destroy
     @stuff.destroy
     respond_with @stuff, location: @stuff.pub
+  end
+
+  def stuff_path stuff, options={}
+    pub_stuff_path stuff.pub, stuff, options
   end
 end

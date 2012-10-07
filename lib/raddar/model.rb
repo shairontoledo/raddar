@@ -1,8 +1,6 @@
 module Raddar::Model
 
   def self.included base
-    #base.send :delegate, :url_helpers, to: 'Rails.application.routes' 
-    base.send :include, Rails.application.routes.url_helpers
     base.send :include, Mongoid::Document
     base.send :include, Mongoid::Timestamps
   end
@@ -38,11 +36,6 @@ module Raddar::Model
     else
       errors.add(field, message)
     end
-  end
-
-  def url options={}
-    options[:routing_type] = :path unless options.key? :routing_type
-    polymorphic_url self, options
   end
 
   private

@@ -3,6 +3,8 @@ class PostsController < ApplicationController
   load_and_authorize_resource :topic, through: :forum
   load_and_authorize_resource through: :topic
 
+  helper_method :post_path
+
   # POST /forums_posts
   # POST /forums_posts.xml
   def create
@@ -25,5 +27,9 @@ class PostsController < ApplicationController
   def destroy
     @post.destroy
     respond_with(@post, location: [@post.topic.forum,@post.topic])
+  end
+
+  def post_path post, options = {}
+    forum_topic_path post.topic.forum, post.topic, post_id: post.id, anchor: "post_#{post.id}"
   end
 end

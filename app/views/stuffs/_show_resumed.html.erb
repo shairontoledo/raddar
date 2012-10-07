@@ -1,8 +1,8 @@
 <div class="stuff_resumed clearfix">
-  <%= link_to image_tag(stuff.image.small.url, :class => 'img-polaroid pull-left cover'), stuff.url %>
-  <h4><%= link_to stuff.name, stuff.url %></h4>
+  <%= link_to image_tag(stuff.image.small.url, :class => 'img-polaroid pull-left cover'), stuff_path(stuff) %>
+  <h4><%= link_to stuff.name, stuff_path(stuff) %></h4>
   <% unless defined?(hide_pub) && hide_pub %>
-    <span><%= link_to stuff.pub.name, stuff.pub.url %></span>
+    <span><%= link_to stuff.pub.name, stuff.pub %></span>
   <% end %>
   <p class="content"><%= truncate hide_html(stuff.content), length: 400, separator: ' ' %></p>
 </div>

@@ -13,7 +13,7 @@
 <ul class="thumbnails">
   <% last_users.limit(9).each do |user| %>
     <li class="span1">
-      <%= link_to user.url, :class => 'thumbnail', title: user.name do %>
+      <%= link_to user, :class => 'thumbnail', title: user.name do %>
         <%= image_tag user.image.thumb.url, alt: user.name %>
       <% end %>
     </li>
@@ -38,7 +38,7 @@
 <h5><%= t 'tag.p' %></h5>
 <p class="tags_list">
   <% @tags.first(20).each_with_index do |tag, i| %>
-    <%= link_to tag.name, tag.url, :class => "btn btn-#{tag_btn_size(@tags.count, i)} btn-primary" %>
+    <%= link_to tag.name, tag, :class => "btn btn-#{tag_btn_size(@tags.count, i)} btn-primary" %>
   <% end %>
 </p>
 
@@ -47,7 +47,7 @@
     <li class="nav-header"><%= t 'comment.p' %></li>
     <% @comments.limit(8).each do |comment| %>
       <li class="justified">
-        <%= link_to comment.url do %>
+        <%= link_to comment_path(comment) do %>
           <strong><%= comment.user.name %>:</strong>
           <em><%= truncate comment.content, length: 60, separator: ' ' %></em>
         <% end %>

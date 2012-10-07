@@ -20,8 +20,4 @@ class Topic
   def first_posts
     self.posts.order_by([:created_at, :asc])
   end
-
-  def url options={}
-    forum_topic_path self.forum, self, options
-  end
 end

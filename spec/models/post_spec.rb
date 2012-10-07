@@ -41,12 +41,6 @@ describe Post do
     end
   end
 
-  describe '#url' do
-    it 'returns the topic url with the #post_ID anchor in the url' do
-      subject.url.should match(/^\/forums\/(.*?)\/topics\/(.*?)#post_#{subject.id}$/)
-    end
-  end
-
   describe '#to_s' do
     it 'returns the value of #content' do
       subject.to_s.should == subject.content

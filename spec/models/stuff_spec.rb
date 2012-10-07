@@ -46,12 +46,6 @@ describe Stuff do
     end
   end
 
-  describe '#url' do
-    it 'returns its url' do
-      subject.url.should match(/^\/pubs\/(.*?)\/stuffs\/#{subject._slugs.first}$/)
-    end
-  end
-
   describe '#to_s' do
     it 'includes its name' do
       subject.to_s.should include(subject.name)
