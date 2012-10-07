@@ -23,10 +23,6 @@ module UsersHelper
     raw html
   end
 
-  def last_users
-    User.where(:confirmed_at.exists => true).order_by([:confirmed_at, :desc])
-  end
-
   def terms_of_use_field
     page = Page.where(name: 'terms').first
     unless page.nil?

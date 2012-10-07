@@ -23,6 +23,10 @@ class Forum
     self.topics.order_by [:updated_at, :desc]
   end
 
+  def to_s
+    [self.name, (self.universe.nil? ? nil : self.universe.name)].compact.join(' ')
+  end
+
   private
   def ready_for_destruction?
     if self.topics.empty?

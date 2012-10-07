@@ -23,6 +23,6 @@ class Stuff
   attr_accessible :name, :content, :image, :image_cache
 
   def to_s
-    "#{self.name} #{self.content} #{self.tags}"
+    [self.name, self.pub.to_s, self.tags].compact.join(' ')
   end
 end
