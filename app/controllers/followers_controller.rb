@@ -18,11 +18,11 @@ class FollowersController < ApplicationController
     if f.save
 
       if @followable.class == User
-        notification = @followable.notifications.new content: I18n.t('notification.follower.html', author: current_user.name), item_path: current_user.url, image_path: current_user.image.thumb.url
+        notification = @followable.notifications.new content: I18n.t('notification.follower.html', author: current_user.name), item_path: current_user, image_path: current_user.image.thumb.url
         notification.save
         NoticeMailer.delay(queue: 'new_follower').new_follower_email(notification, current_user) if @followable.notify_followers
       elsif !(@followable[:user].blank?)
-        notification = @followable.user.notifications.new content: I18n.t('notification.follower_item.html', author: current_user.name, item: @followable.name), item_path: current_user.url, image_path: current_user.image.thumb.url
+        notification = @followable.user.notifications.new content: I18n.t('notification.follower_item.html', author: current_user.name, item: @followable.name), item_path: current_user, image_path: current_user.image.thumb.url
         notification.save
       end
 
@@ -31,7 +31,7 @@ class FollowersController < ApplicationController
       flash[:alert] = t 'flash.followership.error', name: @followable.name
     end
 
-    redirect_to @followable.url
+    redirect_to raddar_path(@followable)
   end
 
   # Current user stops following
@@ -39,7 +39,7 @@ class FollowersController < ApplicationController
     @followable = find_followable
     @followable.followers.where(user_id: current_user.id).destroy_all
 
-    redirect_to @followable.url, notice: t('flash.followership.destroy', name: @followable.name)
+    redirect_to raddar_path(@followable), notice: t('flash.followership.destroy', name: @followable.name)
   end
 
   private
