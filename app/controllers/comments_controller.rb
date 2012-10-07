@@ -1,9 +1,6 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
 
-  helper_method :comment_path
-
-
   def create
     @commentable = find_commentable
 
@@ -25,10 +22,6 @@ class CommentsController < ApplicationController
   def destroy
     @comment.destroy
     respond_with @comment, location: raddar_path(@comment.commentable)
-  end
-
-  def comment_path comment, options={}
-    send (commentable.class.name.underscore + '_path').to_sym, anchor: 'comments'
   end
 
   private

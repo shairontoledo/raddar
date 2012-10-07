@@ -46,7 +46,7 @@
         <% stuffs.limit(50).each do |stuff| %>
           <li class="divider"></li>
           <li class="<%= 'active' if stuff == @stuff %> clearfix" >
-            <%= link_to stuff_path(stuff) do %>
+            <%= link_to pub_stuff_path(@stuff.pub, stuff) do %>
               <%#= image_tag stuff.image.thumb.url, :class => 'size40 pull-left' %>
               <%= stuff.name %>
             <% end %>

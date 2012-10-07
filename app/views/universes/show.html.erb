@@ -25,8 +25,8 @@
       <% @universe.pubs.where(main: false).order_by([:updated_at, :desc]).limit((main_pubs.length * 3.2).to_i).each do |pub| %>
         <% stuff = pub.stuffs.last %>
         <div class="clearfix">
-          <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), stuff_path(stuff) %>
-          <%= link_to stuff.name, stuff_path(stuff) %>
+          <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), pub_stuff_path(pub, stuff) %>
+          <%= link_to stuff.name, pub_stuff_path(pub, stuff) %>
           <br/>
           <small><%= pub.name %></small>
         </div>

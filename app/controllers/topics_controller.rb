@@ -3,7 +3,6 @@ require 'will_paginate/array'
 class TopicsController < ApplicationController
   load_and_authorize_resource :forum
   load_and_authorize_resource through: :forum, find_by: :slug
-  helper_method :topic_path
 
 
   # GET /forums_topics/1
@@ -71,9 +70,5 @@ class TopicsController < ApplicationController
     @topic.destroy
 
     respond_with @topic, location: @topic.forum
-  end
-
-  def topic_path topic, options={}
-    forum_topic_path topic.forum, topic, options
   end
 end
