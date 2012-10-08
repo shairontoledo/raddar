@@ -14,7 +14,7 @@
       <td>
         <% last = topic.posts.last %>
         <% unless last.blank? %>
-          <%= link_to raw("#{last.user.name}, #{time_tag last.created_at, humanize_datetime(last.created_at)}"), post_path(last) %>
+          <%= link_to raw("#{last.user.name}, #{time_tag last.created_at, humanize_datetime(last.created_at)}"), raddar_path(last) %>
         <% end %>
       </td>
     </tr>

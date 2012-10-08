@@ -115,3 +115,29 @@ Raddar::Application.routes.draw do
   match '/500', to: 'home#exception'
 
 end
+
+Raddar::Application.routes.named_routes.module.module_eval do
+  def raddar_path resource, options = {}
+    case resource.class.name.underscore.to_sym
+    when :comment
+      options[:anchor] = 'comments'
+      raddar_path resource.commentable, options
+    when :post
+      options[:post_id] = resource.id
+      options[:anchor] = "post_#{resource.id}"
+      raddar_path resource.topic, options
+    when :stuff
+      pub_stuff_path resource.pub, resource, options
+    when :topic
+      forum_topic_path resource.forum, resource, options
+    else
+      send "#{resource.class.name.underscore}_path".to_sym, resource, options
+    end
+  end
+
+  def raddar_url resource, options = {}
+    options[:only_path] = false unless options.key? :only_path
+
+    raddar_path resource, options
+  end
+end
