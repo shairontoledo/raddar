@@ -63,14 +63,4 @@ Raddar::Application.configure do
 
   config.action_mailer.delivery_method = :smtp
   config.action_mailer.perform_deliveries = true
-  config.action_mailer.smtp_settings = {
-    address:              Raddar::config.email['address'],
-    port:                 Raddar::config.email['port'],
-    domain:               Raddar::config.email['domain'],
-    user_name:            Raddar::config.email['user_name'],
-    password:             Raddar::config.email['password'],
-    authentication:       Raddar::config.email['authentication'],
-    enable_starttls_auto: !(Raddar::config.email['enable_starttls_auto'] == 'false')
-  }
-
 end

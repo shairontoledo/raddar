@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
     @message.recipient = @user
     @message.save
 
-    Delayed::Job.enqueue(NotifyMessageJob.new(@message.id), run_at: 1.minute.from_now) if @user.notify_messages
+    Delayed::Job.enqueue(NotifyMessageJob.new(@message.id), run_at: 1.hour.from_now) if @user.notify_messages
   end
 
 

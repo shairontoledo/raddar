@@ -15,6 +15,10 @@ if defined?(Bundler)
 end
 
 module Raddar
+  def self.config
+    Application.config
+  end
+
   class Application < Rails::Application
     config.generators do |g|
       g.view_specs false
@@ -80,10 +84,15 @@ module Raddar
     config.default_url_options[:port] = config.port if config.respond_to?(:port)
 
     config.action_mailer.default_url_options = config.default_url_options
-    
-  end
-
-  def self.config
-    Application.config
+    config.action_mailer.smtp_settings = {
+      address:              Raddar::config.email['address'],
+      port:                 Raddar::config.email['port'],
+      domain:               Raddar::config.email['domain'],
+      user_name:            Raddar::config.email['user_name'],
+      password:             Raddar::config.email['password'],
+      authentication:       Raddar::config.email['authentication'],
+      enable_starttls_auto: !(Raddar::config.email['enable_starttls_auto'] == 'false')
+    }
+  
   end
 end
