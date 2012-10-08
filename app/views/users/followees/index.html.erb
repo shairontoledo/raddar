@@ -14,7 +14,7 @@
         <% followable = followership.followable %>
         
         <li class="span2">
-          <%= link_to followable.url, :class => 'thumbnail' do %>
+          <%= link_to raddar_path(followable), :class => 'thumbnail' do %>
             <%= image_tag followable.image.small.url unless followable === Forum %>
             <h5><%= followable.name %></h5>
           <% end %>

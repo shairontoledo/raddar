@@ -1,3 +1,3 @@
 <p><%= t('mailer.template.hello', name: @notification.user.name) %></p>
 <br/>
-<%= t 'notice_mailer.body.new_rank.html', universe: link_to(@rank.universe.name, @rank.universe.url), rank: link_to(@rank.name, @notification.url) %>
+<%= t 'notice_mailer.body.new_rank.html', universe: link_to(@rank.universe.name, universe_url(@rank.universe)), rank: link_to(@rank.name, notification_url(@notification)) %>

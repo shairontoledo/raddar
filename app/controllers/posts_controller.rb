@@ -19,7 +19,6 @@ class PostsController < ApplicationController
     end
   end
 
-
   # DELETE /forums_posts/1
   # DELETE /forums_posts/1.xml
   def destroy

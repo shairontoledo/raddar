@@ -17,7 +17,7 @@
     <% else %>
       <dl class="search_results">
         <% @results.each do |result| %>
-          <dt><%= link_to search_result_text(result[:name], params[:q]), result.url %></dt>
+          <dt><%= link_to search_result_text(result[:name], params[:q]), raddar_path(result) %></dt>
           <dd><%= search_result_text result.to_s, params[:q] %></dd>
         <% end %>
       </dl>

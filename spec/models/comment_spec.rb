@@ -42,12 +42,6 @@ describe Comment do
     end
   end
 
-  describe '#url' do
-    it 'appends the #comments anchor in the comment url' do
-      subject.url.should match(/^(.*?)#comments$/)
-    end
-  end
-
   describe '#to_s' do
     it 'returns the value of #content' do
       subject.to_s.should == subject.content

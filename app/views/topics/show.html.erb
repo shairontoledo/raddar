@@ -3,7 +3,7 @@
 <div class="page-header">
   <h1>
     <%= @topic.name %>
-    <small><%= link_to @topic.forum.name, @topic.forum.url %></small>
+    <small><%= link_to @topic.forum.name, @topic.forum %></small>
   </h1>
 
   <%= link_to t('topic.created_by', user: @topic.user.name), @topic.user %> ::

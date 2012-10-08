@@ -58,7 +58,7 @@
             <li class="divider-vertical"></li>
 
             <li class="dropdown">
-              <%= link_to current_user.url, :class => 'dropdown-toggle', :'data-toggle' => 'dropdown', id: 'current_user_data', :'data-target' => '#' do %>
+              <%= link_to current_user, :class => 'dropdown-toggle', :'data-toggle' => 'dropdown', id: 'current_user_data', :'data-target' => '#' do %>
                 <%= image_tag current_user.image.thumb.url, :class => 'size20' %>
                 <%= current_user.name %>
               <% end %>

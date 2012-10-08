@@ -7,7 +7,7 @@ Raddar::Application.routes.draw do
   resources :tags, only: [:show]
 
   resources :venues, only: [:index, :show, :new, :create] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create]
     resource :watching, only: [:destroy]
     resource :vote, only: [:create]
     get 'nearby', on: :collection
@@ -27,26 +27,25 @@ Raddar::Application.routes.draw do
   end
 
   resources :stuffs, only: [] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create]
     resource :watching, only: [:destroy]
     resource :vote, only: [:create]
   end
 
-  resources :comments, only: [] do
+  resources :comments, only: [:destroy] do
     resource :vote, only: [:create]
   end
 
   resources :forums, only: [:index, :show] do
     resources :topics, except: [:index] do
-      resources :posts, only: [:create, :destroy]
-      #resource :watching, only: [:destroy]
+      resources :posts, only: [:create]
     end
     resources :followers, only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
   end
 
-  resources :posts, only: [] do
+  resources :posts, only: [:destroy] do
     resource :vote, only: [:create]
   end
 
@@ -114,4 +113,30 @@ Raddar::Application.routes.draw do
   match '/422', to: 'home#exception'
   match '/500', to: 'home#exception'
 
+end
+
+Raddar::Application.routes.named_routes.module.module_eval do
+  def raddar_path resource, options = {}
+    case resource.class.name.underscore.to_sym
+    when :comment
+      options[:anchor] = 'comments'
+      raddar_path resource.commentable, options
+    when :post
+      options[:post_id] = resource.id
+      options[:anchor] = "post_#{resource.id}"
+      raddar_path resource.topic, options
+    when :stuff
+      pub_stuff_path resource.pub, resource, options
+    when :topic
+      forum_topic_path resource.forum, resource, options
+    else
+      send "#{resource.class.name.underscore}_path".to_sym, resource, options
+    end
+  end
+
+  def raddar_url resource, options = {}
+    options[:only_path] = false unless options.key? :only_path
+
+    raddar_path resource, options
+  end
 end

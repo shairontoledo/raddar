@@ -1,7 +1,6 @@
 class CommentsController < ApplicationController
   load_and_authorize_resource
 
-
   def create
     @commentable = find_commentable
 
@@ -13,7 +12,7 @@ class CommentsController < ApplicationController
       
       Delayed::Job.enqueue NotifyCommentJob.new(@comment.id)
 
-      respond_with @comment, location: @comment.url
+      respond_with @comment, location: raddar_path(@comment)
     else
       eval("@#{@commentable.class.name.underscore} = @commentable")
       render "#{@commentable.class.name.downcase.underscore}/show"
@@ -22,7 +21,7 @@ class CommentsController < ApplicationController
 
   def destroy
     @comment.destroy
-    respond_with @comment, location: @comment.commentable.url
+    respond_with @comment, location: raddar_path(@comment.commentable)
   end
 
   private

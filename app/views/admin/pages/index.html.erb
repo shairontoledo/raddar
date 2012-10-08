@@ -13,7 +13,7 @@
     <% @pages.each do |page| %>
       <tr>
         <td>
-          <%= link_to page.url, page.url %>
+          <%= link_to page_path(page), page %>
         </td>
         <td>
           <%= edit_button edit_admin_page_path(page) %>

@@ -11,8 +11,4 @@ class Post
 
   validates_presence_of :content, :user, :topic
   validates_length_of :content, maximum: 6000
-
-  def url options={}
-    forum_topic_path self.topic.forum, self.topic, post_id: self.id, anchor: "post_#{self.id}"
-  end
 end

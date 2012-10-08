@@ -7,10 +7,10 @@
     <h1><%= @pub.name %></h1>
 
     <div class="clearfix">
-      <%= link_to image_tag(@pub.user.image.thumb.url, :class => 'img-polaroid pull-left cover'), @pub.user.url %>
+      <%= link_to image_tag(@pub.user.image.thumb.url, :class => 'img-polaroid pull-left cover'), @pub.user %>
       <%= t 'pub.author' %>
       <br/>
-      <%= link_to @pub.user.name, @pub.user.url %>
+      <%= link_to @pub.user.name, @pub.user %>
 
       <span class="pull-right">
         <%= render 'followers/link_with_count', {followable: @pub} %>

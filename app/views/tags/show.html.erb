@@ -19,7 +19,7 @@
         <ul>
           <% @taggings.each do |tagging| %>
             <li>
-              <%= link_to tagging.taggable.url do %> 
+              <%= link_to raddar_path(tagging.taggable) do %> 
                 <strong>
                   <%= tagging.taggable.class.model_name.human %>
                   <%= tagging.taggable.name unless tagging.taggable[:name].blank? %>

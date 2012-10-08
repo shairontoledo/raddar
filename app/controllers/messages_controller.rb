@@ -27,7 +27,7 @@ class MessagesController < ApplicationController
   def more
     @user = User.find(params[:user_id])
     last = Message.find(params[:last])
-    @messages = Message.find_chat(current_user, @user.id, last)
+    @messages = Message.find_chat(current_user, @user, last)
   end
 
 
@@ -40,7 +40,7 @@ class MessagesController < ApplicationController
     @message.recipient = @user
     @message.save
 
-    Delayed::Job.enqueue(NotifyMessageJob.new(@message.id), run_at: 1.hour.from_now) if @user.notify_messages
+    Delayed::Job.enqueue(NotifyMessageJob.new(@message.id), run_at: 1.minute.from_now) if @user.notify_messages
   end
 
 

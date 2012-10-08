@@ -1,6 +1,6 @@
 <div id="tags">
   <b><%= t 'tag.p' %>:</b>
   <% taggable.taggings.each do |tagging| %>
-    <%= link_to tagging.tag.name, tagging.tag.url, :class => 'btn btn-mini' %>
+    <%= link_to tagging.tag.name, tagging.tag, :class => 'btn btn-mini' %>
   <% end %>
 </div>

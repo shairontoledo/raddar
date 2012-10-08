@@ -4,7 +4,7 @@
       <div class="item <%= 'active' if i == 0 %>">
         <%= image_tag stuff.image.large_rectangle.url %>
         <div class="carousel-caption">
-          <h4><%= link_to stuff.name, stuff.url %></h4>
+          <h4><%= link_to stuff.name, pub_stuff_path(stuff.pub, stuff) %></h4>
           <p><%= truncate hide_html(stuff.content), length: 200, separator: ' ' %></p>
         </div>
       </div>

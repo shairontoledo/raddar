@@ -3,7 +3,7 @@ atom_feed language: I18n.locale do |feed|
   feed.updated @pub.updated_at
 
   @pub.stuffs.order_by([:created_at, :desc]).limit(20).each do |stuff|
-    feed.entry stuff, {url: stuff.url} do |entry|
+    feed.entry stuff, {url: pub_stuff_url(@pub, stuff)} do |entry|
       entry.title stuff.name
       entry.content stuff.content, type: 'html'
 
