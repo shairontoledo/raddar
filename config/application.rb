@@ -22,7 +22,7 @@ module Raddar
     end
     
     # Raddar settings
-    YAML.load_file("#{Rails.root}/config/raddar.yml").each { |k,v| config.send "#{k}=", v }
+    YAML.load_file("#{Rails.root}/raddar.yml").each { |k,v| config.send "#{k}=", v }
 
     config.exceptions_app = self.routes
 

@@ -3,7 +3,7 @@
 /db/*.sqlite3
 /log/*.log
 /tmp
-public/uploads/
-public/assets/
-public/system/
-config/raddar.yml
+/public/uploads/
+/public/assets/
+/public/system/
+/raddar.yml
