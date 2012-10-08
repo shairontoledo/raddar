@@ -1,6 +1,6 @@
 app:
   name: 'My Community'
-domain: 'mycommunity.example.com'
+host: 'mycommunity.example.com'
 sysop:
   email: 'sysop@example.com'
 locale: 'en'

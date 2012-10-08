@@ -29,7 +29,7 @@ pt-BR:
         html: "<p><b>%{follower}</b> começou a seguir você!</p><p>Para ver o perfil de %{follower}, acesse: %{url}</p><p>Caso não queira receber avisos sobre novos seguidores, altere suas configurações em: %{edit_conf_url}</p>"
       new_forum_post:
         html: "<p><b>%{author}</b> fez uma nova postagem no tópico <b>%{topic}</b></p><p>Para ver a postagem, acesse: %{url}</p><p>Caso não queira receber avisos sobre este tópico, acesse: %{unwatch_url}</p>"
-      new_comment_post:
+      new_comment:
         html: "<p><b>%{author}</b> adicionou um novo comentário em <b>%{commentable}</b></p><p>Para ver a postagem, acesse: %{url}</p><p>Caso não queira receber avisos sobre novos comentários para este item, acesse: %{unwatch_url}</p>"
       new_rank:
         html: "<p>Parabéns! Pelo seu desempenho em <em>%{universe}</em> você foi promovido a <strong>%{rank}</strong>!</p><p>Muito obrigado pela sua ótima participação em nossa comunidade!</p>"

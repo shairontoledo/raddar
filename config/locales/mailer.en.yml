@@ -29,7 +29,7 @@ en:
         html: "<p><b>%{follower}</b> started following you!</p><p>To see the %{follower} s profile, please visit: %{url}</p><p>If you do not want to be warned about new followers anymore, please change your settings at: %{edit_conf_url}</p>"
       new_forum_post:
         html: "<p><b>%{author}</b> posted in the topic <b>%{topic}</b></p><p>To see the post, please visit: %{url}</p><p>If you do not want to be warned about this topic anymore, please change your settings at: %{unwatch_url}</p>"
-      new_comment_post:
+      new_comment:
         html: "<p><b>%{author}</b> added a comment at <b>%{commentable}</b></p><p>To see the post, please visit: %{url}</p><p>If you do not want to be warned about new comments anymore, please change your settings at: %{unwatch_url}</p>"
       new_rank:
         html: "<p>Congratulations! For your efforts in <em>%{universe}</em> you have been promoted to <strong>%{rank}</strong>!</p><p>Thank you very much for your support!</p>"

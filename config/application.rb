@@ -75,6 +75,11 @@ module Raddar
     config.assets.version = '1.0'
 
     config.assets.paths << Rails.root.join("theme")
+
+    config.default_url_options = { host: config.host }
+    config.default_url_options[:port] = config.port if config.respond_to?(:port)
+
+    config.action_mailer.default_url_options = config.default_url_options
     
   end
 

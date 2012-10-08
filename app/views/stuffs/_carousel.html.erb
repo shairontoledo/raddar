@@ -1,6 +1,6 @@
 <div id="stuffs_carousel" class="carousel slide">
   <div class="carousel-inner">
-    <% stuffs.limit(8).each_with_index do |stuff, i| %>
+    <% stuffs.each_with_index do |stuff, i| %>
       <div class="item <%= 'active' if i == 0 %>">
         <%= image_tag stuff.image.large_rectangle.url %>
         <div class="carousel-caption">
