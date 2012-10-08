@@ -1,4 +1,6 @@
 class NotifyCommentJob < Struct.new(:comment_id)
+  include Rails.application.routes.url_helpers
+  
   def perform
     comment = Comment.find comment_id
     comment.commentable.watchings.each do |watching|

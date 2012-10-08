@@ -7,7 +7,7 @@ Raddar::Application.routes.draw do
   resources :tags, only: [:show]
 
   resources :venues, only: [:index, :show, :new, :create] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create]
     resource :watching, only: [:destroy]
     resource :vote, only: [:create]
     get 'nearby', on: :collection
@@ -27,26 +27,25 @@ Raddar::Application.routes.draw do
   end
 
   resources :stuffs, only: [] do
-    resources :comments, only: [:create, :destroy]
+    resources :comments, only: [:create]
     resource :watching, only: [:destroy]
     resource :vote, only: [:create]
   end
 
-  resources :comments, only: [] do
+  resources :comments, only: [:destroy] do
     resource :vote, only: [:create]
   end
 
   resources :forums, only: [:index, :show] do
     resources :topics, except: [:index] do
-      resources :posts, only: [:create, :destroy]
-      #resource :watching, only: [:destroy]
+      resources :posts, only: [:create]
     end
     resources :followers, only: [:create, :index] do
       delete 'destroy', on: :collection
     end 
   end
 
-  resources :posts, only: [] do
+  resources :posts, only: [:destroy] do
     resource :vote, only: [:create]
   end
 

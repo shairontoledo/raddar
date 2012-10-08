@@ -1,4 +1,6 @@
 class NotifyRankJob < Struct.new(:user_id, :rank_id)
+  include Rails.application.routes.url_helpers
+  
   def perform
     user = User.find user_id
     rank = Rank.find rank_id

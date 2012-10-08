@@ -15,7 +15,7 @@
         <%= render 'votes/show', {votable: comment} %>
         <% if can? :destroy, comment %>
           <span class="pull-right">
-            <%= destroy_button polymorphic_path([comment.commentable, comment]) %>
+            <%= destroy_button comment %>
           </span>
         <% end %>
       </div>

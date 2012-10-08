@@ -15,7 +15,7 @@
       <span class="pull-right">
         <%= link_to time_tag(post.created_at, humanize_datetime(post.created_at)), "#post_#{post.id}" %>
         <%= link_to t('action.quote'), '#new_forum_post_content', :class => 'btn quote_btn' if can? :create, Post %>
-        <%= destroy_button [post.topic.forum, post.topic, post] if can? :destroy, post %>
+        <%= destroy_button post if can? :destroy, post %>
       </span>
     </div> 
   </div>

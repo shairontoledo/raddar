@@ -13,7 +13,7 @@ class NoticeMailer < ActionMailer::Base
   def new_comment_email(notification, comment)
     @notification = notification
     @comment = comment
-    @unwatch_url = polymorphic_path([@comment.commentable, :watching])
+    @unwatch_url = polymorphic_url([@comment.commentable, :watching])
 
     send_mail @notification.user, I18n.t('notice_mailer.subject.comment')
   end
