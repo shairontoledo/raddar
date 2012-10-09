@@ -1,5 +1,7 @@
 pt-BR:
   or: ou
+  'yes': 'Sim'
+  'no': 'Não'
   ajax:
     loading: Carregando...
     sending: Enviando...

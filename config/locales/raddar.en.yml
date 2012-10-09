@@ -1,5 +1,7 @@
 en:
   or: or
+  'yes': 'Yes'
+  'no': 'No'
   ajax:
     loading: Loading...
     sending: Sending...

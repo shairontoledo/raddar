@@ -4,7 +4,7 @@ class Admin::UsersController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @users = @users.paginate(page: params[:page], per_page: 10)
+    @users = @users.order_by([:name, :asc]).paginate(page: params[:page], per_page: 10)
 
     respond_with @users
   end

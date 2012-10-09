@@ -106,6 +106,7 @@ pt-BR:
         location: Localização
         notify_messages: Novas mensagens
         notify_followers: Novos seguidores
+        confirmed: Confirmado?
   user: *user_attributes
   message: *message_attributes
   pub: *pub_attributes
