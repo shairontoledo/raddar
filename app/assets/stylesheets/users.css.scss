@@ -1,15 +1,17 @@
-div.user_rank img{
-  float:left;
-  margin-right: 6px;
-  margin-bottom: 5px;
-}
-
 .user_page img#main_image {
   margin-bottom: 20px;
 }
 
-.user_page .rank img {
-  margin-right: 8px;
+.user_page .rank {
+  p {
+    font-size: 0.8em;
+    line-height: 16px;
+    margin-bottom: 0;
+  }
+
+  img {
+    margin-right: 8px;
+  }
 }
 
 .user_page .pub_snippet strong{
