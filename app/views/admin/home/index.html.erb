@@ -1,5 +1,32 @@
-<% admin_page_title t('index') %>
+<% admin_page_title %>
 
 <%= render 'admin/shared/header', {active: :index} %>
 
-<p>Find me in app/views/admin/home/index.html.erb</p>
+<h2><%= Raddar::config.app['name'] %></h2>
+
+<dl class="dl-horizontal">
+  <dt><%= t 'user.p' %></dt>
+  <dd><%= @users_count %></dd>
+
+  <dt><%= t 'pub.p' %></dt>
+  <dd><%= @pubs_count %></dd>
+
+  <dt><%= t 'stuff.p' %></dt>
+  <dd><%= @stuffs_count %></dd>
+
+  <dt><%= t 'forum.p' %></dt>
+  <dd><%= @forums_count %></dd>
+
+  <dt><%= t 'topic.p' %></dt>
+  <dd><%= @topics_count %></dd>
+
+  <dt><%= t 'post.p' %></dt>
+  <dd><%= @posts_count %></dd>
+
+  <dt><%= t 'venue.p' %></dt>
+  <dd><%= @venues_count %></dd>
+
+  <dt><%= t 'comment.p' %></dt>
+  <dd><%= @comments_count %></dd>
+</dl>
+
