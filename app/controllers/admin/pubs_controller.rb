@@ -3,7 +3,7 @@ class Admin::PubsController < ApplicationController
   # GET /pubs
   # GET /pubs.xml
   def index
-    @pubs = @pubs.paginate(page: params[:page], per_page: 10)
+    @pubs = @pubs.order_by([:name, :asc]).paginate(page: params[:page], per_page: 10)
     respond_with @pubs
   end
 

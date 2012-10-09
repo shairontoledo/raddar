@@ -3,7 +3,7 @@ class Admin::VenuesController < ApplicationController
   # GET /venues
   # GET /venues.xml
   def index
-    @venues = @venues.paginate(page: params[:page], per_page: 10)
+    @venues = @venues.order_by([:name, :asc]).paginate(page: params[:page], per_page: 10)
     respond_with @venues
   end
 

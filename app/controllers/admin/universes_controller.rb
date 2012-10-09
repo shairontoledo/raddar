@@ -5,7 +5,7 @@ class Admin::UniversesController < ApplicationController
   # GET /universes
   # GET /universes.xml
   def index
-    @universes = @universes.paginate(page: params[:page], per_page: 10)
+    @universes = @universes.order_by([:name, :asc]).paginate(page: params[:page], per_page: 10)
     respond_with @universes
   end
 

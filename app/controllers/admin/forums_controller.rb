@@ -4,7 +4,7 @@ class Admin::ForumsController < ApplicationController
   load_and_authorize_resource
 
   def index
-    @forums = @forums.paginate(page: params[:page], per_page: 10)
+    @forums = @forums.order_by([:name, :asc]).paginate(page: params[:page], per_page: 10)
 
     respond_with @forums
   end
