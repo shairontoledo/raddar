@@ -8,7 +8,6 @@ recaptcha:
   enabled: true
   public_key: 'PUBLIC_KEY'
   private_key: 'PRIVATE_KEY'
-  proxy: 'http://proxy.example.com'
   theme: 'white'
 authentication:
   encryptor: 'bcrypt'

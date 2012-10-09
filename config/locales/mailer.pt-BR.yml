@@ -8,7 +8,7 @@ pt-BR:
       contact: "Novo contato de %{name}"
     body:
       contact:
-        html: "<h3>Novo contato<h3><p>Nome: %{name}</p><p>E-mail: %{email}</p><p>Usuário: %{user}</p><p>Mensagem:</p><blockquote>%{message}</blockquote>"
+        html: "<h3>Novo contato</h3><dl><dt>Nome</dt><dd>%{name}</dd><dt>E-mail</dt><dd>%{email}</dd><dt>Usuário</dt><dd>%{user}</dd></dl><blockquote>%{message}</blockquote>"
   user_mailer:
     body:
       confirmation:
