@@ -136,7 +136,7 @@ GEM
       eventmachine (>= 0.12.0)
     ffi (1.1.5)
     geocoder (1.1.4)
-    gherkin (2.11.3)
+    gherkin (2.11.4)
       json (>= 1.4.6)
     hashie (1.2.0)
     highline (1.6.15)
