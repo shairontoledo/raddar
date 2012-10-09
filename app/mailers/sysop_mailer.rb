@@ -12,8 +12,6 @@ class SysopMailer < ActionMailer::Base
 
   private
   def send_mail subject
-    title = Raddar::config.app['name']
-
-    mail to: "Sysop <#{Raddar::config.sysop['email']}>", subject: "#{title} - #{subject}"
+    mail to: "Sysop <#{Raddar::config.sysop['email']}>", subject: subject
   end
 end

@@ -40,7 +40,7 @@ class TopicsController < ApplicationController
   def create
     @topic.user = current_user
     
-    @post = @topic.posts.new(params[:topic][:post])
+    @post = @topic.posts.new(params[:post])
     @post.user = current_user
 
     @topic.valid?

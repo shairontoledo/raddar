@@ -1,3 +1,3 @@
-<p><%= t('mailer.template.hello', name: @notification.user.name) %></p>
-<br/>
-<%= t 'notice_mailer.body.new_forum_post.html', author: @post.user.name, topic: @post.topic.name, url: link_to(notification_url(@notification), notification_url(@notification)), unwatch_url: link_to(topic_watching_url(@post.topic), topic_watching_url(@post.topic), method: :delete) %>
+<p id="greetings"><%= t('mailer.template.hello', name: @notification.user.name) %></p>
+
+<%= t 'notice_mailer.body.new_forum_post.html', author: @post.user.name, topic: @post.topic.name, url: link_to(notification_url(@notification), notification_url(@notification)), unwatch_url: link_to(unwatch_topic_watching_url(@post.topic), unwatch_topic_watching_url(@post.topic)) %>

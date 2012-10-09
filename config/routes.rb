@@ -8,7 +8,9 @@ Raddar::Application.routes.draw do
 
   resources :venues, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create]
-    resource :watching, only: [:destroy]
+    resource :watching, only: [:destroy] do
+      get 'unwatch' => 'watchings#destroy'
+    end
     resource :vote, only: [:create]
     get 'nearby', on: :collection
   end
@@ -28,7 +30,9 @@ Raddar::Application.routes.draw do
 
   resources :stuffs, only: [] do
     resources :comments, only: [:create]
-    resource :watching, only: [:destroy]
+    resource :watching, only: [:destroy] do
+      get 'unwatch' => 'watchings#destroy'
+    end
     resource :vote, only: [:create]
   end
 
@@ -50,7 +54,9 @@ Raddar::Application.routes.draw do
   end
 
   resources :topics, only: [] do
-    resource :watching, only: [:destroy]
+    resource :watching, only: [:destroy] do
+      get 'unwatch' => 'watchings#destroy'
+    end
   end
 
   namespace 'admin' do

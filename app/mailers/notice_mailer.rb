@@ -13,9 +13,9 @@ class NoticeMailer < ActionMailer::Base
   def new_comment_email(notification, comment)
     @notification = notification
     @comment = comment
-    @unwatch_url = polymorphic_url([@comment.commentable, :watching])
+    @unwatch_url = polymorphic_url([@comment.commentable, :watching], action: :unwatch)
 
-    send_mail @notification.user, I18n.t('notice_mailer.subject.comment')
+    send_mail @notification.user, I18n.t('notice_mailer.subject.new_comment')
   end
 
   def new_message_email(message)
@@ -41,8 +41,7 @@ class NoticeMailer < ActionMailer::Base
 
   private
   def send_mail user, subject
-    title = Raddar::config.app['name']
 
-    mail to: "#{user.name} <#{user.email}>", subject: "#{title} - #{subject}"
+    mail to: "#{user.name} <#{user.email}>", subject: subject
   end
 end

@@ -15,7 +15,7 @@ module UsersHelper
     html = ''
 
     user.accounts.each do |account|
-      if user.id == current_user.id || account.privacy == :public
+      if user.id == current_user.id || account.url_privacy == :public
         html = html + link_to(image_tag("omniauth/#{account.provider}/logo.png", alt: account.provider.to_s.titleize, :class => 'size40'), account.url, target: '_blank', :class => 'user_account_link')
       end
     end

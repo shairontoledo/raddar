@@ -20,11 +20,11 @@ en:
       new_message: "%{sender} sent you a messsage"
       new_follower: "%{follower} started following you"
       new_forum_post: "New forum post"
-      new_forum_post: "New comment"
+      new_comment: "New comment"
       new_rank: "Congratulations! Now you are %{rank}!"
     body:
       new_message:
-        html: "<p><b>%{sender}</b> sent you a message:</p><div style=\"background-color: grey\">%{message}</div><br/><p>To see and answer it, please visit: %{url}</p><p>If you do not want to be warned about new messages anymore, please change your settings at: %{edit_conf_url}</p>"
+        html: "<p><b>%{sender}</b> sent you a message:</p><blockquote>%{message}</blockquote><p>To see and answer it, please visit: %{url}</p><p>If you do not want to be warned about new messages anymore, please change your settings at: %{edit_conf_url}</p>"
       new_follower:
         html: "<p><b>%{follower}</b> started following you!</p><p>To see the %{follower} s profile, please visit: %{url}</p><p>If you do not want to be warned about new followers anymore, please change your settings at: %{edit_conf_url}</p>"
       new_forum_post:

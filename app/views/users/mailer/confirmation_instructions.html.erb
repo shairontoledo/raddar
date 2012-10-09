@@ -1,4 +1,4 @@
-<p><%= t('mailer.template.hello', name: @resource.name) %></p>
-<br/>
+<p id="greetings"><%= t('mailer.template.hello', name: @resource.name) %></p>
+
 <% url = confirmation_url @resource, :confirmation_token => @resource.confirmation_token %>
 <%= t 'user_mailer.body.confirmation.html', url: link_to(url, url) %>
