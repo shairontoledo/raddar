@@ -56,6 +56,8 @@
       <%= show_protected_user_field @user, :date_of_birth %>
       <%= show_protected_user_field @user, :gender %>
       <%= show_protected_user_field @user, :location %>
+      <dt><%= t 'user.member_since' %></dt>
+      <dd><%= humanize_datetime @user.created_at %></dd>
     </dl>
 
     <% unless @user.pubs.empty? %>

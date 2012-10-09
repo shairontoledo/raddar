@@ -161,6 +161,7 @@ en:
       with: "Entrar com %{provider}"
       destroy: Sign out
       invite: "Do you want to %{action}? Register now!"
+    member_since: Member since
   vote:
     like: Like
     dislike: Dislike

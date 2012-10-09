@@ -161,6 +161,7 @@ pt-BR:
       with: "Entre com %{provider}"
       destroy: Sair
       invite: "Quer %{action}? Entre agora!"
+    member_since: Membro desde
   vote:
     like: Gostei
     dislike: Não gostei

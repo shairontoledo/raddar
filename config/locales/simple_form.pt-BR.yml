@@ -14,7 +14,7 @@ pt-BR:
       user:
         privacy_options: &privacy_options
           public: Público
-          only_me: Não exibir
+          only_me: Oculto
         gender_privacy: *privacy_options
         date_of_birth_privacy: *privacy_options
         email_privacy: *privacy_options
