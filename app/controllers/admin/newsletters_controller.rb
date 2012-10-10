@@ -6,10 +6,6 @@ class Admin::NewslettersController < ApplicationController
     respond_with(@newsletters)
   end
 
-  def show
-    respond_with(@newsletter)
-  end
-
   def new
     respond_with(@newsletter)
   end

@@ -21,7 +21,7 @@
         </td>
         <td>
           <%= edit_button edit_admin_newsletter_path(newsletter) %>
-          <%= link_to t(newsletter.sent_at.nil? ? 'action.send' : 'action.resend'), send_now_admin_newsletter_path(newsletter), method: :put, :class => 'btn btn-warning', confirm: t('js.prompt.confirm') %>
+          <%= link_to t(newsletter.sent_at.nil? ? 'action.send' : 'action.resend'), send_now_admin_newsletter_path(newsletter), method: :put, :class => "btn btn-#{newsletter.sent_at.nil? ? 'warning' : 'danger'}", confirm: t('js.prompt.confirm') %>
         </td>
       </tr>
     <% end %>

@@ -35,6 +35,7 @@ class Ability
         can [:new, :create], Venue
         can :create, Vote
         can :manage, Watching, user_id: user.id
+        can :show, Newsletter
         
         cannot [:edit,:update], [Comment, Message, Post]
 
