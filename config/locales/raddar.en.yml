@@ -21,6 +21,7 @@ en:
     change: Change
     close: Close
     send: Send
+    resend: Resend
     back: Back
     more: More
   feed:
@@ -179,6 +180,8 @@ en:
     new: New newsletter
     edit: Edit newsletter
   flash:
+    newsletter:
+      sent: 'This newsletter will be sent to all users.'
     watching:
       destroyed: You will no longer be notified for this item.
     account:

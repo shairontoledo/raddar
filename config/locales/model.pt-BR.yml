@@ -49,6 +49,7 @@ pt-BR:
       newsletter: &newsletter_attributes
         subject: Assunto
         content: Conteúdo
+        sent_at: Enviado em
       rank: &rank_attributes
         name: Nome
         description: Descrição

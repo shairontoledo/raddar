@@ -6,6 +6,7 @@
   <thead>
     <tr>
       <th><%= t 'newsletter.subject' %></th>
+      <th><%= t 'newsletter.sent_at' %></th>
       <th></th>
     </tr>
   </thead>
@@ -16,7 +17,11 @@
           <%= link_to newsletter.subject, newsletter, target: '_blank' %>
         </td>
         <td>
+          <%= humanize_datetime newsletter.sent_at %>
+        </td>
+        <td>
           <%= edit_button edit_admin_newsletter_path(newsletter) %>
+          <%= link_to t(newsletter.sent_at.nil? ? 'action.send' : 'action.resend'), send_now_admin_newsletter_path(newsletter), method: :put, :class => 'btn btn-warning', confirm: t('js.prompt.confirm') %>
         </td>
       </tr>
     <% end %>

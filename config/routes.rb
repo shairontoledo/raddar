@@ -76,7 +76,9 @@ Raddar::Application.routes.draw do
       resources :ranks, except: [:show]
     end
     resources :pages, except: [:show]
-    resources :newsletters, except: [:show]
+    resources :newsletters, except: [:show] do
+      put 'send_now', on: :member
+    end
   end
 
   namespace 'users', as: 'user' do

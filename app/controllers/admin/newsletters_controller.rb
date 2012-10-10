@@ -17,6 +17,12 @@ class Admin::NewslettersController < ApplicationController
   def edit
   end
 
+  def send_now
+    @newsletter.sent_at = Time.now
+    @newsletter.save!
+    respond_with @newsletter, location: admin_newsletters_path, notice: t('flash.newsletter.sent')
+  end
+
   def create
     @newsletter.save
     respond_with(@newsletter, location: admin_newsletters_path)

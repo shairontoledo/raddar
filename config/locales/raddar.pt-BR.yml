@@ -21,6 +21,7 @@ pt-BR:
     change: Alterar
     close: Fechar
     send: Enviar
+    resend: Reenviar
     back: Voltar
     more: Ver mais
   feed:
@@ -179,6 +180,8 @@ pt-BR:
     new: Nova newsletter
     edit: Editar newsletter
   flash:
+    newsletter:
+      sent: 'Esta newsletter será enviada para todos os usuários.'
     watching:
       destroyed: "Você não mais receberá avisos deste item."
     account:
