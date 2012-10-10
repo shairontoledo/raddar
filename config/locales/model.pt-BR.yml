@@ -40,11 +40,15 @@ pt-BR:
       rank: Título
       contact: Contato
       account: Conta
+      newsletter: Newsletter
     attributes:
       contact: &contact_attributes
         name: Nome
         email: E-mail
         message: Mensagem
+      newsletter: &newsletter_attributes
+        subject: Assunto
+        content: Conteúdo
       rank: &rank_attributes
         name: Nome
         description: Descrição
@@ -97,7 +101,6 @@ pt-BR:
         image: Imagem
         remove_image: Remover imagem
         bio: Sobre mim
-        facebook_url: Perfil do Facebook
         roles: Papéis
         status: Status
         status_options: &status_options
@@ -119,6 +122,7 @@ pt-BR:
   universe: *universe_attributes
   rank: *rank_attributes
   contact: *contact_attributes
+  newsletter: *newsletter_attributes
   simple_form:
     options:
       user:

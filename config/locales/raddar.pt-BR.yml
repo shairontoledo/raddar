@@ -173,6 +173,11 @@ pt-BR:
     previous: Mensagens anteriores
     all: Todas as mensagens
     send: Enviar mensagem
+  newsletter:
+    s: Newsletter
+    p: Newsletters
+    new: Nova newsletter
+    edit: Editar newsletter
   flash:
     watching:
       destroyed: "Você não mais receberá avisos deste item."

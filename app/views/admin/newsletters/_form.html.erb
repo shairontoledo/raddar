@@ -1,0 +1,13 @@
+<%= simple_form_for([:admin, @newsletter], :html => {:class => 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
+
+  <div class="form-inputs">
+    <%= f.input :subject, input_html: {:class => 'span8'} %>
+    <%= f.input :content, as: :bootsy, input_html: {:class => 'span8', rows: '8'}, editor_options: {color: false, html: true} %>
+  </div>
+
+  <div class="form-actions">
+    <%= submit_button f %>
+    <%= destroy_button [:admin, @newsletter]  if @newsletter.persisted? && can?(:destroy, @newsletter) %>
+  </div>
+<% end %>

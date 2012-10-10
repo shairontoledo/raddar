@@ -36,12 +36,12 @@ en:
       topic: &topic_attributes
       forum: &forum_attributes
       message: &message_attributes
+      newsletter: &newsletter_attributes
       user: &user_attributes
         login: Name or email
         gender_options: &gender_options
           male: Male
           female: Female
-        facebook_url: Facebook profile
         status_options: &status_options
         notify_messages: New messages
         notify_followers: New followers
@@ -57,6 +57,7 @@ en:
   universe: *universe_attributes
   rank: *rank_attributes
   contact: *contact_attributes
+  newsletter: *newsletter_attributes
   simple_form:
     options:
       user:

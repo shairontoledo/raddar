@@ -6,6 +6,8 @@ Raddar::Application.routes.draw do
 
   resources :tags, only: [:show]
 
+  resources :newsletters, only: [:show]
+
   resources :venues, only: [:index, :show, :new, :create] do
     resources :comments, only: [:create]
     resource :watching, only: [:destroy] do
@@ -74,6 +76,7 @@ Raddar::Application.routes.draw do
       resources :ranks, except: [:show]
     end
     resources :pages, except: [:show]
+    resources :newsletters, except: [:show]
   end
 
   namespace 'users', as: 'user' do

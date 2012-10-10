@@ -173,6 +173,11 @@ en:
     previous: Previous messages
     all: All messages
     send: Send message
+  newsletter:
+    s: Newsletter
+    p: Newsletters
+    new: New newsletter
+    edit: Edit newsletter
   flash:
     watching:
       destroyed: You will no longer be notified for this item.

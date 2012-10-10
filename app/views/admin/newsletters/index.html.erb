@@ -1,0 +1,29 @@
+<% admin_page_title t('newsletter.p') %>
+
+<%= render 'admin/shared/header', {active: :newsletters} %>
+
+<table class="table table-striped table-bordered">
+  <thead>
+    <tr>
+      <th><%= t 'newsletter.subject' %></th>
+      <th></th>
+    </tr>
+  </thead>
+  <tbody>
+    <% @newsletters.each do |newsletter| %>
+      <tr>
+        <td>
+          <%= link_to newsletter.subject, newsletter, target: '_blank' %>
+        </td>
+        <td>
+          <%= edit_button edit_admin_newsletter_path(newsletter) %>
+        </td>
+      </tr>
+    <% end %>
+  </tbody>
+</table>
+
+
+<%= will_paginate @newsletters %>
+
+<%= link_to t('newsletter.new'), new_admin_newsletter_path, :class => 'btn' %>
