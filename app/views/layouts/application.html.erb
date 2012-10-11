@@ -34,15 +34,18 @@
 
   <body>
     <%= render 'layouts/navbar' %>
-    <div class="layout_top">
-      <div class="container"><%= render 'layouts/top' %></div>
-    </div>
-    <div class="container" id="main_container">
+    <div id="wrap">
+      <div class="layout_top">
+        <div class="container"><%= render 'layouts/top' %></div>
+      </div>
+      <div class="container" id="main_container">
 
-      <%= render 'layouts/messages' %>
-      
-      <%= yield %>
+        <%= render 'layouts/messages' %>
+        
+        <%= yield %>
 
+      </div>
+      <div id="push"></div>
     </div>
     <footer>
       <div class="container"><%= render 'layouts/footer' %></div>
