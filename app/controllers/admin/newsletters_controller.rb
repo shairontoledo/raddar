@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class Admin::NewslettersController < ApplicationController
   load_and_authorize_resource
 
@@ -16,6 +18,7 @@ class Admin::NewslettersController < ApplicationController
   def send_now
     @newsletter.sent_at = Time.now
     @newsletter.save!
+    Delayed::Job.enqueue SendNewsletterJob.new(@newsletter.id)
     respond_with @newsletter, location: admin_newsletters_path, notice: t('flash.newsletter.sent')
   end
 
