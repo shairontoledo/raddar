@@ -94,6 +94,7 @@ Raddar::Application.routes.draw do
     get '/auth/:provider' => 'users/omniauth_callbacks#passthru'
     get '/users/password/change' => 'users/passwords#change', as: :change_user_password
     put '/users/password/change' => 'users/passwords#do_change', as: :change_user_password
+    get '/users/registrations/destroy' => 'users/registrations#destroy', as: :destroy_user_registration
   end
 
   resources :users, only: [:show] do

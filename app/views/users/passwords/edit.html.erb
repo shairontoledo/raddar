@@ -4,26 +4,19 @@
   <h1><%= t 'user.password.edit' %></h1>
 </div>
 
-<div class="row">
-  <div class="span6">
-    <%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, :class => 'form-horizontal'}) do |f| %>
-      <%= f.error_notification %>
 
-      <%= f.input :reset_password_token, as: :hidden %>
-      <%= f.full_error :reset_password_token %>
+<%= simple_form_for(resource, as: resource_name, url: password_path(resource_name), html: { method: :put, :class => 'form-horizontal'}) do |f| %>
+  <%= f.error_notification %>
 
-      <div class="form-inputs">
-        <%= f.input :password, required: true %>
-        <%= f.input :password_confirmation, required: true %>
-      </div>
+  <%= f.input :reset_password_token, as: :hidden %>
+  <%= f.full_error :reset_password_token %>
 
-      <div class="form-actions">
-        <%= submit_button f, t('user.password.edit') %>
-      </div>
-    <% end %>
+  <div class="form-inputs">
+    <%= f.input :password, required: true %>
+    <%= f.input :password_confirmation, required: true %>
   </div>
 
-  <div class="span6">
-    <%= render 'users/shared/links' %>
+  <div class="form-actions">
+    <%= submit_button f, t('user.password.edit') %>
   </div>
-</div>
+<% end %>

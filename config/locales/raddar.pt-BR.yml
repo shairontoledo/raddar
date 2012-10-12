@@ -156,6 +156,7 @@ pt-BR:
       edit: Editar conta
       new: Cadastre-se! 
       destroy: Cancelar conta
+      destroy_help: "Ao cancelar sua conta, o seu perfil e todos os seus dados serão permanentemente apagados. Se você tem certeza que deseja fazer isso, informe sua senha abaixo."
       agree_terms: "Ao se registrar você declara estar de acordo com nossos Termos de Uso"
     session:
       new: Entrar

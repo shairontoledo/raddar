@@ -156,6 +156,7 @@ en:
       edit: Edit account
       new: Register now!
       destroy: Cancel account
+      destroy_help: "When destroying your account, your profile and all your data will be permanently erased. If you are sure to proceed, enter your password below."
       agree_terms: "When registering, you explicitly agree to our Terms of Use"
     session:
       new: Sign in
