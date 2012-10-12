@@ -1,11 +1,11 @@
 atom_feed language: I18n.locale do |feed|
-  feed.title t('feed.title', app_name: Raddar::config.app['name'])
+  feed.title Raddar::config.app['name']
   feed.updated @stuffs.first.created_at unless @stuffs.empty?
 
-  @stuffs.each do |stuff|
-    feed.entry stuff do |entry|
+  @stuffs.limit(20).each do |stuff|
+    feed.entry stuff, {url: pub_stuff_url(stuff.pub, stuff)} do |entry|
       entry.title stuff.name
-      entry.content stuff.content, type: 'html'
+      entry.content render('stuffs/feed_body.html', {stuff: stuff}), type: 'html'
 
       entry.author do |author|
         author.name stuff.pub.user.name

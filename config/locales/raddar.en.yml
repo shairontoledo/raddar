@@ -24,8 +24,6 @@ en:
     resend: Resend
     back: Back
     more: More
-  feed:
-    title: '%{app_name} - Hot news'
   rank:
     s: Rank
     p: Ranks
@@ -99,8 +97,6 @@ en:
     author: Author
     edit: Edit pub
     new: Create new pub
-    feed:
-      title: '%{name} - New stuffs'
   stuff:
     s: Stuff
     p: Stuffs

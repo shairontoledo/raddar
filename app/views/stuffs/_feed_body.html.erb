@@ -1,0 +1,12 @@
+<div>
+  <%= image_tag(stuff.image.large_rectangle.url) unless stuff.image.file.nil? %>
+</div>
+
+<div>
+  <%= rich_format stuff.content %>
+</div>
+
+<p>
+  <strong><%= t 'tag.p' %>:</strong>
+  <%= raw stuff.taggings.map{|tagging| link_to tagging.tag.name, tag_url(tagging.tag) }.join(', ') %>
+</p>

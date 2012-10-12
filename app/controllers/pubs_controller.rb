@@ -3,6 +3,7 @@ class PubsController < ApplicationController
   # GET /pubs
   # GET /pubs.xml
   def index
+    @stuffs = Stuff.all.order_by([:created_at, :desc])
     respond_with @pubs
   end
 

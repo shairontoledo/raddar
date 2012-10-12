@@ -24,8 +24,6 @@ pt-BR:
     resend: Reenviar
     back: Voltar
     more: Ver mais
-  feed:
-    title: '%{app_name} - Principais novidades'
   rank:
     s: Rank
     p: Ranks
@@ -98,9 +96,7 @@ pt-BR:
     p: Publicações
     author: Autor
     edit: Editar publicação
-    new: Criar nova publicação
-    feed:
-      title: '%{name} - Novos materiais'
+    new: Criar nova publicaçãos
   stuff:
     s: Material
     p: Materiais
