@@ -38,6 +38,11 @@ module Raddar::Model
     end
   end
 
+  
+  def description
+    self[:description] || self.to_s
+  end
+
   private
   def check_in_association_as association, as
     ((!self.reflect_on_association(association).nil?) && (self.reflect_on_association(association).as == as))

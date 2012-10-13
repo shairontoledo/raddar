@@ -96,7 +96,8 @@ pt-BR:
     p: Publicações
     author: Autor
     edit: Editar publicação
-    new: Criar nova publicaçãos
+    new: Criar uma nova publicação
+    no_stuffs: Ainda não existe nenhum material nesta publicação.
   stuff:
     s: Material
     p: Materiais

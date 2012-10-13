@@ -60,6 +60,7 @@ class User
   has_many :comments, dependent: :destroy
   has_many :watchings, dependent: :destroy
   has_many :notifications, dependent: :destroy
+  has_many :triggered_notifications, class_name: 'Notification', inverse_of: :author, dependent: :destroy
   has_many :venues, dependent: :nullify
   has_and_belongs_to_many :ranks, dependent: :nullify
   has_many :accounts, dependent: :destroy
@@ -132,5 +133,9 @@ class User
 
     clean_up_passwords
     result
+  end
+
+  def description
+    self.bio
   end
 end

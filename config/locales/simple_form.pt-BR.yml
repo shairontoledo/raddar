@@ -9,7 +9,7 @@ pt-BR:
       # When using html, text and mark won't be used.
       # html: '<abbr title="required">*</abbr>'
     error_notification:
-      default_message: 'Alguns errors foram encontrados:'
+      default_message: 'Alguns erros foram encontrados:'
     options:
       user:
         privacy_options: &privacy_options

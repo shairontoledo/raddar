@@ -24,4 +24,8 @@ class Topic
   def to_s
     [self.name, self.forum.to_s].compact.join(' ')
   end
+
+  def description
+    self.forum.name
+  end
 end

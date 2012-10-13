@@ -7,6 +7,7 @@ class Notification
   field :status, type: Symbol, default: :unread
 
   belongs_to :user
+  belongs_to :author, class_name: 'User', inverse_of: :triggered_notifications
 
   validates_presence_of :content, :item_path, :user, :status
   validates_length_of :content, maximum: 200

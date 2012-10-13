@@ -8,7 +8,7 @@ class CalculateUserRanksJob
     Universe.includes(:ranks).all.each do |universe|
       User.where(status: :active).each do |user|
 
-        intended_level = user.highest_rank(universe).level + 1
+        intended_level = Rank.highest(user, universe).level + 1
 
         if intended_level <= universe.highest_rank.level
           points = calc_points user, universe

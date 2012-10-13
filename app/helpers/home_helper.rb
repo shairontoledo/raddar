@@ -1,6 +1,5 @@
 module HomeHelper
   def search_result_text result, terms
-    terms = terms.split
     text = excerpt hide_html(result), terms.first, radius: 100
     text = truncate hide_html(result), length: 100 if text.blank?
     text = highlight text, terms unless text.blank?

@@ -96,7 +96,8 @@ en:
     p: Pubs
     author: Author
     edit: Edit pub
-    new: Create new pub
+    new: Create a new pub
+    no_stuffs: This pub has no stuffs yet.
   stuff:
     s: Stuff
     p: Stuffs

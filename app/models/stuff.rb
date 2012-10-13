@@ -1,7 +1,6 @@
 class Stuff
   include Raddar::Model
   include Mongoid::Slug
-  include Mongoid::Paranoia
   include Raddar::Taggable
   include Raddar::Watchable
   include Raddar::Votable
@@ -24,5 +23,9 @@ class Stuff
 
   def to_s
     [self.name, self.pub.to_s, self.tags].compact.join(' ')
+  end
+
+  def description
+    [self.pub.name, self.content].join(' - ')
   end
 end

@@ -1,5 +1,5 @@
-#wrap .layout_top {
-  padding-top: 60px; /* to make the container go all the way to the bottom of the topbar */
+#wrap .layout_top .container{
+  padding-top: 80px; /* to make the container go all the way to the bottom of the topbar */
 }
 
 #main_container {
@@ -9,6 +9,7 @@
 html,
 body {
   height: 100%;
+  width: 100%
   /* The html and body elements cannot have any padding or margin. */
 }
 
@@ -17,13 +18,14 @@ body {
   min-height: 100%;
   height: auto !important;
   height: 100%;
+  padding: 0 20px;
   /* Negative indent footer by it's height */
-  margin: 0 auto -60px;
+  margin: 0 auto -100px;
 }
 
 /* Set the fixed height of the footer here */
 #push, footer {
-  height: 60px;
+  height: 100px;
 }
 
 footer .container {
@@ -59,6 +61,7 @@ img.size40{
 
 span.notification_count {
   margin-left: 5px;
+  display: none;
 }
 
 img.cover {
