@@ -5,6 +5,7 @@ class User
   include Mongoid::Slug
   include Raddar::Followable
   include Raddar::Searchable
+  include Raddar::Notifiable
 
   # Include default devise modules
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :encryptable
@@ -60,7 +61,6 @@ class User
   has_many :comments, dependent: :destroy
   has_many :watchings, dependent: :destroy
   has_many :notifications, class_name: 'Notification', inverse_of: :user, dependent: :destroy
-  has_many :triggered_notifications, class_name: 'Notification', inverse_of: :author, dependent: :destroy
   has_many :venues, dependent: :nullify
   has_and_belongs_to_many :ranks, dependent: :nullify
   has_many :accounts, dependent: :destroy

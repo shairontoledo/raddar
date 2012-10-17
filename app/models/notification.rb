@@ -2,12 +2,11 @@ class Notification
   include Raddar::Model
   
   field :content, type: String
-  field :image_path, type: String
   field :item_path, type: String
   field :status, type: Symbol, default: :unread
 
   belongs_to :user, class_name: 'User', inverse_of: :notifications
-  belongs_to :author, class_name: 'User', inverse_of: :triggered_notifications
+  belongs_to :notifiable, inverse_of: :triggered_notifications, polymorhpic: true
 
   validates_presence_of :content, :item_path, :user, :status
   validates_length_of :content, maximum: 200

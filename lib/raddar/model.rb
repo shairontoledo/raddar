@@ -25,6 +25,10 @@ module Raddar::Model
     check_in_association_as :comments, :commentable
   end
 
+  def notifiable?
+    check_in_association_as :triggered_notifications, :notifiable
+  end
+
   def searchable?
     kind_of? Raddar::Searchable
   end
