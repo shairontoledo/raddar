@@ -27,10 +27,6 @@ class Forum
     [self.name, (self.universe.nil? ? nil : self.universe.name)].compact.join(' ')
   end
 
-  def description
-    self.universe.nil? ? '' : self.universe.name
-  end
-
   private
   def ready_for_destruction?
     if self.topics.empty?

@@ -30,7 +30,9 @@
     
     <% @topics.limit(4).each do |topic| %>
       <div class="clearfix index_item">
-        <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), forum_topic_path(topic.forum, topic) %>
+        <% unless topic.forum.universe.nil? %>
+          <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), forum_topic_path(topic.forum, topic) %>
+        <% end %>
         <%= link_to truncate(topic.name, length: 50, separator: ' '), forum_topic_path(topic.forum, topic) %>
         <br/>
         <small><%= topic.forum.name %></small>
@@ -41,7 +43,9 @@
     
     <% @top_discussed.first(4).each do |topic| %>
       <div class="clearfix index_item">
-        <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), forum_topic_path(topic.forum, topic) %>
+        <% unless topic.forum.universe.nil? %>
+          <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), forum_topic_path(topic.forum, topic) %>
+        <% end %>
         <%= link_to truncate(topic.name, length: 50, separator: ' '), forum_topic_path(topic.forum, topic) %>
         <br/>
         <small><%= topic.forum.name %></small>

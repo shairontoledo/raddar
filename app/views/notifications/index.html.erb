@@ -9,7 +9,7 @@
     <% @notifications.each do |notification| %>
       <tr>
         <td class="notification_text clearfix">
-          <%= image_tag notification.notifiable.image.thumb.url, :class => 'img-rounded pull-left', alt: notification.image_path %>
+          <%= image_tag notification.notifiable.image.thumb.url, :class => 'img-rounded pull-left' %>
           <%= link_to raw(notification.content), notification %>
           <br/>
           <%= time_tag notification.created_at, humanize_datetime(notification.created_at) %>
