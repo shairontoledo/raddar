@@ -1,7 +1,8 @@
 class PostsController < ApplicationController
   load_and_authorize_resource :forum
   load_and_authorize_resource :topic, through: :forum
-  load_and_authorize_resource through: :topic
+  load_and_authorize_resource through: :topic, except: [:destroy]
+  load_and_authorize_resource only: [:destroy]
 
   # POST /forums_posts
   # POST /forums_posts.xml
@@ -11,6 +12,8 @@ class PostsController < ApplicationController
       current_user.watchings.create(watchable: @topic) if params[:watch] == 'yes'
 
       Delayed::Job.enqueue NotifyForumPostJob.new(@post.id)
+
+      @post.touch
 
       respond_with(@post, location: forum_topic_path(@forum,@topic, post_id: @post.id)+"#post_#{@post.id}")
     else

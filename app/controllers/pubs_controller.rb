@@ -1,3 +1,5 @@
+require 'will_paginate/array'
+
 class PubsController < ApplicationController
   load_and_authorize_resource
   # GET /pubs

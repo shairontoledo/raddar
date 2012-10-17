@@ -121,9 +121,10 @@ Raddar::Application.routes.draw do
 
   root to: 'home#index'
 
-  match '/404', to: 'home#exception'
-  match '/422', to: 'home#exception'
-  match '/500', to: 'home#exception'
+  match '/404', to: 'home#exception', as: :not_found_error
+  match '/402', to: 'home#exception', as: :denied_error
+  match '/422', to: 'home#exception', as: :unprocessable_error
+  match '/500', to: 'home#exception', as: :internal_error
 
 end
 

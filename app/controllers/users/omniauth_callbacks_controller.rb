@@ -9,7 +9,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
   end
 
   def passthru
-    redirect_to "/404", status: 404
+    redirect_to not_found_error_path, status: 404
   end
 
   private

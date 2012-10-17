@@ -14,7 +14,7 @@
             <%= simple_text forum.description %>
           </div>
 
-          <%= render 'topics/index', {topics: forum.topics.order_by([:created_at, :desc]).limit(4), forum: forum} %>
+          <%= render 'topics/index', {topics: forum.topics.order_by([:updated_at, :desc]).limit(4), forum: forum} %>
         </div>
       </div>
       <hr/>

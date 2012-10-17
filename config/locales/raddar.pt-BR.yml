@@ -220,9 +220,12 @@ pt-BR:
     e404:
       title: "A página que você procura não existe"
       text: "Talvez você errou o endereço ou a página foi movida."
-    e422:
+    e402:
       title: 'Acesso negado'
       text: "Talvez você tentou fazer algo ao qual você não tem permissão."
+    e422:
+      title: 'Informações inválidas'
+      text: "Os dados que você informou estão incorretos."
     e500:
       title: "Desculpe, mas algo deu errado."
       text: "Por favor, tente novamente em alguns instantes."

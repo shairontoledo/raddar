@@ -5,7 +5,7 @@ class ForumsController < ApplicationController
   # GET /forums
   # GET /forums.xml
   def index
-    @forums = @forums.order_by [:name, :asc]
+    @forums = @forums.order_by [:updated_at, :desc]
 
     respond_with @forums
   end

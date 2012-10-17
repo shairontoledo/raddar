@@ -8,6 +8,11 @@
     <meta content="text/javascript" http-equiv="content-script-type">
     <meta content="text/css" http-equiv="content-style-type">
     <meta content="no-cache" http-equiv="pragma">
+    <meta name="Description" content="<%= Raddar::config.description %>" />
+    <meta name="keywords" content="<%= Raddar::config.keywords %>" />
+    <meta name="rating" content="<%= Raddar::config.rating %>" />
+    <meta name="robots" content="<%= Raddar::config.robots %>" />
+
     <title><%= [content_for(:page_title), Raddar::config.app['name']].reject(&:blank?).join(' · ') %></title>
 
     <%= favicon_link_tag %>

@@ -10,7 +10,8 @@ class ApplicationController < ActionController::Base
 
   rescue_from CanCan::AccessDenied do |exception|
   	if user_signed_in?
-      redirect_to root_url, alert: exception.message
+      #redirect_to root_url, alert: exception.message
+      redirect_to denied_error_path
     else
       authenticate_user!
     end

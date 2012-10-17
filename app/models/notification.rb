@@ -6,7 +6,7 @@ class Notification
   field :item_path, type: String
   field :status, type: Symbol, default: :unread
 
-  belongs_to :user
+  belongs_to :user, class_name: 'User', inverse_of: :notifications
   belongs_to :author, class_name: 'User', inverse_of: :triggered_notifications
 
   validates_presence_of :content, :item_path, :user, :status

@@ -24,7 +24,9 @@ class VenuesController < ApplicationController
   def create
     @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
     @venue.user = current_user
-    @venue.save
+    if @venue.save
+      current_user.watchings.create(watchable: @venue) 
+    end
     respond_with @venue
   end
 

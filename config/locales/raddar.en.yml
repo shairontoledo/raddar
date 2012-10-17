@@ -223,6 +223,9 @@ en:
     e422:
       title: 'The change you wanted was rejected'
       text: "Maybe you tried to change something you didn't have access to."
+    e422:
+      title: 'Invalid data'
+      text: "The data you inserted is incorrect."
     e500:
       title: "We're sorry, but something went wrong"
       text: "Please try again in a few minutes."

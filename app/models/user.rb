@@ -59,7 +59,7 @@ class User
   has_many :pubs, dependent: :destroy
   has_many :comments, dependent: :destroy
   has_many :watchings, dependent: :destroy
-  has_many :notifications, dependent: :destroy
+  has_many :notifications, class_name: 'Notification', inverse_of: :user, dependent: :destroy
   has_many :triggered_notifications, class_name: 'Notification', inverse_of: :author, dependent: :destroy
   has_many :venues, dependent: :nullify
   has_and_belongs_to_many :ranks, dependent: :nullify
@@ -116,7 +116,7 @@ class User
   end
 
   def inactive_message
-     self.active? ? super : I18n.t('flash.account.blocked')
+    (self.status == :active) ? super : I18n.t('flash.account.blocked')
   end
 
   def update_password_with_password(params, *options)
