@@ -18,3 +18,7 @@
 .dropdown-menu > .active > a > [class*=" icon-"] {
   background-image: url("/assets/img/glyphicons-halflings-white.png");
 }
+
+.map_canvas img{
+  max-width: none;
+}
