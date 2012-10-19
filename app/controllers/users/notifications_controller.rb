@@ -13,11 +13,7 @@ class Users::NotificationsController < ApplicationController
       @user[field] = params[:user][field]
     end
 
-    if @user.save
-      flash[:notice] = t('flash.notifications.updated')
-    else
-      flash[:alert] = t('flash.notifications.error')
-    end
+    @user.save
 
     respond_with @user, :location => edit_user_notifications_path
   end

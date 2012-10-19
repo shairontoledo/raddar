@@ -20,11 +20,7 @@ class Users::PrivacyController < ApplicationController
       account.save!
     end
 
-    if @user.save
-      flash[:notice] = t('flash.privacy.updated')
-    else
-      flash[:alert] = t('flash.privacy.error')
-    end
+    @user.save
 
     respond_with @user, :location => edit_user_privacy_path
   end

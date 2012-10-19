@@ -177,29 +177,6 @@ en:
     p: Newsletters
     new: New newsletter
     edit: Edit newsletter
-  flash:
-    newsletter:
-      sent: 'This newsletter will be sent to all users.'
-    watching:
-      destroyed: You will no longer be notified for this item.
-    account:
-      blocked: Your account is blocked. Please contact us using the contact page.
-    password:
-      changed: Password changed!
-    privacy:
-      updated: Your privacy settings were updated.
-      error: Is not possible to update your privacy settings right now. Please try again later.
-    notifications:
-      updated: Your notification settings were updated.
-      error: Is not possible to update your notification settings right now. Please try again later.
-    accounts:
-      add:
-        success: 'Your %{provider} account was added!'
-        error: 'Is not possible to add this %{provider} account. Maybe another person is already using it.'
-    followership:
-      create: 'You are following %{name}'
-      destroy: 'You no longer follow %{name}'
-      error: 'Is not possible to follow %{name} right now. Please try again later.'
   js:
     confirm_unload: You have unsaved changes.
     prompt:

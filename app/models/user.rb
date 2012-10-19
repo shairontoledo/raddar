@@ -116,7 +116,7 @@ class User
   end
 
   def inactive_message
-    (self.status == :active) ? super : I18n.t('flash.account.blocked')
+    (self.status == :active) ? super : I18n.t('flash.users.sessions.blocked')
   end
 
   def update_password_with_password(params, *options)

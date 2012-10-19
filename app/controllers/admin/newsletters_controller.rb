@@ -19,7 +19,7 @@ class Admin::NewslettersController < ApplicationController
     @newsletter.sent_at = Time.now
     @newsletter.save!
     Delayed::Job.enqueue SendNewsletterJob.new(@newsletter.id)
-    respond_with @newsletter, location: admin_newsletters_path, notice: t('flash.newsletter.sent')
+    respond_with @newsletter, location: admin_newsletters_path
   end
 
   def create

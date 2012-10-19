@@ -27,12 +27,12 @@ class FollowersController < ApplicationController
         notification.save
       end
 
-      flash[:notice] = t 'flash.followership.create', name: @followable.name
+      flash[:notice] = t 'flash.followers.create.notice', name: @followable.name
     else
-      flash[:alert] = t 'flash.followership.error', name: @followable.name
+      flash[:alert] = t 'flash.followers.create.alert', name: @followable.name
     end
 
-    redirect_to raddar_path(@followable)
+    respond_with f, location: raddar_path(@followable)
   end
 
   # Current user stops following
@@ -40,7 +40,7 @@ class FollowersController < ApplicationController
     @followable = find_followable
     @followable.followers.where(user_id: current_user.id).destroy_all
 
-    redirect_to raddar_path(@followable), notice: t('flash.followership.destroy', name: @followable.name)
+    redirect_to raddar_path(@followable), notice: t('flash.followers.destroy.notice', name: @followable.name)
   end
 
   private

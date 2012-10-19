@@ -11,3 +11,34 @@ pt-BR:
     contacts:
       create:
         notice: Recebemos sua mensagem e em breve a responderemos através do seu e-mail. Obrigado!
+    admin:
+      newsletters:
+        send_now:
+          notice: 'Esta newsletter será enviada para todos os usuários.'
+    watchings:
+      destroy:
+        notice: "Você não mais receberá avisos deste item."
+    users:
+      sessions:
+        blocked: Sua conta foi bloqueada. Entre em contato através de nossa página de contato.
+      passwords:
+        do_change: 
+          notice: Sua senha foi alterada!
+      privacy:
+        update:
+          notice: Suas configurações de privacidade foram atualizadas.
+          alert: Não foi possível alterar suas configrações de privacidade. Tente novamente mais tarde.
+      notifications:
+        update:
+          notice: Suas configurações de avisos foram atualizadas.
+          alert: Não foi possível alterar suas configrações de avisos. Tente novamente mais tarde.
+      accounts:
+        add:
+          notice: 'Conta do %{provider} adicionada!'
+          alert: 'Não foi possível adicionar esta conta do %{provider}. Talvez outra pessoa já a esteja usando.'
+    followers:
+      create:
+        notice: 'Você está seguindo %{name}'
+        alert: 'Não foi possível seguir %{name} no momento. Tente novamente mais tarde.'
+      destroy: 
+        notice: 'Você não mais segue %{name}'

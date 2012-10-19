@@ -20,9 +20,9 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
 
     if user_signed_in?
       if current_user.save
-        flash[:notice] = t 'flash.accounts.add.success', provider: provider_name
+        flash[:notice] = t 'flash.users.accounts.add.notice', provider: provider_name
       else
-        flash[:alert] = t 'flash.accounts.add.error', provider: provider_name
+        flash[:alert] = t 'flash.users.accounts.add.alert', provider: provider_name
       end
       redirect_to user_accounts_path
     else

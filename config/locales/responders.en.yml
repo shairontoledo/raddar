@@ -8,3 +8,37 @@ en:
       destroy:
         notice: '%{resource_name} was successfully destroyed.'
         alert: '%{resource_name} could not be destroyed.'
+    contacts:
+      create:
+        notice: "We've just received your message and we'll answer you soon. Thank you!"
+    admin:
+      newsletters:
+        send_now:
+          notice: 'This newsletter will be sent to all users.'
+    watchings:
+      destroy:
+        notice: "You'll no longer be notified about this item."
+    users:
+      sessions:
+        blocked: "Your account is blocked. Please contact us by the contact page."
+      passwords:
+        do_change: 
+          notice: Password changed!
+      privacy:
+        update:
+          notice: Your privacy options were updated.as.
+          alert: Is not possible to update your privacy settings right now. Please try again later.
+      notifications:
+        update:
+          notice: Your notification settings were updated.
+          alert: Is not possible to update your notification settings right now. Please try again later.
+      accounts:
+        add:
+          notice: 'Your %{provider} account was added!'
+          alert: 'Is not possible to add this %{provider} account. Maybe another person is already using it.'
+    followers:
+      create:
+        notice: 'You are following %{name}'
+        alert: 'Is not possible to follow %{name} right now. Please try again later.'
+      destroy: 
+        notice: 'You no longer follow %{name}'

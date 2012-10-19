@@ -177,29 +177,6 @@ pt-BR:
     p: Newsletters
     new: Nova newsletter
     edit: Editar newsletter
-  flash:
-    newsletter:
-      sent: 'Esta newsletter será enviada para todos os usuários.'
-    watching:
-      destroyed: "Você não mais receberá avisos deste item."
-    account:
-      blocked: Sua conta foi bloqueada. Entre em contato através de nossa página de contato.
-    password:
-      changed: Sua senha foi alterada!
-    privacy:
-      updated: Suas configurações de privacidade foram atualizadas.
-      error: Não foi possível alterar suas configrações de privacidade. Tente novamente mais tarde.
-    notifications:
-      updated: Suas configurações de avisos foram atualizadas.
-      error: Não foi possível alterar suas configrações de avisos. Tente novamente mais tarde.
-    accounts:
-      add:
-        success: 'Conta do %{provider} adicionada!'
-        error: 'Não foi possível adicionar esta conta do %{provider}. Talvez outra pessoa já a esteja usando.'
-    followership:
-      create: 'Você está seguindo %{name}'
-      destroy: 'Você não mais segue %{name}'
-      error: 'Não foi possível seguir %{name} no momento. Tente novamente mais tarde.'
   js:
     confirm_unload: As suas modificações ainda não foram gravadas.
     prompt:
