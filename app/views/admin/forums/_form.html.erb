@@ -2,14 +2,13 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
-    <%= f.input :description, as: :text %>
+    <%= f.input :name, input_html: {:class => 'span5'} %>
+    <%= f.input :description, as: :text, input_html: {:class => 'span5', rows: 6} %>
     <%= f.input :universe_id, collection: available_universes, label: t('universe.s') %>
   </div>
 
   <div class="form-actions">
     <%= submit_button f %>
-    <%= back_button %>
     <%= destroy_button [:admin, @forum] if @forum.persisted? && can?(:destroy, @forum) %>
   </div>
 <% end %>
