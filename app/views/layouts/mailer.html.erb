@@ -47,7 +47,7 @@
     <div id="main" style="width: 600px; margin: 0 auto; border: 1px solid #D4D4D4; border-radius: 6px; box-shadow: 2px 2px 10px #D3D3D3; font-family: Helvetica,Trebuchet,Verdana,Arial, sans-serif; font-size: 14px; line-height: 20px;">
       
       <div id="header" style="padding: 20px 0; background-color: #FAFAFA; background-image: -webkit-linear-gradient(top, white, #F2F2F2); background-image: -moz-linear-gradient(top, white, #F2F2F2); background-repeat: repeat-x; border-radius: 6px 6px 0 0; box-shadow: 0 1px 4px rgba(0, 0, 0, 0.065); text-align: center;">
-        <h1 style="margin: 0px; color: #6E6E6E; text-shadow: 1px 1px 10px #969696"><%= Raddar::config.app['name'] %></h1>
+        <h1 style="margin: 0px; color: #6E6E6E; text-shadow: 1px 1px 10px #969696"><%= Raddar::config.name %></h1>
       </div>
       
       <div id="content" style="padding: 20px;"><%= yield %></div>
@@ -55,7 +55,7 @@
       <div id="footer" style="background-color: #FAFAFA; background-image: -webkit-linear-gradient(top, #F2F2F2, white); background-image: -moz-linear-gradient(top, #F2F2F2, white); background-repeat: repeat-x; border-radius: 0 0 6px 6px; padding: 10px; font-size:12px; text-align: center;">
         <p><%= t('mailer.template.automatic') %></p>
         <p><%= link_to t('contact.s'), new_contact_url %></p>
-        <p>&copy; <%= link_to Raddar::config.app['name'], root_url %></p>
+        <p>&copy; <%= link_to Raddar::config.name, root_url %></p>
       </div>
     </div>
   </body>

@@ -1,5 +1,4 @@
-app:
-  name: 'My Community'
+name: 'My Community'
 keywords: 'Community, Forums, Pubs, Venues'
 description: 'My awesome community with forums and pubs for everyone.'
 rating: 'general'

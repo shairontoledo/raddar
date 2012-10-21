@@ -13,11 +13,11 @@
     <meta name="rating" content="<%= Raddar::config.rating %>" />
     <meta name="robots" content="<%= Raddar::config.robots %>" />
 
-    <title><%= [content_for(:page_title), Raddar::config.app['name']].reject(&:blank?).join(' · ') %></title>
+    <title><%= [content_for(:page_title), Raddar::config.name].reject(&:blank?).join(' · ') %></title>
 
     <%= favicon_link_tag %>
 
-    <%= auto_discovery_link_tag :atom, pubs_url(format: :atom), title: Raddar::config.app['name'] %>
+    <%= auto_discovery_link_tag :atom, pubs_url(format: :atom), title: Raddar::config.name %>
     <%= content_for :feed_tag if content_for? :feed_tag %>
 
     <%= csrf_meta_tags %>
