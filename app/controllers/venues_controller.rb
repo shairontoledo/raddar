@@ -1,32 +1,28 @@
 class VenuesController < ApplicationController
   load_and_authorize_resource
   skip_load_resource only: [:index, :nearby]
-  # GET /venues
-  # GET /venues.xml
+
   def index
   end
 
-  # GET /venues/1
-  # GET /venues/1.xml
   def show
     respond_with @venue
   end
 
-  # GET /venues/new
-  # GET /venues/new.xml
   def new
     @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
     respond_with @venue
   end
 
-  # POST /venues
-  # POST /venues.xml
   def create
     @venue.coordinates = [params[:lng].to_f, params[:lat].to_f]
     @venue.user = current_user
     if @venue.save
       current_user.watchings.create(watchable: @venue) 
     end
+
+    flash[:alert] = @venue.errors[:base].first if @venue.errors.any? && (!@venue.errors[:base].empty?)
+
     respond_with @venue
   end
 

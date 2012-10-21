@@ -23,19 +23,19 @@ class Venue
   validates_length_of :description, maximum: 500
   validates_length_of :address, maximum: 100
   validates_length_of :city, maximum: 100
+  validate { add_error(:base, :blank_coordinates) if self.coordinates.length != 2 }
 
 
   attr_accessible :name, :description, :address, :city, :image, :image_cache
 
-  # Geocoding
-  geocoded_by :complete_address              # can also be an IP address
-  # after_validation :geocode, :if => :location_changed?
-  reverse_geocoded_by :coordinates
-  #after_validation :reverse_geocode  # auto-fetch address
-
-  def complete_address
-    [self.address, self.city].compact.join(', ')
+  reverse_geocoded_by :coordinates do |obj, results|
+    if geo = results.first
+      obj.city    = [geo.city, geo.state, geo.country].reject(&:blank?).join(', ') if obj.city.blank?
+      obj.address = geo.address if obj.address.blank?
+    end
   end
+
+  after_validation :reverse_geocode
 
   def to_s
     [self.name, self.description, self.address, self.city, self.tags].compact.join(' ')

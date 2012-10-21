@@ -4,6 +4,10 @@ pt-BR:
       messages:
         validations: A validação falhou!
       models:
+        venue:
+          attributes:
+            base:
+              blank_coordinates: "Você precisa clicar em um ponto no mapa."
         forum:
           attributes:
             base:

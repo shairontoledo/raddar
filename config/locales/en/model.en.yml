@@ -4,6 +4,10 @@ en:
       messages:
         validations: Validation failed!
       models:
+        venue:
+          attributes:
+            base:
+              blank_coordinates: "Please click at a point on the map."
         forum:
           attributes:
             base:
