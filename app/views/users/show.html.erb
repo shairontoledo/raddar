@@ -20,17 +20,17 @@
 
     <div class="row">
       <div class="span6">
-        <p>
-          <% unless @user == current_user %>
+        <% unless @user == current_user %>
+          <div class="btn-toolbar">
             <%= render 'followers/follow_button', {followable: @user} %>
             <%= link_to user_messages_path(@user), :class => 'btn' do %>
               <i class="icon-envelope"></i>
               <%= t 'message.send' %>
             <% end %>
-          <% else %>
-            <%= t 'user.you' %>
-          <% end %>
-        </p>
+          </div>
+        <% else %>
+          <p class="lead"><%= t 'user.you' %></p>
+        <% end %>
       </div>
 
       <div class="span1">

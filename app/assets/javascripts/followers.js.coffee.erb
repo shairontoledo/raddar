@@ -1,0 +1,7 @@
+$ ->
+  $('.unfollow_btn').hover(
+    ->
+      $(this).addClass('btn-danger').text("<%= I18n.t 'action.unfollow' %>")
+    ->
+      $(this).removeClass('btn-danger').text("<%= I18n.t 'user.following' %>")
+  )
