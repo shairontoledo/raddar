@@ -41,4 +41,14 @@ module UsersHelper
       raw '<p>' + link_to(t('user.registration.agree_terms'), page, :class => 'terms_of_use_field') + '</p>'
     end
   end
+
+  def user_location_by_ip
+    location = request.location
+
+    if location.country_code == "RD"
+      ""
+    else
+      [location.city, location.state, location.country].reject(&:blank?).join(', ')
+    end
+  end
 end
