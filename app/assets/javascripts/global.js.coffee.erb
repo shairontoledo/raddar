@@ -62,10 +62,9 @@ window.simple_map =  (map_id, centerLocation) ->
   new google.maps.Map(document.getElementById(map_id), myOptions)
 
 
-window.user_location = (callback)->
+window.user_location = (coordinates, callback)->
   handleNoGeolocation = (error)->
-    console.log "Geolocation service failed."
-    callback null
+    callback coordinates
 
   if navigator.geolocation
     navigator.geolocation.getCurrentPosition (position) ->
@@ -74,7 +73,7 @@ window.user_location = (callback)->
         lng: position.coords.longitude
     , handleNoGeolocation
   else
-    handleNoGeolocation(null)
+    handleNoGeolocation coordinates
   
   
 

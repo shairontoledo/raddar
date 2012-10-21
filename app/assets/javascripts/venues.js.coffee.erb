@@ -25,15 +25,15 @@ update_nearby_venues = (data)->
       $('#venues_list').html "<%= I18n.t 'ajax.error' %>"
 
 venues_nearby_user = ->
-  user_location (location)->
-    map = simple_map 'map_venues', new google.maps.LatLng(location.lat, location.lng)
-    data = ''
-    if location isnt null
-      data =
-        lat: location.lat
-        lng: location.lng
-        term: "<%= I18n.t 'venue.location.my' %>"
-    update_nearby_venues(data)
+  user_location {lat: $('#ip_lat').val(), lng: $('#ip_lng').val()}, (location)->
+      map = simple_map 'map_venues', new google.maps.LatLng(location.lat, location.lng)
+      data = ''
+      if location isnt null
+        data =
+          lat: location.lat
+          lng: location.lng
+          term: "<%= I18n.t 'venue.location.my' %>"
+      update_nearby_venues(data)
 
 $ ->
 
