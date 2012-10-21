@@ -33,8 +33,8 @@ module Raddar::Model
     kind_of? Raddar::Searchable
   end
 
-  def add_error field, error
-    message = I18n.t("mongoid.errors.models.#{self.class.name.downcase}.attributes.#{field}.#{error}")
+  def add_error field, error, placeholders = {}
+    message = I18n.t "mongoid.errors.models.#{self.class.name.downcase}.attributes.#{field}.#{error}", placeholders
     if field == :base
       errors[:base] << message
     else

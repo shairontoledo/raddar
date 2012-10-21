@@ -75,7 +75,7 @@ class User
   validates_inclusion_of :gender, :in => [:male,:female], allow_blank: false
   validates_inclusion_of :status, :in => [:active,:blocked], allow_blank: false
   validates_inclusion_of :date_of_birth_privacy, :gender_privacy, :email_privacy, :location_privacy, :in => [:public,:only_me], allow_blank: false
-  validate { add_error(:date_of_birth,:too_young) if (!self.date_of_birth.nil?) && (self.date_of_birth > 13.years.ago.to_date) }
+  validate { add_error(:date_of_birth, :too_young, minimum_age: Raddar::config.minimum_age) if (!self.date_of_birth.nil?) && (self.date_of_birth > Raddar::config.minimum_age.years.ago.to_date) }
 
   # Virtual attributes
   attr_accessor :login

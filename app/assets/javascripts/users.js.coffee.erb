@@ -5,4 +5,4 @@ $ ->
     format: 'dd/mm/yyyy'
     <% end %>
     startDate: '<%= I18n.l 90.years.ago.to_date %>'
-    endDate: '<%= I18n.l 13.years.ago.to_date %>'
+    endDate: '<%= I18n.l Raddar::config.minimum_age.years.ago.to_date %>'

@@ -23,7 +23,7 @@ en:
         user:
           attributes:
             date_of_birth:
-              too_young: You need to be at least 13 years old
+              too_young: "You need to be at least %{minimum_age} years old"
     attributes:
       contact: &contact_attributes
       rank: &rank_attributes

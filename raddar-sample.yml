@@ -4,6 +4,7 @@ description: 'My awesome community with forums and pubs for everyone.'
 rating: 'general'
 robots: 'follow'
 host: 'mycommunity.example.com'
+minimum_age: 13
 sysop:
   email: 'sysop@example.com'
 locale: 'en'

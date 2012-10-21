@@ -23,7 +23,7 @@ pt-BR:
         user:
           attributes:
             date_of_birth:
-              too_young: Você precisa ter ao menos 13 anos para participar.
+              too_young: "Você precisa ter pelo menos %{minimum_age} anos para participar."
     models:
       user: Usuário
       message: Mensagem
