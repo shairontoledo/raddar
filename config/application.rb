@@ -79,7 +79,7 @@ module Raddar
     # Version of your assets, change this if you want to expire all your assets
     config.assets.version = '1.0'
 
-    config.assets.paths << Rails.root.join("theme")
+    config.assets.paths << Rails.root.join("theme/assets")
 
     config.default_url_options = { host: config.host }
     config.default_url_options[:port] = config.port if config.respond_to?(:port)
