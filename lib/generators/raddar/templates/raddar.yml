@@ -36,3 +36,4 @@ email:
   password: '<password>'
   authentication: 'plain'
   enable_starttls_auto: true
+secret_token: "<%= defined?(SecureRandom) ? SecureRandom.hex(64) : ActiveSupport::SecureRandom.hex(64) %>"
