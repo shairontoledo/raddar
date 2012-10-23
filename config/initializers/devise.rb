@@ -82,7 +82,7 @@ Devise.setup do |config|
   config.stretches = Rails.env.test? ? 1 : 10
 
   # Setup a pepper to generate the encrypted password.
-  config.pepper = Raddar::config.authentication['pepper']
+  config.pepper = Raddar::config.respond_to?(:authentication) ? Raddar::config.authentication['pepper'] : 'a_pepper'
 
   # ==> Configuration for :confirmable
   # A period that the user is allowed to access the website even without
@@ -176,7 +176,7 @@ Devise.setup do |config|
   # :authlogic_sha512 (then you should set stretches above to 20 for default behavior)
   # and :restful_authentication_sha1 (then you should set stretches to 10, and copy
   # REST_AUTH_SITE_KEY to pepper)
-  config.encryptor = Raddar::config.authentication['encryptor'].to_sym
+  config.encryptor = (Raddar::config.respond_to?(:authentication) && (!Raddar::config.authentication['encryptor'].nil?)) ? Raddar::config.authentication['encryptor'].to_sym : :bcrypt
 
   # ==> Configuration for :token_authenticatable
   # Defines name of the authentication token params key

@@ -1,4 +1,6 @@
-require Rails.root.join('lib', 'devise', 'encryptors', Raddar::config.authentication['encryptor'])
+if Devise.encryptor != :bcrypt
+  require Rails.root.join('lib', 'devise', 'encryptors', Raddar::config.authentication['encryptor'])
+end
 
 class User
   include Raddar::Model

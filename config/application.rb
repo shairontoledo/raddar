@@ -26,7 +26,10 @@ module Raddar
     end
     
     # Raddar settings
-    YAML.load_file("#{Rails.root}/raddar.yml").each { |k,v| config.send "#{k}=", v }
+    raddar_config_path = Rails.root.join("/raddar.yml")
+    if raddar_config_path.exist?
+      YAML.load_file(raddar_config_path).each { |k,v| config.send "#{k}=", v }
+    end
 
     config.exceptions_app = self.routes
 
@@ -54,7 +57,7 @@ module Raddar
     # The default locale is :en and all translations from config/locales/*.rb,yml are auto loaded.
     # config.i18n.load_path += Dir[Rails.root.join('my', 'locales', '*.{rb,yml}').to_s]
     config.i18n.load_path += Dir[Rails.root.join('config', 'locales', '**', '*.{rb,yml}')]
-    config.i18n.default_locale = config.locale
+    config.i18n.default_locale = config.respond_to?(:locale) ? config.locale : 'en'
     
     # Configure the default encoding used in templates for Ruby 1.9.
     config.encoding = "utf-8"
@@ -81,19 +84,22 @@ module Raddar
 
     config.assets.paths << Rails.root.join("theme/assets")
 
-    config.default_url_options = { host: config.host }
-    config.default_url_options[:port] = config.port if config.respond_to?(:port)
+    if config.respond_to?(:host)
+      config.default_url_options = { host: config.host }
+      config.default_url_options[:port] = config.port if config.respond_to?(:port)
+      config.action_mailer.default_url_options = config.default_url_options
+    end
 
-    config.action_mailer.default_url_options = config.default_url_options
-    config.action_mailer.smtp_settings = {
-      address:              Raddar::config.email['address'],
-      port:                 Raddar::config.email['port'],
-      domain:               Raddar::config.email['domain'],
-      user_name:            Raddar::config.email['user_name'],
-      password:             Raddar::config.email['password'],
-      authentication:       Raddar::config.email['authentication'],
-      enable_starttls_auto: !(Raddar::config.email['enable_starttls_auto'] == 'false')
-    }
-  
+    if config.respond_to?(:email)
+      config.action_mailer.smtp_settings = {
+        address:              Raddar::config.email['address'],
+        port:                 Raddar::config.email['port'],
+        domain:               Raddar::config.email['domain'],
+        user_name:            Raddar::config.email['user_name'],
+        password:             Raddar::config.email['password'],
+        authentication:       Raddar::config.email['authentication'],
+        enable_starttls_auto: !(Raddar::config.email['enable_starttls_auto'] == 'false')
+      }
+    end
   end
 end
