@@ -37,7 +37,8 @@
 
 <h5><%= t 'tag.p' %></h5>
 <p class="tags_list">
-  <% @tags.first(20).each_with_index do |tag, i| %>
+  <% @tags = @tags.first(20) %>
+  <% @tags.each_with_index do |tag, i| %>
     <%= link_to tag.name, tag, :class => "btn btn-#{tag_btn_size(@tags.count, i)} btn-primary" %>
   <% end %>
 </p>
