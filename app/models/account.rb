@@ -18,6 +18,7 @@ class Account
   validates_inclusion_of :url_privacy, :in => [:public,:only_me], allow_blank: false
 
   def fill_in_with user, access_data
+
     self.provider = access_data.provider.to_sym
     self.token = access_data.credentials.token
     self.secret = access_data.credentials.secret
@@ -40,7 +41,7 @@ class Account
     if self.provider == :twitter
       oauth_bio = access_data.info.description
       oauth_location = access_data.info.location
-      oauth_image_url = access_data.info.image
+      oauth_image_url = access_data.info.image.gsub('_normal','')
 
       self.name = access_data.info.nickname
       self.url  = access_data.info.urls.Twitter
