@@ -26,7 +26,7 @@ module Raddar
     end
     
     # Raddar settings
-    raddar_config_path = Rails.root.join("/raddar.yml")
+    raddar_config_path = Rails.root.join("raddar.yml")
     if raddar_config_path.exist?
       YAML.load_file(raddar_config_path).each { |k,v| config.send "#{k}=", v }
     end

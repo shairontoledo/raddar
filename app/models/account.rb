@@ -41,7 +41,7 @@ class Account
     if self.provider == :twitter
       oauth_bio = access_data.info.description
       oauth_location = access_data.info.location
-      oauth_image_url = access_data.info.image.gsub('_normal','')
+      oauth_image_url = access_data.info.image.gsub('_normal','') unless access_data.info.image.blank?
 
       self.name = access_data.info.nickname
       self.url  = access_data.info.urls.Twitter

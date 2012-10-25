@@ -3,9 +3,6 @@ class RaddarGenerator < Rails::Generators::Base
 
   def copy_files
     template "raddar.yml", "raddar.yml"
-
     directory "theme", "theme"
-
-
   end
 end
