@@ -8,8 +8,9 @@ GIT
       mongoid (~> 3.0.0)
       mongoid-grid_fs (~> 1.3.1)
 
-PATH
-  remote: /home/volmer/Projects/private_pub
+GIT
+  remote: https://github.com/volmer/private_pub.git
+  revision: 15ce264acdee7413f90dbb2d13c59cd3d6271ecc
   specs:
     private_pub (1.0.3)
       faye

@@ -1,0 +1,3 @@
+<% if Raddar::config.respond_to?(:facebook) && !Raddar::config.facebook['page'].nil? %>
+  <div class="fb-like-box" data-href="http://www.facebook.com/<%= Raddar::config.facebook['page'] %>" data-width="270" data-height="270" data-show-faces="true" data-stream="false" data-header="false" data-border-color="#F0F0F0"></div>
+<% end %>

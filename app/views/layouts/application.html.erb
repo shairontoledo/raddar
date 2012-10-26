@@ -41,7 +41,7 @@
     <%= render 'layouts/navbar' %>
     <div id="wrap">
       <div id="layout_top">
-        <div class="container"><%= render file: "#{Rails.root}/theme/views/_top.html.erb" %></div>
+        <div class="container"><%= render_themed_partial 'top' %></div>
       </div>
       <div class="container" id="main_container">
 
@@ -53,7 +53,7 @@
       <div id="push"></div>
     </div>
     <footer>
-      <div class="container"><%= render file: "#{Rails.root}/theme/views/_footer.html.erb" %></div>
+      <div class="container"><%= render_themed_partial 'footer' %></div>
     </footer>
   </body>
 </html>

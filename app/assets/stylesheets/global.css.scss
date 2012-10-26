@@ -1,5 +1,5 @@
 #wrap #layout_top .container{
-  padding-top: 80px; /* to make the container go all the way to the bottom of the topbar */
+  padding-top: 60px; /* to make the container go all the way to the bottom of the topbar */
 }
 
 #main_container {
@@ -9,6 +9,10 @@
 html,
 body {
   height: 100%;
+  /* The html and body elements cannot have any padding or margin. */
+}
+
+html{
   width: 100%
   /* The html and body elements cannot have any padding or margin. */
 }
@@ -39,6 +43,10 @@ footer .container {
     margin-right: -20px;
     padding-left: 20px;
     padding-right: 20px;
+  }
+
+  #wrap #layout_top .container{
+    padding-top: 0;
   }
 }
 

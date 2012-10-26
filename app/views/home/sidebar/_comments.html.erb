@@ -1,0 +1,13 @@
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li class="nav-header"><%= t 'comment.p' %></li>
+    <% @comments.limit(8).each do |comment| %>
+      <li class="justified">
+        <%= link_to raddar_path(comment) do %>
+          <strong><%= comment.user.name %>:</strong>
+          <em><%= truncate comment.content, length: 60, separator: ' ' %></em>
+        <% end %>
+      </li>
+    <% end %>
+  </ul>
+</div>

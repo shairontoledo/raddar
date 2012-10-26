@@ -1,0 +1,25 @@
+<%= render 'home/sidebar/facebook' %>
+
+<%= render 'home/sidebar/twitter' %>
+
+<%= render 'home/sidebar/users' %>
+
+
+<div class="well sidebar-nav">
+  <ul class="nav nav-list">
+    <li class="nav-header">Links</li>
+    <li><%= link_to 'Raddar Project', 'https://github.com/volmer/raddar', target: '_blank' %></li>
+    <li><%= link_to 'Twitter Bootstrap', 'http://twitter.github.com/bootstrap', target: '_blank' %></li>
+    <li><%= link_to 'Ruby on Rails', 'http://rubyonrails.org', target: '_blank' %></li>
+  </ul>
+
+  <ul class="nav nav-list">
+    <li class="nav-header">More links</li>
+    <li><%= link_to 'Devise', 'https://github.com/plataformatec/devise', target: '_blank' %></li>
+    <li><%= link_to 'Mongoid', 'http://mongoid.org', target: '_blank' %></li>
+  </ul>
+</div>
+
+<%= render 'home/sidebar/tags' %>
+
+<%= render 'home/sidebar/comments' %>

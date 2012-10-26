@@ -1,0 +1,3 @@
+<% if Raddar::config.respond_to?(:twitter) && !Raddar::config.twitter['widget_id'].nil? %>
+  <a class="twitter-timeline"  href="https://twitter.com/<%= Raddar::config.twitter['username'] %>" data-widget-id="<%= Raddar::config.twitter['widget_id'] %>">@<%= Raddar::config.twitter['username'] %></a>
+<% end %>

@@ -50,4 +50,8 @@ module ApplicationHelper
   def captcha model_instance
     render 'shared/captcha', {model_instance: model_instance} if Raddar::config.recaptcha['enabled']
   end
+
+  def render_themed_partial name
+    render file: "#{Rails.root}/theme/views/_#{name}.html.erb"
+  end
 end
