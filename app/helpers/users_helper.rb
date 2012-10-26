@@ -51,4 +51,14 @@ module UsersHelper
       [location.city, location.state, location.country].reject(&:blank?).join(', ')
     end
   end
+
+  def user_ranks user
+    ranks = []
+
+    Universe.all.each do |universe|
+      ranks << Rank.highest(user, universe)
+    end
+
+    ranks.compact.sort_by{|r| r.level }.reverse
+  end
 end

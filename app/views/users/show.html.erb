@@ -4,15 +4,12 @@
   <div class="span4">
     <%= image_tag @user.image.medium.url, :class => 'img-polaroid', id: 'main_image' %>
     
-    <% Universe.all.each do |universe| %>
-      <% rank = Rank.highest @user, universe %>
-      <% unless rank.nil? %>
-        <div class="well well-small clearfix rank">
-          <%= link_to image_tag(universe.image.thumb.url, :class => 'img-rounded'), universe, :class => 'pull-left' %>
-          <h4><%= rank.name %></h4>
-          <p><%= rank.description %></p>
-        </div>
-      <% end %>
+    <% user_ranks(@user).each do |rank| %>
+      <div class="well well-small clearfix rank">
+        <%= link_to image_tag(rank.universe.image.thumb.url, :class => 'img-rounded'), rank.universe, :class => 'pull-left' %>
+        <h4><%= rank.name %></h4>
+        <p><%= rank.description %></p>
+      </div>
     <% end %>
   </div>
   <div class="span8">
