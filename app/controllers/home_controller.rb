@@ -16,11 +16,9 @@ class HomeController < ApplicationController
   end
 
   def search
-    if params[:scope].blank?
-      filters = {}
-    else
-      filters = {"only_for_#{params[:scope]}".to_sym => true}
-    end
+    filters = {max_results: 1_000_000}
+
+    filters["only_for_#{params[:scope]}".to_sym] = true unless params[:scope].blank?
 
     @results = User.fulltext_search(params[:q], filters).paginate(page: params[:page], per_page: 10)
   end
