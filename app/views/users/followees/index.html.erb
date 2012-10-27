@@ -13,9 +13,13 @@
       <% @followerships.each do |followership| %>
         <% followable = followership.followable %>
         
-        <li class="span2">
+        <li class="span2 followee">
           <%= link_to raddar_path(followable), :class => 'thumbnail' do %>
-            <%= image_tag followable.image.small.url unless followable === Forum %>
+            <% if followable.respond_to?(:image) %>
+              <%= image_tag followable.image.small.url %>
+            <% elsif followable.respond_to?(:universe) %>
+              <%= image_tag followable.universe.image.small.url %>
+            <% end %>
             <h5><%= followable.name %></h5>
           <% end %>
         </li>

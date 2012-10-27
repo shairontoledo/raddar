@@ -7,7 +7,7 @@ class FollowersController < ApplicationController
   # Followers
   def index
     @followable = find_followable
-    @followers = @followable.followers.paginate(page: params[:page], per_page: 9)
+    @followers = @followable.followers.order_by([:created_at, :desc]).paginate(page: params[:page], per_page: 9)
   end
 
   # Current user starts following
