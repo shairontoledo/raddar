@@ -27,7 +27,7 @@ gem 'thin'
 gem 'geocoder'
 gem 'delayed_job_mongoid'
 gem 'daemons'
-gem 'mongoid_slug', '>= 1.0.0.rc2'
+gem 'mongoid_slug', '>= 2.0.0.pre'
 gem 'mongoid_fulltext'
 gem 'whenever', :require => false
 gem 'recaptcha', :require => 'recaptcha/rails'
