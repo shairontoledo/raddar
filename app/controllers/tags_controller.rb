@@ -9,9 +9,9 @@ class TagsController < ApplicationController
     @tag.taggings.distinct(:taggable_type).each {|tt| @scopes << tt.underscore.to_sym }
 
     if params[:scope].blank?
-      @taggings = @tag.taggings.paginate(page: params[:page], per_page: 10)
+      @taggings = @tag.taggings.order_by([:created_at, :desc]).paginate(page: params[:page], per_page: 10)
     else
-      @taggings = @tag.taggings.where(taggable_type: params[:scope].camelize).paginate(page: params[:page], per_page: 10)
+      @taggings = @tag.taggings.where(taggable_type: params[:scope].camelize).order_by([:created_at, :desc]).paginate(page: params[:page], per_page: 10)
     end
   end
 end
