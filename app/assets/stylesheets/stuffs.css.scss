@@ -22,6 +22,14 @@
   text-align: justify;
 }
 
-#stuffs_carousel img{
-  width: 100%;
+#stuffs_carousel{
+  text-shadow: 0 1px 2px rgba(0, 0, 0, 0.5);
+
+  h4 a {
+    color: #FFFFFF;
+  }
+
+  img{
+    width: 100%;
+  }
 }

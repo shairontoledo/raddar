@@ -2,7 +2,7 @@
   <div class="carousel-inner">
     <% stuffs.each_with_index do |stuff, i| %>
       <div class="item <%= 'active' if i == 0 %>">
-        <%= image_tag stuff.image.large_rectangle.url %>
+        <%= link_to image_tag(stuff.image.large_rectangle.url), pub_stuff_path(stuff.pub, stuff) %>
         <div class="carousel-caption">
           <h4><%= link_to stuff.name, pub_stuff_path(stuff.pub, stuff) %></h4>
           <p><%= truncate hide_html(stuff.content), length: 200, separator: ' ' %></p>
