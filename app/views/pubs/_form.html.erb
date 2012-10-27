@@ -5,7 +5,13 @@
     <%= f.input :name, input_html: {:class => 'span4'} %>
     <%= f.input :description, as: :bootsy, input_html: {:class => 'span6', rows: '12'} %>
     <%= f.input :universe_id, collection: available_universes, label: t('universe.s') %>
-    <%= image_tag @pub.image.thumb.url, :class => 'img-polaroid' unless @pub.image.file.nil? %>
+    <% unless @pub.image.file.nil? %>
+      <div class="row">
+        <div class="span2 offset2">
+          <%= image_tag @pub.image.small.url, :class => 'img-polaroid' %>
+        </div>
+      </div>
+    <% end %>
     <%= f.input :image, as: :file, input_html: {:class => 'span4'}  %>
     <%= f.input :image_cache, as: :hidden %>
   </div>

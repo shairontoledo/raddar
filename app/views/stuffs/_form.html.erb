@@ -5,7 +5,13 @@
     <%= f.input :name, input_html: {:class => 'span4'} %>
     <%= f.input :content, as: :bootsy, container: @stuff.pub, input_html: {:class => 'span8', rows: '16'} %>
     <%= render 'tags/input', {form: f} %>
-    <%= image_tag @stuff.image.thumb.url, :class => 'img-polaroid' unless @stuff.image.file.nil? %>
+    <% unless @stuff.image.file.nil? %>
+      <div class="row">
+        <div class="span2 offset2">
+          <%= image_tag @stuff.image.small.url, :class => 'img-polaroid' %>
+        </div>
+      </div>
+    <% end %>
     <%= f.input :image, as: :file, input_html: {:class => 'span4'}  %>
     <%= f.input :image_cache, as: :hidden %>
   </div>
