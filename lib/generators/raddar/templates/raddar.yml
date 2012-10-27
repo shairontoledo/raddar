@@ -41,3 +41,11 @@ security:
 private_pub:
   secret_token: "<%= defined?(SecureRandom) ? SecureRandom.hex(32) : ActiveSupport::SecureRandom.hex(32) %>"
   server: 'http://private_pub.mycommunity.example.com/faye'
+mongodb:
+  sessions:
+    default:
+      database: raddar_development
+      hosts:
+        - localhost:27017
+      options:
+        consistency: :strong
