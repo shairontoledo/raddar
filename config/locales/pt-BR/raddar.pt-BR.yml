@@ -141,6 +141,7 @@ pt-BR:
     notifications: Avisos
     notifications_description: "Receber avisos por e-mails sobre:"
     you: Este é você!
+    name_help: "Apenas letras, números e _ são permitidos."
     edit: Editar usuário
     confirmation:
       resend: Reenviar instruções de confirmação

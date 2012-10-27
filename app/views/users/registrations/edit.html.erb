@@ -6,7 +6,7 @@
   <%= f.error_notification %>
 
   <div class="form-inputs">
-    <%= f.input :name %>
+    <%= f.input :name, hint: t('user.name_help') %>
     <%= f.input :email %>
     <%= f.input :gender, collection: [:female, :male], as: :radio_buttons %>
     <%= f.input :date_of_birth, input_html: {value: l(resource.date_of_birth), :class => 'datepicker' } %>

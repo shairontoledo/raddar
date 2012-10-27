@@ -141,6 +141,7 @@ en:
     notifications: Notifications
     notifications_description: "E-mail me for:"
     you: That's you!
+    name_help: "Use letters, numbers and _ only"
     edit: Edit user
     confirmation:
       resend: Resend confirmation instructions

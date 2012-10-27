@@ -148,6 +148,7 @@ GEM
     hashie (1.2.0)
     highline (1.6.15)
     hike (1.2.1)
+    htmlentities (4.3.1)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
     i18n (0.6.1)
@@ -190,6 +191,7 @@ GEM
     moped (1.2.7)
     multi_json (1.3.6)
     multipart-post (1.1.5)
+    mysql2 (0.3.11)
     net-scp (1.0.4)
       net-ssh (>= 1.99.1)
     net-sftp (2.0.5)
@@ -336,11 +338,13 @@ DEPENDENCIES
   devise-encryptable
   factory_girl_rails
   geocoder
+  htmlentities
   jquery-rails
   mongoid
   mongoid-rspec
   mongoid_fulltext
   mongoid_slug (>= 1.0.0.rc2)
+  mysql2
   omniauth-facebook
   omniauth-twitter
   private_pub!
