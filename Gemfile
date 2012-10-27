@@ -10,7 +10,6 @@ end
 
 gem 'jquery-rails'
 gem 'coffee-rails'
-gem 'unicorn'
 gem 'capistrano'
 gem 'mongoid'
 gem 'responders'
