@@ -41,6 +41,7 @@ security:
 private_pub:
   secret_token: "<%= defined?(SecureRandom) ? SecureRandom.hex(32) : ActiveSupport::SecureRandom.hex(32) %>"
   server: 'http://private_pub.mycommunity.example.com/faye'
+  signature_expiration: 3600 # one hour
 mongodb:
   sessions:
     default:
