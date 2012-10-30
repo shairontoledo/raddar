@@ -22,14 +22,9 @@ class ImageUploader < CarrierWave::Uploader::Base
   # Process files as they are uploaded:
   process :resize_to_limit => [1160, 2000]
   process :convert => 'png'
-
-  version :full do
-    process :resize_to_fit => [1160, 2000]
-    process :convert => 'png'
-  end
-
+  
   version :large do
-    process :resize_to_fit => [760, 2000]
+    process :resize_to_limit => [760, 1160]
     process :convert => 'png'
   end
 
