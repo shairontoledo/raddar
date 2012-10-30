@@ -1,14 +1,18 @@
 <div class="row">
   <div class="span3">
     <h3><%= t 'index.top_read' %></h3>
-    <% @top_read.limit(8).each do |stuff| %>
-      <div class="clearfix index_item">
-        <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), pub_stuff_path(stuff.pub, stuff) %>
-        <%= link_to truncate(stuff.name, length: 50, separator: ' '), pub_stuff_path(stuff.pub, stuff) %>
-        <br/>
-        <small><%= stuff.pub.name %></small>
-      </div>
-    <% end %>
+    <ul class="media-list">
+      <% @top_read.limit(8).each do |stuff| %>
+        <li class="media">
+          <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded media-object'), pub_stuff_path(stuff.pub, stuff), :class => 'pull-left' %>
+          <div class="media-body">
+            <%= link_to truncate(stuff.name, length: 50, separator: ' '), pub_stuff_path(stuff.pub, stuff) %>
+            <br/>
+            <small><%= stuff.pub.name %></small>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
 
   <div class="span3">
@@ -28,28 +32,36 @@
   <div class="span3">
     <h3><%= t 'index.last_discussions' %></h3>
     
-    <% @topics.limit(4).each do |topic| %>
-      <div class="clearfix index_item">
-        <% unless topic.forum.universe.nil? %>
-          <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), forum_topic_path(topic.forum, topic) %>
-        <% end %>
-        <%= link_to truncate(topic.name, length: 50, separator: ' '), forum_topic_path(topic.forum, topic) %>
-        <br/>
-        <small><%= topic.forum.name %></small>
-      </div>
-    <% end %>
+    <ul class="media-list">
+      <% @topics.limit(4).each do |topic| %>
+        <li class="media">
+          <% unless topic.forum.universe.nil? %>
+            <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded media-object'), forum_topic_path(topic.forum, topic), :class => 'pull-left' %>
+          <% end %>
+          <div class="media-body">
+            <%= link_to truncate(topic.name, length: 50, separator: ' '), forum_topic_path(topic.forum, topic) %>
+            <br/>
+            <small><%= topic.forum.name %></small>
+          </div>
+        </li>
+      <% end %>
+    </ul>
 
     <h4><%= t 'index.top_discussed' %></h4>
     
-    <% @top_discussed.first(4).each do |topic| %>
-      <div class="clearfix index_item">
-        <% unless topic.forum.universe.nil? %>
-          <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded pull-left cover'), forum_topic_path(topic.forum, topic) %>
-        <% end %>
-        <%= link_to truncate(topic.name, length: 50, separator: ' '), forum_topic_path(topic.forum, topic) %>
-        <br/>
-        <small><%= topic.forum.name %></small>
-      </div>
-    <% end %>
+    <ul class="media-list">
+      <% @top_discussed.first(4).each do |topic| %>
+        <li class="media">
+          <% unless topic.forum.universe.nil? %>
+            <%= link_to image_tag(topic.forum.universe.image.thumb.url, :class => 'img-rounded media-object'), forum_topic_path(topic.forum, topic), :class => 'pull-left' %>
+          <% end %>
+          <div class="media-body">
+            <%= link_to truncate(topic.name, length: 50, separator: ' '), forum_topic_path(topic.forum, topic) %>
+            <br/>
+            <small><%= topic.forum.name %></small>
+          </div>
+        </li>
+      <% end %>
+    </ul>
   </div>
 </div>

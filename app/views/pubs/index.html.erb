@@ -20,15 +20,19 @@
     <% Universe.order_by([:name, :asc]).each do |universe| %>
       <div class="well">
         <h4><%= link_to universe.name, universe %></h4>
-        <% universe.pubs.where(main: false).order_by([:updated_at, :desc]).limit(4).each do |pub| %>
-          <% stuff = pub.stuffs.last %>
-          <div class="clearfix">
-            <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded pull-left cover'), pub_stuff_path(stuff.pub, stuff) %>
-            <%= link_to stuff.name, pub_stuff_path(stuff.pub, stuff) %>
-            <br/>
-            <small><%= pub.name %></small>
-          </div>
-        <% end %>
+        <ul class="media-list">
+          <% universe.pubs.where(main: false).order_by([:updated_at, :desc]).limit(4).each do |pub| %>
+            <% stuff = pub.stuffs.last %>
+            <li class="media">
+              <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded media-object'), pub_stuff_path(stuff.pub, stuff), :class => 'pull-left' %>
+              <div class="media-body">
+                <%= link_to stuff.name, pub_stuff_path(stuff.pub, stuff) %>
+                <br/>
+                <small><%= pub.name %></small>
+              </div>
+            </li>
+          <% end %>
+        </ul>
       </div>
     <% end %>
   </div>

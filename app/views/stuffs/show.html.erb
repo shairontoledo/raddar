@@ -34,11 +34,13 @@
   <div class="span4 sidebar">
     <div class="well sidebar">
       <h4><%= link_to @stuff.pub.name, @stuff.pub %></h4>
-      <div class="author clearfix">
-        <%= link_to image_tag(@stuff.pub.user.image.thumb.url, :class => 'img-polaroid pull-left cover'), @stuff.pub.user %>
-        <%= t 'pub.author' %>
-        <br/>
-        <%= link_to @stuff.pub.user.name, @stuff.pub.user %>
+      <div class="media">
+        <%= link_to image_tag(@stuff.pub.user.image.thumb.url, :class => 'img-polaroid media-object'), @stuff.pub.user, :class => 'pull-left' %>
+        <div class="media-body">
+          <%= t 'pub.author' %>
+          <br/>
+          <%= link_to @stuff.pub.user.name, @stuff.pub.user %>
+        </div>
       </div>
       
       <ul class="nav nav-list">
