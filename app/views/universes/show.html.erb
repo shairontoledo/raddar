@@ -27,7 +27,7 @@
           <% stuff = pub.stuffs.last %>
           <li class="media">
             <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded media-object'), pub_stuff_path(pub, stuff), :class => 'pull-left' %>
-            <div class="media-body"
+            <div class="media-body">
               <%= link_to stuff.name, pub_stuff_path(pub, stuff) %>
               <br/>
               <small><%= pub.name %></small>
@@ -78,5 +78,13 @@
   <h2><%= t 'forum.p' %></h2>
 </div>
 <% @universe.forums.each do |forum| %>
-  <div class="well"><%= link_to forum.name, forum %></div>
+  <div class="well">
+    <h3>
+      <%= link_to forum.name, forum %>
+      <small>
+        <%= forum.topics.count %> <%=  t('topic.p').downcase %>
+      </small>
+    </h3>
+    <%= simple_text forum.description %>
+  </div>
 <% end %>
