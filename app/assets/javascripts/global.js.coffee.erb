@@ -81,7 +81,3 @@ $ ->
 
   build_notifications_count 'messages_notifications', '/messages/read'
   build_notifications_count 'general_notifications', '/notifications/read'
-
-  $('body').off 'click.dropdown touchstart.dropdown.data-api', '.dropdown'
-  $('body').on 'click.dropdown touchstart.dropdown.data-api', '.dropdown form', (e) -> 
-      e.stopPropagation()
