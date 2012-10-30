@@ -5,7 +5,7 @@ module StuffsHelper
     if main_pubs_only
       stuffs = []
       Pub.where(main: true).order_by([:updated_at, :desc]).limit(limit).each do |pub|
-        stuffs << pub.stuffs.last
+        stuffs << pub.stuffs.last unless pub.stuffs.empty?
       end
     else
       stuffs = Stuff.where(:image.ne => nil).order_by([:created_at, :desc]).limit(limit)
