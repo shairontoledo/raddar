@@ -5,10 +5,14 @@
     <%= image_tag @user.image.medium.url, :class => 'img-polaroid', id: 'main_image' %>
     
     <% user_ranks(@user).each do |rank| %>
-      <div class="well well-small clearfix rank">
-        <%= link_to image_tag(rank.universe.image.thumb.url, :class => 'img-rounded'), rank.universe, :class => 'pull-left' %>
-        <h4><%= rank.name %></h4>
-        <p><%= rank.description %></p>
+      <div class="well well-small rank">
+        <div class="media">
+          <%= link_to image_tag(rank.universe.image.thumb.url, :class => 'img-rounded media-object'), rank.universe, :class => 'pull-left' %>
+          <div class="media-body">
+            <h4 class="media-heading"><%= rank.name %></h4>
+            <p><%= rank.description %></p>
+          </div>
+        </div>
       </div>
     <% end %>
   </div>
@@ -46,9 +50,9 @@
 
     <%= simple_text @user.bio %>
 
-    <%= accounts_links @user %>
+    <p><%= accounts_links @user %></p>
 
-    <dl>
+    <dl class="dl-horizontal">
       <%= show_protected_user_field @user, :email %>
       <%= show_protected_user_field @user, :date_of_birth %>
       <%= show_protected_user_field @user, :gender %>
@@ -62,15 +66,17 @@
       <h3><%= t 'pub.p' %></h3>
 
       <% @user.pubs.order_by([:updated_at, :desc]).each do |pub| %>
-        <div class="row pub_snippet">
-          <div class="span1">
-            <%= link_to image_tag( ((pub.image.file.nil? && !pub.universe.nil?) ? pub.universe.image.small.url : pub.image.small.url), :class => 'img-polaroid'), pub %>
-          </div>
-          <div class="span7">
-            <h5><%= link_to pub.name, pub %></h5>
+        <div class="media">
+          <%= link_to image_tag( ((pub.image.file.nil? && !pub.universe.nil?) ? pub.universe.image.small.url : pub.image.small.url), :class => 'img-polaroid media-object'), pub, :class => 'pull-left' %>
+          <div class="media-body">
+            <h4 class="media-heading"><%= link_to pub.name, pub %></h4>
             <p>
-              <span class="label"><%= pub.stuffs.count %> <%= t(pub.stuffs.count == 1 ? 'stuff.s' : 'stuff.p').downcase %></span>
-              <em><%= truncate hide_html(pub.description), length: 170, separator: ' ' %></em>
+              <span class="label">
+                <%= pub.stuffs.count %> <%= t(pub.stuffs.count == 1 ? 'stuff.s' : 'stuff.p').downcase %>
+              </span>
+            </p>
+            <p>
+              <em><%= truncate hide_html(pub.description), length: 420, separator: ' ' %></em>
             </p>
           </div>
         </div>
