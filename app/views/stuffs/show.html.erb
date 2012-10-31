@@ -9,11 +9,26 @@
         <%= @stuff.name %>
       </h1>
 
-      <div class="info clearfix">
-        <%= t 'stuff.info.html', author: link_to(@stuff.pub.user.name, @stuff.pub.user), time: time_tag(@stuff.created_at, humanize_datetime(@stuff.created_at)) %>
-        <span class="pull-right">
-          <%= edit_button edit_pub_stuff_path(@stuff.pub, @stuff) if can? :edit, @stuff %>
-        </span>
+      <div class="info row">
+        <div class="span6">
+          <p><%= t 'stuff.info.html', author: link_to(@stuff.pub.user.name, @stuff.pub.user), time: time_tag(@stuff.created_at, humanize_datetime(@stuff.created_at)) %></p>
+
+          <% if can? :edit, @stuff %>
+            <p><%= edit_button edit_pub_stuff_path(@stuff.pub, @stuff) %></p>
+          <% end %>
+        </div>
+
+        <div class="span2">
+          <div class="pull-right">
+            <div class="pull-left">
+              <%= render 'shared/tweet_button', {count: 'none', text: @stuff.name, user: @stuff.pub.user, url: pub_stuff_url(@stuff.pub, @stuff)} %>
+            </div>
+
+            <div class="pull-left like_button">
+              <%= render 'shared/like_button', {layout: 'button_count', url: pub_stuff_url(@stuff.pub, @stuff)} %>
+            </div>
+          </div>
+        </div>
       </div>
 
       <hr />
@@ -25,12 +40,26 @@
       </div>
     </div>
 
-    <%= render 'tags/index', {taggable: @stuff} %>
+    
 
-    <div class="votes">
-      <%= t 'stuff.vote' %>: <%= render 'votes/show', {votable: @stuff} %>
+    <div class="row">
+      <div class="span6">
+        <%= render 'tags/index', {taggable: @stuff} %>
+        <%= t 'stuff.vote' %>: <%= render 'votes/show', {votable: @stuff} %>
+      </div>
+
+      <div class="span2">
+        <div class="pull-left">
+          <%= render 'shared/tweet_button', {count: 'vertical', text: @stuff.name, user: @stuff.pub.user, url: pub_stuff_url(@stuff.pub, @stuff)} %>
+        </div>
+
+        <div class="pull-left like_button">
+          <%= render 'shared/like_button', {layout: 'box_count', url: pub_stuff_url(@stuff.pub, @stuff)} %>
+        </div>
+      </div>
     </div>
   </div>
+
   <div class="span4 sidebar">
     <div class="well sidebar">
       <h4><%= link_to @stuff.pub.name, @stuff.pub %></h4>
@@ -49,7 +78,6 @@
           <li class="divider"></li>
           <li class="<%= 'active' if stuff == @stuff %> clearfix" >
             <%= link_to pub_stuff_path(@stuff.pub, stuff) do %>
-              <%#= image_tag stuff.image.thumb.url, :class => 'size40 pull-left' %>
               <%= stuff.name %>
             <% end %>
           </li>

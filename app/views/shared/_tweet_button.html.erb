@@ -1,0 +1,12 @@
+<% if Raddar::config.respond_to?(:twitter) %>
+  <%= link_to 'Tweet', 
+      'https://twitter.com/share', 
+      :class => 'twitter-share-button', 
+      :'data-url' => url, 
+      :'data-text' => text, 
+      :'data-via' => (user.accounts.where(provider: :twitter).empty? ? Raddar::config.twitter['username'] : user.accounts.where(provider: :twitter).first.name), 
+      :'data-count' => count,
+      :'data-lang' => I18n.locale,
+      :'data-related' => Raddar::config.twitter['username'] 
+  %>
+<% end %>
