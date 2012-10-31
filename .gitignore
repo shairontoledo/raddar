@@ -8,3 +8,5 @@
 /public/system/
 /raddar.yml
 /theme
+/Capfile
+/config/deploy.rb
