@@ -19,7 +19,7 @@ class Users::OmniauthCallbacksController < Devise::OmniauthCallbacksController
     provider_name = access_data.provider.titleize
 
     if user_signed_in?
-      if current_user.save
+      if current_user.save && !current_user.accounts.where(provider: acc.provider).empty?
         flash[:notice] = t 'flash.users.accounts.add.notice', provider: provider_name
       else
         flash[:alert] = t 'flash.users.accounts.add.alert', provider: provider_name
