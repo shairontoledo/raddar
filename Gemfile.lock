@@ -1,5 +1,5 @@
 GIT
-  remote: https://github.com/volmer/carrierwave-mongoid.git
+  remote: git://github.com/volmer/carrierwave-mongoid.git
   revision: 787109c38bd9f010e4b48af22d7404606cfbf46c
   branch: mongoid-3.0
   specs:
@@ -9,7 +9,7 @@ GIT
       mongoid-grid_fs (~> 1.3.1)
 
 GIT
-  remote: https://github.com/volmer/private_pub.git
+  remote: git://github.com/volmer/private_pub.git
   revision: 168b94347ecb4af27d05a774dfe5dfc44544f2e2
   specs:
     private_pub (1.0.3)
