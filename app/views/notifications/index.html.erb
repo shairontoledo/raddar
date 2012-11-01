@@ -5,17 +5,17 @@
 </div>
 
 <div class="span8 offset2">
-  <table class="table table-striped" id="all_notifications">
+  <ul class="media-list" id="all_notifications">
     <% @notifications.each do |notification| %>
-      <tr>
-        <td class="notification_text clearfix">
-          <%= image_tag notification.notifiable.image.thumb.url, :class => 'img-rounded pull-left' %>
+      <li class="media">
+        <%= link_to image_tag(notification.notifiable.image.thumb.url, :class => 'img-rounded media-object'), notification, :class => 'pull-left' %>
+        <div class="media-body">
           <%= link_to raw(notification.content), notification %>
           <br/>
           <%= time_tag notification.created_at, humanize_datetime(notification.created_at) %>
-        </td>  
-      </tr>
+        </div>
+      </li>
     <% end %>
-  </table>
+  </ul>
   <%= will_paginate @notifications %>
 </div>
