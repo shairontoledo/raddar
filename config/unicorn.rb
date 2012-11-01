@@ -1,0 +1,2 @@
+listen 5000
+worker_processes 4
