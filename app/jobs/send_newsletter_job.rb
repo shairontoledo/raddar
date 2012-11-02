@@ -7,7 +7,7 @@ class SendNewsletterJob < Struct.new(:newsletter_id)
       
       User.all.each do |user|
         if user.active?
-          NewsletterMailer.newsletter_mail(newsletter, user).deliver 
+          NewsletterMailer.delay(queue: 'newsletter').newsletter_mail(newsletter, user)
         end
       end
     rescue Mongoid::Errors::DocumentNotFound
