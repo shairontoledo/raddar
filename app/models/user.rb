@@ -11,6 +11,7 @@ class User
 
   # Include default devise modules
   devise :database_authenticatable, :registerable, :recoverable, :rememberable, :trackable, :validatable, :confirmable, :omniauthable, :encryptable
+  include Devise::Async::Model # should be below call to `devise`
 
   ## Database authenticatable
   field :email, type: String, default: ''
