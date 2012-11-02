@@ -24,11 +24,11 @@
 
     <%= stylesheet_link_tag "application", media: "all" %>
 
-    <%= subscribe_to user_messages_path(current_user) if user_signed_in? %>
-
     <div id="fb-root"></div>
 
     <%= javascript_include_tag "application" %>
+
+    <%= subscribe_to user_messages_path(current_user) if user_signed_in? %>
 
     <%= javascript_include_tag 'https://maps.google.com/maps/api/js?sensor=false' %>
 
