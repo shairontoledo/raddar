@@ -24,12 +24,12 @@ module HomeHelper
   def tag_btn_size total, i
     sizes = [:large, :default, :small, :mini]
     
-    if total == 0
-      pos = i / (total / sizes.count)
+    if total != 0
+      pos = (i / (total / sizes.count))
     else
       pos = 1
     end
 
-    sizes[pos >= sizes.count ? sizes.count - 1 : pos]
+    sizes[(pos >= sizes.count) ? (sizes.count - 1) : pos]
   end
 end
