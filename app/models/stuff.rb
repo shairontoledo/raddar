@@ -19,7 +19,7 @@ class Stuff
   validates_length_of :name, maximum: 100
   validates_length_of :content, maximum: 66_000
 
-  attr_accessible :name, :content, :image, :image_cache
+  attr_accessible :name, :content, :image, :image_cache, :pub_id
 
   def to_s
     [self.name, self.pub.to_s, self.tags].compact.join(' ')

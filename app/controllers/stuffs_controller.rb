@@ -34,7 +34,9 @@ class StuffsController < ApplicationController
   # PUT /stuffs/1
   # PUT /stuffs/1.xml
   def update
-    @stuff.update_attributes(params[:stuff])
+    if Pub.find(params[:stuff][:pub_id]).user == current_user
+      @stuff.update_attributes(params[:stuff])
+    end
     respond_with @stuff.pub,@stuff
   end
 

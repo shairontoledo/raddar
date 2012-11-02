@@ -14,6 +14,10 @@
     <% end %>
     <%= f.input :image, as: :file, input_html: {:class => 'span4'}  %>
     <%= f.input :image_cache, as: :hidden %>
+    <% if @stuff.persisted? %>
+      <hr/>
+      <%= f.input :pub_id, collection: @stuff.pub.user.pubs.order_by([:name, :asc]), label: t('pub.s'), include_blank: false %>
+    <% end %>
   </div>
 
   <div class="form-actions">
