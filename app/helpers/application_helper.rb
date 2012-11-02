@@ -52,6 +52,6 @@ module ApplicationHelper
   end
 
   def render_themed_partial name
-    render file: "#{Rails.root}/theme/views/_#{name}.html.erb"
+    render file: "#{Rails.root}/theme/views/_#{name}"
   end
 end

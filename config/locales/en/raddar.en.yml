@@ -98,6 +98,7 @@ en:
     edit: Edit pub
     new: Create a new pub
     no_stuffs: This pub has no stuffs yet.
+    user_pubs: "%{user}'s pubs" 
   stuff:
     s: Stuff
     p: Stuffs

@@ -5,8 +5,14 @@ class PubsController < ApplicationController
   # GET /pubs
   # GET /pubs.xml
   def index
-    @stuffs = Stuff.all.order_by([:created_at, :desc])
-    respond_with @pubs
+    if params[:user_id]
+      @user = User.find params[:user_id]
+      @pubs = @user.pubs.order_by([:updated_at, :desc])
+      render 'user_index'
+    else
+      @stuffs = Stuff.all.order_by([:created_at, :desc])
+      respond_with @pubs
+    end
   end
 
   # GET /pubs/1

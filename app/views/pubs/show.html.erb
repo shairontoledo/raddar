@@ -6,21 +6,25 @@
   <div class="span6">
     <h1><%= @pub.name %></h1>
 
-    <div class="clearfix">
-      <div class="media">
-        <%= link_to image_tag(@pub.user.image.thumb.url, :class => 'img-polaroid media-object'), @pub.user, :class => 'pull-left' %>
-        <div class="media-body">
-          <%= t 'pub.author' %>
-          <br/>
-          <%= link_to @pub.user.name, @pub.user %>
+    <div class="row">
+      <div class="span3">
+        <div class="media">
+          <%= link_to image_tag(@pub.user.image.thumb.url, :class => 'img-polaroid media-object'), @pub.user, :class => 'pull-left' %>
+          <div class="media-body">
+            <%= t 'pub.author' %>
+            <br/>
+            <%= link_to @pub.user.name, @pub.user %>
+          </div>
         </div>
       </div>
 
-      <span class="pull-right">
-        <%= render 'followers/link_with_count', {followable: @pub} %>
-        <%= render 'followers/follow_button', {followable: @pub} if user_signed_in? %>
-        <%= edit_button edit_pub_path(@pub) if can? :edit, @pub %>
-      </span>
+      <div class="span3">
+        <span class="pull-right">
+          <%= render 'followers/link_with_count', {followable: @pub} %>
+          <%= render 'followers/follow_button', {followable: @pub} if user_signed_in? %>
+          <%= edit_button edit_pub_path(@pub) if can? :edit, @pub %>
+        </span>
+      </div>
     </div>
     
     <hr/>

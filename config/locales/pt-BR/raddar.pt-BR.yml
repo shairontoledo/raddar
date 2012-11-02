@@ -98,6 +98,7 @@ pt-BR:
     edit: Editar publicação
     new: Criar uma nova publicação
     no_stuffs: Ainda não existe nenhum material nesta publicação.
+    user_pubs: 'Publicações de %{user}'
   stuff:
     s: Material
     p: Materiais

@@ -109,6 +109,7 @@ Raddar::Application.routes.draw do
       delete 'destroy', on: :collection
     end
     resources :followees, controller: 'users/followees', only: [:index]
+    resources :pubs, only: [:index]
   end
 
   resources :messages, only: [:index] do

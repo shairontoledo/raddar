@@ -75,6 +75,12 @@
                     <%= t 'user.registration.edit' %>
                   <% end %>
                 </li>
+                <li>
+                  <%= link_to user_pubs_path(current_user) do %>
+                    <i class="icon-book"></i>
+                    <%= t 'pub.p' %>
+                  <% end %>
+                </li>
                 <% if can? :manage, :all %>
                   <li class="divider"></li>
                   <li>
