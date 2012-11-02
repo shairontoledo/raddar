@@ -9,7 +9,7 @@ class NotifyCommentJob < Struct.new(:comment_id)
           notification = watching.user.notifications.new content: I18n.t('notification.comment.html', author: comment.user.name, item: comment.commentable.name), item_path: raddar_path(comment)
           notification.notifiable = comment.user
           notification.save
-          NoticeMailer.new_comment_email(notification, comment).deliver 
+          NoticeMailer.delay(queue: 'notify_comment').new_comment_email(notification, comment)
         end
       end
     rescue Mongoid::Errors::DocumentNotFound
