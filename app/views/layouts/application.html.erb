@@ -24,6 +24,8 @@
 
     <%= stylesheet_link_tag "application", media: "all" %>
 
+    <%= subscribe_to user_messages_path(current_user) if user_signed_in? %>
+
     <div id="fb-root"></div>
 
     <%= javascript_include_tag "application" %>
@@ -34,7 +36,6 @@
       <script src="http://html5shim.googlecode.com/svn/trunk/html5.js"></script>
     <![endif]-->
     
-    <%= subscribe_to user_messages_path(current_user) if user_signed_in? %>
   </head>
 
   <body>
