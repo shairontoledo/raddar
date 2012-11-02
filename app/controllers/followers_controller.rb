@@ -18,7 +18,7 @@ class FollowersController < ApplicationController
     if f.save
 
       if @followable.class == User
-        notification = @followable.notifications.new content: I18n.t('notification.follower.html', author: current_user.name), item_path: current_user
+        notification = @followable.notifications.new content: I18n.t('notification.follower.html', author: current_user.name), item_path: user_path(current_user)
         notification.notifiable = current_user
         notification.save
         NoticeMailer.delay(queue: 'new_follower').new_follower_email(notification, current_user) if @followable.notify_followers

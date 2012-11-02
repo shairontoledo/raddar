@@ -148,8 +148,8 @@ pt-BR:
       not_received: Não recebeu o e-mail de confirmação?
     new_password: Nova senha
     password:
-      edit: Alterar senha
-      new: Esqueceu sua senha?
+      edit: 'Alterar senha'
+      new: 'Esqueceu sua senha?'
     registration:
       show: Meu perfil
       edit: Editar conta
