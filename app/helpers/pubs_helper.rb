@@ -5,7 +5,7 @@ module PubsHelper
 
   def main_pubs_span limit=20
     ret = ''
-    Pub.where(main: true).order_by([:updated_at, :desc]).limit(limit).each do |pub|
+    Pub.where(main: true).to_a.sort_by {|p| p.stuffs.empty? ? p.created_at : p.stuffs.order_by([:created_at, :desc]).first.created_at }.reverse.first(limit).each do |pub|
       unless pub.stuffs.empty?
         ret = ret + render('stuffs/show_resumed', {stuff: pub.stuffs.last})
       end
