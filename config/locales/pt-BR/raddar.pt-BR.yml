@@ -148,7 +148,7 @@ pt-BR:
       resend: Reenviar instruções de confirmação
       not_received: Não recebeu o e-mail de confirmação?
     new_password: Nova senha
-    password:
+    passwords:
       edit: 'Alterar senha'
       new: 'Esqueceu sua senha?'
     registration:

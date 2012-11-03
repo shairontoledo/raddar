@@ -5,7 +5,7 @@
   <li <%= raw 'class="active"' if active == :user_info %>><%= link_to t('user.registration.edit'), edit_user_registration_path %></li>
   <li <%= raw 'class="active"' if active == :accounts %>><%= link_to t('user.account.p'), user_accounts_path %></li>
   <li <%= raw 'class="active"' if active == :privacy %>><%= link_to t('user.privacy'), edit_user_privacy_path %></li>
-  <li <%= raw 'class="active"' if active == :change_password %>><%= link_to t('user.password.edit'), change_user_password_path %></li>
+  <li <%= raw 'class="active"' if active == :change_password %>><%= link_to t('user.passwords.edit'), change_user_password_path %></li>
   <li <%= raw 'class="active"' if active == :notifications %>><%= link_to t('user.notifications'), edit_user_notifications_path %></li>
   <li <%= raw 'class="active"' if active == :destroy %>><%= link_to t('user.registration.destroy'), destroy_user_registration_path  %></li>
 </ul>

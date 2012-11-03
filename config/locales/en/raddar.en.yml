@@ -148,7 +148,7 @@ en:
       resend: Resend confirmation instructions
       not_received: "Didn't receive confirmation instructions?"
     new_password: New password
-    password:
+    passwords:
       edit: Change password
       new: Forgot your password?
     registration:
