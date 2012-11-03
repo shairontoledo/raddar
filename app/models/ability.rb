@@ -45,7 +45,6 @@ class Ability
     can :read, [Followership, Forum, Pub, Stuff, Topic]
     can :show, [Comment, Forum, Page, Post, Rank, Tag, Universe, Vote]
     can [:read, :nearby], Venue
-    can [:index, :search, :exception], :home
     can :read, :followee
     can [:new, :create], Contact
   end

@@ -1,7 +1,8 @@
 require 'will_paginate/array'
 
 class HomeController < ApplicationController
-  authorize_resource :class => false
+  skip_authorization_check
+
   caches_action :index, layout: false, expires_in: 5.minutes
   
   def index
