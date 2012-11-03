@@ -17,22 +17,24 @@
   <div class="span8">
     <% main_pubs = @universe.pubs.where(main: true).order_by([:updated_at, :desc]) %>
     <% main_pubs.each do |pub| %>
-      <%= render 'stuffs/show_resumed', {stuff: pub.stuffs.last} %>
+      <%= render('stuffs/show_resumed', {stuff: pub.stuffs.last}) unless pub.stuffs.empty? %>
     <% end %>
   </div>
   <div class="span4">
     <div class="well well-small">
       <ul class="media-list">
         <% @universe.pubs.where(main: false).order_by([:updated_at, :desc]).limit((main_pubs.length * 3.2).to_i).each do |pub| %>
-          <% stuff = pub.stuffs.last %>
-          <li class="media">
-            <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded media-object'), pub_stuff_path(pub, stuff), :class => 'pull-left' %>
-            <div class="media-body">
-              <%= link_to stuff.name, pub_stuff_path(pub, stuff) %>
-              <br/>
-              <small><%= pub.name %></small>
-            </div>
-          </li>
+          <% unless pub.stuffs.empty? %>
+            <% stuff = pub.stuffs.last %>
+            <li class="media">
+              <%= link_to image_tag(stuff.image.thumb.url, :class => 'img-rounded media-object'), pub_stuff_path(pub, stuff), :class => 'pull-left' %>
+              <div class="media-body">
+                <%= link_to stuff.name, pub_stuff_path(pub, stuff) %>
+                <br/>
+                <small><%= pub.name %></small>
+              </div>
+            </li>
+          <% end %>
         <% end %>
       </ul>
     </div>
