@@ -50,3 +50,6 @@ mongodb:
         - localhost:27017
       options:
         consistency: :strong
+unicorn:
+  listen: 5000
+  worker_processes: 4
