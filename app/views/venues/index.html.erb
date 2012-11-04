@@ -7,8 +7,8 @@
 <div class="row">
   <div class="span8">
     <div id="map_venues" class="map_canvas"></div>
-    <%= hidden_field_tag :ip_lat, request.location.latitude %>
-    <%= hidden_field_tag :ip_lng, request.location.longitude %>
+    <%= hidden_field_tag :ip_lat, (request.location ? request.location.latitude : 0.0) %>
+    <%= hidden_field_tag :ip_lng, (request.location ? request.location.longitude : 0.0) %>
 
     <%= link_to t('venue.location.change'), '#change_location_modal', :class => 'btn', :'data-toggle' => 'modal' %>
   </div>
