@@ -7,6 +7,8 @@ class ForumsController < ApplicationController
   def index
     @forums = @forums.order_by [:updated_at, :desc]
 
+    @posts = Post.all.order_by [:created_at, :desc]
+
     respond_with @forums
   end
 

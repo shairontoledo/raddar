@@ -21,27 +21,43 @@
     <% end %>
   </div>
   <div class="span4">
-    <div class="well">
-      <h4><%= t 'index.last_discussions' %></h4>
-      <hr/>
-      <ul class="unstyled">
+
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header"><%= t 'index.last_discussions' %></li>
         <% Topic.order_by([:created_at, :desc]).limit(6).each do |topic| %>
           <li>
-            <h5><%= link_to topic.name, forum_topic_path(topic.forum, topic) %></h5>
-            <%= link_to topic.forum.name, topic.forum %>
+            <%= link_to forum_topic_path(topic.forum, topic) do %>
+              <strong><%= topic.name %></strong>
+            <% end %>
+            <small><%= topic.forum.name %></small>
           </li>
         <% end %> 
       </ul>
     </div>
 
-    <div class="well">
-      <h4><%= t 'index.top_discussed' %></h4>
-      <hr/>
-      <ul class="unstyled">
-        <% Topic.order_by([:views, :desc]).limit(6).each do |topic| %>
+    <h5><%= t 'post.last' %></h5>
+    <ul class="media-list">
+      <% @posts.limit(10).each do |post| %>
+        <li class="media">
+          <%= link_to image_tag(post.user.image.thumb.url, :class => 'img-polaroid media-object'), raddar_path(post), :class => 'pull-left' %>
+          <div class="media-body">
+            <h5 class="media-heading"><%= link_to post.user.name, raddar_path(post) %>:</h5>
+            <p class="justified"><%= truncate hide_html(post.content), length: 80, separator: ' ' %></p>
+          </div>
+        </li>
+      <% end %>
+    </ul>
+
+    <div class="well sidebar-nav">
+      <ul class="nav nav-list">
+        <li class="nav-header"><%= t 'index.top_discussed' %></li>
+        <% Topic.order_by([:views, :desc]).limit(10).each do |topic| %>
           <li>
-            <h5><%= link_to topic.name, forum_topic_path(topic.forum, topic) %></h5>
-            <%= link_to topic.forum.name, topic.forum %>
+            <%= link_to forum_topic_path(topic.forum, topic) do %>
+              <strong><%= topic.name %></strong>
+            <% end %>
+            <small><%= topic.forum.name %></small>
           </li>
         <% end %> 
       </ul>
