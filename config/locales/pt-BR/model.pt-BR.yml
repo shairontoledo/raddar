@@ -96,6 +96,7 @@ pt-BR:
         password: Senha
         current_password: Senha atual
         password_confirmation: Confirmar senha
+        current_sign_in_at: Último login
         name: Nome de usuário
         date_of_birth: Data de nascimento
         gender: Sexo

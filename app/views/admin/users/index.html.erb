@@ -8,6 +8,7 @@
       <th><%= t('user.name') %></th>
       <th><%= t('user.status') %></th>
       <th><%= t('user.confirmed') %></th>
+      <th><%= t('user.current_sign_in_at') %></th>
       <th><%= t('role.p') %></th>
       <th></th>
     </tr>
@@ -24,6 +25,9 @@
         </td>
         <td>
           <%= t(user.confirmed? ? :yes : :no) %>
+        </td>
+        <td>
+          <%= l(user.current_sign_in_at) unless user.current_sign_in_at.nil? %>
         </td>
         <td>
           <% user.roles.each do |role| %>
