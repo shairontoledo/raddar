@@ -8,7 +8,7 @@ class Forum
   field :description, type: String
   slug :name
 
-  has_many :topics
+  has_many :topics, dependent: :destroy
   belongs_to :universe #is not required
 
   attr_accessible :name, :description, :universe_id
