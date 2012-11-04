@@ -6,22 +6,24 @@ class CalculateUserRanksJob
 
   def perform
     Universe.includes(:ranks).all.each do |universe|
-      User.where(status: :active).each do |user|
+      unless universe.ranks.empty?
+        User.where(status: :active).each do |user|
 
-        intended_level = Rank.highest(user, universe).level + 1
+          intended_level = Rank.highest(user, universe).level + 1
 
-        if intended_level <= universe.highest_rank.level
-          points = calc_points user, universe
-          level = calc_level points
+          if intended_level <= universe.highest_rank.level
+            points = calc_points user, universe
+            level = calc_level points
 
-          if level >= intended_level
-            rank = universe.ranks.where(level: intended_level).first
-            user.ranks << rank
+            if level >= intended_level
+              rank = universe.ranks.where(level: intended_level).first
+              user.ranks << rank
 
-            Delayed::Job.enqueue NotifyRankJob.new(user.id, rank.id)
+              Delayed::Job.enqueue NotifyRankJob.new(user.id, rank.id)
+            end
           end
-        end
-      end 
+        end 
+      end
     end
   end
 
