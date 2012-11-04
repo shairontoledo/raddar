@@ -11,7 +11,7 @@ class NotifyForumPostJob < Struct.new(:post_id)
           notification = watching.user.notifications.new content: I18n.t('notification.forum_post.html', author: post.user.name, topic: post.topic.name), item_path: raddar_path(post)
           notification.notifiable = post.user
           notification.save
-          NoticeMailer.delay(queue: 'notify_post').new_forum_post_email(notification, post).deliver 
+          NoticeMailer.delay(queue: 'notify_post').new_forum_post_email(notification, post)
         end
       end
     rescue Mongoid::Errors::DocumentNotFound
