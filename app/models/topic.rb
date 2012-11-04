@@ -9,7 +9,7 @@ class Topic
   slug :name
 
   belongs_to :forum, touch: true
-  has_many :posts
+  has_many :posts, dependent: :destroy
   belongs_to :user
 
   attr_accessible :name
