@@ -104,7 +104,7 @@ GEM
       orm_adapter (~> 0.1)
       railties (~> 3.1)
       warden (~> 1.2.1)
-    devise-async (0.3.1)
+    devise-async (0.4.0)
       devise (>= 1.1)
     devise-encryptable (0.1.1)
       devise (>= 2.1.0.rc)
@@ -143,6 +143,7 @@ GEM
       json (>= 1.4.6)
     hashie (1.2.0)
     hike (1.2.1)
+    htmlentities (4.3.1)
     http_parser.rb (0.5.3)
     httpauth (0.2.0)
     i18n (0.6.1)
@@ -164,7 +165,7 @@ GEM
     mime-types (1.19)
     mini_magick (3.4)
       subexec (~> 0.2.1)
-    mongoid (3.0.10)
+    mongoid (3.0.11)
       activemodel (~> 3.1)
       moped (~> 1.1)
       origin (~> 1.0)
@@ -182,8 +183,8 @@ GEM
     mongoid_slug (2.0.0.pre)
       mongoid (~> 3.0)
       stringex (~> 1.4)
-    moped (1.2.7)
-    multi_json (1.3.6)
+    moped (1.2.8)
+    multi_json (1.3.7)
     multipart-post (1.1.5)
     nokogiri (1.5.5)
     oauth (0.4.7)
@@ -207,7 +208,7 @@ GEM
     omniauth-twitter (0.0.13)
       multi_json (~> 1.3)
       omniauth-oauth (~> 1.0)
-    origin (1.0.9)
+    origin (1.0.10)
     orm_adapter (0.4.0)
     polyglot (0.3.3)
     rack (1.4.1)
@@ -255,12 +256,12 @@ GEM
       railties (>= 3.0)
       rspec (~> 2.11.0)
     rubyzip (0.9.9)
-    sass (3.2.1)
+    sass (3.2.2)
     sass-rails (3.2.5)
       railties (~> 3.2.0)
       sass (>= 3.1.10)
       tilt (~> 1.3)
-    selenium-webdriver (2.25.0)
+    selenium-webdriver (2.26.0)
       childprocess (>= 0.2.5)
       libwebsocket (~> 0.1.3)
       multi_json (~> 1.0)
@@ -285,7 +286,7 @@ GEM
     treetop (1.4.12)
       polyglot
       polyglot (>= 0.3.1)
-    tzinfo (0.3.34)
+    tzinfo (0.3.35)
     uglifier (1.3.0)
       execjs (>= 0.3.0)
       multi_json (~> 1.0, >= 1.0.2)
@@ -324,6 +325,7 @@ DEPENDENCIES
   devise-encryptable
   factory_girl_rails
   geocoder
+  htmlentities
   jquery-rails
   mongoid
   mongoid-rspec

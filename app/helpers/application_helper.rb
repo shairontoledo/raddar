@@ -19,6 +19,10 @@ module ApplicationHelper
     str
   end
 
+  def hide_html html
+    HTMLEntities.new.decode strip_tags(html)
+  end
+
   def rich_format html
     sanitize html
   end

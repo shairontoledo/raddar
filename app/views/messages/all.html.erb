@@ -14,7 +14,7 @@
         </td>
         <td>
           <%= link_to user_messages_path(user) do %>
-            <%= truncate strip_tags(message.content), length: 170, separator: ' ' %>
+            <%= truncate hide_html(message.content), length: 170, separator: ' ' %>
           <% end %>
         </td>
         <td>

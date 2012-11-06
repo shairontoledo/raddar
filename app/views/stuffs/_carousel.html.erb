@@ -5,7 +5,7 @@
         <%= link_to image_tag(stuff.image.large_rectangle.url), pub_stuff_path(stuff.pub, stuff) %>
         <div class="carousel-caption">
           <h4><%= link_to stuff.name, pub_stuff_path(stuff.pub, stuff) %></h4>
-          <p><%= truncate strip_tags(stuff.content), length: 200, separator: ' ' %></p>
+          <p><%= truncate hide_html(stuff.content), length: 200, separator: ' ' %></p>
         </div>
       </div>
     <% end %> 
