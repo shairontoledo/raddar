@@ -76,7 +76,7 @@
               </span>
             </p>
             <p>
-              <em><%= truncate hide_html(pub.description), length: 420, separator: ' ' %></em>
+              <em><%= truncate strip_tags(pub.description), length: 420, separator: ' ' %></em>
             </p>
           </div>
         </div>

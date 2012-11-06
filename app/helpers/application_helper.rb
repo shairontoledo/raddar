@@ -23,10 +23,6 @@ module ApplicationHelper
     sanitize html
   end
 
-  def hide_html text
-    sanitize simple_format(text), tags: [], attributes: []
-  end
-
   def simple_text text
     sanitize simple_format(text), tags: %w{p br}, attributes: []
   end

@@ -34,7 +34,7 @@
       </p>
 
       <p>
-        <em><%= truncate hide_html(pub.description), length: 420, separator: ' ' %></em>
+        <em><%= truncate strip_tags(pub.description), length: 420, separator: ' ' %></em>
       </p>
       <p>
         <%= edit_button edit_pub_path(pub) if can? :edit, pub %>

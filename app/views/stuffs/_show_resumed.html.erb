@@ -5,7 +5,7 @@
     <% unless defined?(hide_pub) && hide_pub %>
       <p><em><%= link_to stuff.pub.name, stuff.pub %></em></p>
     <% end %>
-    <p class="justified"><%= truncate hide_html(stuff.content), length: 450, separator: ' ' %></p>
+    <p class="justified"><%= truncate strip_tags(stuff.content), length: 450, separator: ' ' %></p>
   </div>
 </div>
 <hr />
