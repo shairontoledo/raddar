@@ -1,3 +1,5 @@
+require 'pp'
+
 module HomeHelper
   def search_result_text result, terms
     text = excerpt strip_tags(result), terms.first, radius: 100
@@ -24,11 +26,7 @@ module HomeHelper
   def tag_btn_size total, i
     sizes = [:large, :default, :small, :mini]
     
-    if total != 0
-      pos = (i / (total / sizes.count))
-    else
-      pos = 1
-    end
+    pos = i / ((total / sizes.count) +1)
 
     sizes[(pos >= sizes.count) ? (sizes.count - 1) : pos]
   end
