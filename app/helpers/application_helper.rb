@@ -19,12 +19,12 @@ module ApplicationHelper
     str
   end
 
-  def rich_format html
-    sanitize html
+  def hide_html html
+    HTMLEntities.new.decode strip_tags(html)
   end
 
-  def hide_html text
-    sanitize simple_format(text), tags: [], attributes: []
+  def rich_format html
+    sanitize html
   end
 
   def simple_text text

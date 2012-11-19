@@ -34,8 +34,7 @@ gem 'whenever', :require => false
 gem 'recaptcha', :require => 'recaptcha/rails'
 gem 'bootsy-mongoid'
 gem 'bootsy-simple_form'
-#gem 'mysql2'
-#gem 'htmlentities'
+gem 'htmlentities'
 
 group :development, :test do
   gem 'rspec-rails'
