@@ -1,9 +1,10 @@
 source 'https://rubygems.org'
 
-gem 'rails', '3.2.8'
+gem 'rails', '3.2.11'
 
 group :assets do
   gem 'sass-rails'
+  gem 'libv8'
   gem 'therubyracer', platform: :ruby
   gem 'uglifier'
 end
@@ -17,7 +18,7 @@ gem 'simple_form'
 gem 'devise'
 gem 'devise-encryptable'
 gem 'devise-async'
-gem 'carrierwave-mongoid', :require => 'carrierwave/mongoid', git: 'git://github.com/volmer/carrierwave-mongoid.git', branch: 'mongoid-3.0'
+gem 'carrierwave-mongoid'
 gem 'rmagick'
 gem 'bootstrap-will_paginate'
 gem 'omniauth-facebook'
@@ -28,7 +29,7 @@ gem 'thin'
 gem 'geocoder'
 gem 'delayed_job_mongoid'
 gem 'daemons'
-gem 'mongoid_slug', '>= 2.0.0.pre'
+gem 'mongoid_slug'
 gem 'mongoid_fulltext'
 gem 'whenever', :require => false
 gem 'recaptcha', :require => 'recaptcha/rails'
