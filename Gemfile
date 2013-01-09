@@ -4,7 +4,7 @@ gem 'rails', '3.2.11'
 
 group :assets do
   gem 'sass-rails'
-  gem 'libv8'
+  gem 'libv8', '~> 3.11.8'
   gem 'therubyracer', platform: :ruby
   gem 'uglifier'
 end

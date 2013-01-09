@@ -149,7 +149,7 @@ GEM
     jwt (0.1.5)
       multi_json (>= 1.0)
     kgio (2.7.4)
-    libv8 (3.15.11.1)
+    libv8 (3.11.8.11)
     libwebsocket (0.1.7.1)
       addressable
       websocket
@@ -327,7 +327,7 @@ DEPENDENCIES
   geocoder
   htmlentities
   jquery-rails
-  libv8
+  libv8 (~> 3.11.8)
   mongoid
   mongoid-rspec
   mongoid_fulltext
